@@ -1,0 +1,33 @@
+name: Tenant Snapshot
+on:
+  workflow_dispatch:
+    inputs:   
+      draft:
+        description: '(Optional) Draft handling - SKIP (default value if emty), ADD, ERROR'
+        type: choice
+        options:
+          - SKIP
+          - ADD
+          - ERROR
+        required: false
+      message:
+        description: '(Optional) Commit message'
+        required: false
+jobs:
+  take_snapshot:
+    runs-on: ubuntu-latest
+    container:
+      image: engswee/flashpipe:latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 'Take a snapshot'
+        uses: engswee/flashpipe-action/snapshot@v1
+        with:
+          tmn-host: sonnen-integration-stage.it-cpi024.cfapps.eu10-002.hana.ondemand.com
+          oauth-host: sonnen-integration-stage.authentication.eu10.hana.ondemand.com/oauth/token
+          oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
+          oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
+          draft-handling: ${{ github.event.inputs.draft }}
+          git-commit-msg: ${{ github.event.inputs.message }}
