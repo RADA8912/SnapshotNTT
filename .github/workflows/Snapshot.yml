@@ -1,15 +1,23 @@
 name: Tenant Snapshot
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
-    inputs:   
+    inputs:
+      directory:
+        description: 'Target artifact directory (relative from Git repository root)'
+        required: false
+      includedIds:
+        description: 'Included package Ids (optional)'
+        required: false
+      excludedIds:
+        description: 'Excluded package Ids (optional)'
+        required: false    
       draft:
-        description: '(Optional) Draft handling - SKIP (default value if emty), ADD, ERROR'
+        description: '(Optional) Draft handling'
         type: choice
         options:
+          - SKIP
           - ADD
+          - ERROR
         required: false
       message:
         description: '(Optional) Commit message'
@@ -26,10 +34,12 @@ jobs:
       - name: 'Take a snapshot'
         uses: engswee/flashpipe-action/snapshot@v1
         with:
-          tmn-host: ntt-pi-dev.it-cpi001.cfapps.eu10.hana.ondemand.com
-          oauth-host: ntt-pi-dev.authentication.eu10.hana.ondemand.com/oauth/token
+          tmn-host: ntt-pi-dev.integrationsuite.cfapps.eu10.hana.ondemand.com
+          oauth-host: ntt-pi-dev.authentication.eu10.hana.ondemand.com
           oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
           oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
+          dir-artifacts-relative: ${{ github.event.inputs.directory }}
+          ids-include: ${{ github.event.inputs.includedIds }}
+          ids-exclude: ${{ github.event.inputs.excludedIds }}
           draft-handling: ${{ github.event.inputs.draft }}
           git-commit-msg: ${{ github.event.inputs.message }}
-
