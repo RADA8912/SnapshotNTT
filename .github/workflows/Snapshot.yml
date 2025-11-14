@@ -22,24 +22,28 @@ on:
       message:
         description: '(Optional) Commit message'
         required: false
+permissions:
+  contents: write
+
 jobs:
-  take_snapshot:
+  backup:
     runs-on: ubuntu-latest
     container:
       image: engswee/flashpipe:latest
+      env:
+        LOG_LEVEL: DEBUG
+
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: 'Take a snapshot'
+      - name: Sync artifacts from tenant to GitHub
         uses: engswee/flashpipe-action/snapshot@v1
         with:
-          tmn-host: ntt-pi-dev.integrationsuite.cfapps.eu10.hana.ondemand.com
+          tmn-host: ntt-pi-dev.it-cpi001.cfapps.eu10.hana.ondemand.com
           oauth-host: ntt-pi-dev.authentication.eu10.hana.ondemand.com
-          oauth-clientid: ${{ secrets.DEV_CLIENT_ID }}
-          oauth-clientsecret: ${{ secrets.DEV_CLIENT_SECRET }}
-          dir-artifacts-relative: ${{ github.event.inputs.directory }}
-          ids-include: ${{ github.event.inputs.includedIds }}
-          ids-exclude: ${{ github.event.inputs.excludedIds }}
-          draft-handling: ${{ github.event.inputs.draft }}
-          git-commit-msg: ${{ github.event.inputs.message }}
+          oauth-clientid: sb-72493dbb-f9e3-43dc-ba00-d32302caccd2!b77644|it!b16077
+          oauth-clientsecret: 9a205cae-c9c9-4e75-9aab-f36bc05edcfe$ofavsuffzxGYkYTMtiuQRmuwOyV5UO_zy5Pgxtcz-XM=
+          draft-handling: ADD
+          git-commit-msg: "Snapshot from Tenant #3"
