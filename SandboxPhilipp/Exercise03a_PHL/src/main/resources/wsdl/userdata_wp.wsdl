@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions targetNamespace="http://sapcd.com/taxagt"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://sapcd.com/taxagt"
+	xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:n1="https://taxschemas.netweaver.neo.com/taxflow">
+
+	<wsdl:documentation>Banking Services Network Operations - WSDL with no
+		policies - meant to be used
+		as abstract WSDL
+	</wsdl:documentation>
+	<wsdl:types>
+		<xsd:schema targetNamespace="https://taxschemas.netweaver.neo.com/taxflow"
+			xmlns:xi0="https://taxschemas.netweaver.neo.com/taxflow" xmlns:xi1="http://sapcd.com/taxagt"
+			xmlns="https://taxschemas.netweaver.neo.com/taxflow">
+			<xsd:import namespace="http://sapcd.com/taxagt" />
+			<xsd:element name="IncomeTaxMessage" type="xi1:IncomeTaxMessage" />
+		</xsd:schema>
+		<xsd:schema targetNamespace="http://sapcd.com/taxagt"
+			xmlns:xi0="https://taxschemas.netweaver.neo.com/taxflow" xmlns:xi1="http://sapcd.com/taxagt"
+			xmlns="http://sapcd.com/taxagt">
+		
+            <xsd:complexType name="IncomeTaxMessage">
+               <xsd:sequence>
+                  <xsd:element name="UserData" maxOccurs="unbounded">
+                     <xsd:complexType>
+                        <xsd:sequence>
+                           <xsd:element name="TaxID" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+			   <xsd:element name="Account_Type" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+			   <xsd:element name="Currency" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                           <xsd:element name="EOM" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+			   <xsd:element name="Annual_Income" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+			   <xsd:element name="Tax_Percent" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+			   <xsd:element name="Tax_Amount" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                           <xsd:element name="FirstName" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                           <xsd:element name="LastName" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                           <xsd:element name="Department" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                           <xsd:element name="Address" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+			   <xsd:element name="EMail" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                           <xsd:element name="PhoneNumber" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+			   <xsd:element name="TwitterMsg" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                        </xsd:sequence>
+                     </xsd:complexType>
+                  </xsd:element>
+               </xsd:sequence>
+            </xsd:complexType>
+         
+ 			<xsd:simpleType name="ReceiverId">
+ 				<xsd:annotation>
+ 				 <xsd:documentation xml:lang="EN">Receiver of this Message</xsd:documentation> 
+  				</xsd:annotation>
+  				<xsd:restriction base="xsd:string" /> 
+ 			 </xsd:simpleType>
+			<xsd:simpleType name="SenderId">
+ 				<xsd:annotation>
+  					<xsd:documentation xml:lang="EN">Sender of this Message</xsd:documentation> 
+  				</xsd:annotation>
+  				<xsd:restriction base="xsd:string" /> 
+  			</xsd:simpleType>
+			<xsd:simpleType name="FileName">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="EN"> Set out of the
+						filename
+						defined during format creation.
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string" />
+			</xsd:simpleType>
+			<xsd:simpleType name=" NumberOftaxs ">
+				<xsd:annotation>
+  					<xsd:documentation xml:lang="EN">Number of taxs inside the MessageContent </xsd:documentation> 
+ 				 </xsd:annotation>
+ 				 <xsd:restriction base="xsd:integer" /> 
+  			</xsd:simpleType>
+			<xsd:simpleType name="MessageContent">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="EN">Message string in the
+						Inbound Message.
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string" />
+			</xsd:simpleType>
+			<xsd:simpleType name="taxPrice">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="EN">
+						For tracking purposes
+						this is currently defined as a unique ID per corporate.
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string" />
+			</xsd:simpleType>
+			<xsd:simpleType name="taxType">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="EN">Type tag that
+						indicates the type of message.
+						Possible values for tag taxType
+						need to be defined between tax Agent and tax.
+						See the tax Agent
+						specification
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:restriction base="xsd:string" />
+			</xsd:simpleType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="IncomeTaxMessage">
+		<wsdl:documentation>Message for TechEd tax Scenario</wsdl:documentation>
+		<wsdl:part name="IncomeTaxMessage" element="n1:IncomeTaxMessage" />
+	</wsdl:message>
+
+	<wsdl:portType name="taxInterface_In">
+		<wsdl:operation name="taxOperation">
+			<wsdl:input message="tns:IncomeTaxMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="taxBinding" type="tns:taxInterface_In">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"
+			style="document" />
+		<wsdl:operation name="taxOperation">
+			<soap:operation soapAction="http://sap.com/xi/WebService/soap1.1" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="taxService">
+		<wsdl:port name="taxPort" binding="tns:taxBinding">
+			<soap:address
+				location="https://taxflow-hana.ondemand.com/taxInterface" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

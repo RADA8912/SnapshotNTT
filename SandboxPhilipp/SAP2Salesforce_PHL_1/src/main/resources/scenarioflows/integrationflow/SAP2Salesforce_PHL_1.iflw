@@ -1,0 +1,1031 @@
+<?xml version="1.0" encoding="UTF-8"?><bpmn2:definitions xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:ifl="http:///com.sap.ifl.model/Ifl.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1">
+    <bpmn2:collaboration id="Collaboration_1" name="Default Collaboration">
+        <bpmn2:extensionElements>
+            <ifl:property>
+                <key>namespaceMapping</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>allowedHeaderList</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>httpSessionHandling</key>
+                <value>None</value>
+            </ifl:property>
+            <ifl:property>
+                <key>ServerTrace</key>
+                <value>false</value>
+            </ifl:property>
+            <ifl:property>
+                <key>returnExceptionToSender</key>
+                <value>false</value>
+            </ifl:property>
+            <ifl:property>
+                <key>log</key>
+                <value>All events</value>
+            </ifl:property>
+            <ifl:property>
+                <key>componentVersion</key>
+                <value>1.2</value>
+            </ifl:property>
+            <ifl:property>
+                <key>cmdVariantUri</key>
+                <value>ctype::IFlowVariant/cname::IFlowConfiguration/version::1.2.1</value>
+            </ifl:property>
+        </bpmn2:extensionElements>
+        <bpmn2:participant id="Participant_Process_1" ifl:type="IntegrationProcess" name="Integration Process" processRef="Process_1">
+            <bpmn2:extensionElements/>
+        </bpmn2:participant>
+    </bpmn2:collaboration>
+    <bpmn2:process id="Process_1" name="Integration Process">
+        <bpmn2:extensionElements>
+            <ifl:property>
+                <key>transactionTimeout</key>
+                <value>30</value>
+            </ifl:property>
+            <ifl:property>
+                <key>componentVersion</key>
+                <value>1.1</value>
+            </ifl:property>
+            <ifl:property>
+                <key>cmdVariantUri</key>
+                <value>ctype::FlowElementVariant/cname::IntegrationProcess/version::1.1.3</value>
+            </ifl:property>
+            <ifl:property>
+                <key>transactionalHandling</key>
+                <value>Required</value>
+            </ifl:property>
+        </bpmn2:extensionElements>
+        <bpmn2:callActivity id="CallActivity_7" name="Groovy Script 1">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>scriptFunction</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>scriptBundleId</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.1</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>activityType</key>
+                    <value>Script</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::GroovyScript/version::1.1.2</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>subActivityType</key>
+                    <value>GroovyScript</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>script</key>
+                    <value>script1.groovy</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_8</bpmn2:incoming>
+            <bpmn2:outgoing>SequenceFlow_9</bpmn2:outgoing>
+        </bpmn2:callActivity>
+        <bpmn2:endEvent id="EndEvent_2" name="End">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.1</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::MessageEndEvent/version::1.1.0</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_9</bpmn2:incoming>
+            <bpmn2:messageEventDefinition/>
+        </bpmn2:endEvent>
+        <bpmn2:callActivity id="CallActivity_5" name="Content Modifier 1">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>bodyType</key>
+                    <value>constant</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>propertyTable</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>headerTable</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>wrapContent</key>
+                    <value>&lt;ZDEBMAS07_SF&gt;
+    &lt;IDOC BEGIN="1"&gt;
+        &lt;EDI_DC40 SEGMENT="1"&gt;
+            &lt;TABNAM&gt;EDI_DC40&lt;/TABNAM&gt;
+            &lt;MANDT&gt;050&lt;/MANDT&gt;
+            &lt;DOCNUM&gt;0000000011827998&lt;/DOCNUM&gt;
+            &lt;DOCREL&gt;750&lt;/DOCREL&gt;
+            &lt;STATUS&gt;30&lt;/STATUS&gt;
+            &lt;DIRECT&gt;1&lt;/DIRECT&gt;
+            &lt;OUTMOD&gt;2&lt;/OUTMOD&gt;
+            &lt;IDOCTYP&gt;DEBMAS07&lt;/IDOCTYP&gt;
+            &lt;CIMTYP&gt;ZDEBMAS07_SF&lt;/CIMTYP&gt;
+            &lt;MESTYP&gt;ZDEBMAS_SFDC&lt;/MESTYP&gt;
+            &lt;SNDPOR&gt;SAPE10&lt;/SNDPOR&gt;
+            &lt;SNDPRT&gt;LS&lt;/SNDPRT&gt;
+            &lt;SNDPRN&gt;E10050&lt;/SNDPRN&gt;
+            &lt;RCVPOR&gt;ZSCPI&lt;/RCVPOR&gt;
+            &lt;RCVPRT&gt;LS&lt;/RCVPRT&gt;
+            &lt;RCVPRN&gt;ZS_SFDC&lt;/RCVPRN&gt;
+            &lt;CREDAT&gt;20221012&lt;/CREDAT&gt;
+            &lt;CRETIM&gt;122425&lt;/CRETIM&gt;
+            &lt;SERIAL&gt;20221012122425&lt;/SERIAL&gt;
+        &lt;/EDI_DC40&gt;
+        &lt;E1KNA1M SEGMENT="1"&gt;
+            &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+            &lt;KUNNR&gt;0011631416&lt;/KUNNR&gt;
+            &lt;BBBNR&gt;0000000&lt;/BBBNR&gt;
+            &lt;BBSNR&gt;00000&lt;/BBSNR&gt;
+            &lt;BUBKZ&gt;0&lt;/BUBKZ&gt;
+            &lt;KONZS&gt;00000000&lt;/KONZS&gt;
+            &lt;KTOKD&gt;0001&lt;/KTOKD&gt;
+            &lt;LAND1&gt;DE&lt;/LAND1&gt;
+            &lt;LIFSD&gt;02&lt;/LIFSD&gt;
+            &lt;LOEVM&gt;X&lt;/LOEVM&gt;
+            &lt;NAME1&gt;Sanicare-Apotheke&lt;/NAME1&gt;
+            &lt;NAME2&gt;Krankenhausversorgung&lt;/NAME2&gt;
+            &lt;ORT01&gt;Bad Laer&lt;/ORT01&gt;
+            &lt;PSTL2&gt;49195&lt;/PSTL2&gt;
+            &lt;PSTLZ&gt;49196&lt;/PSTLZ&gt;
+            &lt;RPMKR&gt;03459&lt;/RPMKR&gt;
+            &lt;SORTL&gt;SANICARE&lt;/SORTL&gt;
+            &lt;SPRAS&gt;D&lt;/SPRAS&gt;
+            &lt;STRAS&gt;Grüner Weg 1&lt;/STRAS&gt;
+            &lt;TELF1&gt;+495424801243&lt;/TELF1&gt;
+            &lt;TELFX&gt;05424/801129&lt;/TELFX&gt;
+            &lt;STCEG&gt;DE117585132&lt;/STCEG&gt;
+            &lt;UMJAH&gt;0000&lt;/UMJAH&gt;
+            &lt;JMZAH&gt;000000&lt;/JMZAH&gt;
+            &lt;JMJAH&gt;0000&lt;/JMJAH&gt;
+            &lt;UMSA1&gt;0&lt;/UMSA1&gt;
+            &lt;HZUOR&gt;00&lt;/HZUOR&gt;
+            &lt;SPRAS_ISO&gt;DE&lt;/SPRAS_ISO&gt;
+            &lt;ZZSFDC SEGMENT="1"&gt;
+                &lt;CVV1&gt;X&lt;/CVV1&gt;
+                &lt;EMAIL&gt;test@schuelke.com&lt;/EMAIL&gt;
+            &lt;/ZZSFDC&gt;
+            &lt;E1KNA11 SEGMENT="1"&gt;
+                &lt;RGDATE&gt;00000000&lt;/RGDATE&gt;
+                &lt;RIC&gt;00000000000&lt;/RIC&gt;
+                &lt;RNEDATE&gt;00000000&lt;/RNEDATE&gt;
+                &lt;LEGALNAT&gt;0000&lt;/LEGALNAT&gt;
+            &lt;/E1KNA11&gt;
+            &lt;E1KNA1H SEGMENT="1"&gt;
+                &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                &lt;TDOBJECT&gt;KNA1&lt;/TDOBJECT&gt;
+                &lt;TDNAME&gt;0011631416&lt;/TDNAME&gt;
+                &lt;TDID&gt;0011&lt;/TDID&gt;
+                &lt;TDSPRAS&gt;D&lt;/TDSPRAS&gt;
+                &lt;TDSPRASISO&gt;DE&lt;/TDSPRASISO&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;TDLINE&gt;&amp;lt;H&amp;gt;Tel. Frank - Desderman pure 5 l nicht verlängern ist per 30.12.2011&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDLINE&gt;begrenzt - 140212 RR&amp;lt;/&amp;gt;&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;TDLINE&gt;&amp;lt;H&amp;gt;SCHU 23.06.2010: Auf Veranlassung von Frank erhält der Kunde&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDLINE&gt;weiterhin DESDERMAN PURE 5 l !!&amp;lt;/&amp;gt;&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;TDLINE&gt;&amp;lt;H&amp;gt;ACHTUNG!! Auf Veranlassung von Frank erhält der Kunde zusätzlich&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDLINE&gt;Gigasept AF (SCHU 23.04.09)&amp;lt;/&amp;gt;&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;TDLINE&gt;!! ACHTUNG - DER KUNDE BEKOMMT AUF ALLE PALETTEN 5 RABATT!! manuell&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDLINE&gt;eingeben - außer bei Octenisept!! tel. Frank am 15.11.06&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;TDLINE&gt;BITTE UNBEDINGT BEACHTEN!! Habe mit Herrn Ehm es jetzt so vereinbart,&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;TDLINE&gt;dass "kleine" Aufträge sofort rausgehen (SO) und die größeren dann&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;TDLINE&gt;zum übernächsten Tag. Er meinte, dass der Eingang von EDI bis 12 Uhr&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;TDLINE&gt;bei uns sein müßte !!!!! Tel. Herr Ehm 05424/801126&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;TDLINE&gt;--&amp;gt; habe die Lieferprio erstmal auf 10 gesetzt (bei SO dann bitte&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;TDLINE&gt;ändern!!)&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;TDLINE&gt;!!!! ACHTUNG: ab sofort bei Abnahme von 10 Kan. GigaInstruAF  1 1 Kan.&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDLINE&gt;NR mitschicken !!!! - Frank per mail am 140706 RR -&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;TDLINE&gt;!!!Achtung ab 07/04 elektronischer Auftragseingang über Medical Columbus&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDLINE&gt;- bei manueller Bestellung die Transaktionsgebühr=ZZTG löschen!!!! -&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDLINE&gt;120804 RR&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;TDLINE&gt;!!!!! ab 11.8.05 erhält der Kunde Kanisterschlüssel 135810 als KL -&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDLINE&gt;email Frank/RR-110805 !!!!!&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;TDLINE&gt;für alle Appl.ab 11.8.05 20 % Rabatt - 110805/RR&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;TDLINE&gt;!!!!!Kunde möchte j e g l i c h e Briefpost an die Postfachadresse 49195&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+                &lt;E1KNA1L SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDLINE&gt;Bad Laer haben - 051104 RR&lt;/TDLINE&gt;
+                &lt;/E1KNA1L&gt;
+            &lt;/E1KNA1H&gt;
+            &lt;E1KNVVM SEGMENT="1"&gt;
+                &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                &lt;VKORG&gt;0001&lt;/VKORG&gt;
+                &lt;VTWEG&gt;11&lt;/VTWEG&gt;
+                &lt;SPART&gt;00&lt;/SPART&gt;
+                &lt;BEGRU&gt;0000&lt;/BEGRU&gt;
+                &lt;LOEVM&gt;X&lt;/LOEVM&gt;
+                &lt;KDGRP&gt;VA&lt;/KDGRP&gt;
+                &lt;AWAHR&gt;100&lt;/AWAHR&gt;
+                &lt;INCO1&gt;FH&lt;/INCO1&gt;
+                &lt;ANTLF&gt;0&lt;/ANTLF&gt;
+                &lt;KZTLF&gt;C&lt;/KZTLF&gt;
+                &lt;CHSPL&gt;X&lt;/CHSPL&gt;
+                &lt;LPRIO&gt;90&lt;/LPRIO&gt;
+                &lt;VSBED&gt;01&lt;/VSBED&gt;
+                &lt;PERFK&gt;01&lt;/PERFK&gt;
+                &lt;WAERS&gt;EUR&lt;/WAERS&gt;
+                &lt;KTGRD&gt;01&lt;/KTGRD&gt;
+                &lt;ZTERM&gt;ZD01&lt;/ZTERM&gt;
+                &lt;VKGRP&gt;01&lt;/VKGRP&gt;
+                &lt;VKBUR&gt;0001&lt;/VKBUR&gt;
+                &lt;KVGR5&gt;100&lt;/KVGR5&gt;
+                &lt;BOKRE&gt;X&lt;/BOKRE&gt;
+                &lt;KURST&gt;M&lt;/KURST&gt;
+                &lt;UEBTO&gt;0.0&lt;/UEBTO&gt;
+                &lt;UNTTO&gt;0.0&lt;/UNTTO&gt;
+                &lt;PODTG&gt;         0&lt;/PODTG&gt;
+                &lt;ZZSFDC_KNVV SEGMENT="1"&gt;
+                    &lt;ZZGROSSHANDEL&gt;X&lt;/ZZGROSSHANDEL&gt;
+                &lt;/ZZSFDC_KNVV&gt;
+                &lt;E1KNVPM SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;PARVW&gt;Z6&lt;/PARVW&gt;
+                    &lt;KUNN2&gt;0000198019&lt;/KUNN2&gt;
+                    &lt;PARZA&gt;000&lt;/PARZA&gt;
+                &lt;/E1KNVPM&gt;
+                &lt;E1KNVPM SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;PARVW&gt;Z2&lt;/PARVW&gt;
+                    &lt;KUNN2&gt;0000130046&lt;/KUNN2&gt;
+                    &lt;PARZA&gt;000&lt;/PARZA&gt;
+                &lt;/E1KNVPM&gt;
+                &lt;E1KNVPM SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;PARVW&gt;ZP&lt;/PARVW&gt;
+                    &lt;KUNN2&gt;0008005789&lt;/KUNN2&gt;
+                    &lt;PARZA&gt;000&lt;/PARZA&gt;
+                &lt;/E1KNVPM&gt;
+                &lt;E1KNVPM SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;PARVW&gt;Z1&lt;/PARVW&gt;
+                    &lt;KUNN2&gt;0000130012&lt;/KUNN2&gt;
+                    &lt;PARZA&gt;001&lt;/PARZA&gt;
+                &lt;/E1KNVPM&gt;
+                &lt;E1KNVPM SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;PARVW&gt;WE&lt;/PARVW&gt;
+                    &lt;KUNN2&gt;0011631416&lt;/KUNN2&gt;
+                    &lt;PARZA&gt;001&lt;/PARZA&gt;
+                &lt;/E1KNVPM&gt;
+                &lt;E1KNVPM SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;PARVW&gt;RE&lt;/PARVW&gt;
+                    &lt;KUNN2&gt;0011631416&lt;/KUNN2&gt;
+                    &lt;PARZA&gt;001&lt;/PARZA&gt;
+                &lt;/E1KNVPM&gt;
+                &lt;E1KNVPM SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;PARVW&gt;RG&lt;/PARVW&gt;
+                    &lt;KUNN2&gt;0011631416&lt;/KUNN2&gt;
+                    &lt;PARZA&gt;001&lt;/PARZA&gt;
+                &lt;/E1KNVPM&gt;
+                &lt;E1KNVPM SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;PARVW&gt;AG&lt;/PARVW&gt;
+                    &lt;KUNN2&gt;0011631416&lt;/KUNN2&gt;
+                    &lt;PARZA&gt;001&lt;/PARZA&gt;
+                &lt;/E1KNVPM&gt;
+                &lt;E1KNVDM SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;DOCTP&gt;RD01&lt;/DOCTP&gt;
+                    &lt;SPRAS&gt;D&lt;/SPRAS&gt;
+                    &lt;DOANZ&gt;1&lt;/DOANZ&gt;
+                    &lt;DOVER&gt;1&lt;/DOVER&gt;
+                    &lt;NACHA&gt;1&lt;/NACHA&gt;
+                    &lt;SPRAS_ISO&gt;DE&lt;/SPRAS_ISO&gt;
+                &lt;/E1KNVDM&gt;
+                &lt;E1KNVDM SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;DOCTP&gt;RD00&lt;/DOCTP&gt;
+                    &lt;SPRAS&gt;D&lt;/SPRAS&gt;
+                    &lt;DOANZ&gt;1&lt;/DOANZ&gt;
+                    &lt;DOVER&gt;1&lt;/DOVER&gt;
+                    &lt;NACHA&gt;1&lt;/NACHA&gt;
+                    &lt;SPRAS_ISO&gt;DE&lt;/SPRAS_ISO&gt;
+                &lt;/E1KNVDM&gt;
+                &lt;E1KNVDM SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;DOCTP&gt;BA00&lt;/DOCTP&gt;
+                    &lt;SPRAS&gt;D&lt;/SPRAS&gt;
+                    &lt;DOANZ&gt;1&lt;/DOANZ&gt;
+                    &lt;DOVER&gt;3&lt;/DOVER&gt;
+                    &lt;NACHA&gt;1&lt;/NACHA&gt;
+                    &lt;SPRAS_ISO&gt;DE&lt;/SPRAS_ISO&gt;
+                &lt;/E1KNVDM&gt;
+                &lt;E1KNVIM SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;ALAND&gt;CZ&lt;/ALAND&gt;
+                    &lt;TATYP&gt;MWST&lt;/TATYP&gt;
+                    &lt;TAXKD&gt;1&lt;/TAXKD&gt;
+                &lt;/E1KNVIM&gt;
+                &lt;E1KNVIM SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;ALAND&gt;DE&lt;/ALAND&gt;
+                    &lt;TATYP&gt;MWST&lt;/TATYP&gt;
+                    &lt;TAXKD&gt;1&lt;/TAXKD&gt;
+                &lt;/E1KNVIM&gt;
+                &lt;E1KNVVH SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDOBJECT&gt;KNVV&lt;/TDOBJECT&gt;
+                    &lt;TDNAME&gt;001163141600011100&lt;/TDNAME&gt;
+                    &lt;TDID&gt;Z002&lt;/TDID&gt;
+                    &lt;TDSPRAS&gt;D&lt;/TDSPRAS&gt;
+                    &lt;TDSPRASISO&gt;DE&lt;/TDSPRASISO&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                        &lt;TDLINE&gt;&amp;lt;H&amp;gt;+++ Anliefern bitte bis 12.00 Uhr +++&amp;lt;/&amp;gt;&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                &lt;/E1KNVVH&gt;
+                &lt;E1KNVVH SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDOBJECT&gt;KNVV&lt;/TDOBJECT&gt;
+                    &lt;TDNAME&gt;001163141600011100&lt;/TDNAME&gt;
+                    &lt;TDID&gt;Z003&lt;/TDID&gt;
+                    &lt;TDSPRAS&gt;D&lt;/TDSPRAS&gt;
+                    &lt;TDSPRASISO&gt;DE&lt;/TDSPRASISO&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                        &lt;TDLINE&gt;+++ Bitte Kommissionierkontrolle durchführen +++&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                &lt;/E1KNVVH&gt;
+                &lt;E1KNVVH SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDOBJECT&gt;KNVV&lt;/TDOBJECT&gt;
+                    &lt;TDNAME&gt;001163141600011100&lt;/TDNAME&gt;
+                    &lt;TDID&gt;Z011&lt;/TDID&gt;
+                    &lt;TDSPRAS&gt;D&lt;/TDSPRAS&gt;
+                    &lt;TDSPRASISO&gt;DE&lt;/TDSPRASISO&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                        &lt;TDLINE&gt;&amp;lt;H&amp;gt;*****AA  CCCC  HHH  TTT UUU  NNN GGGG****** lt. Tel. Hr. Briem wird&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;der Kunde komplett in den VW17 wechseln unter der neuen KD-Nr. 8029475.&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;Es gibt KEINE Belieferung mehr über VW11, auch wenn noch die alte Kd-Nr.&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;angegeben wird!!!! 23.04.13sd&amp;lt;/&amp;gt;&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                        &lt;TDLINE&gt;&amp;lt;H&amp;gt;16.04.13 sd: ACHTUNG. Ware kann raus lt. Hr. Küpper/Briem, aber&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;Fakturasperre gesetzt im Kundenstamm. Termin f. JV und Absprache&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;Konditionen erfolgt in KW17.&amp;lt;/&amp;gt;&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                        &lt;TDLINE&gt;&amp;lt;H&amp;gt;ACHTUNG!!:Insolvenzverfahren. Kunde hat Sperre. Auftrag muss von&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;Insolvenzverwalter gegen gezeichnet sein. Kopie Auftrag an Debu. Wenn&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;Summe stimmt kann Ware raus. Falls nicht vorab AB an Kunde und&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;Unterschrift d. Betrages abwarten - dann raus./09_2012 sd &amp;lt;/&amp;gt;&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                        &lt;TDLINE&gt;&amp;lt;H&amp;gt;Tel. Frank - Desderman pure 5 l nicht verlängern ist per 30.12.2011&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;begrenzt - 140212 RR&amp;lt;/&amp;gt;&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                        &lt;TDLINE&gt;&amp;lt;H&amp;gt;SCHU 23.06.2010: Auf Veranlassung von Frank erhält der Kunde&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;weiterhin DESDERMAN PURE 5 l !!&amp;lt;/&amp;gt;&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                        &lt;TDLINE&gt;&amp;lt;H&amp;gt;ACHTUNG!! Auf Veranlassung von Frank erhält der Kunde zusätzlich&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;Gigasept AF (SCHU 23.04.09)&amp;lt;/&amp;gt;&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                        &lt;TDLINE&gt;!! ACHTUNG - DER KUNDE BEKOMMT AUF ALLE PALETTEN 5 RABATT!! manuell&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;eingeben - außer bei Octenisept!! tel. Frank am 15.11.06&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                        &lt;TDLINE&gt;BITTE UNBEDINGT BEACHTEN!! Habe mit Herrn Ehm es jetzt so vereinbart,&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;dass "kleine" Aufträge sofort rausgehen (SO) und die größeren dann zum&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;übernächsten Tag. Er meinte, dass der Eingang von EDI bis 12 Uhr bei uns&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;sein müßte !!!!! Tel. Herr Ehm 05424/801126&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                        &lt;TDLINE&gt;--&amp;gt; habe die Lieferprio erstmal auf 10 gesetzt (bei SO dann bitte&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                        &lt;TDLINE&gt;ändern!!)&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                        &lt;TDLINE&gt;!!!! ACHTUNG: ab sofort bei Abnahme von 10 Kan. GigaInstruAF  1 1 Kan.&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;NR mitschicken !!!! - Frank per mail am 140706 RR -&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                        &lt;TDLINE&gt;!!!Achtung ab 07/04 elektronischer Auftragseingang über Medical Columbus&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;- bei manueller Bestellung die Transaktionsgebühr=ZZTG löschen!!!! -&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;120804 RR&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                        &lt;TDLINE&gt;!!!!! ab 11.8.05 erhält der Kunde Kanisterschlüssel 135810 als KL -&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;email Frank/RR-110805 !!!!!&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                        &lt;TDLINE&gt;für alle Appl.ab 11.8.05 20 % Rabatt - 110805/RR&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                        &lt;TDLINE&gt;!!!!!Kunde möchte j e g l i c h e Briefpost an die Postfachadresse 49195&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                    &lt;E1KNVVL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDLINE&gt;Bad Laer haben - 051104 RR&lt;/TDLINE&gt;
+                    &lt;/E1KNVVL&gt;
+                &lt;/E1KNVVH&gt;
+            &lt;/E1KNVVM&gt;
+            &lt;E1KNB1M SEGMENT="1"&gt;
+                &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                &lt;BUKRS&gt;0010&lt;/BUKRS&gt;
+                &lt;ZUAWA&gt;001&lt;/ZUAWA&gt;
+                &lt;BUSAB&gt;11&lt;/BUSAB&gt;
+                &lt;AKONT&gt;0000240010&lt;/AKONT&gt;
+                &lt;ZINDT&gt;00000000&lt;/ZINDT&gt;
+                &lt;ZINRT&gt;00&lt;/ZINRT&gt;
+                &lt;VLIBB&gt;0&lt;/VLIBB&gt;
+                &lt;VRSZL&gt;0&lt;/VRSZL&gt;
+                &lt;VRSPR&gt;0&lt;/VRSPR&gt;
+                &lt;VERDT&gt;00000000&lt;/VERDT&gt;
+                &lt;XAUSZ&gt;1&lt;/XAUSZ&gt;
+                &lt;WEBTR&gt;0&lt;/WEBTR&gt;
+                &lt;DATLZ&gt;00000000&lt;/DATLZ&gt;
+                &lt;XZVER&gt;X&lt;/XZVER&gt;
+                &lt;KULTG&gt;0&lt;/KULTG&gt;
+                &lt;PERNR&gt;00000000&lt;/PERNR&gt;
+                &lt;E1KNB5M SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;MAHNA&gt;0001&lt;/MAHNA&gt;
+                    &lt;MADAT&gt;20130605&lt;/MADAT&gt;
+                    &lt;MAHNS&gt;1&lt;/MAHNS&gt;
+                    &lt;GMVDT&gt;00000000&lt;/GMVDT&gt;
+                    &lt;BUSAB&gt;11&lt;/BUSAB&gt;
+                &lt;/E1KNB5M&gt;
+            &lt;/E1KNB1M&gt;
+            &lt;E1KNBKM SEGMENT="1"&gt;
+                &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                &lt;BANKS&gt;DE&lt;/BANKS&gt;
+                &lt;BANKL&gt;30220190&lt;/BANKL&gt;
+                &lt;BANKN&gt;364061919&lt;/BANKN&gt;
+                &lt;BANKA&gt;UniCredit Bank - HypoVereinsbank&lt;/BANKA&gt;
+                &lt;ORT01&gt;40212 Düsseldorf&lt;/ORT01&gt;
+                &lt;SWIFT&gt;HYVEDEMM414&lt;/SWIFT&gt;
+                &lt;BNKLZ&gt;30220190&lt;/BNKLZ&gt;
+            &lt;/E1KNBKM&gt;
+            &lt;E1KNVAM SEGMENT="1"&gt;
+                &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                &lt;ABLAD&gt;Ware bis 12.00 Uhr anl.&lt;/ABLAD&gt;
+                &lt;KNFAK&gt;22&lt;/KNFAK&gt;
+                &lt;MOAB1&gt;000000&lt;/MOAB1&gt;
+                &lt;MOBI1&gt;000000&lt;/MOBI1&gt;
+                &lt;MOAB2&gt;000000&lt;/MOAB2&gt;
+                &lt;MOBI2&gt;000000&lt;/MOBI2&gt;
+                &lt;DIAB1&gt;000000&lt;/DIAB1&gt;
+                &lt;DIBI1&gt;000000&lt;/DIBI1&gt;
+                &lt;DIAB2&gt;000000&lt;/DIAB2&gt;
+                &lt;DIBI2&gt;000000&lt;/DIBI2&gt;
+                &lt;MIAB1&gt;000000&lt;/MIAB1&gt;
+                &lt;MIBI1&gt;000000&lt;/MIBI1&gt;
+                &lt;MIAB2&gt;000000&lt;/MIAB2&gt;
+                &lt;MIBI2&gt;000000&lt;/MIBI2&gt;
+                &lt;DOAB1&gt;000000&lt;/DOAB1&gt;
+                &lt;DOBI1&gt;000000&lt;/DOBI1&gt;
+                &lt;DOAB2&gt;000000&lt;/DOAB2&gt;
+                &lt;DOBI2&gt;000000&lt;/DOBI2&gt;
+                &lt;FRAB1&gt;000000&lt;/FRAB1&gt;
+                &lt;FRBI1&gt;000000&lt;/FRBI1&gt;
+                &lt;FRAB2&gt;000000&lt;/FRAB2&gt;
+                &lt;FRBI2&gt;000000&lt;/FRBI2&gt;
+                &lt;SAAB1&gt;000000&lt;/SAAB1&gt;
+                &lt;SABI1&gt;000000&lt;/SABI1&gt;
+                &lt;SAAB2&gt;000000&lt;/SAAB2&gt;
+                &lt;SABI2&gt;000000&lt;/SABI2&gt;
+                &lt;SOAB1&gt;000000&lt;/SOAB1&gt;
+                &lt;SOBI1&gt;000000&lt;/SOBI1&gt;
+                &lt;SOAB2&gt;000000&lt;/SOAB2&gt;
+                &lt;SOBI2&gt;000000&lt;/SOBI2&gt;
+            &lt;/E1KNVAM&gt;
+            &lt;E1KNVKM SEGMENT="1"&gt;
+                &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                &lt;PARNR&gt;0000018714&lt;/PARNR&gt;
+                &lt;NAMEV&gt;Fred&lt;/NAMEV&gt;
+                &lt;NAME1&gt;Hünefeld&lt;/NAME1&gt;
+                &lt;ABTNR&gt;1D&lt;/ABTNR&gt;
+                &lt;UEPAR&gt;0000000000&lt;/UEPAR&gt;
+                &lt;TELF1&gt;+4954248010&lt;/TELF1&gt;
+                &lt;ANRED&gt;Herr&lt;/ANRED&gt;
+                &lt;PAFKT&gt;20&lt;/PAFKT&gt;
+                &lt;PARGE&gt;1&lt;/PARGE&gt;
+                &lt;PARLA&gt;D&lt;/PARLA&gt;
+                &lt;GBDAT&gt;00000000&lt;/GBDAT&gt;
+                &lt;VRTNR&gt;0000000000&lt;/VRTNR&gt;
+                &lt;MOAB1&gt;000000&lt;/MOAB1&gt;
+                &lt;MOBI1&gt;000000&lt;/MOBI1&gt;
+                &lt;MOAB2&gt;000000&lt;/MOAB2&gt;
+                &lt;MOBI2&gt;000000&lt;/MOBI2&gt;
+                &lt;DIAB1&gt;000000&lt;/DIAB1&gt;
+                &lt;DIBI1&gt;000000&lt;/DIBI1&gt;
+                &lt;DIAB2&gt;000000&lt;/DIAB2&gt;
+                &lt;DIBI2&gt;000000&lt;/DIBI2&gt;
+                &lt;MIAB1&gt;000000&lt;/MIAB1&gt;
+                &lt;MIBI1&gt;000000&lt;/MIBI1&gt;
+                &lt;MIAB2&gt;000000&lt;/MIAB2&gt;
+                &lt;MIBI2&gt;000000&lt;/MIBI2&gt;
+                &lt;DOAB1&gt;000000&lt;/DOAB1&gt;
+                &lt;DOBI1&gt;000000&lt;/DOBI1&gt;
+                &lt;DOAB2&gt;000000&lt;/DOAB2&gt;
+                &lt;DOBI2&gt;000000&lt;/DOBI2&gt;
+                &lt;FRAB1&gt;000000&lt;/FRAB1&gt;
+                &lt;FRBI1&gt;000000&lt;/FRBI1&gt;
+                &lt;FRAB2&gt;000000&lt;/FRAB2&gt;
+                &lt;FRBI2&gt;000000&lt;/FRBI2&gt;
+                &lt;SAAB1&gt;000000&lt;/SAAB1&gt;
+                &lt;SABI1&gt;000000&lt;/SABI1&gt;
+                &lt;SAAB2&gt;000000&lt;/SAAB2&gt;
+                &lt;SABI2&gt;000000&lt;/SABI2&gt;
+                &lt;SOAB1&gt;000000&lt;/SOAB1&gt;
+                &lt;SOBI1&gt;000000&lt;/SOBI1&gt;
+                &lt;SOAB2&gt;000000&lt;/SOAB2&gt;
+                &lt;SOBI2&gt;000000&lt;/SOBI2&gt;
+                &lt;SORTL&gt;HÜNEFELD&lt;/SORTL&gt;
+                &lt;PARLA_ISO&gt;DE&lt;/PARLA_ISO&gt;
+                &lt;ZZSFDC_KNVKM SEGMENT="1"&gt;
+                    &lt;EMAIL&gt;fred.huenefeld@sanicare.de&lt;/EMAIL&gt;
+                    &lt;NON_DELETABLE&gt;X&lt;/NON_DELETABLE&gt;
+                &lt;/ZZSFDC_KNVKM&gt;
+            &lt;/E1KNVKM&gt;
+            &lt;E1KNVKM SEGMENT="1"&gt;
+                &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                &lt;PARNR&gt;0000049729&lt;/PARNR&gt;
+                &lt;NAME1&gt;Drathwa&lt;/NAME1&gt;
+                &lt;UEPAR&gt;0000000000&lt;/UEPAR&gt;
+                &lt;TELF1&gt;+495424801243&lt;/TELF1&gt;
+                &lt;ANRED&gt;Frau&lt;/ANRED&gt;
+                &lt;PARGE&gt;2&lt;/PARGE&gt;
+                &lt;PARLA&gt;D&lt;/PARLA&gt;
+                &lt;GBDAT&gt;00000000&lt;/GBDAT&gt;
+                &lt;VRTNR&gt;0000000000&lt;/VRTNR&gt;
+                &lt;MOAB1&gt;000000&lt;/MOAB1&gt;
+                &lt;MOBI1&gt;000000&lt;/MOBI1&gt;
+                &lt;MOAB2&gt;000000&lt;/MOAB2&gt;
+                &lt;MOBI2&gt;000000&lt;/MOBI2&gt;
+                &lt;DIAB1&gt;000000&lt;/DIAB1&gt;
+                &lt;DIBI1&gt;000000&lt;/DIBI1&gt;
+                &lt;DIAB2&gt;000000&lt;/DIAB2&gt;
+                &lt;DIBI2&gt;000000&lt;/DIBI2&gt;
+                &lt;MIAB1&gt;000000&lt;/MIAB1&gt;
+                &lt;MIBI1&gt;000000&lt;/MIBI1&gt;
+                &lt;MIAB2&gt;000000&lt;/MIAB2&gt;
+                &lt;MIBI2&gt;000000&lt;/MIBI2&gt;
+                &lt;DOAB1&gt;000000&lt;/DOAB1&gt;
+                &lt;DOBI1&gt;000000&lt;/DOBI1&gt;
+                &lt;DOAB2&gt;000000&lt;/DOAB2&gt;
+                &lt;DOBI2&gt;000000&lt;/DOBI2&gt;
+                &lt;FRAB1&gt;000000&lt;/FRAB1&gt;
+                &lt;FRBI1&gt;000000&lt;/FRBI1&gt;
+                &lt;FRAB2&gt;000000&lt;/FRAB2&gt;
+                &lt;FRBI2&gt;000000&lt;/FRBI2&gt;
+                &lt;SAAB1&gt;000000&lt;/SAAB1&gt;
+                &lt;SABI1&gt;000000&lt;/SABI1&gt;
+                &lt;SAAB2&gt;000000&lt;/SAAB2&gt;
+                &lt;SABI2&gt;000000&lt;/SABI2&gt;
+                &lt;SOAB1&gt;000000&lt;/SOAB1&gt;
+                &lt;SOBI1&gt;000000&lt;/SOBI1&gt;
+                &lt;SOAB2&gt;000000&lt;/SOAB2&gt;
+                &lt;SOBI2&gt;000000&lt;/SOBI2&gt;
+                &lt;SORTL&gt;DRATHWA&lt;/SORTL&gt;
+                &lt;PARLA_ISO&gt;DE&lt;/PARLA_ISO&gt;
+                &lt;ZZSFDC_KNVKM SEGMENT="1"&gt;
+                    &lt;NON_DELETABLE&gt;X&lt;/NON_DELETABLE&gt;
+                &lt;/ZZSFDC_KNVKM&gt;
+            &lt;/E1KNVKM&gt;
+            &lt;E1KNVKM SEGMENT="1"&gt;
+                &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                &lt;PARNR&gt;0000055875&lt;/PARNR&gt;
+                &lt;NAMEV&gt;Dieter&lt;/NAMEV&gt;
+                &lt;NAME1&gt;Bothe&lt;/NAME1&gt;
+                &lt;UEPAR&gt;0000000000&lt;/UEPAR&gt;
+                &lt;TELF1&gt;+495424801243&lt;/TELF1&gt;
+                &lt;ANRED&gt;Herr&lt;/ANRED&gt;
+                &lt;PARGE&gt;1&lt;/PARGE&gt;
+                &lt;PARLA&gt;D&lt;/PARLA&gt;
+                &lt;GBDAT&gt;00000000&lt;/GBDAT&gt;
+                &lt;VRTNR&gt;0000000000&lt;/VRTNR&gt;
+                &lt;MOAB1&gt;000000&lt;/MOAB1&gt;
+                &lt;MOBI1&gt;000000&lt;/MOBI1&gt;
+                &lt;MOAB2&gt;000000&lt;/MOAB2&gt;
+                &lt;MOBI2&gt;000000&lt;/MOBI2&gt;
+                &lt;DIAB1&gt;000000&lt;/DIAB1&gt;
+                &lt;DIBI1&gt;000000&lt;/DIBI1&gt;
+                &lt;DIAB2&gt;000000&lt;/DIAB2&gt;
+                &lt;DIBI2&gt;000000&lt;/DIBI2&gt;
+                &lt;MIAB1&gt;000000&lt;/MIAB1&gt;
+                &lt;MIBI1&gt;000000&lt;/MIBI1&gt;
+                &lt;MIAB2&gt;000000&lt;/MIAB2&gt;
+                &lt;MIBI2&gt;000000&lt;/MIBI2&gt;
+                &lt;DOAB1&gt;000000&lt;/DOAB1&gt;
+                &lt;DOBI1&gt;000000&lt;/DOBI1&gt;
+                &lt;DOAB2&gt;000000&lt;/DOAB2&gt;
+                &lt;DOBI2&gt;000000&lt;/DOBI2&gt;
+                &lt;FRAB1&gt;000000&lt;/FRAB1&gt;
+                &lt;FRBI1&gt;000000&lt;/FRBI1&gt;
+                &lt;FRAB2&gt;000000&lt;/FRAB2&gt;
+                &lt;FRBI2&gt;000000&lt;/FRBI2&gt;
+                &lt;SAAB1&gt;000000&lt;/SAAB1&gt;
+                &lt;SABI1&gt;000000&lt;/SABI1&gt;
+                &lt;SAAB2&gt;000000&lt;/SAAB2&gt;
+                &lt;SABI2&gt;000000&lt;/SABI2&gt;
+                &lt;SOAB1&gt;000000&lt;/SOAB1&gt;
+                &lt;SOBI1&gt;000000&lt;/SOBI1&gt;
+                &lt;SOAB2&gt;000000&lt;/SOAB2&gt;
+                &lt;SOBI2&gt;000000&lt;/SOBI2&gt;
+                &lt;PARLA_ISO&gt;DE&lt;/PARLA_ISO&gt;
+                &lt;ZZSFDC_KNVKM SEGMENT="1"&gt;
+                    &lt;EMAIL&gt;test1@test2.com&lt;/EMAIL&gt;
+                    &lt;NON_DELETABLE&gt;X&lt;/NON_DELETABLE&gt;
+                &lt;/ZZSFDC_KNVKM&gt;
+            &lt;/E1KNVKM&gt;
+            &lt;E1KNKAM SEGMENT="1"&gt;
+                &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                &lt;KLIMG&gt;1000&lt;/KLIMG&gt;
+                &lt;KLIME&gt;1000&lt;/KLIME&gt;
+                &lt;WAERS&gt;EUR&lt;/WAERS&gt;
+                &lt;DLAUS&gt;00000000&lt;/DLAUS&gt;
+            &lt;/E1KNKAM&gt;
+            &lt;E1KNKKM SEGMENT="1"&gt;
+                &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                &lt;KKBER&gt;DE&lt;/KKBER&gt;
+                &lt;KLIMK&gt;1&lt;/KLIMK&gt;
+                &lt;KNKLI&gt;0011631416&lt;/KNKLI&gt;
+                &lt;DTREV&gt;00000000&lt;/DTREV&gt;
+                &lt;NXTRV&gt;00000000&lt;/NXTRV&gt;
+                &lt;PAYDB&gt;00&lt;/PAYDB&gt;
+                &lt;REVDB&gt;00000000&lt;/REVDB&gt;
+                &lt;SBDAT&gt;00000000&lt;/SBDAT&gt;
+                &lt;DBPAY&gt;600&lt;/DBPAY&gt;
+                &lt;DBEKR&gt;0&lt;/DBEKR&gt;
+                &lt;DBMON&gt;00000000&lt;/DBMON&gt;
+                &lt;E1KNKKH SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDOBJECT&gt;KNKK&lt;/TDOBJECT&gt;
+                    &lt;TDNAME&gt;0011631416DE&lt;/TDNAME&gt;
+                    &lt;TDID&gt;0001&lt;/TDID&gt;
+                    &lt;TDSPRAS&gt;D&lt;/TDSPRAS&gt;
+                    &lt;TDSPRASISO&gt;DE&lt;/TDSPRASISO&gt;
+                    &lt;E1KNKKL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                        &lt;TDLINE&gt;Insovenzantrag Anf. Sept.12&lt;/TDLINE&gt;
+                    &lt;/E1KNKKL&gt;
+                &lt;/E1KNKKH&gt;
+                &lt;E1KNKKH SEGMENT="1"&gt;
+                    &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                    &lt;TDOBJECT&gt;KNKK&lt;/TDOBJECT&gt;
+                    &lt;TDNAME&gt;0011631416DE&lt;/TDNAME&gt;
+                    &lt;TDID&gt;0002&lt;/TDID&gt;
+                    &lt;TDSPRAS&gt;D&lt;/TDSPRAS&gt;
+                    &lt;TDSPRASISO&gt;DE&lt;/TDSPRASISO&gt;
+                    &lt;E1KNKKL SEGMENT="1"&gt;
+                        &lt;MSGFN&gt;005&lt;/MSGFN&gt;
+                        &lt;TDFORMAT&gt;*&lt;/TDFORMAT&gt;
+                        &lt;TDLINE&gt;Insovenzverw. Rahlph Bünning&lt;/TDLINE&gt;
+                    &lt;/E1KNKKL&gt;
+                &lt;/E1KNKKH&gt;
+            &lt;/E1KNKKM&gt;
+        &lt;/E1KNA1M&gt;
+    &lt;/IDOC&gt;
+&lt;/ZDEBMAS07_SF&gt;</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.5</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>activityType</key>
+                    <value>Enricher</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::Enricher/version::1.5.1</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_6</bpmn2:incoming>
+            <bpmn2:outgoing>SequenceFlow_8</bpmn2:outgoing>
+        </bpmn2:callActivity>
+        <bpmn2:startEvent id="StartEvent_4" name="Start Timer 1">
+            <bpmn2:outgoing>SequenceFlow_6</bpmn2:outgoing>
+            <bpmn2:timerEventDefinition id="TimerEventDefinition_56374">
+                <bpmn2:extensionElements>
+                    <ifl:property>
+                        <key>scheduleKey</key>
+                        <value>&lt;row&gt;&lt;cell&gt;dateType&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;timeType&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;dayValue&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;monthValue&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;yearValue&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;onWeekly&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;onMonthly&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;OnEveryMinute&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;fromInterval&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;toInterval&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;timeZone&lt;/cell&gt;&lt;cell&gt;( UTC 0:00 ) Greenwich Mean Time(Etc/GMT)&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;secondValue&lt;/cell&gt;&lt;cell&gt;0&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;minutesValue&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;hourValue&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;triggerType&lt;/cell&gt;&lt;cell&gt;simple&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;noOfSchedules&lt;/cell&gt;&lt;cell&gt;1&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;schedule1&lt;/cell&gt;&lt;cell&gt;fireNow=true&lt;/cell&gt;&lt;/row&gt;</value>
+                    </ifl:property>
+                    <ifl:property>
+                        <key>componentVersion</key>
+                        <value>1.0</value>
+                    </ifl:property>
+                    <ifl:property>
+                        <key>cmdVariantUri</key>
+                        <value>ctype::FlowstepVariant/cname::intermediatetimer/version::1.0.1</value>
+                    </ifl:property>
+                    <ifl:property>
+                        <key>activityType</key>
+                        <value>StartTimerEvent</value>
+                    </ifl:property>
+                </bpmn2:extensionElements>
+            </bpmn2:timerEventDefinition>
+        </bpmn2:startEvent>
+        <bpmn2:sequenceFlow id="SequenceFlow_9" sourceRef="CallActivity_7" targetRef="EndEvent_2"/>
+        <bpmn2:sequenceFlow id="SequenceFlow_8" sourceRef="CallActivity_5" targetRef="CallActivity_7"/>
+        <bpmn2:sequenceFlow id="SequenceFlow_6" sourceRef="StartEvent_4" targetRef="CallActivity_5"/>
+    </bpmn2:process>
+    <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="Default Collaboration Diagram">
+        <bpmndi:BPMNPlane bpmnElement="Collaboration_1" id="BPMNPlane_1">
+            <bpmndi:BPMNShape bpmnElement="EndEvent_2" id="BPMNShape_EndEvent_2">
+                <dc:Bounds height="32.0" width="32.0" x="1198.0" y="154.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="Participant_Process_1" id="BPMNShape_Participant_Process_1">
+                <dc:Bounds height="220.0" width="1065.0" x="250.0" y="60.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="StartEvent_4" id="BPMNShape_StartEvent_4">
+                <dc:Bounds height="32.0" width="32.0" x="326.0" y="154.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="CallActivity_5" id="BPMNShape_CallActivity_5">
+                <dc:Bounds height="60.0" width="100.0" x="446.0" y="144.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="CallActivity_7" id="BPMNShape_CallActivity_7">
+                <dc:Bounds height="60.0" width="100.0" x="596.0" y="144.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_6" id="BPMNEdge_SequenceFlow_6" sourceElement="BPMNShape_StartEvent_4" targetElement="BPMNShape_CallActivity_5">
+                <di:waypoint x="342.0" xsi:type="dc:Point" y="172.0"/>
+                <di:waypoint x="496.0" xsi:type="dc:Point" y="172.0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_8" id="BPMNEdge_SequenceFlow_8" sourceElement="BPMNShape_CallActivity_5" targetElement="BPMNShape_CallActivity_7">
+                <di:waypoint x="496.0" xsi:type="dc:Point" y="174.0"/>
+                <di:waypoint x="646.0" xsi:type="dc:Point" y="174.0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_9" id="BPMNEdge_SequenceFlow_9" sourceElement="BPMNShape_CallActivity_7" targetElement="BPMNShape_EndEvent_2">
+                <di:waypoint x="646.0" xsi:type="dc:Point" y="172.0"/>
+                <di:waypoint x="1214.0" xsi:type="dc:Point" y="172.0"/>
+            </bpmndi:BPMNEdge>
+        </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

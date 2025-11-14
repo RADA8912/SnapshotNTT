@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="root">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="metadata" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="foreignId" type="xs:string" minOccurs="0" maxOccurs="1"/>
+							<xs:element name="callbackUrl" type="xs:string" minOccurs="0" maxOccurs="1"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="order" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="orderId" type="xs:string" minOccurs="0" maxOccurs="1"/>
+							<xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+							<xs:element name="orderPositions" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="positionId" type="xs:string" minOccurs="0" maxOccurs="1"/>
+										<xs:element name="positionLabel" type="xs:string" minOccurs="0" maxOccurs="1"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="recipients" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="email" type="xs:string" minOccurs="0" maxOccurs="1"/>
+							<xs:element name="recipientName" type="xs:string" minOccurs="0" maxOccurs="1"/>
+							<xs:element name="department" type="xs:string" minOccurs="0" maxOccurs="1"/>
+							<xs:element name="building" type="xs:string" minOccurs="0" maxOccurs="1"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="storage" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="storageTimeMax" type="xs:unsignedByte" minOccurs="0" maxOccurs="1"/>
+							<xs:element name="destination" type="xs:string" minOccurs="0" maxOccurs="1"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SendOrderList_Async" targetNamespace="http://hci.sap.com/demo" xmlns:p1="http://hci.sap.com/demo" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	<wsdl:documentation/>
+	<wsp:UsingPolicy wsdl:required="true"/>
+	<wsp:Policy wsu:Id="OP_SendOrderList_Async"/>
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://hci.sap.com/demo" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://hci.sap.com/demo">
+			<xsd:element name="OrderList_MT" type="OrderList_DT"/>
+			<xsd:complexType name="OrderList_DT">
+				<xsd:sequence>
+					<xsd:element name="orders" type="Order_DT" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="Order_DT">
+				<xsd:sequence>
+					<xsd:element name="orderNumber" type="xsd:string"/>
+					<xsd:element name="customerName" type="xsd:string"/>
+					<xsd:element name="orderAmount" type="xsd:decimal"/>
+					<xsd:element name="currency" type="xsd:string"/>
+					<xsd:element name="taxAmount" type="xsd:decimal"/>
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="OrderList_MT">
+		<wsdl:documentation/>
+		<wsdl:part name="OrderList_MT" element="p1:OrderList_MT"/>
+	</wsdl:message>
+	<wsdl:portType name="SendOrderList_Async">
+		<wsdl:documentation/>
+		<wsdl:operation name="SendOrderList_Async">
+			<wsdl:documentation/>
+			<wsp:Policy>
+				<wsp:PolicyReference URI="#OP_SendOrderList_Async"/>
+			</wsp:Policy><wsdl:input message="p1:OrderList_MT"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="SendOrderList_AsyncBinding" type="p1:SendOrderList_Async">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+		<wsdl:operation name="SendOrderList_Async">
+			<soap:operation soapAction="http://sap.com/xi/WebService/soap1.1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			<wsdl:input>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+			</wsdl:input>
+		</wsdl:operation>
+	</wsdl:binding>
+</wsdl:definitions>

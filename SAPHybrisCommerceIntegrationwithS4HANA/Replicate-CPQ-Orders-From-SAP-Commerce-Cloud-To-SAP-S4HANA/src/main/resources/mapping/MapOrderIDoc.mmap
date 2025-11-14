@@ -1,0 +1,2375 @@
+<xiObj xmlns="urn:sap-com:xi">
+	<idInfo VID="01">
+		<vc caption="LOCAL" sp="-1" swcGuid="00000000000000000000000000000000" vcType="S">
+			<clCxt consider="A" />
+		</vc>
+		<key typeID="XI_TRAFO" version="" />
+		<version>1.0</version>
+	</idInfo>
+	<documentation>
+		<description />
+	</documentation>
+	<generic>
+		<admInf>
+			<modifBy />
+			<modifAt />
+			<modifAtLong>1534529081449</modifAtLong>
+			<owner />
+		</admInf>
+		<lnks>
+			<lnkRole kpos="1" role="TARGET_IFR_MESS">
+				<lnk rMode="R">
+					<key typeID="xsd" version="1.1">
+						<elem>SALESORDER_CREATEFROMDAT204.xsd</elem>
+						<elem>src/main/resources/xsd</elem>
+						<elem>SALESORDER_CREATEFROMDAT204</elem>
+					</key>
+				</lnk>
+			</lnkRole>
+			<lnkRole kpos="1" role="SOURCE_IFR_MESS">
+				<lnk rMode="R">
+					<key typeID="xsd" version="1.1">
+						<elem>SAPCpiOutboundOrdersEntityPOST.xsd</elem>
+						<elem>src/main/resources/xsd</elem>
+						<elem>SAPCpiOutboundOrders</elem>
+					</key>
+				</lnk>
+			</lnkRole>
+			<lnkRole kpos="1" role="UsedFuncLib">
+				<lnk rMode="R">
+					<key typeID="gsh" version="1.1">
+						<elem>checkIsNumeric.groovy</elem>
+						<elem>src/main/resources/script</elem>
+					</key>
+				</lnk>
+			</lnkRole>
+		</lnks>
+		<textInfo loadedL="EN">
+			<textObj id="262b663d50104e77b0e1d9700856bcb7" masterL="EN" type="0">
+				<texts lang="EN">
+					<text label="" />
+					<text label="21327ec998d3248b3333da4cbe20b699" />
+				</texts>
+			</textObj>
+		</textInfo>
+	</generic>
+	<content>
+		<tr:XiTrafo xmlns:tr="urn:sap-com:xi:mapping:xitrafo">
+			<tr:MetaData>
+				<mappingtool version="XI7.1">
+					<project version="XI7.1">
+						<libstorage>
+							<entry name="usernamespace">
+								<functionstorage version="XI7.1">
+									<key>
+										<key typeID="FUNC_LIB">
+											<elem>LocalUserFunctions</elem>
+											<elem>http://com.sap.xi</elem>
+										</key>
+									</key>
+									<classname>_MapOrderIDoc_</classname>
+									<package>com.sap.xi.tf</package>
+									<imports><![CDATA[import com.sap.aii.mapping.api.*;
+import com.sap.aii.mapping.lookup.*;
+import com.sap.aii.mappingtool.tf7.rt.*;
+import java.io.*;
+import java.lang.reflect.*;
+import java.util.*;
+]]></imports>
+									<globals>
+										<javaText />
+									</globals>
+									<init>
+										<functionmodel>
+											<signature cacheType="2" />
+											<name>init</name>
+											<key>%init%</key>
+											<tab />
+											<title />
+											<uiTitle />
+											<implementation type="udf">
+												<javaText />
+											</implementation>
+										</functionmodel>
+									</init>
+									<cleanup>
+										<javaText />
+									</cleanup>
+									<usedjars />
+								</functionstorage>
+							</entry>
+							<entry name="checkIsNumeric">
+								<libref>
+									<ref pos="1" role="UsedFuncLib">
+										<key>
+											<key typeID="gsh" version="1.1">
+												<elem>checkIsNumeric.groovy</elem>
+												<elem>src/main/resources/script</elem>
+											</key>
+										</key>
+									</ref>
+								</libref>
+							</entry>
+						</libstorage>
+						<transformation>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/@BEGIN" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="28" y="46" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/EDI_DC40" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiConfig/SAPCpiOutboundConfig" type="Src">
+										<viewData x="15" y="42" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/EDI_DC40/@SEGMENT" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="22" y="41" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/EDI_DC40/TABNAM" type="Dst">
+								<viewData x="198" y="38" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="22" y="38" />
+										<bindings>
+											<param name="value">
+												<value>EDI_DC40</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/EDI_DC40/MANDT" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiConfig/SAPCpiOutboundConfig/client" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/EDI_DC40/DOCNUM" type="Dst">
+								<viewData x="233" y="62" />
+								<arg>
+									<brick fname="counter" fns="dflt" type="Func">
+										<viewData x="14" y="63" />
+										<bindings>
+											<param name="ini">
+												<value>100</value>
+											</param>
+											<param name="inc">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/EDI_DC40/DIRECT" type="Dst">
+								<viewData x="166" y="61" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="14" y="63" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/EDI_DC40/OUTMOD" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="17" y="43" />
+										<bindings>
+											<param name="value">
+												<value>2</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/EDI_DC40/MESTYP" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="42" y="40" />
+										<bindings>
+											<param name="value">
+												<value>SALESORDER_CREATEFROMDAT2</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/EDI_DC40/SNDPOR" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiConfig/SAPCpiOutboundConfig/senderPort"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/EDI_DC40/SNDPRT" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="13" y="42" />
+										<bindings>
+											<param name="value">
+												<value>LS</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/EDI_DC40/SNDPRN" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiConfig/SAPCpiOutboundConfig/senderName"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/EDI_DC40/RCVPOR" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiConfig/SAPCpiOutboundConfig/receiverPort"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/EDI_DC40/RCVPRN" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiConfig/SAPCpiOutboundConfig/receiverName"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/EDI_DC40/RCVPRT" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="33" y="38" />
+										<bindings>
+											<param name="value">
+												<value>LS</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/EDI_DC40/CREDAT" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/creationDate" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/EDI_DC40/IDOCTYP" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="14" y="63" />
+										<bindings>
+											<param name="value">
+												<value>SALESORDER_CREATEFROMDAT204</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/@SEGMENT" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="32" y="39" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/SALESDOCUMENTIN" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/orderId" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDHD1" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDHD1/@SEGMENT" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="23" y="40" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDHD1/DOC_TYPE" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/transactionType" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDHD1/SALES_ORG" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/salesOrganization" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDHD1/DISTR_CHAN" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/distributionChannel" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDHD1/DIVISION" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/division" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDHD1/PURCH_DATE" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/creationDate" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDHD1/COMPL_DLV" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="17" y="41" />
+										<bindings>
+											<param name="value">
+												<value />
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDHD1/PURCH_NO_C" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/purchaseOrderNumber" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDHD1/SHIP_COND" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/shippingCondition" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDHD1/CURR_ISO" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/currencyIsoCode" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDLS" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDLS/@SEGMENT" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="14" y="63" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDLS/PRICING" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="14" y="63" />
+										<bindings>
+											<param name="value">
+												<value>G</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDITM" type="Dst">
+								<viewData x="191" y="44" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundOrderItems/SAPCpiOutboundOrderItem"
+										type="Src">
+										<viewData x="21" y="44" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDITM/@SEGMENT" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="14" y="63" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDITM/ITM_NUMBER" type="Dst">
+								<viewData x="401" y="106" />
+								<arg>
+									<brick fname="add" fns="dflt" type="Func">
+										<viewData x="204" y="108" />
+										<arg>
+											<brick gid="0"
+												path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundOrderItems/SAPCpiOutboundOrderItem/entryNumber"
+												type="Src">
+												<viewData x="50" y="40" />
+											</brick>
+										</arg>
+										<arg pin="1">
+											<brick fname="const" fns="dflt" type="Func">
+												<viewData x="46" y="185" />
+												<bindings>
+													<param name="value">
+														<value>1</value>
+													</param>
+												</bindings>
+											</brick>
+										</arg>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDITM/PO_ITM_NO" type="Dst">
+								<viewData x="548" y="53" />
+								<arg>
+									<brick fname="formatNumber" fns="dflt" type="Func">
+										<viewData x="336" y="74" />
+										<arg>
+											<brick fname="add" fns="dflt" type="Func">
+												<viewData x="176" y="89" />
+												<arg>
+													<brick gid="0"
+														path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundOrderItems/SAPCpiOutboundOrderItem/entryNumber"
+														type="Src">
+														<viewData x="50" y="40" />
+													</brick>
+												</arg>
+												<arg pin="1">
+													<brick fname="const" fns="dflt" type="Func">
+														<viewData x="33" y="164" />
+														<bindings>
+															<param name="value">
+																<value>1</value>
+															</param>
+														</bindings>
+													</brick>
+												</arg>
+											</brick>
+										</arg>
+										<bindings>
+											<param name="nformat">
+												<value>000000</value>
+											</param>
+											<param name="separator">
+												<value>.</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDITM/MATERIAL" type="Dst">
+								<viewData x="982" y="151" />
+								<arg>
+									<brick fname="iF" fns="dflt" type="Func">
+										<viewData x="851" y="153" />
+										<arg>
+											<brick fname="const" fns="dflt" type="Func">
+												<viewData x="699" y="50" />
+												<bindings>
+													<param name="value">
+														<value />
+													</param>
+												</bindings>
+											</brick>
+										</arg>
+										<arg pin="1">
+											<brick fname="greater" fns="dflt" type="Func">
+												<viewData x="481" y="27" />
+												<arg>
+													<brick fname="length" fns="dflt" type="Func">
+														<viewData x="216" y="39" />
+														<arg>
+															<brick gid="0" object_uid="r49"
+																path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundOrderItems/SAPCpiOutboundOrderItem/productCode"
+																type="Src">
+																<viewData x="36" y="237" />
+															</brick>
+														</arg>
+													</brick>
+												</arg>
+												<arg pin="1">
+													<brick fname="const" fns="dflt" type="Func">
+														<viewData x="227" y="137" />
+														<bindings>
+															<param name="value">
+																<value>18</value>
+															</param>
+														</bindings>
+													</brick>
+												</arg>
+											</brick>
+										</arg>
+										<arg pin="2">
+											<brick object_uid="r49" />
+										</arg>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDITM/PLANT" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundOrderItems/SAPCpiOutboundOrderItem/plant" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDITM/ITEM_CATEG" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundOrderItems/SAPCpiOutboundOrderItem/itemCategory"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDITM/SHORT_TEXT" type="Dst">
+								<viewData x="893" y="156" />
+								<arg>
+									<brick fname="iF" fns="dflt" type="Func">
+										<viewData x="687" y="161" />
+										<arg>
+											<brick fname="substring" fns="dflt" type="Func">
+												<viewData x="255" y="27" />
+												<arg>
+													<brick gid="0" object_uid="r55"
+														path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundOrderItems/SAPCpiOutboundOrderItem/productName"
+														type="Src">
+														<viewData x="19" y="226" />
+													</brick>
+												</arg>
+												<bindings>
+													<param name="start">
+														<value>0</value>
+													</param>
+													<param name="count">
+														<value>39</value>
+													</param>
+												</bindings>
+											</brick>
+										</arg>
+										<arg pin="1">
+											<brick fname="greater" fns="dflt" type="Func">
+												<viewData x="518" y="342" />
+												<arg>
+													<brick fname="length" fns="dflt" type="Func">
+														<viewData x="266" y="291" />
+														<arg>
+															<brick object_uid="r55" />
+														</arg>
+													</brick>
+												</arg>
+												<arg pin="1">
+													<brick fname="const" fns="dflt" type="Func">
+														<viewData x="257" y="432" />
+														<bindings>
+															<param name="value">
+																<value>40</value>
+															</param>
+														</bindings>
+													</brick>
+												</arg>
+											</brick>
+										</arg>
+										<arg pin="2">
+											<brick object_uid="r55" />
+										</arg>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDITM/S_UNIT_ISO" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundOrderItems/SAPCpiOutboundOrderItem/unit" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDITM/E1BPSDITM1" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="17" y="45" />
+										<bindings>
+											<param name="value">
+												<value />
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDITM/E1BPSDITM1/@SEGMENT"
+								type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="15" y="44" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDITM/E1BPSDITM1/E1BPSDITM2"
+								type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="22" y="42" />
+										<bindings>
+											<param name="value">
+												<value />
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0"
+								path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDITM/E1BPSDITM1/E1BPSDITM2/@SEGMENT" type="Dst">
+								<viewData x="197" y="47" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="23" y="48" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0"
+								path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDITM/E1BPSDITM1/E1BPSDITM2/MATERIAL_LONG"
+								type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundOrderItems/SAPCpiOutboundOrderItem/productCode" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPPARNR" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundPartnerRoles/SAPCpiOutboundPartnerRole" type="Src">
+										<viewData x="31" y="38" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPPARNR/@SEGMENT" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="14" y="63" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPPARNR/PARTN_ROLE" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundPartnerRoles/SAPCpiOutboundPartnerRole/partnerRoleCode"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPPARNR/PARTN_NUMB" type="Dst">
+								<viewData x="301" y="31" />
+								<arg>
+									<brick fname="checkIsNumeric" fns="checkIsNumeric" type="Func">
+										<viewData x="180" y="43" />
+										<arg>
+											<brick gid="0"
+												path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundPartnerRoles/SAPCpiOutboundPartnerRole/partnerId"
+												type="Src">
+												<viewData x="50" y="40" />
+											</brick>
+										</arg>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPPARNR/ITM_NUMBER" type="Dst">
+								<viewData x="390" y="31" />
+								<arg>
+									<brick fname="add" fns="dflt" type="Func">
+										<viewData x="218" y="36" />
+										<arg>
+											<brick gid="0"
+												path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundPartnerRoles/SAPCpiOutboundPartnerRole/entryNumber"
+												type="Src">
+												<viewData x="50" y="40" />
+											</brick>
+										</arg>
+										<arg pin="1">
+											<brick fname="const" fns="dflt" type="Func">
+												<viewData x="44" y="170" />
+												<bindings>
+													<param name="value">
+														<value>1</value>
+													</param>
+												</bindings>
+											</brick>
+										</arg>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPPARNR/ADDR_LINK" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundPartnerRoles/SAPCpiOutboundPartnerRole/documentAddressId"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSCHDL" type="Dst">
+								<viewData x="194" y="44" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundOrderItems/SAPCpiOutboundOrderItem"
+										type="Src">
+										<viewData x="32" y="45" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSCHDL/@SEGMENT" type="Dst">
+								<viewData x="221" y="60" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="14" y="63" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSCHDL/ITM_NUMBER" type="Dst">
+								<viewData x="376" y="103" />
+								<arg>
+									<brick fname="add" fns="dflt" type="Func">
+										<viewData x="171" y="99" />
+										<arg>
+											<brick gid="0"
+												path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundOrderItems/SAPCpiOutboundOrderItem/entryNumber"
+												type="Src">
+												<viewData x="50" y="40" />
+											</brick>
+										</arg>
+										<arg pin="1">
+											<brick fname="const" fns="dflt" type="Func">
+												<viewData x="39" y="231" />
+												<bindings>
+													<param name="value">
+														<value>1</value>
+													</param>
+												</bindings>
+											</brick>
+										</arg>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSCHDL/REQ_DATE" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundOrderItems/SAPCpiOutboundOrderItem/namedDeliveryDate"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSCHDL/REQ_QTY" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundOrderItems/SAPCpiOutboundOrderItem/quantity" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCOND" type="Dst">
+								<viewData x="193" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundPriceComponents/SAPCpiOutboundPriceComponent" type="Src">
+										<viewData x="31" y="42" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCOND/@SEGMENT" type="Dst">
+								<viewData x="201" y="63" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="14" y="64" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCOND/ITM_NUMBER" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick fname="add" fns="dflt" type="Func">
+										<viewData x="209" y="68" />
+										<arg>
+											<brick gid="0"
+												path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundPriceComponents/SAPCpiOutboundPriceComponent/entryNumber"
+												type="Src">
+												<viewData x="50" y="40" />
+											</brick>
+										</arg>
+										<arg pin="1">
+											<brick fname="const" fns="dflt" type="Func">
+												<viewData x="51" y="141" />
+												<bindings>
+													<param name="value">
+														<value>1</value>
+													</param>
+												</bindings>
+											</brick>
+										</arg>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCOND/COND_COUNT" type="Dst">
+								<viewData x="231" y="68" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundPriceComponents/SAPCpiOutboundPriceComponent/conditionCounter"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCOND/COND_TYPE" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundPriceComponents/SAPCpiOutboundPriceComponent/conditionCode"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCOND/COND_VALUE" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundPriceComponents/SAPCpiOutboundPriceComponent/value"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCOND/COND_P_UNT" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundPriceComponents/SAPCpiOutboundPriceComponent/priceQuantity"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCOND/CURR_ISO" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundPriceComponents/SAPCpiOutboundPriceComponent/currencyIsoCode"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCOND/CD_UNT_ISO" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundPriceComponents/SAPCpiOutboundPriceComponent/unit"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUCFG" type="Dst">
+								<viewData x="193" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHeaders/SAPCpiOutboundOrderItemConfigHeader" type="Src">
+										<viewData x="31" y="42" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUCFG/@SEGMENT" type="Dst">
+								<viewData x="201" y="63" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="14" y="64" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUCFG/POSEX" type="Dst">
+								<viewData x="524" y="109" />
+								<arg>
+									<brick fname="formatNumber" fns="dflt" type="Func">
+										<viewData x="342" y="141" />
+										<arg>
+											<brick fname="add" fns="dflt" type="Func">
+												<viewData x="204" y="136" />
+												<arg>
+													<brick gid="0"
+														path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHeaders/SAPCpiOutboundOrderItemConfigHeader/externalItemId"
+														type="Src">
+														<viewData x="63" y="67" />
+													</brick>
+												</arg>
+												<arg pin="1">
+													<brick fname="const" fns="dflt" type="Func">
+														<viewData x="62" y="226" />
+														<bindings>
+															<param name="value">
+																<value>1</value>
+															</param>
+														</bindings>
+													</brick>
+												</arg>
+											</brick>
+										</arg>
+										<bindings>
+											<param name="nformat">
+												<value>000000</value>
+											</param>
+											<param name="separator">
+												<value>.</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUCFG/CONFIG_ID" type="Dst">
+								<viewData x="422" y="91" />
+								<arg>
+									<brick fname="formatNumber" fns="dflt" type="Func">
+										<viewData x="297" y="112" />
+										<arg>
+											<brick fname="add" fns="dflt" type="Func">
+												<viewData x="156" y="125" />
+												<arg>
+													<brick gid="0"
+														path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHeaders/SAPCpiOutboundOrderItemConfigHeader/configurationId"
+														type="Src">
+														<viewData x="63" y="67" />
+													</brick>
+												</arg>
+												<arg pin="1">
+													<brick fname="const" fns="dflt" type="Func">
+														<viewData x="59" y="171" />
+														<bindings>
+															<param name="value">
+																<value>1</value>
+															</param>
+														</bindings>
+													</brick>
+												</arg>
+											</brick>
+										</arg>
+										<bindings>
+											<param name="nformat">
+												<value>000000</value>
+											</param>
+											<param name="separator">
+												<value>.</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUCFG/ROOT_ID" type="Dst">
+								<viewData x="231" y="68" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHeaders/SAPCpiOutboundOrderItemConfigHeader/rootInstanceId"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUCFG/SCE" type="Dst">
+								<viewData x="376" y="70" />
+								<arg>
+									<brick fname="iF" fns="dflt" type="Func">
+										<viewData x="221" y="67" />
+										<arg>
+											<brick fname="const" fns="dflt" type="Func">
+												<viewData x="25" y="70" />
+												<bindings>
+													<param name="value">
+														<value>1</value>
+													</param>
+												</bindings>
+											</brick>
+										</arg>
+										<arg pin="1">
+											<brick gid="0"
+												path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHeaders/SAPCpiOutboundOrderItemConfigHeader/commerceLeading"
+												type="Src">
+												<viewData x="22" y="125" />
+											</brick>
+										</arg>
+										<arg pin="2">
+											<brick fname="const" fns="dflt" type="Func">
+												<viewData x="22" y="183" />
+												<bindings>
+													<param name="value">
+														<value />
+													</param>
+												</bindings>
+											</brick>
+										</arg>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUCFG/COMPLETE" type="Dst">
+								<viewData x="330" y="76" />
+								<arg>
+									<brick fname="iF" fns="dflt" type="Func">
+										<viewData x="196" y="73" />
+										<arg>
+											<brick fname="const" fns="dflt" type="Func">
+												<viewData x="83" y="73" />
+												<bindings>
+													<param name="value">
+														<value>T</value>
+													</param>
+												</bindings>
+											</brick>
+										</arg>
+										<arg pin="1">
+											<brick gid="0"
+												path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHeaders/SAPCpiOutboundOrderItemConfigHeader/complete"
+												type="Src">
+												<viewData x="13" y="131" />
+											</brick>
+										</arg>
+										<arg pin="2">
+											<brick fname="const" fns="dflt" type="Func">
+												<viewData x="82" y="168" />
+												<bindings>
+													<param name="value">
+														<value>F</value>
+													</param>
+												</bindings>
+											</brick>
+										</arg>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUCFG/CONSISTENT" type="Dst">
+								<viewData x="350" y="61" />
+								<arg>
+									<brick fname="iF" fns="dflt" type="Func">
+										<viewData x="204" y="65" />
+										<arg>
+											<brick fname="const" fns="dflt" type="Func">
+												<viewData x="77" y="66" />
+												<bindings>
+													<param name="value">
+														<value>T</value>
+													</param>
+												</bindings>
+											</brick>
+										</arg>
+										<arg pin="1">
+											<brick gid="0"
+												path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHeaders/SAPCpiOutboundOrderItemConfigHeader/consistent"
+												type="Src">
+												<viewData x="13" y="126" />
+											</brick>
+										</arg>
+										<arg pin="2">
+											<brick fname="const" fns="dflt" type="Func">
+												<viewData x="81" y="175" />
+												<bindings>
+													<param name="value">
+														<value>F</value>
+													</param>
+												</bindings>
+											</brick>
+										</arg>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUCFG/KBNAME" type="Dst">
+								<viewData x="231" y="68" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHeaders/SAPCpiOutboundOrderItemConfigHeader/kbName"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUCFG/KBVERSION" type="Dst">
+								<viewData x="231" y="68" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHeaders/SAPCpiOutboundOrderItemConfigHeader/kbVersion"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUCFG/KBPROFILE" type="Dst">
+								<viewData x="231" y="68" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHeaders/SAPCpiOutboundOrderItemConfigHeader/kbProfile"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUINS" type="Dst">
+								<viewData x="193" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigInstances/SAPCpiOutboundOrderItemConfigInstance" type="Src">
+										<viewData x="31" y="42" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUINS/@SEGMENT" type="Dst">
+								<viewData x="201" y="63" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="14" y="64" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUINS/CONFIG_ID" type="Dst">
+								<viewData x="546" y="137" />
+								<arg>
+									<brick fname="formatNumber" fns="dflt" type="Func">
+										<viewData x="368" y="134" />
+										<arg>
+											<brick fname="add" fns="dflt" type="Func">
+												<viewData x="211" y="127" />
+												<arg>
+													<brick gid="0"
+														path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigInstances/SAPCpiOutboundOrderItemConfigInstance/configurationId"
+														type="Src">
+														<viewData x="63" y="67" />
+													</brick>
+												</arg>
+												<arg pin="1">
+													<brick fname="const" fns="dflt" type="Func">
+														<viewData x="61" y="211" />
+														<bindings>
+															<param name="value">
+																<value>1</value>
+															</param>
+														</bindings>
+													</brick>
+												</arg>
+											</brick>
+										</arg>
+										<bindings>
+											<param name="nformat">
+												<value>000000</value>
+											</param>
+											<param name="separator">
+												<value>.</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUINS/INST_ID" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigInstances/SAPCpiOutboundOrderItemConfigInstance/instanceId"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUINS/OBJ_TYPE" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigInstances/SAPCpiOutboundOrderItemConfigInstance/objectType"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUINS/CLASS_TYPE" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigInstances/SAPCpiOutboundOrderItemConfigInstance/classType"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUINS/OBJ_KEY" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigInstances/SAPCpiOutboundOrderItemConfigInstance/objectKey"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUINS/QUANTITY" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigInstances/SAPCpiOutboundOrderItemConfigInstance/quantity"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUINS/QUANTITY_UNIT"
+								type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigInstances/SAPCpiOutboundOrderItemConfigInstance/quantityUnit"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUINS/AUTHOR" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigInstances/SAPCpiOutboundOrderItemConfigInstance/author"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUINS/COMPLETE" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick fname="iF" fns="dflt" type="Func">
+										<viewData x="220" y="64" />
+										<arg>
+											<brick fname="const" fns="dflt" type="Func">
+												<viewData x="46" y="55" />
+												<bindings>
+													<param name="value">
+														<value>T</value>
+													</param>
+												</bindings>
+											</brick>
+										</arg>
+										<arg pin="1">
+											<brick gid="0"
+												path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigInstances/SAPCpiOutboundOrderItemConfigInstance/complete"
+												type="Src">
+												<viewData x="46" y="119" />
+											</brick>
+										</arg>
+										<arg pin="2">
+											<brick fname="const" fns="dflt" type="Func">
+												<viewData x="49" y="182" />
+												<bindings>
+													<param name="value">
+														<value>F</value>
+													</param>
+												</bindings>
+											</brick>
+										</arg>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUINS/CONSISTENT" type="Dst">
+								<viewData x="397" y="33" />
+								<arg>
+									<brick fname="iF" fns="dflt" type="Func">
+										<viewData x="225" y="36" />
+										<arg>
+											<brick fname="const" fns="dflt" type="Func">
+												<viewData x="46" y="41" />
+												<bindings>
+													<param name="value">
+														<value>T</value>
+													</param>
+												</bindings>
+											</brick>
+										</arg>
+										<arg pin="1">
+											<brick gid="0"
+												path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigInstances/SAPCpiOutboundOrderItemConfigInstance/consistent"
+												type="Src">
+												<viewData x="53" y="95" />
+											</brick>
+										</arg>
+										<arg pin="2">
+											<brick fname="const" fns="dflt" type="Func">
+												<viewData x="51" y="152" />
+												<bindings>
+													<param name="value">
+														<value>F</value>
+													</param>
+												</bindings>
+											</brick>
+										</arg>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUPRT" type="Dst">
+								<viewData x="193" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHierarchies/SAPCpiOutboundOrderItemConfigHierarchy"
+										type="Src">
+										<viewData x="31" y="42" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUPRT/@SEGMENT" type="Dst">
+								<viewData x="201" y="63" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="14" y="64" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUPRT/CONFIG_ID" type="Dst">
+								<viewData x="501" y="119" />
+								<arg>
+									<brick fname="formatNumber" fns="dflt" type="Func">
+										<viewData x="347" y="127" />
+										<arg>
+											<brick fname="add" fns="dflt" type="Func">
+												<viewData x="215" y="137" />
+												<arg>
+													<brick gid="0"
+														path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHierarchies/SAPCpiOutboundOrderItemConfigHierarchy/configurationId"
+														type="Src">
+														<viewData x="63" y="67" />
+													</brick>
+												</arg>
+												<arg pin="1">
+													<brick fname="const" fns="dflt" type="Func">
+														<viewData x="58" y="207" />
+														<bindings>
+															<param name="value">
+																<value>1</value>
+															</param>
+														</bindings>
+													</brick>
+												</arg>
+											</brick>
+										</arg>
+										<bindings>
+											<param name="nformat">
+												<value>000000</value>
+											</param>
+											<param name="separator">
+												<value>.</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUPRT/INST_ID" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHierarchies/SAPCpiOutboundOrderItemConfigHierarchy/instanceId"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUPRT/PARENT_ID" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHierarchies/SAPCpiOutboundOrderItemConfigHierarchy/parentId"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUPRT/PART_OF_NO" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHierarchies/SAPCpiOutboundOrderItemConfigHierarchy/bomNumber"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUPRT/OBJ_TYPE" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHierarchies/SAPCpiOutboundOrderItemConfigHierarchy/objectType"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUPRT/CLASS_TYPE" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHierarchies/SAPCpiOutboundOrderItemConfigHierarchy/classType"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUPRT/OBJ_KEY" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHierarchies/SAPCpiOutboundOrderItemConfigHierarchy/objectKey"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUPRT/AUTHOR" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHierarchies/SAPCpiOutboundOrderItemConfigHierarchy/author"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUPRT/SALES_RELEVANT"
+								type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigHierarchies/SAPCpiOutboundOrderItemConfigHierarchy/salesRelevant"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUVAL" type="Dst">
+								<viewData x="193" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigValues/SAPCpiOutboundOrderItemConfigValue" type="Src">
+										<viewData x="31" y="42" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUVAL/@SEGMENT" type="Dst">
+								<viewData x="201" y="63" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="14" y="64" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUVAL/CONFIG_ID" type="Dst">
+								<viewData x="541" y="113" />
+								<arg>
+									<brick fname="formatNumber" fns="dflt" type="Func">
+										<viewData x="383" y="121" />
+										<arg>
+											<brick fname="add" fns="dflt" type="Func">
+												<viewData x="225" y="128" />
+												<arg>
+													<brick gid="0"
+														path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigValues/SAPCpiOutboundOrderItemConfigValue/configurationId"
+														type="Src">
+														<viewData x="63" y="67" />
+													</brick>
+												</arg>
+												<arg pin="1">
+													<brick fname="const" fns="dflt" type="Func">
+														<viewData x="60" y="199" />
+														<bindings>
+															<param name="value">
+																<value>1</value>
+															</param>
+														</bindings>
+													</brick>
+												</arg>
+											</brick>
+										</arg>
+										<bindings>
+											<param name="nformat">
+												<value>000000</value>
+											</param>
+											<param name="separator">
+												<value>.</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUVAL/INST_ID" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigValues/SAPCpiOutboundOrderItemConfigValue/instanceId"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUVAL/CHARC" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigValues/SAPCpiOutboundOrderItemConfigValue/characteristicId"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUVAL/VALUE" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigValues/SAPCpiOutboundOrderItemConfigValue/valueId"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUVAL/CHARC_TXT" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigValues/SAPCpiOutboundOrderItemConfigValue/characteristicText"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUVAL/VALUE_TXT" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigValues/SAPCpiOutboundOrderItemConfigValue/valueText"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUVAL/VALCODE" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigValues/SAPCpiOutboundOrderItemConfigValue/valueCode"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUVAL/AUTHOR" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigValues/SAPCpiOutboundOrderItemConfigValue/author"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUVK" type="Dst">
+								<viewData x="193" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigConditions/SAPCpiOutboundOrderItemConfigCondition"
+										type="Src">
+										<viewData x="31" y="42" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUVK/@SEGMENT" type="Dst">
+								<viewData x="201" y="63" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="14" y="64" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUVK/CONFIG_ID" type="Dst">
+								<viewData x="596" y="122" />
+								<arg>
+									<brick fname="formatNumber" fns="dflt" type="Func">
+										<viewData x="397" y="136" />
+										<arg>
+											<brick fname="add" fns="dflt" type="Func">
+												<viewData x="219" y="145" />
+												<arg>
+													<brick gid="0"
+														path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigConditions/SAPCpiOutboundOrderItemConfigCondition/configurationId"
+														type="Src">
+														<viewData x="63" y="67" />
+													</brick>
+												</arg>
+												<arg pin="1">
+													<brick fname="const" fns="dflt" type="Func">
+														<viewData x="66" y="213" />
+														<bindings>
+															<param name="value">
+																<value>1</value>
+															</param>
+														</bindings>
+													</brick>
+												</arg>
+											</brick>
+										</arg>
+										<bindings>
+											<param name="nformat">
+												<value>000000</value>
+											</param>
+											<param name="separator">
+												<value>.</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUVK/INST_ID" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigConditions/SAPCpiOutboundOrderItemConfigCondition/instanceId"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUVK/VKEY" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigConditions/SAPCpiOutboundOrderItemConfigCondition/conditionKey"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUVK/FACTOR" type="Dst">
+								<viewData x="382" y="64" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/productConfigConditions/SAPCpiOutboundOrderItemConfigCondition/conditionFactor"
+										type="Src">
+										<viewData x="63" y="67" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCCARD" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundCardPayments/SAPCpiOutboundCardPayment" type="Src">
+										<viewData x="29" y="44" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCCARD/@SEGMENT" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="14" y="63" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCCARD/CC_TYPE" type="Dst">
+								<viewData x="395" y="27" />
+								<arg>
+									<brick fname="toUpperCase" fns="dflt" type="Func">
+										<viewData x="206" y="34" />
+										<arg>
+											<brick gid="0"
+												path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundCardPayments/SAPCpiOutboundCardPayment/paymentProvider"
+												type="Src">
+												<viewData x="51" y="63" />
+											</brick>
+										</arg>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCCARD/CC_NUMBER" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundCardPayments/SAPCpiOutboundCardPayment/subscriptionId"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCCARD/CC_VALID_T" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundCardPayments/SAPCpiOutboundCardPayment/validToYear"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCCARD/CC_NAME" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundCardPayments/SAPCpiOutboundCardPayment/ccOwner" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCCARD/AUTH_REFNO" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundCardPayments/SAPCpiOutboundCardPayment/requestId"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress"
+										type="Src">
+										<viewData x="36" y="36" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/@SEGMENT" type="Dst">
+								<viewData x="209" y="46" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="14" y="63" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/ADDR_NO" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/documentAddressId"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/NAME" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/lastName" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/NAME_2" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/firstName" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/NAME_3" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/middleName" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/NAME_4" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/middleName2" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/CITY" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/city"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/DISTRICT" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/district" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/POSTL_COD1" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/postalCode" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/PO_BOX" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/pobox"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/STREET" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/street" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/HOUSE_NO" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/houseNumber" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/BUILDING" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/building" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/ROOM_NO" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/apartment" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/REGION" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/regionIsoCode" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/TEL1_NUMBR" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/telNumber" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/FAX_NUMBER" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/faxNumber" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/E1BPADR11" type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="31" y="45" />
+										<bindings>
+											<param name="value">
+												<value />
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/E1BPADR11/@SEGMENT"
+								type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="26" y="42" />
+										<bindings>
+											<param name="value">
+												<value>1</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/E1BPADR11/E_MAIL"
+								type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0" path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/email"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/E1BPADR11/TITLE"
+								type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/titleCode" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/E1BPADR11/COUNTRYISO"
+								type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/countryIsoCode" type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPADR1/E1BPADR11/LANGU_ISO"
+								type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick gid="0"
+										path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundAddresses/SAPCpiOutboundAddress/languageIsoCode"
+										type="Src">
+										<viewData x="50" y="40" />
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUCFG/CBASE_ID_TYPE"
+								type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="50" y="40" />
+										<bindings>
+											<param name="value">
+												<value>G</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPCUINS/PERSIST_ID_TYPE"
+								type="Dst">
+								<viewData x="200" y="40" />
+								<arg>
+									<brick fname="const" fns="dflt" type="Func">
+										<viewData x="50" y="42" />
+										<bindings>
+											<param name="value">
+												<value>G</value>
+											</param>
+										</bindings>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+							<brick gid="0" path="/SALESORDER_CREATEFROMDAT204/IDOC/E1SALESORDER_CREATEFROMDAT2/E1BPSDITM/HG_LV_ITEM" type="Dst">
+								<viewData x="340" y="45" />
+								<arg>
+									<brick fname="add" fns="dflt" type="Func">
+										<viewData x="170" y="32" />
+										<arg>
+											<brick gid="0"
+												path="/SAPCpiOutboundOrders/SAPCpiOutboundOrder/sapCpiOutboundOrderItems/SAPCpiOutboundOrderItem/higherLevelEntryNumber"
+												type="Src">
+												<viewData x="50" y="40" />
+											</brick>
+										</arg>
+										<arg pin="1">
+											<brick fname="const" fns="dflt" type="Func">
+												<viewData x="16" y="155" />
+												<bindings>
+													<param name="value">
+														<value>1</value>
+													</param>
+												</bindings>
+											</brick>
+										</arg>
+									</brick>
+								</arg>
+								<group />
+							</brick>
+						</transformation>
+						<testData>
+							<instances />
+						</testData>
+						<ViewState />
+						<pcont />
+					</project>
+				</mappingtool>
+			</tr:MetaData>
+			<tr:ByteCodeJar />
+			<tr:SourceStructure />
+			<tr:TargetStructure />
+			<tr:Multiplicity>1:1</tr:Multiplicity>
+			<tr:SourceParameters>
+				<tr:Parameter>
+					<tr:Position>1</tr:Position>
+					<tr:Minoccurs>1</tr:Minoccurs>
+					<tr:Maxoccurs>1</tr:Maxoccurs>
+				</tr:Parameter>
+			</tr:SourceParameters>
+			<tr:TargetParameters>
+				<tr:Parameter>
+					<tr:Position>1</tr:Position>
+					<tr:Minoccurs>1</tr:Minoccurs>
+					<tr:Maxoccurs>1</tr:Maxoccurs>
+				</tr:Parameter>
+			</tr:TargetParameters>
+		</tr:XiTrafo>
+	</content>
+</xiObj>

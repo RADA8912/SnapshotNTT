@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?><bpmn2:definitions xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:ifl="http:///com.sap.ifl.model/Ifl.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1">
+    <bpmn2:collaboration id="Collaboration_1" name="Default Collaboration">
+        <bpmn2:extensionElements>
+            <ifl:property>
+                <key>namespaceMapping</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>httpSessionHandling</key>
+                <value>None</value>
+            </ifl:property>
+            <ifl:property>
+                <key>accessControlMaxAge</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>returnExceptionToSender</key>
+                <value>false</value>
+            </ifl:property>
+            <ifl:property>
+                <key>log</key>
+                <value>All events</value>
+            </ifl:property>
+            <ifl:property>
+                <key>corsEnabled</key>
+                <value>false</value>
+            </ifl:property>
+            <ifl:property>
+                <key>exposedHeaders</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>componentVersion</key>
+                <value>1.2</value>
+            </ifl:property>
+            <ifl:property>
+                <key>allowedHeaderList</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>ServerTrace</key>
+                <value>false</value>
+            </ifl:property>
+            <ifl:property>
+                <key>allowedOrigins</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>accessControlAllowCredentials</key>
+                <value>false</value>
+            </ifl:property>
+            <ifl:property>
+                <key>allowedHeaders</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>allowedMethods</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>cmdVariantUri</key>
+                <value>ctype::IFlowVariant/cname::IFlowConfiguration/version::1.2.4</value>
+            </ifl:property>
+        </bpmn2:extensionElements>
+        <bpmn2:participant id="Participant_Process_10" ifl:type="IntegrationProcess" name="Mapping" processRef="Process_10">
+            <bpmn2:extensionElements/>
+        </bpmn2:participant>
+        <bpmn2:participant id="Participant_Process_1" ifl:type="IntegrationProcess" name="Converter" processRef="Process_1">
+            <bpmn2:extensionElements/>
+        </bpmn2:participant>
+    </bpmn2:collaboration>
+    <bpmn2:process id="Process_10" name="Mapping">
+        <bpmn2:extensionElements>
+            <ifl:property>
+                <key>transactionTimeout</key>
+                <value>30</value>
+            </ifl:property>
+            <ifl:property>
+                <key>componentVersion</key>
+                <value>1.2</value>
+            </ifl:property>
+            <ifl:property>
+                <key>cmdVariantUri</key>
+                <value>ctype::FlowElementVariant/cname::IntegrationProcess/version::1.2.1</value>
+            </ifl:property>
+            <ifl:property>
+                <key>transactionalHandling</key>
+                <value>Not Required</value>
+            </ifl:property>
+        </bpmn2:extensionElements>
+        <bpmn2:callActivity id="CallActivity_14" name="Groovy Mapping">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>scriptFunction</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>scriptBundleId</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.1</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>activityType</key>
+                    <value>Script</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::GroovyScript/version::1.1.2</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>subActivityType</key>
+                    <value>GroovyScript</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>script</key>
+                    <value>Mapping.groovy</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_18</bpmn2:incoming>
+            <bpmn2:outgoing>SequenceFlow_15</bpmn2:outgoing>
+        </bpmn2:callActivity>
+        <bpmn2:endEvent id="EndEvent_12" name="End">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.1</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::MessageEndEvent/version::1.1.0</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_15</bpmn2:incoming>
+            <bpmn2:messageEventDefinition/>
+        </bpmn2:endEvent>
+        <bpmn2:callActivity id="CallActivity_17" name="Set Example Message">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>bodyType</key>
+                    <value>constant</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>propertyTable</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>headerTable</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>wrapContent</key>
+                    <value>&lt;MATMAS06&gt;
+	&lt;IDOC BEGIN="1"&gt;
+		&lt;EDI_DC40 SEGMENT="1"&gt;
+			&lt;TABNAM&gt;EDI_DC40&lt;/TABNAM&gt;
+			&lt;MANDT&gt;120&lt;/MANDT&gt;
+			&lt;DOCNUM&gt;0000000001298111&lt;/DOCNUM&gt;
+			&lt;DOCREL&gt;755&lt;/DOCREL&gt;
+			&lt;STATUS&gt;03&lt;/STATUS&gt;
+			&lt;DIRECT&gt;1&lt;/DIRECT&gt;
+			&lt;OUTMOD&gt;2&lt;/OUTMOD&gt;
+			&lt;IDOCTYP&gt;MATMAS06&lt;/IDOCTYP&gt;
+			&lt;MESTYP&gt;MATMAS&lt;/MESTYP&gt;
+			&lt;SNDPOR&gt;SAPBS4&lt;/SNDPOR&gt;
+			&lt;SNDPRT&gt;LS&lt;/SNDPRT&gt;
+			&lt;SNDPRN&gt;BS4CLNT120&lt;/SNDPRN&gt;
+			&lt;RCVPOR&gt;SAPDOPJAVA&lt;/RCVPOR&gt;
+			&lt;RCVPRT&gt;LS&lt;/RCVPRT&gt;
+			&lt;RCVPRN&gt;DOPCLNT000&lt;/RCVPRN&gt;
+			&lt;CREDAT&gt;20240408&lt;/CREDAT&gt;
+			&lt;CRETIM&gt;141109&lt;/CRETIM&gt;
+			&lt;SERIAL&gt;20240408141109&lt;/SERIAL&gt;
+		&lt;/EDI_DC40&gt;
+		&lt;E1MARAM SEGMENT="1"&gt;
+			&lt;MSGFN&gt;005&lt;/MSGFN&gt;
+			&lt;MATNR&gt;000000000002234227&lt;/MATNR&gt;
+			&lt;MTART&gt;ZRAW&lt;/MTART&gt;
+			&lt;MATKL&gt;10101010&lt;/MATKL&gt;
+			&lt;MEINS&gt;GRM&lt;/MEINS&gt;
+			&lt;BRGEW&gt;-111&lt;/BRGEW&gt;
+			&lt;NTGEW&gt;222-&lt;/NTGEW&gt;
+			&lt;GEWEI&gt;KGM&lt;/GEWEI&gt;
+			&lt;TEMPB&gt;03 &lt;/TEMPB&gt;
+			&lt;MATNR_LONG&gt;000000000002234227&lt;/MATNR_LONG&gt;
+			&lt;BISMT_LONG&gt;2234227&lt;/BISMT_LONG&gt;
+			&lt;E1MAKTM SEGMENT="1"&gt;
+				&lt;MSGFN&gt;005&lt;/MSGFN&gt;
+				&lt;SPRAS&gt;D&lt;/SPRAS&gt;
+				&lt;MAKTX&gt; ABC     Soft &lt;/MAKTX&gt;
+				&lt;SPRAS_ISO&gt;DE&lt;/SPRAS_ISO&gt;
+			&lt;/E1MAKTM&gt;
+			&lt;E1MARCM SEGMENT="1"&gt;
+				&lt;MSGFN&gt;005&lt;/MSGFN&gt;
+				&lt;WERKS&gt;1100&lt;/WERKS&gt;
+			&lt;/E1MARCM&gt;
+		&lt;/E1MARAM&gt;
+	&lt;/IDOC&gt;
+&lt;/MATMAS06&gt;</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.6</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>activityType</key>
+                    <value>Enricher</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::Enricher/version::1.6.1</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_13</bpmn2:incoming>
+            <bpmn2:outgoing>SequenceFlow_18</bpmn2:outgoing>
+        </bpmn2:callActivity>
+        <bpmn2:startEvent id="StartEvent_11" name="Start">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::MessageStartEvent</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:outgoing>SequenceFlow_13</bpmn2:outgoing>
+            <bpmn2:messageEventDefinition/>
+        </bpmn2:startEvent>
+        <bpmn2:sequenceFlow id="SequenceFlow_15" sourceRef="CallActivity_14" targetRef="EndEvent_12"/>
+        <bpmn2:sequenceFlow id="SequenceFlow_18" sourceRef="CallActivity_17" targetRef="CallActivity_14"/>
+        <bpmn2:sequenceFlow id="SequenceFlow_13" sourceRef="StartEvent_11" targetRef="CallActivity_17"/>
+    </bpmn2:process>
+    <bpmn2:process id="Process_1" name="Converter">
+        <bpmn2:extensionElements>
+            <ifl:property>
+                <key>transactionTimeout</key>
+                <value>30</value>
+            </ifl:property>
+            <ifl:property>
+                <key>componentVersion</key>
+                <value>1.2</value>
+            </ifl:property>
+            <ifl:property>
+                <key>cmdVariantUri</key>
+                <value>ctype::FlowElementVariant/cname::IntegrationProcess/version::1.2.1</value>
+            </ifl:property>
+            <ifl:property>
+                <key>transactionalHandling</key>
+                <value>Not Required</value>
+            </ifl:property>
+        </bpmn2:extensionElements>
+        <bpmn2:callActivity id="CallActivity_4" name="Convert Excel Mapping To Groovy">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>scriptFunction</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>scriptBundleId</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.1</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>activityType</key>
+                    <value>Script</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::GroovyScript/version::1.1.2</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>subActivityType</key>
+                    <value>GroovyScript</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>script</key>
+                    <value>ConvertExcelXMLMappingToGroovy_1.0.0.gsh</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_8</bpmn2:incoming>
+            <bpmn2:outgoing>SequenceFlow_5</bpmn2:outgoing>
+        </bpmn2:callActivity>
+        <bpmn2:endEvent id="EndEvent_2" name="End">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.1</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::MessageEndEvent/version::1.1.0</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_5</bpmn2:incoming>
+            <bpmn2:messageEventDefinition/>
+        </bpmn2:endEvent>
+        <bpmn2:callActivity id="CallActivity_7" name="Set Excel Content">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>bodyType</key>
+                    <value>constant</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>propertyTable</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>headerTable</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>wrapContent</key>
+                    <value>Source Field	Source Structure	Target Field	Target Structure	Target Description	Mapping rule	Source Method	Source Parameter	Source Formula
+			/Interchange			constant		''
+		S_UNA	/Interchange			constant	:+.? '	':+.? ''
+			/Interchange/S_UNB			constant		''
+			/Interchange/S_UNB/C_S001			constant		''
+		D_0001	/Interchange/S_UNB/C_S001			constant	UNOC	'UNOC'
+		D_0002	/Interchange/S_UNB/C_S001			constant	3	'3'
+			/Interchange/S_UNB/C_S002			constant		''
+ILNNR	/ORDERS05/IDOC/E1EDKA1[PARCW = "BK"]	D_0004	/Interchange/S_UNB/C_S002			1:1		/ORDERS05/IDOC/E1EDKA1[PARCW = "BK"]/ILNNR
+		D_0007	/Interchange/S_UNB/C_S002			constant	ZZZ	'ZZZ'
+			/Interchange/S_UNB/C_S003			constant		''
+ILNNR	/ORDERS05/IDOC/E1EDKA1[PARCW = "AG"]	D_0010	/Interchange/S_UNB/C_S003		ToDo Mapping	1:1		/ORDERS05/IDOC/E1EDKA1[PARCW = "AG"]/ILNNR
+		D_0007	/Interchange/S_UNB/C_S003			constant	ZZZ	'ZZZ'
+			/Interchange/S_UNB/C_S004			constant		''
+CREDAT	/INVOIC02/IDOC/EDI_DC40	D_0017	/Interchange/S_UNB/C_S004			1:1		/INVOIC02/IDOC/EDI_DC40/CREDAT
+CRETIM	/INVOIC02/IDOC/EDI_DC40	D_0019	/Interchange/S_UNB/C_S004			1:1		/INVOIC02/IDOC/EDI_DC40/CRETIM
+DOCNUM	/INVOIC02/IDOC/EDI_DC40	D_0020	/Interchange/S_UNB			1:1		/INVOIC02/IDOC/EDI_DC40/DOCNUM
+		D_0035	/Interchange/S_UNB			constant	0	'0'
+			/Interchange/M_ORDRSP			constant		''
+			/Interchange/M_ORDRSP/S_UNH			constant		''
+		D_0062	/Interchange/M_ORDRSP/S_UNH			constant	1	'1'
+			/Interchange/M_ORDRSP/S_UNH/C_S009			constant		''
+		D_0065	/Interchange/M_ORDRSP/S_UNH/C_S009			constant	ORDRSP	'ORDRSP'
+		D_0052	/Interchange/M_ORDRSP/S_UNH/C_S009			constant	D	'D'
+		D_0054	/Interchange/M_ORDRSP/S_UNH/C_S009			constant	96B	'96B'
+		D_0051	/Interchange/M_ORDRSP/S_UNH/C_S009			constant	UNOC	'UNOC'
+		D_0057	/Interchange/M_ORDRSP/S_UNH/C_S009			constant	ITEK30	'ITEK30'
+			/Interchange/M_ORDRSP/S_BGM			constant		''
+			/Interchange/M_ORDRSP/S_BGM/C_C002			constant		''
+		D_1001	/Interchange/M_ORDRSP/S_BGM/C_C002			constant	231	'231'
+			/Interchange/M_ORDRSP/S_BGM/C_C106			constant		''
+BELNR	/ORDERS05/IDOC/E1EDK01	D_1004	/Interchange/M_ORDRSP/S_BGM/C_C106			1:1		/ORDERS05/IDOC/E1EDK01/BELNR
+			/Interchange/M_ORDRSP/S_DTM			constant		''
+			/Interchange/M_ORDRSP/S_DTM/C_C507			constant		''
+		D_2005	/Interchange/M_ORDRSP/S_DTM/C_C507		Bestelldatum	constant	4	'4'
+DATUM	/ORDERS05/IDOC/E1EDK03[IDDAT = "022"]	D_2380	/Interchange/M_ORDRSP/S_DTM/C_C507			1:1		/ORDERS05/IDOC/E1EDK03[IDDAT = "022"]/DATUM
+		D_2379	/Interchange/M_ORDRSP/S_DTM/C_C507			constant	102	'102'
+			/Interchange/M_ORDRSP/S_DTM			constant		''
+			/Interchange/M_ORDRSP/S_DTM/C_C507			constant		''
+		D_2005	/Interchange/M_ORDRSP/S_DTM/C_C507		Lieferdatum	constant	2	'2'
+DATUM	/ORDERS05/IDOC/E1EDK03[IDDAT = "002"]	D_2380	/Interchange/M_ORDRSP/S_DTM/C_C507			1:1		/ORDERS05/IDOC/E1EDK03[IDDAT = "002"]/DATUM
+		D_2379	/Interchange/M_ORDRSP/S_DTM/C_C507			constant	102	'102'
+			/Interchange/M_ORDRSP/G_SG1			constant		''
+			/Interchange/M_ORDRSP/G_SG1/S_RFF			constant		''
+			/Interchange/M_ORDRSP/G_SG1/S_RFF/C_C506			constant		''
+		D_1153	/Interchange/M_ORDRSP/G_SG1/S_RFF/C_C506		Bestellnummer des Großhändlers	constant	VN	'VN'
+BELNR	/ORDERS05/IDOC/E1EDK02[QUALF = "001"]	D_1154	/Interchange/M_ORDRSP/G_SG1/S_RFF/C_C506			1:1		/ORDERS05/IDOC/E1EDK02[QUALF = "001"]/BELNR
+			/Interchange/M_ORDRSP/G_SG1			constant		''
+			/Interchange/M_ORDRSP/G_SG1/S_RFF			constant		''
+			/Interchange/M_ORDRSP/G_SG1/S_RFF/C_C506			constant		''
+		D_1153	/Interchange/M_ORDRSP/G_SG1/S_RFF/C_C506		Vorgangsnummer des Lieferanten	constant	ACE	'ACE'
+BELNR	/ORDERS05/IDOC/E1EDK02[QUALF = "002"]	D_1154	/Interchange/M_ORDRSP/G_SG1/S_RFF/C_C506			1:1		/ORDERS05/IDOC/E1EDK02[QUALF = "002"]/BELNR
+			/Interchange/M_ORDRSP/G_SG3			constant		''
+			/Interchange/M_ORDRSP/G_SG3/S_NAD			constant		''
+		D_3035	/Interchange/M_ORDRSP/G_SG3/S_NAD		Grosshaendler	constant	WS	'WS'
+			/Interchange/M_ORDRSP/G_SG3/S_NAD/C_C082			constant		''
+PARTN	/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]	D_3039	/Interchange/M_ORDRSP/G_SG3/S_NAD/C_C082			1:1		/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]/PARTN
+		D_3055	/Interchange/M_ORDRSP/G_SG3/S_NAD/C_C082			constant	ZZZ	'ZZZ'
+			/Interchange/M_ORDRSP/G_SG3/S_NAD/C_C080			constant		''
+NAME1	/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]	D_3036	/Interchange/M_ORDRSP/G_SG3/S_NAD/C_C080			1:1		/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]/NAME1
+			/Interchange/M_ORDRSP/G_SG3/S_NAD/C_C059			constant		''
+STRAS	/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]	D_3042	/Interchange/M_ORDRSP/G_SG3/S_NAD/C_C059			1:1		/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]/STRAS
+ORT01	/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]	D_3164	/Interchange/M_ORDRSP/G_SG3/S_NAD			1:1		/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]/ORT01
+PSTLZ	/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]	D_3251	/Interchange/M_ORDRSP/G_SG3/S_NAD			1:1		/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]/PSTLZ
+LAND1	/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]	D_3207	/Interchange/M_ORDRSP/G_SG3/S_NAD			1:1		/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]/LAND1
+			/Interchange/M_ORDRSP/G_SG3			constant		''
+			/Interchange/M_ORDRSP/G_SG3/S_NAD			constant		''
+		D_3035	/Interchange/M_ORDRSP/G_SG3/S_NAD		Lieferadresse	constant	ST	'ST'
+			/Interchange/M_ORDRSP/G_SG3/S_NAD/C_C082			constant		''
+PARTN	/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]	D_3039	/Interchange/M_ORDRSP/G_SG3/S_NAD/C_C082			1:1		/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]/PARTN
+		D_3055	/Interchange/M_ORDRSP/G_SG3/S_NAD/C_C082			constant		''
+			/Interchange/M_ORDRSP/G_SG3/S_NAD/C_C080			constant		''
+NAME1	/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]	D_3036	/Interchange/M_ORDRSP/G_SG3/S_NAD/C_C080			1:1		/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]/NAME1
+			/Interchange/M_ORDRSP/G_SG3/S_NAD/C_C059			constant		''
+STRAS	/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]	D_3042	/Interchange/M_ORDRSP/G_SG3/S_NAD/C_C059			1:1		/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]/STRAS
+ORT01	/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]	D_3164	/Interchange/M_ORDRSP/G_SG3/S_NAD			1:1		/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]/ORT01
+PSTLZ	/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]	D_3251	/Interchange/M_ORDRSP/G_SG3/S_NAD			1:1		/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]/PSTLZ
+LAND1	/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]	D_3207	/Interchange/M_ORDRSP/G_SG3/S_NAD			1:1		/ORDERS05/IDOC/E1EDKA1[PARVW = "AG"]/LAND1
+			/Interchange/M_ORDRSP/G_SG8			constant		''
+			/Interchange/M_ORDRSP/G_SG8/S_CUX			constant		''
+			/Interchange/M_ORDRSP/G_SG8/S_CUX/C_C504			constant		''
+		D_6347	/Interchange/M_ORDRSP/G_SG8/S_CUX/C_C504			constant	2	'2'
+CURCY	/ORDERS05/IDOC/E1EDK01	D_6345	/Interchange/M_ORDRSP/G_SG8/S_CUX/C_C504			1:1		/ORDERS05/IDOC/E1EDK01/CURCY
+			/Interchange/M_ORDRSP/G_SG10			constant		''
+			/Interchange/M_ORDRSP/G_SG10/S_TDT			constant		''
+		D_8051	/Interchange/M_ORDRSP/G_SG10/S_TDT			constant	13	'13'
+			/Interchange/M_ORDRSP/G_SG10/S_TDT/C_C220			constant		''
+		D_8067	/Interchange/M_ORDRSP/G_SG10/S_TDT/C_C220		ToDo VSART Mapping	constant	3	'3'
+			/Interchange/M_ORDRSP/G_SG12			constant		''
+			/Interchange/M_ORDRSP/G_SG12/S_TOD			constant		''
+		D_4055	/Interchange/M_ORDRSP/G_SG12/S_TOD			constant	6	'6'
+			/Interchange/M_ORDRSP/G_SG12/S_TOD/C_C100			constant		''
+LKOND	/ORDERS05/IDOC/E1EDK17[QUALF = "001"]	D_4053	/Interchange/M_ORDRSP/G_SG12/S_TOD/C_C100		ToDo INCO Mapping	1:1		/ORDERS05/IDOC/E1EDK17[QUALF = "001"]/LKOND
+			/Interchange/M_ORDRSP/G_SG26			constant		''
+			/Interchange/M_ORDRSP/G_SG26/S_LIN			constant		''
+		D_1082	/Interchange/M_ORDRSP/G_SG26/S_LIN		ToDo Zaehler	constant	1	'1'
+			/Interchange/M_ORDRSP/G_SG26/S_LIN/C_C212			constant		''
+IDTNR	/ORDERS05/IDOC/E1EDP01/E1EDP19[QUALF = "002"]	D_7140	/Interchange/M_ORDRSP/G_SG26/S_LIN/C_C212			1:1		/ORDERS05/IDOC/E1EDP01/E1EDP19[QUALF = "002"]/IDTNR
+		D_7143	/Interchange/M_ORDRSP/G_SG26/S_LIN/C_C212			constant	MF	'MF'
+			/Interchange/M_ORDRSP/G_SG26/S_QTY			constant		''
+			/Interchange/M_ORDRSP/G_SG26/S_QTY/C_C186			constant		''
+		D_6063	/Interchange/M_ORDRSP/G_SG26/S_QTY/C_C186			constant	12	'12'
+MENGE	/ORDERS05/IDOC/E1EDP01	D_6060	/Interchange/M_ORDRSP/G_SG26/S_QTY/C_C186			1:1		/ORDERS05/IDOC/E1EDP01/MENGE
+MENEE	/ORDERS05/IDOC/E1EDP01	D_6411	/Interchange/M_ORDRSP/G_SG26/S_QTY/C_C186			1:1		/ORDERS05/IDOC/E1EDP01/MENEE
+			/Interchange/M_ORDRSP/G_SG26/S_DTM			constant		''
+			/Interchange/M_ORDRSP/G_SG26/S_DTM/C_C507			constant		''
+		D_2005	/Interchange/M_ORDRSP/G_SG26/S_DTM/C_C507			constant	2	'2'
+DATUM	/ORDERS05/IDOC/E1EDK03[QUALF = "002"]	D_2380	/Interchange/M_ORDRSP/G_SG26/S_DTM/C_C507			1:1		/ORDERS05/IDOC/E1EDK03[QUALF = "002"]/DATUM
+		D_2379	/Interchange/M_ORDRSP/G_SG26/S_DTM/C_C507			constant	102	'102'
+			/Interchange/M_ORDRSP/G_SG26/G_SG30			constant		''
+			/Interchange/M_ORDRSP/G_SG26/G_SG30/S_PRI			constant		''
+			/Interchange/M_ORDRSP/G_SG26/G_SG30/S_PRI/C_C509			constant		''
+		D_5125	/Interchange/M_ORDRSP/G_SG26/G_SG30/S_PRI/C_C509			constant	NTP	'NTP'
+KRATE	/ORDERS05/IDOC/E1EDP01/E1EDP05[KOTXT = "Positionsnetto"]	D_5118	/Interchange/M_ORDRSP/G_SG26/G_SG30/S_PRI/C_C509			1:1		/ORDERS05/IDOC/E1EDP01/E1EDP05[KOTXT = "Positionsnetto"]/KRATE
+UPRBS	/ORDERS05/IDOC/E1EDP01/E1EDP05[KOTXT = "Positionsnetto"]	D_5284	/Interchange/M_ORDRSP/G_SG26/G_SG30/S_PRI/C_C509			1:1		/ORDERS05/IDOC/E1EDP01/E1EDP05[KOTXT = "Positionsnetto"]/UPRBS
+MEAUN	/ORDERS05/IDOC/E1EDP01/E1EDP05[KOTXT = "Positionsnetto"]	D_6411	/Interchange/M_ORDRSP/G_SG26/G_SG30/S_PRI/C_C509			1:1		/ORDERS05/IDOC/E1EDP01/E1EDP05[KOTXT = "Positionsnetto"]/MEAUN
+			/Interchange/M_ORDRSP/S_UNS			constant		''
+		D_0081	/Interchange/M_ORDRSP/S_UNS			constant	S	'S'
+			/Interchange/M_ORDRSP/S_UNT			constant		''
+		D_0074	/Interchange/M_ORDRSP/S_UNT			constant		''
+		D_0062	/Interchange/M_ORDRSP/S_UNT			constant	1	'1'
+			/Interchange/S_UNZ			constant		''
+		D_0036	/Interchange/S_UNZ			constant	1	'1'
+DOCNUM	/INVOIC02/IDOC/EDI_DC40	D_0020	/Interchange/S_UNZ			1:1		/INVOIC02/IDOC/EDI_DC40/DOCNUM</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.6</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>activityType</key>
+                    <value>Enricher</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::Enricher/version::1.6.1</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_3</bpmn2:incoming>
+            <bpmn2:outgoing>SequenceFlow_8</bpmn2:outgoing>
+        </bpmn2:callActivity>
+        <bpmn2:startEvent id="StartEvent_2" name="Start">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.0</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::MessageStartEvent/version::1.0</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:outgoing>SequenceFlow_3</bpmn2:outgoing>
+            <bpmn2:messageEventDefinition/>
+        </bpmn2:startEvent>
+        <bpmn2:sequenceFlow id="SequenceFlow_5" sourceRef="CallActivity_4" targetRef="EndEvent_2"/>
+        <bpmn2:sequenceFlow id="SequenceFlow_8" sourceRef="CallActivity_7" targetRef="CallActivity_4"/>
+        <bpmn2:sequenceFlow id="SequenceFlow_3" sourceRef="StartEvent_2" targetRef="CallActivity_7"/>
+    </bpmn2:process>
+    <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="Default Collaboration Diagram">
+        <bpmndi:BPMNPlane bpmnElement="Collaboration_1" id="BPMNPlane_1">
+            <bpmndi:BPMNShape bpmnElement="StartEvent_11" id="BPMNShape_StartEvent_11">
+                <dc:Bounds height="32.0" width="32.0" x="268.0" y="276.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="EndEvent_2" id="BPMNShape_EndEvent_2">
+                <dc:Bounds height="32.0" width="32.0" x="749.0" y="99.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="StartEvent_2" id="BPMNShape_StartEvent_2">
+                <dc:Bounds height="32.0" width="32.0" x="276.0" y="99.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="CallActivity_7" id="BPMNShape_CallActivity_7">
+                <dc:Bounds height="60.0" width="100.0" x="368.0" y="85.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="CallActivity_4" id="BPMNShape_CallActivity_4">
+                <dc:Bounds height="60.0" width="161.0" x="528.0" y="85.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="Participant_Process_1" id="BPMNShape_Participant_Process_1">
+                <dc:Bounds height="137.0" width="618.0" x="247.0" y="35.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="EndEvent_12" id="BPMNShape_EndEvent_12">
+                <dc:Bounds height="32.0" width="32.0" x="680.0" y="276.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="CallActivity_14" id="BPMNShape_CallActivity_14">
+                <dc:Bounds height="60.0" width="100.0" x="520.0" y="262.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="Participant_Process_10" id="BPMNShape_Participant_Process_10">
+                <dc:Bounds height="137.0" width="548.0" x="248.0" y="212.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="CallActivity_17" id="BPMNShape_CallActivity_17">
+                <dc:Bounds height="60.0" width="100.0" x="360.0" y="262.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_5" id="BPMNEdge_SequenceFlow_5" sourceElement="BPMNShape_CallActivity_4" targetElement="BPMNShape_EndEvent_2">
+                <di:waypoint x="689.8197674418604" xsi:type="dc:Point" y="115.0"/>
+                <di:waypoint x="749.8197674418604" xsi:type="dc:Point" y="115.0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_8" id="BPMNEdge_SequenceFlow_8" sourceElement="BPMNShape_CallActivity_7" targetElement="BPMNShape_CallActivity_4">
+                <di:waypoint x="468.81976744186045" xsi:type="dc:Point" y="115.0"/>
+                <di:waypoint x="528.8197674418604" xsi:type="dc:Point" y="115.0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_3" id="BPMNEdge_SequenceFlow_3" sourceElement="BPMNShape_StartEvent_2" targetElement="BPMNShape_CallActivity_7">
+                <di:waypoint x="308.81976744186045" xsi:type="dc:Point" y="115.0"/>
+                <di:waypoint x="368.81976744186045" xsi:type="dc:Point" y="115.0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_18" id="BPMNEdge_SequenceFlow_18" sourceElement="BPMNShape_CallActivity_17" targetElement="BPMNShape_CallActivity_14">
+                <di:waypoint x="460.0" xsi:type="dc:Point" y="292.0"/>
+                <di:waypoint x="520.0" xsi:type="dc:Point" y="292.0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_15" id="BPMNEdge_SequenceFlow_15" sourceElement="BPMNShape_CallActivity_14" targetElement="BPMNShape_EndEvent_12">
+                <di:waypoint x="620.0" xsi:type="dc:Point" y="292.0"/>
+                <di:waypoint x="680.0" xsi:type="dc:Point" y="292.0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_13" id="BPMNEdge_SequenceFlow_13" sourceElement="BPMNShape_StartEvent_11" targetElement="BPMNShape_CallActivity_17">
+                <di:waypoint x="300.0" xsi:type="dc:Point" y="292.0"/>
+                <di:waypoint x="360.0" xsi:type="dc:Point" y="292.0"/>
+            </bpmndi:BPMNEdge>
+        </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

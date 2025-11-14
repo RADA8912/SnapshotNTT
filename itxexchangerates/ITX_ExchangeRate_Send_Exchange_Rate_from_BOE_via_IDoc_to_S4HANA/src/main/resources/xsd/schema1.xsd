@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.bankofengland.co.uk/boeapps/iadb/agg_series" xmlns:tns="http://www.bankofengland.co.uk/boeapps/iadb/agg_series" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Cube">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element maxOccurs="unbounded" name="Cube">
+            <xs:complexType>
+              <xs:sequence minOccurs="0">
+                <xs:element maxOccurs="unbounded" name="Revision">
+                  <xs:complexType>
+                    <xs:attribute name="UPDATE_TIMESTAMP" type="xs:string" use="required"/>
+                    <xs:attribute name="OBS_VALUE" type="xs:int" use="optional"/>
+                    <xs:attribute name="PROV_VALUE" type="xs:unsignedShort" use="optional"/>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+              <xs:attribute name="FREQ_NAME" type="xs:string" use="optional"/>
+              <xs:attribute name="FREQ_CODE" type="xs:string" use="optional"/>
+              <xs:attribute name="FREQ_ORD" type="xs:unsignedByte" use="optional"/>
+              <xs:attribute name="SERIES_DEF" type="xs:string" use="optional"/>
+              <xs:attribute name="DEF_LOC" type="xs:string" use="optional"/>
+              <xs:attribute name="CAT_NAME" type="xs:string" use="optional"/>
+              <xs:attribute name="CAT_VAL" type="xs:string" use="optional"/>
+              <xs:attribute name="VAL_DESC" type="xs:string" use="optional"/>
+              <xs:attribute name="CAT_ORD" type="xs:unsignedByte" use="optional"/>
+              <xs:attribute name="FIRST_OBS" type="xs:date" use="optional"/>
+              <xs:attribute name="LAST_OBS" type="xs:date" use="optional"/>
+              <xs:attribute name="TIME" type="xs:date" use="optional"/>
+              <xs:attribute name="OBS_VALUE" type="xs:int" use="optional"/>
+              <xs:attribute name="OBS_CONF" type="xs:string" use="optional"/>
+              <xs:attribute name="LAST_UPDATED" type="xs:string" use="optional"/>
+            </xs:complexType>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" name="SERIES_COM" type="xs:string"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="SCODE" type="xs:string" use="required"/>
+      <xs:attribute name="DESC" type="xs:string" use="required"/>
+      <xs:attribute name="COUNTRY" type="xs:string" use="required"/>
+      <xs:attribute name="CONCAT" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

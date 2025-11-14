@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+    <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+    <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+    <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+  </edmx:Reference>
+  <edmx:DataServices>
+    <Schema Namespace="CatalogService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityContainer Name="EntityContainer">
+        <EntitySet Name="integrationdata_cloud_integration" EntityType="CatalogService.integrationdata_cloud_integration">
+          <NavigationPropertyBinding Path="interface" Target="interface_integrations"/>
+          <NavigationPropertyBinding Path="packages" Target="integration_packages"/>
+        </EntitySet>
+        <EntitySet Name="integration_interfaces" EntityType="CatalogService.integration_interfaces">
+          <NavigationPropertyBinding Path="receiver" Target="receiver"/>
+          <NavigationPropertyBinding Path="integration" Target="interface_integrations"/>
+        </EntitySet>
+        <EntitySet Name="masterdata_process" EntityType="CatalogService.masterdata_process"/>
+        <EntitySet Name="masterdata_object" EntityType="CatalogService.masterdata_object"/>
+        <EntitySet Name="masterdata_application" EntityType="CatalogService.masterdata_application"/>
+        <EntitySet Name="receiver" EntityType="CatalogService.receiver">
+          <NavigationPropertyBinding Path="interface" Target="integration_interfaces"/>
+        </EntitySet>
+        <EntitySet Name="integration_packages" EntityType="CatalogService.integration_packages">
+          <NavigationPropertyBinding Path="integration" Target="integrationdata_cloud_integration"/>
+        </EntitySet>
+        <EntitySet Name="interface_integrations" EntityType="CatalogService.interface_integrations">
+          <NavigationPropertyBinding Path="interface_ID" Target="integration_interfaces"/>
+          <NavigationPropertyBinding Path="integration_ID" Target="integrationdata_cloud_integration"/>
+        </EntitySet>
+        <ActionImport Name="integrateInterface" Action="CatalogService.integrateInterface"/>
+        <ActionImport Name="addCloudIntegration" Action="CatalogService.addCloudIntegration"/>
+      </EntityContainer>
+      <EntityType Name="integrationdata_cloud_integration">
+        <Key>
+          <PropertyRef Name="integration_ID"/>
+        </Key>
+        <Property Name="integration_ID" Type="Edm.String" Nullable="false"/>
+        <Property Name="sender" Type="Edm.String"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset"/>
+        <Property Name="artifactContent" Type="Edm.String"/>
+        <Property Name="description" Type="Edm.String"/>
+        <Property Name="createdBy" Type="Edm.String"/>
+        <Property Name="version" Type="Edm.String"/>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset"/>
+        <Property Name="receiver" Type="Edm.String"/>
+        <Property Name="modifiedBy" Type="Edm.String"/>
+        <Property Name="name" Type="Edm.String"/>
+        <Property Name="status" Type="Edm.String"/>
+        <Property Name="deployedOn" Type="Edm.DateTimeOffset"/>
+        <Property Name="type" Type="Edm.String"/>
+        <Property Name="deployedBy" Type="Edm.String"/>
+        <NavigationProperty Name="interface" Type="Collection(CatalogService.interface_integrations)" Partner="integration_ID"/>
+        <NavigationProperty Name="packages" Type="Collection(CatalogService.integration_packages)" Partner="integration"/>
+      </EntityType>
+      <EntityType Name="integration_interfaces">
+        <Key>
+          <PropertyRef Name="interface_ID"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="interface_ID" Type="Edm.String" Nullable="false"/>
+        <Property Name="name" Type="Edm.String"/>
+        <Property Name="description" Type="Edm.String"/>
+        <Property Name="status" Type="Edm.String"/>
+        <Property Name="sender" Type="Edm.String"/>
+        <NavigationProperty Name="receiver" Type="Collection(CatalogService.receiver)" Partner="interface"/>
+        <Property Name="process" Type="Edm.String"/>
+        <Property Name="dataObject" Type="Edm.String"/>
+        <NavigationProperty Name="integration" Type="Collection(CatalogService.interface_integrations)" Partner="interface_ID"/>
+      </EntityType>
+      <EntityType Name="masterdata_process">
+        <Key>
+          <PropertyRef Name="external_id"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="external_id" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="ID" Type="Edm.String"/>
+        <Property Name="name" Type="Edm.String" MaxLength="10"/>
+        <Property Name="last_modified" Type="Edm.DateTimeOffset"/>
+        <Property Name="description" Type="Edm.String"/>
+        <Property Name="process_maturity" Type="Edm.String" MaxLength="20"/>
+      </EntityType>
+      <EntityType Name="masterdata_object">
+        <Key>
+          <PropertyRef Name="name"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="name" Type="Edm.String" MaxLength="100" Nullable="false"/>
+        <Property Name="ID" Type="Edm.String" MaxLength="100"/>
+        <Property Name="external_id" Type="Edm.String" MaxLength="40"/>
+        <Property Name="last_modified" Type="Edm.DateTimeOffset"/>
+        <Property Name="description" Type="Edm.String"/>
+        <Property Name="classification" Type="Edm.String" MaxLength="20"/>
+      </EntityType>
+      <EntityType Name="masterdata_application">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="ID" Type="Edm.String" MaxLength="40" Nullable="false"/>
+        <Property Name="external_id" Type="Edm.String" MaxLength="100"/>
+        <Property Name="name" Type="Edm.String" MaxLength="100"/>
+        <Property Name="last_modified" Type="Edm.DateTimeOffset"/>
+        <Property Name="description" Type="Edm.String"/>
+        <Property Name="time_classification" Type="Edm.String" MaxLength="20"/>
+        <Property Name="r6_classification" Type="Edm.String" MaxLength="20"/>
+        <Property Name="business_criticality" Type="Edm.String" MaxLength="20"/>
+        <Property Name="functional_fit" Type="Edm.String" MaxLength="20"/>
+        <Property Name="technical_fit" Type="Edm.String" MaxLength="20"/>
+      </EntityType>
+      <EntityType Name="receiver">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="ID" Type="Edm.String" Nullable="false"/>
+        <Property Name="external_id" Type="Edm.String"/>
+        <Property Name="name" Type="Edm.String"/>
+        <NavigationProperty Name="interface" Type="CatalogService.integration_interfaces" Partner="receiver">
+          <ReferentialConstraint Property="interface_interface_ID" ReferencedProperty="interface_ID"/>
+        </NavigationProperty>
+        <Property Name="interface_interface_ID" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="integration_packages">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="ID" Type="Edm.String" Nullable="false"/>
+        <NavigationProperty Name="integration" Type="CatalogService.integrationdata_cloud_integration" Partner="packages">
+          <ReferentialConstraint Property="integration_integration_ID" ReferencedProperty="integration_ID"/>
+        </NavigationProperty>
+        <Property Name="integration_integration_ID" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="interface_integrations">
+        <Key>
+          <PropertyRef Name="interface_ID_interface_ID"/>
+          <PropertyRef Name="integration_ID_integration_ID"/>
+        </Key>
+        <NavigationProperty Name="interface_ID" Type="CatalogService.integration_interfaces" Partner="integration">
+          <ReferentialConstraint Property="interface_ID_interface_ID" ReferencedProperty="interface_ID"/>
+        </NavigationProperty>
+        <Property Name="interface_ID_interface_ID" Type="Edm.String" Nullable="false"/>
+        <NavigationProperty Name="integration_ID" Type="CatalogService.integrationdata_cloud_integration" Partner="interface">
+          <ReferentialConstraint Property="integration_ID_integration_ID" ReferencedProperty="integration_ID"/>
+        </NavigationProperty>
+        <Property Name="integration_ID_integration_ID" Type="Edm.String" Nullable="false"/>
+      </EntityType>
+      <ComplexType Name="ndbs_itfmanager_InterfaceType">
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="interface_ID" Type="Edm.String"/>
+        <Property Name="name" Type="Edm.String"/>
+        <Property Name="description" Type="Edm.String"/>
+        <Property Name="status" Type="Edm.String"/>
+        <Property Name="sender" Type="Edm.String"/>
+        <Property Name="process" Type="Edm.String"/>
+        <Property Name="dataObject" Type="Edm.String"/>
+        <Property Name="receivers" Type="Collection(CatalogService.ndbs_itfmanager_ReceiverType)" Nullable="false"/>
+      </ComplexType>
+      <ComplexType Name="ndbs_itfmanager_ReceiverType">
+        <Property Name="ID" Type="Edm.String"/>
+        <Property Name="external_id" Type="Edm.String"/>
+        <Property Name="name" Type="Edm.String"/>
+        <Property Name="interface_id" Type="Edm.String"/>
+      </ComplexType>
+      <ComplexType Name="ndbs_itfmanager_IntegrationType">
+        <Property Name="ID" Type="Edm.String"/>
+        <Property Name="interface_ID" Type="Edm.String"/>
+        <Property Name="sender" Type="Edm.String"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset"/>
+        <Property Name="artifactContent" Type="Edm.String"/>
+        <Property Name="description" Type="Edm.String"/>
+        <Property Name="createdBy" Type="Edm.String"/>
+        <Property Name="version" Type="Edm.String"/>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset"/>
+        <Property Name="receiver" Type="Edm.String"/>
+        <Property Name="modifiedBy" Type="Edm.String"/>
+        <Property Name="name" Type="Edm.String"/>
+        <Property Name="status" Type="Edm.String"/>
+        <Property Name="deployedOn" Type="Edm.DateTimeOffset"/>
+        <Property Name="type" Type="Edm.String"/>
+        <Property Name="deployedBy" Type="Edm.String"/>
+        <Property Name="packages" Type="Collection(CatalogService.ndbs_itfmanager_IntegrationPackageType)" Nullable="false"/>
+      </ComplexType>
+      <ComplexType Name="ndbs_itfmanager_IntegrationPackageType">
+        <Property Name="ID" Type="Edm.String"/>
+        <Property Name="integration_ID" Type="Edm.String"/>
+      </ComplexType>
+      <Action Name="integrateInterface" IsBound="false">
+        <Parameter Name="body" Type="CatalogService.ndbs_itfmanager_InterfaceType"/>
+        <ReturnType Type="Edm.String"/>
+      </Action>
+      <Action Name="addCloudIntegration" IsBound="false">
+        <Parameter Name="body" Type="CatalogService.ndbs_itfmanager_IntegrationType"/>
+        <ReturnType Type="Edm.String"/>
+      </Action>
+      <Annotations Target="CatalogService.integration_interfaces/createdAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="CatalogService.integration_interfaces/createdBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="CatalogService.integration_interfaces/modifiedAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="CatalogService.integration_interfaces/modifiedBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="CatalogService.integration_interfaces/status">
+        <Annotation Term="Validation.AllowedValues">
+          <Collection>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="draft"/>
+              <PropertyValue Property="Value" String="draft"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="ready"/>
+              <PropertyValue Property="Value" String="ready"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CatalogService.masterdata_process/createdAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="CatalogService.masterdata_process/createdBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="CatalogService.masterdata_process/modifiedAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="CatalogService.masterdata_process/modifiedBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="CatalogService.masterdata_object/createdAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="CatalogService.masterdata_object/createdBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="CatalogService.masterdata_object/modifiedAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="CatalogService.masterdata_object/modifiedBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="CatalogService.masterdata_application/createdAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="CatalogService.masterdata_application/createdBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="CatalogService.masterdata_application/modifiedAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="CatalogService.masterdata_application/modifiedBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="CatalogService.receiver/createdAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="CatalogService.receiver/createdBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="CatalogService.receiver/modifiedAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="CatalogService.receiver/modifiedBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="CatalogService.integration_packages/createdAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="CatalogService.integration_packages/createdBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="CatalogService.integration_packages/modifiedAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="CatalogService.integration_packages/modifiedBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="CatalogService.ndbs_itfmanager_InterfaceType/createdAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="CatalogService.ndbs_itfmanager_InterfaceType/createdBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="CatalogService.ndbs_itfmanager_InterfaceType/modifiedAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="CatalogService.ndbs_itfmanager_InterfaceType/modifiedBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

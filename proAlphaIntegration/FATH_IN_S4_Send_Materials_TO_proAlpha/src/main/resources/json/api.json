@@ -1,0 +1,544 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "proALPHA API",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "\/api",
+      "description": "\/api"
+    }
+  ],
+  "security": [
+    {
+      "apikey": [
+      ]
+    }
+  ],
+  "paths": {
+    "\/healthcheck": {
+      "get": {
+        "tags": [
+          "healthcheck"
+        ],
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+            }
+          },
+          "400": {
+            "$ref": "#\/components\/responses\/error"
+          }
+        }
+      }
+    },
+    "\/part\/{partId}\/classification": {
+      "post": {
+        "summary": "",
+        "parameters": [
+          {
+            "name": "partId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "id of parent resource"
+            }
+          }
+        ],
+        "tags": [
+          "classification"
+        ],
+        "requestBody": {
+          "$ref": "#\/components\/requestBodies\/part_classification"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#\/components\/responses\/part_classification"
+          },
+          "400": {
+            "$ref": "#\/components\/responses\/error"
+          }
+        }
+      }
+    },
+    "\/part": {
+      "post": {
+        "tags": [
+          "part"
+        ],
+        "parameters": [
+        ],
+        "requestBody": {
+          "$ref": "#\/components\/requestBodies\/part"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#\/components\/responses\/part"
+          },
+          "400": {
+            "$ref": "#\/components\/responses\/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "responses": {
+      "error": {
+        "description": "Errors",
+        "content": {
+          "application\/json": {
+            "schema": {
+              "$ref": "#\/components\/schemas\/error"
+            }
+          },
+          "application\/xml": {
+            "schema": {
+              "$ref": "#\/components\/schemas\/error"
+            }
+          }
+        }
+      },
+      "healthcheck": {
+        "description": "healthcheck",
+        "headers": {
+        }
+      },
+      "part_classification": {
+        "description": "part\/classification",
+        "headers": {
+        },
+        "content": {
+          "application\/json": {
+            "schema": {
+              "$ref": "#\/components\/schemas\/part_classification"
+            }
+          },
+          "application\/xml": {
+            "schema": {
+              "$ref": "#\/components\/schemas\/part_classification"
+            }
+          }
+        }
+      },
+      "part": {
+        "description": "part",
+        "headers": {
+        },
+        "content": {
+          "application\/json": {
+            "schema": {
+              "$ref": "#\/components\/schemas\/part"
+            }
+          },
+          "application\/xml": {
+            "schema": {
+              "$ref": "#\/components\/schemas\/part"
+            }
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "part_classification": {
+        "required": true,
+        "content": {
+          "application\/json": {
+            "schema": {
+              "$ref": "#\/components\/schemas\/part_classification"
+            }
+          },
+          "application\/xml": {
+            "schema": {
+              "$ref": "#\/components\/schemas\/part_classification"
+            }
+          }
+        }
+      },
+      "part": {
+        "required": true,
+        "content": {
+          "application\/json": {
+            "schema": {
+              "$ref": "#\/components\/schemas\/part"
+            }
+          },
+          "application\/xml": {
+            "schema": {
+              "$ref": "#\/components\/schemas\/part"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "error": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "errorMessage": {
+              "type": "string",
+              "description": "Error Message"
+            },
+            "errorCode": {
+              "type": "string",
+              "description": "Error Code"
+            },
+            "stacktrace": {
+              "type": "string",
+              "description": "Stacktrace for error analysis in development. Will be filled, when Request Header \"stacktrace\" is (true|1|yes)"
+            }
+          }
+        }
+      },
+      "ttSO_CLS": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "unique identifier"
+          },
+          "classification_type": {
+            "type": "string",
+            "description": "BS_Zuord.SMLeiste"
+          },
+          "feature": {
+            "type": "string",
+            "description": "BS_Zuord.Merkmal"
+          },
+          "specification": {
+            "type": "string",
+            "description": "BS_Zuord.Auspr"
+          }
+        }
+      },
+      "dsXG_ClassificationsttSO_CLS": {
+        "type": "array",
+        "items": {
+          "allOf": [
+            {
+              "$ref": "#\/components\/schemas\/ttSO_CLS"
+            }
+          ]
+        }
+      },
+      "part_classification": {
+        "type": "object",
+        "properties": {
+          "classification": {
+            "type": "object",
+            "$ref": "#\/components\/schemas\/dsXG_ClassificationsttSO_CLS"
+          }
+        }
+      },
+      "dsXG_PartttXG_Part": {
+        "type": "array",
+        "items": {
+          "allOf": [
+            {
+              "$ref": "#\/components\/schemas\/ttXG_Part"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "object",
+                  "$ref": "#\/components\/schemas\/dsXG_PartttSO_Description"
+                },
+                "status": {
+                  "type": "object",
+                  "$ref": "#\/components\/schemas\/dsXG_PartttXG_WorkflowStatus"
+                },
+                "unit_of_measure": {
+                  "type": "object",
+                  "$ref": "#\/components\/schemas\/dsXG_PartttXG_UnitOfMeasure"
+                },
+                "text": {
+                  "type": "object",
+                  "$ref": "#\/components\/schemas\/dsXG_PartttSO_Text"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "ttXG_Part": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "S_Artikel.S_Artikel_Obj"
+          },
+          "part_no": {
+            "type": "string",
+            "description": "S_Artikel.Artikel"
+          },
+          "confirmed_weight": {
+            "type": "boolean",
+            "description": "S_Artikel.GewichtBestaetigt"
+          },
+          "discountable": {
+            "type": "boolean",
+            "description": "S_Artikel.Rabattfaehig"
+          },
+          "commissionable": {
+            "type": "boolean",
+            "description": "S_Artikel.provisionsfaehig"
+          },
+          "cash_discountable": {
+            "type": "boolean",
+            "description": "S_Artikel.skontofaehig"
+          },
+          "weight": {
+            "type": "number",
+            "description": "S_Artikel.Gewicht"
+          },
+          "storage_unit_weight": {
+            "type": "number",
+            "description": "S_Artikel.LagerGewicht"
+          },
+          "weight_unit": {
+            "type": "integer",
+            "description": "S_Artikel.GewichtME"
+          },
+          "ean": {
+            "type": "string",
+            "description": "S_EAN.EAN"
+          },
+          "cost_object": {
+            "type": "string",
+            "description": "S_Artikel.Traeger"
+          },
+          "customer_statistic": {
+            "type": "boolean",
+            "description": "S_Artikel.Kundenstatistik"
+          },
+          "price_unit": {
+            "type": "integer",
+            "description": "S_Artikel.Preiseinheit"
+          },
+          "selection": {
+            "type": "string",
+            "description": "S_Artikel.Selektion"
+          },
+          "archived": {
+            "type": "boolean",
+            "description": "S_Artikel.archiviert"
+          },
+          "business_unit": {
+            "type": "string",
+            "description": "S_Artikel.Sparte"
+          },
+          "customs_tariff_no": {
+            "type": "string",
+            "description": "S_Artikel.Zolltarifnummer"
+          },
+          "storage_unit": {
+            "type": "integer",
+            "description": "S_Artikel.LagerME"
+          },
+          "bom_quantity_unit": {
+            "type": "integer",
+            "description": "S_Artikel.StkME"
+          },
+          "tariff_description": {
+            "type": "string",
+            "description": "S_Artikel.Tarifbezeichnung"
+          },
+          "part_type": {
+            "type": "integer",
+            "description": "S_Artikel.ArtikelArt"
+          },
+          "product_line": {
+            "type": "string",
+            "description": "S_Artikel.ArtikelGruppe"
+          },
+          "factor_storage_unit_to_statistics_unit": {
+            "type": "number",
+            "description": "S_Artikel.SME_Faktor"
+          },
+          "factor_bom_quantity_unit_to_storage_unit": {
+            "type": "number",
+            "description": "S_Artikel.StkFaktor"
+          },
+          "work_group": {
+            "type": "string",
+            "description": "S_Artikel.Verteilergruppe"
+          },
+          "volume": {
+            "type": "number",
+            "description": "S_Artikel.xN_Volumen"
+          },
+          "fix_set_price": {
+            "type": "boolean",
+            "description": "S_Artikel.fixSetPreis"
+          },
+          "time_unit_lead_time": {
+            "type": "string",
+            "description": "S_Artikel.ZeiteinheitWBZ"
+          }
+        }
+      },
+      "ttSO_Description": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "unique identifier"
+          },
+          "parent_id": {
+            "type": "string",
+            "description": "parent id"
+          },
+          "description_1": {
+            "type": "string",
+            "description": "ShortDesc 1"
+          },
+          "description_2": {
+            "type": "string",
+            "description": "ShortDesc 2"
+          },
+          "description_3": {
+            "type": "string",
+            "description": "ShortDesc 3"
+          },
+          "description_4": {
+            "type": "string",
+            "description": "ShortDesc 4"
+          },
+          "language": {
+            "type": "string",
+            "description": "Sprache"
+          }
+        }
+      },
+      "dsXG_PartttSO_Description": {
+        "type": "array",
+        "items": {
+          "allOf": [
+            {
+              "$ref": "#\/components\/schemas\/ttSO_Description"
+            }
+          ]
+        }
+      },
+      "ttXG_WorkflowStatus": {
+        "type": "object",
+        "properties": {
+          "parent_id": {
+            "type": "string",
+            "description": "parent id"
+          },
+          "status_no": {
+            "type": "integer",
+            "description": "BBM_WflLockStatus_ID"
+          },
+          "remark": {
+            "type": "string",
+            "description": "Remark"
+          },
+          "limited_to": {
+            "type": "string",
+            "format": "date-time",
+            "description": "LimitedTo"
+          }
+        }
+      },
+      "dsXG_PartttXG_WorkflowStatus": {
+        "type": "array",
+        "items": {
+          "allOf": [
+            {
+              "$ref": "#\/components\/schemas\/ttXG_WorkflowStatus"
+            }
+          ]
+        }
+      },
+      "ttXG_UnitOfMeasure": {
+        "type": "object",
+        "properties": {
+          "parent_id": {
+            "type": "string",
+            "description": "parent id"
+          },
+          "main_unit_of_measure": {
+            "type": "boolean",
+            "description": "HauptVME"
+          },
+          "unit": {
+            "type": "integer",
+            "description": "Mengeneinheit"
+          }
+        }
+      },
+      "dsXG_PartttXG_UnitOfMeasure": {
+        "type": "array",
+        "items": {
+          "allOf": [
+            {
+              "$ref": "#\/components\/schemas\/ttXG_UnitOfMeasure"
+            }
+          ]
+        }
+      },
+      "ttSO_Text": {
+        "type": "object",
+        "properties": {
+          "parent_id": {
+            "type": "string",
+            "description": "parent id"
+          },
+          "text_type": {
+            "type": "string",
+            "description": "TextArt"
+          },
+          "language": {
+            "type": "string",
+            "description": "Sprache"
+          },
+          "text_content": {
+            "type": "string",
+            "description": "Text"
+          },
+          "content_type": {
+            "type": "string",
+            "description": "Plain\/RTF"
+          }
+        }
+      },
+      "dsXG_PartttSO_Text": {
+        "type": "array",
+        "items": {
+          "allOf": [
+            {
+              "$ref": "#\/components\/schemas\/ttSO_Text"
+            }
+          ]
+        }
+      },
+      "part": {
+        "type": "object",
+        "properties": {
+          "part": {
+            "type": "object",
+            "$ref": "#\/components\/schemas\/dsXG_PartttXG_Part"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "apikey": {
+        "type": "apiKey",
+        "description": "Der API Key ist base64 encoded Username und Passwort getrennt durch einen \":\" (base64(%Username%:%Password%))",
+        "name": "apikey",
+        "in": "header"
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SendTest_Sync"
+	xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	<wsdl:documentation />
+	<wsp:UsingPolicy wsdl:required="true" />
+	<wsp:Policy wsu:Id="OP_SendTest_Sync" />
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:element name="TEST" type="TEST"/>
+			<xsd:complexType name="TEST">
+				<xsd:sequence>
+					<xsd:element name="ROW" minOccurs="0" maxOccurs="unbounded">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="FIELD_1" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+								<xsd:element name="FIELD_2" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>		
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="Test">
+		<wsdl:documentation />
+		<wsdl:part name="Test" element="Test" />
+	</wsdl:message>
+	<wsdl:portType name="SendTest_Sync">
+		<wsdl:documentation />
+		<wsdl:operation name="SendTest_Sync">
+			<wsdl:documentation />
+			<wsp:Policy>
+				<wsp:PolicyReference URI="#OP_SendTest_Sync" />
+			</wsp:Policy>
+			<wsdl:input message="Test" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="SendTest_SyncBinding" type="SendTest_Sync">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+		<wsdl:operation name="SendTest_Sync">
+			<soap:operation soapAction="http://sap.com/xi/WebService/soap1.1"
+				xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+			<wsdl:input>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+			</wsdl:input>
+		</wsdl:operation>
+	</wsdl:binding>
+</wsdl:definitions>

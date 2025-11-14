@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.sap.com/eDocument/Italy/PullNotification/v1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="NotificationPullService" targetNamespace="http://www.sap.com/eDocument/Italy/PullNotification/v1.0" xmlns:xsd1="http://www.fatturapa.gov.it/sdi/ws/trasmissione/v1.0/types">
+  <wsdl:types>
+    
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.sap.com/eDocument/Italy/PullNotification/v1.0" xmlns:Q1="http://www.fatturapa.gov.it/sdi/messaggi/v1.0">
+            
+            <xsd:import schemaLocation="../xsd/TrasmissioneTypes_v1.0.xsd" namespace="http://www.fatturapa.gov.it/sdi/ws/trasmissione/v1.0/types"></xsd:import>
+            <xsd:complexType name="NotificationCollectionType">
+            	<xsd:sequence>
+            		<xsd:element name="NotificationEnvelope" type="tns:NotificationEnvelopeType" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+        
+            <xsd:complexType name="NotificationEnvelopeType">
+            	<xsd:sequence>
+            		<xsd:element name="IdentificativoSdI"
+            			type="xsd1:identificativoSdI_Type">
+            		</xsd:element>
+
+            		<xsd:element name="FileName"
+            			type="xsd1:nomeFile_Type">
+            		</xsd:element>
+            		<xsd:element name="File" type="xsd:base64Binary"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="NotificationRequestElement"
+            	type="tns:NotificationRequestType">
+            </xsd:element>
+            <xsd:element name="NotificationCollectionElement"
+            	type="tns:NotificationCollectionType">
+            </xsd:element>
+        
+        
+            <xsd:complexType name="NotificationRequestType">
+            	<xsd:sequence>
+            		<xsd:element name="NumberOfNotifications" type="tns:NumberOfNotificationsType"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+        
+            <xsd:complexType name="NumberOfNotificationsType">
+            	<xsd:sequence>
+            		<xsd:element name="NumberOfNotifications" type="xsd:int"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+  <wsdl:message name="RequestNotificationPullOperation">
+    <wsdl:part name="NumberOfNotifications"
+    	element="tns:NotificationRequestElement">
+    	<wsdl:documentation>
+    		How many notifications will be requested in the call
+    	</wsdl:documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ResponseNotificationPullOperation">
+    <wsdl:part name="NotificationCollection"
+    	element="tns:NotificationCollectionElement">
+    	<wsdl:documentation>
+    		The collection of notifications that was requested from HCI
+    	</wsdl:documentation>
+    </wsdl:part>
+  </wsdl:message>
+
+  
+  <wsdl:portType name="NotificationPullServiceSAP">
+    <wsdl:documentation></wsdl:documentation>
+    <wsdl:operation name="NotificationPullOperation">
+      <wsdl:documentation>Operation to retrieve the notifications
+</wsdl:documentation>
+      <wsdl:input message="tns:RequestNotificationPullOperation" name="RequestNotificationPullOperation"/>
+      <wsdl:output message="tns:ResponseNotificationPullOperation" name="ResponseNotificationPullOperation"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NotificationPullService" type="tns:NotificationPullServiceSAP">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="NotificationPullOperation">
+      <soap:operation soapAction="http://www.sap.com/eDocument/Italy/PullNotification/v1.0/PullOperation"/>
+      <wsdl:input name="RequestNotificationPullOperation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ResponseNotificationPullOperation">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NotificationPullService">
+    <wsdl:documentation>Service to pull notifications that have been sent to HCI by the Sistema di Interscambio (SdI) and need to be requested by the calling application to be further processed.
+Each type of notification has its own operation related to it.</wsdl:documentation>
+    <wsdl:port binding="tns:NotificationPullService" name="NotificationPullServiceSOAP">
+      <soap:address location="http://endpointaddress"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

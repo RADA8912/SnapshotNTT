@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:sap="http://sap.com/xi/APPL/Global2" xmlns:int4="http://www.int4.org/po/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="po" targetNamespace="http://www.int4.org/po/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.int4.org/po/">
+      <xsd:element name="PurchaseOrder">
+               <xsd:complexType>
+                     <xsd:sequence>
+                           <xsd:element name="Address" maxOccurs="unbounded">
+                                 <xsd:complexType>
+                                       <xsd:sequence>
+                                             <xsd:element name="Name" type="xsd:string"></xsd:element>
+                                             <xsd:element name="Street" type="xsd:string"></xsd:element>
+                                             <xsd:element name="City" type="xsd:string"></xsd:element>
+                                             <xsd:element name="State" type="xsd:string"></xsd:element>
+                                             <xsd:element name="Zip" type="xsd:int"></xsd:element>
+                                             <xsd:element name="Country" type="xsd:string"></xsd:element>
+                                       </xsd:sequence>
+                                       <xsd:attribute name="Type" type="xsd:string"></xsd:attribute>
+                                 </xsd:complexType>
+                           </xsd:element>
+                           <xsd:element name="DeliveryNotes" type="xsd:string"></xsd:element>
+                           <xsd:element name="Items">
+                                 <xsd:complexType>
+                                       <xsd:sequence>
+                                             <xsd:element name="Item" maxOccurs="unbounded">
+                                                   <xsd:complexType>
+                                                         <xsd:sequence>
+                                                               <xsd:element name="ProductName" type="xsd:string"></xsd:element>
+                                                               <xsd:element name="Quantity" type="xsd:int"></xsd:element>
+                                                               <xsd:element name="USPrice" type="xsd:double"></xsd:element>
+                                                               <xsd:element name="Comment" type="xsd:string"></xsd:element>
+                                                         </xsd:sequence>
+                                                         <xsd:attribute name="PartNumber" type="xsd:string"></xsd:attribute>
+                                                   </xsd:complexType>
+                                             </xsd:element>
+                                       </xsd:sequence>
+                                 </xsd:complexType>
+                           </xsd:element>
+                     </xsd:sequence>
+                     <xsd:attribute name="PurchaseOrderNumber" type="xsd:int"></xsd:attribute>
+                     <xsd:attribute name="OrderDate" type="xsd:date"></xsd:attribute>
+               </xsd:complexType>
+         </xsd:element>
+    </xsd:schema>
+    <xsd:schema targetNamespace="http://sap.com/xi/APPL/Global2">
+          <xsd:element name="SalesOrderERPCreateConfirmation_sync_V1">
+        <xsd:complexType>
+				<xsd:sequence>
+					<xsd:element name="MessageHeader" minOccurs="0" type="xsd:string"/>
+					<xsd:element name="SalesOrder" minOccurs="0">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="ID" type="xsd:string"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="Log" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+      </xsd:element>
+      </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="NewOperationRequest">
+    <wsdl:part element="int4:PurchaseOrder" name="PurchaseOrder" />
+  </wsdl:message>
+  <wsdl:message name="SalesOrderERPCreateConfirmation_sync_V1">
+    <wsdl:part element="sap:SalesOrderERPCreateConfirmation_sync_V1" name="SalesOrderERPCreateConfirmation_sync_V1"/>
+  </wsdl:message>
+  <wsdl:portType name="po">
+    <wsdl:operation name="NewOperation">
+      <wsdl:input message="int4:NewOperationRequest"/>
+      <wsdl:output message="int4:SalesOrderERPCreateConfirmation_sync_V1"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="poSOAP" type="int4:po">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="NewOperation">
+      <soap:operation soapAction="http://www.int4.org/po/NewOperation"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="po">
+    <wsdl:port binding="int4:poSOAP" name="poSOAP">
+      <soap:address location="https://p700034-iflmap.hcisbp.eu2.hana.ondemand.com/cxf/SalesOrderCreateSync"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

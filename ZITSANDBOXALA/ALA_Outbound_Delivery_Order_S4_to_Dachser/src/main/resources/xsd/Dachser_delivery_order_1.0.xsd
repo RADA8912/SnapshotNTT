@@ -1,0 +1,1566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2016 rel. 2 sp1 (http://www.altova.com) von Christian Renkel (DACHSER Group SE & Co. KG) bearbeitet -->
+<!-- edited with XMLSpy v2017 rel. 3 (http://www.altova.com) by Lydia Burger (DACHSER SE) -->
+<!-- Filename : Dachser Delivery Order XML 1.0 -->
+<!-- This file is the property of Dachser GmbH & Co. KG -->
+<!-- Copyright : Dachser GmbH & Co.KG -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- ***** SCHEMA DESCRIPTION *****-->
+	<xs:element name="DeliveryOrder">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Delivery order EDI message</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DocumentHeader"/>
+				<xs:element ref="DeliveryOrderHeader" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- ***** DOCUMENT HEADER ***** -->
+	<xs:element name="DocumentHeader">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Header of the document</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="EDISender"/>
+				<xs:element ref="EDIReceiver"/>
+				<xs:element ref="DocumentID"/>
+				<xs:element ref="DocumentDate"/>
+				<xs:element ref="TestFlag" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- ***** DELIVERY ORDER HEADER *****-->
+	<xs:element name="DeliveryOrderHeader">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Header of the delivery order</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DeliveryOrderHeaderContent"/>
+				<xs:element ref="DeliveryOrderPosition" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- ***** DELIVERY ORDER HEADER CONTENT ***** -->
+	<xs:element name="DeliveryOrderHeaderContent">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Content of the delivery order header</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DeliveryOrderNumber"/>
+				<xs:element ref="Warehouse"/>
+				<xs:element ref="Principal"/>
+				<xs:element ref="GoodsReceiver"/>
+				<xs:element ref="OrderDate" minOccurs="0"/>
+				<xs:element ref="DeliveryDate"/>
+				<xs:element ref="PreparationDate" minOccurs="0"/>
+				<xs:element ref="VoucherType"/>
+				<xs:element ref="ShippingRoute"/>
+				<xs:element ref="ShippingRouteCode" minOccurs="0"/>
+				<xs:element ref="ShippingRouteGroup" minOccurs="0"/>
+				<xs:element ref="DeliveryTerms"/>
+				<xs:element ref="Division" minOccurs="0"/>
+				<xs:element ref="Dispatch" minOccurs="0"/>
+				<xs:element ref="LabelCode" minOccurs="0"/>
+				<xs:element ref="TailLift" minOccurs="0"/>
+				<xs:element ref="SelfCollector" minOccurs="0"/>
+				<xs:element ref="LanguageKey" minOccurs="0"/>
+				<xs:element ref="SummarizeOrder" minOccurs="0"/>
+				<xs:element ref="CashOnDelivery" minOccurs="0"/>
+				<xs:element ref="GoodsValue" minOccurs="0"/>
+				<xs:element ref="DispatchRelation" minOccurs="0"/>
+				<xs:element ref="SubRelation" minOccurs="0"/>
+				<xs:element ref="DispatchRoute" minOccurs="0"/>
+				<xs:element ref="OrderLock" minOccurs="0"/>
+				<xs:element ref="AdditionalReference" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="HeaderText" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="DisposalAddress" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="SpecialFlag" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- ***** DELIVERY ORDER POSITION ***** -->
+	<xs:element name="DeliveryOrderPosition">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Position information of the delivery order</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PosNo"/>
+				<xs:element ref="Article"/>
+				<xs:element ref="Quantity"/>
+				<xs:element ref="QuantityUnit" minOccurs="0"/>
+				<xs:element ref="ProductVariant" minOccurs="0"/>
+				<xs:element ref="GTIN13" minOccurs="0"/>
+				<xs:element ref="GTIN14" minOccurs="0"/>
+				<xs:element ref="ArticleDescription" minOccurs="0"/>
+				<xs:element ref="ArticleExternalID" minOccurs="0"/>
+				<xs:element ref="OrderNumber" minOccurs="0"/>
+				<xs:element ref="OrderPosition" minOccurs="0"/>
+				<xs:element ref="Batch" minOccurs="0"/>
+				<xs:element ref="BestBeforeDate" minOccurs="0"/>
+				<xs:element ref="VariableClassification" minOccurs="0"/>
+				<xs:element ref="SSCC" minOccurs="0"/>
+				<xs:element ref="ExternalPackageID" minOccurs="0"/>
+				<xs:element ref="SerialNo" minOccurs="0"/>
+				<xs:element ref="PalletHeight" minOccurs="0"/>
+				<xs:element ref="Weight" minOccurs="0"/>
+				<xs:element ref="StorageBin" minOccurs="0"/>
+				<xs:element ref="ArticleSinglePrice" minOccurs="0"/>
+				<xs:element ref="CashOnDelivery" minOccurs="0"/>
+				<xs:element ref="GoodsOwner" minOccurs="0"/>
+				<xs:element ref="POSSpecialFlag" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="PositionText" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="BOMPosition" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- ***** DELIVERY ORDER BOM POSITION ***** -->
+	<xs:element name="BOMPosition">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Position information of the bill of materials position</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="BOMPosNo"/>
+				<xs:element ref="BOMArticle"/>
+				<xs:element ref="BOMQuantity"/>
+				<xs:element ref="BOMProductVariant" minOccurs="0"/>
+				<xs:element ref="BOMVariableClassification" minOccurs="0"/>
+				<xs:element ref="BOMGoodsOwner" minOccurs="0"/>
+				<xs:element ref="BOMPrintOnDelNote" minOccurs="0"/>
+				<xs:element ref="BOMConfirmPosition" minOccurs="0"/>
+				<xs:element ref="BOMHelpArticle" minOccurs="0"/>
+				<xs:element ref="BOMSpecialFlag" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="BOMPositionText" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- ***** FIELDS DESCRIPTION *****-->
+	<xs:element name="AdditionalReference">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Reference information</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ReferenceNo"/>
+				<xs:element ref="ReferenceDate" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="Code" use="required">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="EN">Reference Type CR2=Customer Reference 2, CR3=Customer Reference 3, ON=Order Number</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="CR2">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">Customer Reference 2</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CR3">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">Customer Reference 3</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="ON">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">Order Number of consignee</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="EKR">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">EKAER reference for Hungary delivery</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AddressInformation">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Address information</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Street"/>
+				<xs:element ref="City"/>
+				<xs:element ref="PostalCode" minOccurs="0"/>
+				<xs:element ref="CountryCode"/>
+				<xs:element ref="Province" minOccurs="0"/>
+				<xs:element ref="SupplementInformation" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Amount" type="xs:float">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Amount</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="AmountDetails">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Details to amount</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Amount"/>
+				<xs:element ref="Currency"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Article">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Article number customer</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="18"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ArticleDescription">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Article description customer</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ArticleExternalID">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">External ID of the article</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ArticleSinglePrice">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Article price of 1 piece</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="AmountDetails"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Batch">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Batch / Lot number</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="20"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="BestBeforeDate">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Best before date (MHD)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Date"/>
+			</xs:sequence>
+			<xs:attribute name="min_max" use="required">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="EN">FIX=this specific bbd, MIN=the named bbd or newer, MAX=the named bbd or older</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="3"/>
+						<xs:enumeration value="FIX">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">this specific bbd</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MIN">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">the named bbd or newer</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MAX">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">the named bbd or older</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BOMArticle">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Bill of materials article number</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="18"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="BOMConfirmPosition">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Definition, if this bill of materials article l should be confirmed within the delivery order confirmation</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:length value="1"/>
+				<xs:enumeration value="Y">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">Yes</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="N">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">No</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="BOMGoodsOwner">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Owner of the bill of material goods</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PartnerInformation">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">Partner information</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BOMHelpArticle">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Definition, if this bill of materials article is an aid/help article or a consumable article</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:length value="1"/>
+				<xs:enumeration value="Y">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">Yes</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="N">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">No</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="BOMPositionText">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Free text</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Text"/>
+				<xs:element ref="TextLanguage" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">Language of the text</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="TextType" use="required">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="EN">Text Type</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BOMPosNo">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Bill of materials position number</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:totalDigits value="7"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="BOMPrintOnDelNote">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Definition, if this bill of materials article should be printed on the delivery note</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:length value="1"/>
+				<xs:enumeration value="Y">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">Yes</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="N">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">No</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="BOMProductVariant">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Additional information to BOM article number, for articles that must be separated but do not have an own article number</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="BOMQuantity" type="xs:float">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Bill of materials quantity within display in IMU</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="BOMSpecialFlag">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Flag to identify a specific information</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="Qualifier" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="20"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BOMVariableClassification">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Variable classification of bill of materials for stock separation</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CashOnDelivery">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">COD value</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="AmountDetails"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="City">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">City name</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ContactEmail">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Email of the contact person</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="50"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ContactFaxNumber">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Fax number of the contact person</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ContactFirstName">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">First name of the contact person</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ContactInformation">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Contact information</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ContactName" minOccurs="0"/>
+				<xs:element ref="ContactPhoneNumber" minOccurs="0"/>
+				<xs:element ref="ContactEmail" minOccurs="0"/>
+				<xs:element ref="ContactFirstName" minOccurs="0"/>
+				<xs:element ref="ContactMobilePhone" minOccurs="0"/>
+				<xs:element ref="ContactFaxNumber" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ContactMobilePhone">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Mobile phone number of the contact person</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ContactName">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Name of the contact person</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ContactPhoneNumber">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Phone number of the contact person</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CountryCode">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">ISO country code</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="3"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Currency">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Currency</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="3"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Date" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Date - Format YYYY-MM-DDThh:mm:ss</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DeliveryDate">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Date, when goods should be delivered</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Date"/>
+			</xs:sequence>
+			<xs:attribute name="DeliveryDateType">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="EN">Type of delivery date (FIX=fixed delivery date, FROM=delivery date earliest, TO=delivery date latest)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="4"/>
+						<xs:enumeration value="FIX">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">fixed delivery date</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="FROM">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">delivery date earliest</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="TO">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">delivery date latest</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DeliveryOrderNumber">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Delivery order number</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="DeliveryTerms">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Terms of delivery</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="3"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Dispatch">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Dispatch (
+if division F= Food logistic: E=vengospeed / S=vengospeed 11 / N=vengoflex(basic product for valid Europe countries) / K=vengoflex(valid for remaining European countries / Q=vengofix / X=vengospeed plus / I=weekend service / L=weekend service 11,
+
+if division T=European Logistics: N=classicline / S=targospeed 10 / E=targospeed 12 / R=targofix 10 / W=targofix 12 / X=targospeed plus / Z=targospeed / V=targofix / Y=targoflex / A=targo on-site / B=targo on-site plus / H=targo on-site premium )
+
+If a parcel service provider is used, the product character must be bilaterally agreed with the branch </xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+				<xs:pattern value="[A-Z0-9]"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="DispatchRelation">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Relation of disptach for transport purpose</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="4"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="DispatchRoute">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Dispatch route relevant as special handling information for obligation carriers</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="DisposalAddress">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Additional address information relevant for the transport and/or warehouse handling</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PartnerInformation">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">Partner information</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="AddressType" use="required">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="EN">Disposal Address Type</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="AE">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">Consignee export certification - Please check with your branch</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CN">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">Consignee - Please check with your branch</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="DA">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">Consignor cover address - Please check with your branch</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="DC">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">Freight carrier at city of destination - Please check with your branch</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="DP">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">Delivery address - Please check with your branch</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="FP">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">Freight payer - Please check with your branch</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="IM">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">Importer - Please check with your branch</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="OB">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">Orderer - Please check with your branch</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="OY">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">Principal - Please check with your branch</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="RA">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">Deviating freight payer - Please check with your branch</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="RE">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">Invoice recipient - Please check with your branch</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="UC">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">Final consignee - Please check with your branch</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="UP">
+							<xs:annotation>
+								<xs:documentation source="Desc" xml:lang="EN">Unloading point - Please check with your branch</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Division">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Division (F= Food logistic, T=European Logistics)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+				<xs:enumeration value="F">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">Food logistic</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="T">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">European Logistics</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="DocumentDate">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Creation date of the document</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Date"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DocumentID">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Unique document ID</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="20"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="EDIReceiver">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Receiver (technical) of the EDI data</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PartnerInformation"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EDISender">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Sender (technical) of the EDI data</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PartnerInformation"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ExternalPackageID">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">External package ID, that must be picked</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="GoodsOwner">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Owner of the goods</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PartnerInformation">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">Partner information</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GoodsReceiver">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Receiver of the goods</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PartnerInformation">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">Partner information</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GoodsValue">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Worth of the goods</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="AmountDetails"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GTIN13">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">GTIN of the article 13 digits</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:totalDigits value="13"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="GTIN14">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">GTIN of the article 14 digits</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:totalDigits value="14"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="HeaderText">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Free text</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Text"/>
+				<xs:element ref="TextLanguage" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">Language of the text</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="TextType" use="required">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="EN">Text Type</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LabelCode">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Code, that controls, if special labels must be printed</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="LanguageKey">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Key for language relevant for print of delivery note and labels</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="3"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Measurement">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Measurement</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Value" type="xs:float">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">Measurement value</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Unit">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">Measurement unit</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="3"/>
+							<xs:enumeration value="GRM"/>
+							<xs:enumeration value="KGM"/>
+							<xs:enumeration value="MMT"/>
+							<xs:enumeration value="CMT"/>
+							<xs:enumeration value="DMT"/>
+							<xs:enumeration value="MTR"/>
+							<xs:enumeration value="DMQ"/>
+							<xs:enumeration value="CMQ"/>
+							<xs:enumeration value="MTQ"/>
+							<xs:enumeration value="HLT"/>
+							<xs:enumeration value="LTR"/>
+							<xs:enumeration value="CLT"/>
+							<xs:enumeration value="MLT"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OrderDate">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Date of the delivery order</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Date"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OrderLock">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Restriction, that shows if manual action is necessary</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="3"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="OrderNumber">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Order number of the goods receiver</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="OrderPosition">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Position number within the order of the goods receiver</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:totalDigits value="7"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="PalletHeight">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Maximum pallet height, that can be sent to the goods receiver</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Measurement"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PartnerGLN">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">GLN of partner</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:totalDigits value="13"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="PartnerID">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">ID of partner in customer or Dachser system</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="17"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="PartnerInformation">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Partner information</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PartnerID" minOccurs="0"/>
+				<xs:element ref="PartnerGLN" minOccurs="0"/>
+				<xs:element ref="PartnerName" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="AddressInformation" minOccurs="0"/>
+				<xs:element ref="ContactInformation" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PartnerName">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Name(s) of partner</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="PositionText">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Free text</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Text"/>
+				<xs:element ref="TextLanguage" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">Language of the text</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="TextType" use="required">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="EN">Text Type</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PosNo">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Position number customer or sequential number</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:totalDigits value="7"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="POSSpecialFlag">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Flag to identify a specific Information</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="Qualifier" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="20"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PostalCode">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Postal code</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="9"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Principal">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Customer, that has autorized the delivery</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PartnerInformation"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PreparationDate">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Date, when goods should be ready for pick up in warehouse</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Date"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProductVariant">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Additional information to article number, for articles that must be separated but do not have an own article number</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Quantity" type="xs:float">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Quantity, that should be delivered</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="QuantityUnit">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Quantity unit</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="5"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ReferenceDate">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Date of the reference information</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Date"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ReferenceNo">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Reference number</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="SelfCollector">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Indicator, if goods are collected at the warehouse</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+				<xs:enumeration value="Y">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">Yes</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="N">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">No</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="SerialNo">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Serial number, that must be picked</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="35"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ShippingRoute">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Route, that defines who is responsible for the transport</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ShippingRouteCode">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Shipping route specified (Y/N/E)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+				<xs:enumeration value="Y">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">Don't determine</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="N">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">Determine</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="E">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">Determine except if determined SHR = Default </xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="A">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">Determine by means of goods recipient master-file </xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="K">
+					<xs:annotation>
+						<xs:documentation source="Desc" xml:lang="EN">Determine by means of principal master file </xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ShippingRouteGroup">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Shipping route group number for route determination</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:totalDigits value="3"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="SpecialFlag">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Flag to identify a specific Information</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="Qualifier" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="20"/>
+								<xs:enumeration value="DVSON">
+									<xs:annotation>
+										<xs:documentation source="Example" xml:lang="EN">Special Indicator</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="ASN">
+									<xs:annotation>
+										<xs:documentation source="Example" xml:lang="EN">Advice for consignee Indicator Y/N</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="STATE">
+									<xs:annotation>
+										<xs:documentation source="Example" xml:lang="EN">State ( Necessary for FedEx)</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="SATDEL">
+									<xs:annotation>
+										<xs:documentation source="Example" xml:lang="EN">Delivery on Saturday Requested (Please confirm with your branch) Y/N</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="IDTCHK">
+									<xs:annotation>
+										<xs:documentation source="Example" xml:lang="EN">Check of receivers identity requested Y/N </xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="GOGREEN">
+									<xs:annotation>
+										<xs:documentation source="Example" xml:lang="EN">GoGreen requested Y/N</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="DELPOD">
+									<xs:annotation>
+										<xs:documentation source="Example" xml:lang="EN">Proof of delivery requested Y/N</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="DELNOTICE">
+									<xs:annotation>
+										<xs:documentation source="Example" xml:lang="EN">Delivery notification requested (AS)</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="DELAGREE">
+									<xs:annotation>
+										<xs:documentation source="Example" xml:lang="EN">Delivery agreement requested (AP)</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="BULK">
+									<xs:annotation>
+										<xs:documentation source="Example" xml:lang="EN">Bulk Goods Indicator Y/N </xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="AGECHK">
+									<xs:annotation>
+										<xs:documentation source="Example" xml:lang="EN">Check of receivers age requested Y/N</xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="ULD">
+									<xs:annotation>
+										<xs:documentation source="Example" xml:lang="EN">Country of Origin in ISO </xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+								<xs:enumeration value="DIRECTDEL">
+									<xs:annotation>
+										<xs:documentation source="Example" xml:lang="EN">Direct delivery to consignee Y/N </xs:documentation>
+									</xs:annotation>
+								</xs:enumeration>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SSCC">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">SSCC, that must be picked</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="20"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="StorageBin">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Storage bin, from where goods must be picked</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="3"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Street">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Street name including number</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Province">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Province/State</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="60"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="SubRelation">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Additional relation for transport purpose</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:totalDigits value="3"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="SummarizeOrder">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Indicator, if summeration is requested</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+				<xs:enumeration value="Y">
+					<xs:annotation>
+						<xs:documentation source="Example" xml:lang="EN">Yes</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="N">
+					<xs:annotation>
+						<xs:documentation source="Example" xml:lang="EN">No</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="SupplementInformation">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Supplement information for address</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="30"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="TailLift">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Indicator, if tail lift is required for delivery</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+				<xs:enumeration value="Y">
+					<xs:annotation>
+						<xs:documentation source="Example" xml:lang="EN">Yes</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="N">
+					<xs:annotation>
+						<xs:documentation source="Example" xml:lang="EN">No</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="TestFlag">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Flag to identify test files (1=test file, 0=production file)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="1"/>
+				<xs:enumeration value="0">
+					<xs:annotation>
+						<xs:documentation source="Example" xml:lang="EN">production file</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="1">
+					<xs:annotation>
+						<xs:documentation source="Example" xml:lang="EN">Test file</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Text">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Free Text</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="132"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="TextLanguage">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Language key of the text</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="3"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="VariableClassification">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Variable classification for stock separation</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="VoucherType">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Code used to handle different process types (e. g. customer delivery, salvage orders)</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="10"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Warehouse">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Location / Branch, where the goods are stored</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PartnerInformation"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Weight">
+		<xs:annotation>
+			<xs:documentation source="Desc" xml:lang="EN">Weight</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Measurement"/>
+			</xs:sequence>
+			<xs:attribute name="Code">
+				<xs:annotation>
+					<xs:documentation source="Desc" xml:lang="EN">NET=net weight, GRO=gross weight, CHA=chargable weight</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="3"/>
+						<xs:enumeration value="NET">
+							<xs:annotation>
+								<xs:documentation source="Example" xml:lang="EN">Net weight</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="GRO">
+							<xs:annotation>
+								<xs:documentation source="Example" xml:lang="EN">Gross weight</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CHA">
+							<xs:annotation>
+								<xs:documentation source="Example" xml:lang="EN">Chargable weight</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

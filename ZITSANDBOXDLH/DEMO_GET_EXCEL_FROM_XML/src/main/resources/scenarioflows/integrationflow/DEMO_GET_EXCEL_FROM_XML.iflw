@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="UTF-8"?><bpmn2:definitions xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:ifl="http:///com.sap.ifl.model/Ifl.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1">
+    <bpmn2:collaboration id="Collaboration_1" name="Default Collaboration">
+        <bpmn2:extensionElements>
+            <ifl:property>
+                <key>namespaceMapping</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>httpSessionHandling</key>
+                <value>None</value>
+            </ifl:property>
+            <ifl:property>
+                <key>accessControlMaxAge</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>returnExceptionToSender</key>
+                <value>false</value>
+            </ifl:property>
+            <ifl:property>
+                <key>log</key>
+                <value>All events</value>
+            </ifl:property>
+            <ifl:property>
+                <key>corsEnabled</key>
+                <value>false</value>
+            </ifl:property>
+            <ifl:property>
+                <key>exposedHeaders</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>componentVersion</key>
+                <value>1.2</value>
+            </ifl:property>
+            <ifl:property>
+                <key>allowedHeaderList</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>ServerTrace</key>
+                <value>false</value>
+            </ifl:property>
+            <ifl:property>
+                <key>allowedOrigins</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>accessControlAllowCredentials</key>
+                <value>false</value>
+            </ifl:property>
+            <ifl:property>
+                <key>allowedHeaders</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>allowedMethods</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>cmdVariantUri</key>
+                <value>ctype::IFlowVariant/cname::IFlowConfiguration/version::1.2.4</value>
+            </ifl:property>
+        </bpmn2:extensionElements>
+        <bpmn2:participant id="Participant_Process_1" ifl:type="IntegrationProcess" name="Integration Process" processRef="Process_1">
+            <bpmn2:extensionElements/>
+        </bpmn2:participant>
+    </bpmn2:collaboration>
+    <bpmn2:process id="Process_1" name="Integration Process">
+        <bpmn2:extensionElements>
+            <ifl:property>
+                <key>transactionTimeout</key>
+                <value>30</value>
+            </ifl:property>
+            <ifl:property>
+                <key>componentVersion</key>
+                <value>1.2</value>
+            </ifl:property>
+            <ifl:property>
+                <key>cmdVariantUri</key>
+                <value>ctype::FlowElementVariant/cname::IntegrationProcess/version::1.2.1</value>
+            </ifl:property>
+            <ifl:property>
+                <key>transactionalHandling</key>
+                <value>Not Required</value>
+            </ifl:property>
+        </bpmn2:extensionElements>
+        <bpmn2:callActivity id="CallActivity_7" name="Groovy Script 1">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>scriptFunction</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>scriptBundleId</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.1</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>activityType</key>
+                    <value>Script</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::GroovyScript/version::1.1.2</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>subActivityType</key>
+                    <value>GroovyScript</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>script</key>
+                    <value>GetExcelMappingStructureFromXML_1.0.0 (1).gsh</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_8</bpmn2:incoming>
+            <bpmn2:outgoing>SequenceFlow_10</bpmn2:outgoing>
+        </bpmn2:callActivity>
+        <bpmn2:endEvent id="EndEvent_2" name="End">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.1</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::MessageEndEvent/version::1.1.0</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_11</bpmn2:incoming>
+            <bpmn2:messageEventDefinition/>
+        </bpmn2:endEvent>
+        <bpmn2:callActivity id="CallActivity_5" name="Content Modifier 1">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>bodyType</key>
+                    <value>constant</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>propertyTable</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>headerTable</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>wrapContent</key>
+                    <value>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;M_INVOIC&gt;
+    &lt;S_UNH&gt;
+        &lt;D_0062&gt;1&lt;/D_0062&gt;
+        &lt;C_S009&gt;
+            &lt;D_0065&gt;INVOIC&lt;/D_0065&gt;
+            &lt;D_0052&gt;D&lt;/D_0052&gt;
+            &lt;D_0054&gt;96A&lt;/D_0054&gt;
+            &lt;D_0051&gt;UN&lt;/D_0051&gt;
+            &lt;D_0057&gt;EAN008&lt;/D_0057&gt;
+        &lt;/C_S009&gt;
+    &lt;/S_UNH&gt;
+    &lt;S_BGM&gt;
+        &lt;C_C002&gt;
+            &lt;D_1001&gt;380&lt;/D_1001&gt;
+        &lt;/C_C002&gt;
+        &lt;D_1004&gt;92145827&lt;/D_1004&gt;
+        &lt;D_1225&gt;9&lt;/D_1225&gt;
+    &lt;/S_BGM&gt;
+    &lt;S_DTM&gt;
+        &lt;C_C507&gt;
+            &lt;D_2005&gt;137&lt;/D_2005&gt;
+            &lt;D_2380&gt;20250909&lt;/D_2380&gt;
+            &lt;D_2379&gt;102&lt;/D_2379&gt;
+        &lt;/C_C507&gt;
+    &lt;/S_DTM&gt;
+    &lt;S_DTM&gt;
+        &lt;C_C507&gt;
+            &lt;D_2005&gt;35&lt;/D_2005&gt;
+            &lt;D_2380&gt;20250909&lt;/D_2380&gt;
+            &lt;D_2379&gt;102&lt;/D_2379&gt;
+        &lt;/C_C507&gt;
+    &lt;/S_DTM&gt;
+    &lt;G_SG1&gt;
+        &lt;S_RFF&gt;
+            &lt;C_C506&gt;
+                &lt;D_1153&gt;ON&lt;/D_1153&gt;
+                &lt;D_1154&gt;7101620&lt;/D_1154&gt;
+            &lt;/C_C506&gt;
+        &lt;/S_RFF&gt;
+    &lt;/G_SG1&gt;
+    &lt;G_SG1&gt;
+        &lt;S_RFF&gt;
+            &lt;C_C506&gt;
+                &lt;D_1153&gt;VN&lt;/D_1153&gt;
+                &lt;D_1154&gt;0001755050&lt;/D_1154&gt;
+            &lt;/C_C506&gt;
+        &lt;/S_RFF&gt;
+    &lt;/G_SG1&gt;
+    &lt;G_SG2&gt;
+        &lt;S_NAD&gt;
+            &lt;D_3035&gt;SU&lt;/D_3035&gt;
+            &lt;C_C082&gt;
+                &lt;D_3039&gt;4026092000007&lt;/D_3039&gt;
+                &lt;D_3055&gt;9&lt;/D_3055&gt;
+            &lt;/C_C082&gt;
+            &lt;C_C080&gt;
+                &lt;D_3036&gt;KESSEL SE + Co. KG&lt;/D_3036&gt;
+                &lt;D_3036_2&gt;Vertrieb Entwaesserungstechnik&lt;/D_3036_2&gt;
+            &lt;/C_C080&gt;
+            &lt;C_C059&gt;
+                &lt;D_3042&gt;Bahnhofsstr. 31&lt;/D_3042&gt;
+            &lt;/C_C059&gt;
+            &lt;D_3164&gt;Lenting&lt;/D_3164&gt;
+            &lt;D_3251&gt;85101&lt;/D_3251&gt;
+            &lt;D_3207&gt;DE&lt;/D_3207&gt;
+        &lt;/S_NAD&gt;
+        &lt;G_SG3&gt;
+            &lt;S_RFF&gt;
+                &lt;C_C506&gt;
+                    &lt;D_1153&gt;VA&lt;/D_1153&gt;
+                    &lt;D_1154&gt;DE267242271&lt;/D_1154&gt;
+                &lt;/C_C506&gt;
+            &lt;/S_RFF&gt;
+        &lt;/G_SG3&gt;
+        &lt;G_SG3&gt;
+            &lt;S_RFF&gt;
+                &lt;C_C506&gt;
+                    &lt;D_1153&gt;FC&lt;/D_1153&gt;
+                    &lt;D_1154&gt;171/165/02003&lt;/D_1154&gt;
+                &lt;/C_C506&gt;
+            &lt;/S_RFF&gt;
+        &lt;/G_SG3&gt;
+        &lt;G_SG5&gt;
+            &lt;S_CTA&gt;
+                &lt;D_3139&gt;DL&lt;/D_3139&gt;
+                &lt;C_C056&gt;
+                    &lt;D_3412&gt;Frey&lt;/D_3412&gt;
+                &lt;/C_C056&gt;
+            &lt;/S_CTA&gt;
+            &lt;S_COM&gt;
+                &lt;C_C076&gt;
+                    &lt;D_3148&gt;08456/27&lt;/D_3148&gt;
+                    &lt;D_3155&gt;TE&lt;/D_3155&gt;
+                &lt;/C_C076&gt;
+            &lt;/S_COM&gt;
+            &lt;S_COM&gt;
+                &lt;C_C076&gt;
+                    &lt;D_3148&gt;08456/27&lt;/D_3148&gt;
+                    &lt;D_3155&gt;FX&lt;/D_3155&gt;
+                &lt;/C_C076&gt;
+            &lt;/S_COM&gt;
+        &lt;/G_SG5&gt;
+    &lt;/G_SG2&gt;
+    &lt;G_SG2&gt;
+        &lt;S_NAD&gt;
+            &lt;D_3035&gt;BY&lt;/D_3035&gt;
+            &lt;C_C082&gt;
+                &lt;D_3039&gt;4399902184991&lt;/D_3039&gt;
+                &lt;D_3055&gt;9&lt;/D_3055&gt;
+            &lt;/C_C082&gt;
+            &lt;C_C080&gt;
+                &lt;D_3036&gt;Hardt-Allbrand Heizungsbedarf-&lt;/D_3036&gt;
+                &lt;D_3036_2&gt;Grosshandels-GmbH &amp;amp; Co. KG&lt;/D_3036_2&gt;
+                &lt;D_3036_3&gt;E/D/E Mitgl.-Nr. 531337&lt;/D_3036_3&gt;
+            &lt;/C_C080&gt;
+            &lt;C_C059&gt;
+                &lt;D_3042&gt;Helene-Wessel-Bogen 10&lt;/D_3042&gt;
+            &lt;/C_C059&gt;
+            &lt;D_3164&gt;Muenchen&lt;/D_3164&gt;
+            &lt;D_3251&gt;80939&lt;/D_3251&gt;
+            &lt;D_3207&gt;DE&lt;/D_3207&gt;
+        &lt;/S_NAD&gt;
+        &lt;G_SG3&gt;
+            &lt;S_RFF&gt;
+                &lt;C_C506&gt;
+                    &lt;D_1153&gt;API&lt;/D_1153&gt;
+                    &lt;D_1154&gt;1162770&lt;/D_1154&gt;
+                &lt;/C_C506&gt;
+            &lt;/S_RFF&gt;
+        &lt;/G_SG3&gt;
+    &lt;/G_SG2&gt;
+    &lt;G_SG2&gt;
+        &lt;S_NAD&gt;
+            &lt;D_3035&gt;IV&lt;/D_3035&gt;
+            &lt;C_C082&gt;
+                &lt;D_3039&gt;4399902184991&lt;/D_3039&gt;
+                &lt;D_3055&gt;9&lt;/D_3055&gt;
+            &lt;/C_C082&gt;
+            &lt;C_C080&gt;
+                &lt;D_3036&gt;Hardt-Allbrand Heizungsbedarf-&lt;/D_3036&gt;
+                &lt;D_3036_2&gt;Grosshandels-GmbH &amp;amp; Co. KG&lt;/D_3036_2&gt;
+                &lt;D_3036_3&gt;E/D/E Mitgl.-Nr. 531337&lt;/D_3036_3&gt;
+            &lt;/C_C080&gt;
+            &lt;C_C059&gt;
+                &lt;D_3042&gt;Helene-Wessel-Bogen 10&lt;/D_3042&gt;
+            &lt;/C_C059&gt;
+            &lt;D_3164&gt;Muenchen&lt;/D_3164&gt;
+            &lt;D_3251&gt;80939&lt;/D_3251&gt;
+            &lt;D_3207&gt;DE&lt;/D_3207&gt;
+        &lt;/S_NAD&gt;
+        &lt;G_SG3&gt;
+            &lt;S_RFF&gt;
+                &lt;C_C506&gt;
+                    &lt;D_1153&gt;VA&lt;/D_1153&gt;
+                    &lt;D_1154&gt;DE129272852&lt;/D_1154&gt;
+                &lt;/C_C506&gt;
+            &lt;/S_RFF&gt;
+        &lt;/G_SG3&gt;
+    &lt;/G_SG2&gt;
+    &lt;G_SG2&gt;
+        &lt;S_NAD&gt;
+            &lt;D_3035&gt;DP&lt;/D_3035&gt;
+            &lt;C_C082&gt;
+                &lt;D_3039&gt;4399902184991&lt;/D_3039&gt;
+                &lt;D_3055&gt;9&lt;/D_3055&gt;
+            &lt;/C_C082&gt;
+            &lt;C_C080&gt;
+                &lt;D_3036&gt;Hardt-Allbrand Heizungsbedarf-&lt;/D_3036&gt;
+                &lt;D_3036_2&gt;Grosshandels-GmbH &amp;amp; Co. KG&lt;/D_3036_2&gt;
+                &lt;D_3036_3&gt;E/D/E Mitgl.-Nr. 531337&lt;/D_3036_3&gt;
+            &lt;/C_C080&gt;
+            &lt;C_C059&gt;
+                &lt;D_3042&gt;Helene-Wessel-Bogen 10&lt;/D_3042&gt;
+            &lt;/C_C059&gt;
+            &lt;D_3164&gt;Muenchen&lt;/D_3164&gt;
+            &lt;D_3251&gt;80939&lt;/D_3251&gt;
+            &lt;D_3207&gt;DE&lt;/D_3207&gt;
+        &lt;/S_NAD&gt;
+    &lt;/G_SG2&gt;
+    &lt;G_SG2&gt;
+        &lt;S_NAD&gt;
+            &lt;D_3035&gt;PR&lt;/D_3035&gt;
+            &lt;C_C082&gt;
+                &lt;D_3039&gt;4317784000000&lt;/D_3039&gt;
+                &lt;D_3055&gt;9&lt;/D_3055&gt;
+            &lt;/C_C082&gt;
+        &lt;/S_NAD&gt;
+    &lt;/G_SG2&gt;
+    &lt;G_SG7&gt;
+        &lt;S_CUX&gt;
+            &lt;C_C504&gt;
+                &lt;D_6347&gt;2&lt;/D_6347&gt;
+                &lt;D_6345&gt;EUR&lt;/D_6345&gt;
+                &lt;D_6343&gt;4&lt;/D_6343&gt;
+            &lt;/C_C504&gt;
+        &lt;/S_CUX&gt;
+    &lt;/G_SG7&gt;
+    &lt;G_SG15&gt;
+        &lt;S_ALC&gt;
+            &lt;D_5463&gt;C&lt;/D_5463&gt;
+            &lt;D_1227&gt;1&lt;/D_1227&gt;
+            &lt;C_C214&gt;
+                &lt;D_7161&gt;MAC&lt;/D_7161&gt;
+                &lt;D_7160&gt;Mindermengenzuschlag&lt;/D_7160&gt;
+            &lt;/C_C214&gt;
+        &lt;/S_ALC&gt;
+        &lt;G_SG19&gt;
+            &lt;S_MOA&gt;
+                &lt;C_C516&gt;
+                    &lt;D_5025&gt;8&lt;/D_5025&gt;
+                    &lt;D_5004&gt;10.00&lt;/D_5004&gt;
+                &lt;/C_C516&gt;
+            &lt;/S_MOA&gt;
+        &lt;/G_SG19&gt;
+    &lt;/G_SG15&gt;
+    &lt;G_SG15&gt;
+        &lt;S_ALC&gt;
+            &lt;D_5463&gt;C&lt;/D_5463&gt;
+            &lt;D_1227&gt;1&lt;/D_1227&gt;
+            &lt;C_C214&gt;
+                &lt;D_7161&gt;FC&lt;/D_7161&gt;
+                &lt;D_7160&gt;Fracht&lt;/D_7160&gt;
+            &lt;/C_C214&gt;
+        &lt;/S_ALC&gt;
+        &lt;G_SG19&gt;
+            &lt;S_MOA&gt;
+                &lt;C_C516&gt;
+                    &lt;D_5025&gt;8&lt;/D_5025&gt;
+                    &lt;D_5004&gt;9.50&lt;/D_5004&gt;
+                &lt;/C_C516&gt;
+            &lt;/S_MOA&gt;
+        &lt;/G_SG19&gt;
+    &lt;/G_SG15&gt;
+    &lt;G_SG25&gt;
+        &lt;S_LIN&gt;
+            &lt;D_1082&gt;10&lt;/D_1082&gt;
+            &lt;C_C212&gt;
+                &lt;D_7140&gt;4026092032374&lt;/D_7140&gt;
+                &lt;D_7143&gt;EN&lt;/D_7143&gt;
+            &lt;/C_C212&gt;
+        &lt;/S_LIN&gt;
+        &lt;S_PIA&gt;
+            &lt;D_4347&gt;1&lt;/D_4347&gt;
+            &lt;C_C212&gt;
+                &lt;D_7140&gt;915600&lt;/D_7140&gt;
+                &lt;D_7143&gt;SA&lt;/D_7143&gt;
+            &lt;/C_C212&gt;
+        &lt;/S_PIA&gt;
+        &lt;S_QTY&gt;
+            &lt;C_C186&gt;
+                &lt;D_6063&gt;47&lt;/D_6063&gt;
+                &lt;D_6060&gt;1&lt;/D_6060&gt;
+                &lt;D_6411&gt;PCE&lt;/D_6411&gt;
+            &lt;/C_C186&gt;
+        &lt;/S_QTY&gt;
+        &lt;S_FTX&gt;
+            &lt;D_4451&gt;AAA&lt;/D_4451&gt;
+            &lt;C_C108&gt;
+                &lt;D_4440&gt;Allgemeine Merkmale Material: Kunststoff  Abmessungen Gewicht netto:&lt;/D_4440&gt;
+                &lt;D_4440_2&gt;0,32 kg Gewicht brutto: 0,39 kg Durchmesser: 122 mm Hoehe: 132 mm&lt;/D_4440_2&gt;
+                &lt;D_4440_3&gt;Verpackungsmass Laenge: 135 mm Verpackungsmass Breite: 135 mm&lt;/D_4440_3&gt;
+                &lt;D_4440_4&gt;Verpackungsmass Hoehe: 150 mm&lt;/D_4440_4&gt;
+            &lt;/C_C108&gt;
+        &lt;/S_FTX&gt;
+        &lt;G_SG26&gt;
+            &lt;S_MOA&gt;
+                &lt;C_C516&gt;
+                    &lt;D_5025&gt;203&lt;/D_5025&gt;
+                    &lt;D_5004&gt;87.38&lt;/D_5004&gt;
+                &lt;/C_C516&gt;
+            &lt;/S_MOA&gt;
+        &lt;/G_SG26&gt;
+        &lt;G_SG28&gt;
+            &lt;S_PRI&gt;
+                &lt;C_C509&gt;
+                    &lt;D_5125&gt;AAB&lt;/D_5125&gt;
+                    &lt;D_5118&gt;102.80&lt;/D_5118&gt;
+                    &lt;D_5284&gt;1&lt;/D_5284&gt;
+                    &lt;D_6411&gt;PCE&lt;/D_6411&gt;
+                &lt;/C_C509&gt;
+            &lt;/S_PRI&gt;
+        &lt;/G_SG28&gt;
+        &lt;G_SG28&gt;
+            &lt;S_PRI&gt;
+                &lt;C_C509&gt;
+                    &lt;D_5125&gt;AAA&lt;/D_5125&gt;
+                    &lt;D_5118&gt;87.38&lt;/D_5118&gt;
+                    &lt;D_5284&gt;1&lt;/D_5284&gt;
+                    &lt;D_6411&gt;PCE&lt;/D_6411&gt;
+                &lt;/C_C509&gt;
+            &lt;/S_PRI&gt;
+        &lt;/G_SG28&gt;
+        &lt;G_SG29&gt;
+            &lt;S_RFF&gt;
+                &lt;C_C506&gt;
+                    &lt;D_1153&gt;ON&lt;/D_1153&gt;
+                    &lt;D_1154&gt;7101620&lt;/D_1154&gt;
+                &lt;/C_C506&gt;
+            &lt;/S_RFF&gt;
+            &lt;S_DTM&gt;
+                &lt;C_C507&gt;
+                    &lt;D_2005&gt;171&lt;/D_2005&gt;
+                    &lt;D_2380&gt;20250909&lt;/D_2380&gt;
+                    &lt;D_2379&gt;102&lt;/D_2379&gt;
+                &lt;/C_C507&gt;
+            &lt;/S_DTM&gt;
+        &lt;/G_SG29&gt;
+        &lt;G_SG29&gt;
+            &lt;S_RFF&gt;
+                &lt;C_C506&gt;
+                    &lt;D_1153&gt;VN&lt;/D_1153&gt;
+                    &lt;D_1154&gt;0001755050&lt;/D_1154&gt;
+                &lt;/C_C506&gt;
+            &lt;/S_RFF&gt;
+            &lt;S_DTM&gt;
+                &lt;C_C507&gt;
+                    &lt;D_2005&gt;171&lt;/D_2005&gt;
+                    &lt;D_2380&gt;20250909&lt;/D_2380&gt;
+                    &lt;D_2379&gt;102&lt;/D_2379&gt;
+                &lt;/C_C507&gt;
+            &lt;/S_DTM&gt;
+        &lt;/G_SG29&gt;
+        &lt;G_SG29&gt;
+            &lt;S_RFF&gt;
+                &lt;C_C506&gt;
+                    &lt;D_1153&gt;DQ&lt;/D_1153&gt;
+                    &lt;D_1154&gt;0082149034&lt;/D_1154&gt;
+                &lt;/C_C506&gt;
+            &lt;/S_RFF&gt;
+            &lt;S_DTM&gt;
+                &lt;C_C507&gt;
+                    &lt;D_2005&gt;171&lt;/D_2005&gt;
+                    &lt;D_2380&gt;20250911&lt;/D_2380&gt;
+                    &lt;D_2379&gt;102&lt;/D_2379&gt;
+                &lt;/C_C507&gt;
+            &lt;/S_DTM&gt;
+        &lt;/G_SG29&gt;
+        &lt;G_SG38&gt;
+            &lt;S_ALC&gt;
+                &lt;D_5463&gt;A&lt;/D_5463&gt;
+                &lt;D_1227&gt;1&lt;/D_1227&gt;
+                &lt;C_C214&gt;
+                    &lt;D_7161&gt;DI&lt;/D_7161&gt;
+                    &lt;D_7160&gt;Grundrabatt&lt;/D_7160&gt;
+                &lt;/C_C214&gt;
+            &lt;/S_ALC&gt;
+            &lt;G_SG41&gt;
+                &lt;S_MOA&gt;
+                    &lt;C_C516&gt;
+                        &lt;D_5025&gt;8&lt;/D_5025&gt;
+                        &lt;D_5004&gt;15.42&lt;/D_5004&gt;
+                    &lt;/C_C516&gt;
+                &lt;/S_MOA&gt;
+            &lt;/G_SG41&gt;
+        &lt;/G_SG38&gt;
+    &lt;/G_SG25&gt;
+    &lt;S_UNS&gt;
+        &lt;D_0081&gt;S&lt;/D_0081&gt;
+    &lt;/S_UNS&gt;
+    &lt;S_CNT&gt;
+        &lt;C_C270&gt;
+            &lt;D_6069&gt;2&lt;/D_6069&gt;
+            &lt;D_6066&gt;4&lt;/D_6066&gt;
+        &lt;/C_C270&gt;
+    &lt;/S_CNT&gt;
+    &lt;G_SG48&gt;
+        &lt;S_MOA&gt;
+            &lt;C_C516&gt;
+                &lt;D_5025&gt;79&lt;/D_5025&gt;
+                &lt;D_5004&gt;87.38&lt;/D_5004&gt;
+            &lt;/C_C516&gt;
+        &lt;/S_MOA&gt;
+    &lt;/G_SG48&gt;
+    &lt;G_SG48&gt;
+        &lt;S_MOA&gt;
+            &lt;C_C516&gt;
+                &lt;D_5025&gt;64&lt;/D_5025&gt;
+                &lt;D_5004&gt;19.50&lt;/D_5004&gt;
+            &lt;/C_C516&gt;
+        &lt;/S_MOA&gt;
+    &lt;/G_SG48&gt;
+    &lt;G_SG48&gt;
+        &lt;S_MOA&gt;
+            &lt;C_C516&gt;
+                &lt;D_5025&gt;125&lt;/D_5025&gt;
+                &lt;D_5004&gt;106.88&lt;/D_5004&gt;
+            &lt;/C_C516&gt;
+        &lt;/S_MOA&gt;
+    &lt;/G_SG48&gt;
+    &lt;G_SG48&gt;
+        &lt;S_MOA&gt;
+            &lt;C_C516&gt;
+                &lt;D_5025&gt;77&lt;/D_5025&gt;
+                &lt;D_5004&gt;127.19&lt;/D_5004&gt;
+            &lt;/C_C516&gt;
+        &lt;/S_MOA&gt;
+    &lt;/G_SG48&gt;
+    &lt;G_SG50&gt;
+        &lt;S_TAX&gt;
+            &lt;D_5283&gt;7&lt;/D_5283&gt;
+            &lt;C_C241&gt;
+                &lt;D_5153&gt;VAT&lt;/D_5153&gt;
+            &lt;/C_C241&gt;
+            &lt;C_C243&gt;
+                &lt;D_5278&gt;19.000&lt;/D_5278&gt;
+            &lt;/C_C243&gt;
+            &lt;D_5305&gt;S&lt;/D_5305&gt;
+        &lt;/S_TAX&gt;
+        &lt;S_MOA&gt;
+            &lt;C_C516&gt;
+                &lt;D_5025&gt;124&lt;/D_5025&gt;
+                &lt;D_5004&gt;20.31&lt;/D_5004&gt;
+            &lt;/C_C516&gt;
+        &lt;/S_MOA&gt;
+    &lt;/G_SG50&gt;
+    &lt;S_UNT&gt;
+        &lt;D_0074&gt;47&lt;/D_0074&gt;
+        &lt;D_0062&gt;1&lt;/D_0062&gt;
+    &lt;/S_UNT&gt;
+&lt;/M_INVOIC&gt;</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.6</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>activityType</key>
+                    <value>Enricher</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::Enricher/version::1.6.1</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_6</bpmn2:incoming>
+            <bpmn2:outgoing>SequenceFlow_8</bpmn2:outgoing>
+        </bpmn2:callActivity>
+        <bpmn2:callActivity id="CallActivity_9" name="Content Modifier 2">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>bodyType</key>
+                    <value>constant</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>propertyTable</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>headerTable</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>wrapContent</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.6</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>activityType</key>
+                    <value>Enricher</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::Enricher/version::1.6.1</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_10</bpmn2:incoming>
+            <bpmn2:outgoing>SequenceFlow_11</bpmn2:outgoing>
+        </bpmn2:callActivity>
+        <bpmn2:startEvent id="StartEvent_4" name="Start Timer 1">
+            <bpmn2:outgoing>SequenceFlow_6</bpmn2:outgoing>
+            <bpmn2:timerEventDefinition id="TimerEventDefinition_156696">
+                <bpmn2:extensionElements>
+                    <ifl:property>
+                        <key>scheduleKey</key>
+                        <value>&lt;row&gt;&lt;cell&gt;dateType&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;timeType&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;dayValue&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;monthValue&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;yearValue&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;onWeekly&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;onMonthly&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;OnEveryMinute&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;fromInterval&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;toInterval&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;timeZone&lt;/cell&gt;&lt;cell&gt;( UTC 0:00 ) Greenwich Mean Time(Etc/GMT)&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;secondValue&lt;/cell&gt;&lt;cell&gt;0&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;minutesValue&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;hourValue&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;triggerType&lt;/cell&gt;&lt;cell&gt;simple&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;noOfSchedules&lt;/cell&gt;&lt;cell&gt;1&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;schedule1&lt;/cell&gt;&lt;cell&gt;fireNow=true&lt;/cell&gt;&lt;/row&gt;</value>
+                    </ifl:property>
+                    <ifl:property>
+                        <key>componentVersion</key>
+                        <value>1.4</value>
+                    </ifl:property>
+                    <ifl:property>
+                        <key>cmdVariantUri</key>
+                        <value>ctype::FlowstepVariant/cname::intermediatetimer/version::1.4.0</value>
+                    </ifl:property>
+                    <ifl:property>
+                        <key>activityType</key>
+                        <value>StartTimerEvent</value>
+                    </ifl:property>
+                </bpmn2:extensionElements>
+            </bpmn2:timerEventDefinition>
+        </bpmn2:startEvent>
+        <bpmn2:sequenceFlow id="SequenceFlow_10" sourceRef="CallActivity_7" targetRef="CallActivity_9"/>
+        <bpmn2:sequenceFlow id="SequenceFlow_8" sourceRef="CallActivity_5" targetRef="CallActivity_7"/>
+        <bpmn2:sequenceFlow id="SequenceFlow_11" sourceRef="CallActivity_9" targetRef="EndEvent_2"/>
+        <bpmn2:sequenceFlow id="SequenceFlow_6" sourceRef="StartEvent_4" targetRef="CallActivity_5"/>
+    </bpmn2:process>
+    <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="Default Collaboration Diagram">
+        <bpmndi:BPMNPlane bpmnElement="Collaboration_1" id="BPMNPlane_1">
+            <bpmndi:BPMNShape bpmnElement="EndEvent_2" id="BPMNShape_EndEvent_2">
+                <dc:Bounds height="32.0" width="32.0" x="882.0" y="144.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="Participant_Process_1" id="BPMNShape_Participant_Process_1">
+                <dc:Bounds height="220.0" width="755.0" x="245.0" y="60.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="StartEvent_4" id="BPMNShape_StartEvent_4">
+                <dc:Bounds height="32.0" width="32.0" x="283.0" y="154.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="CallActivity_5" id="BPMNShape_CallActivity_5">
+                <dc:Bounds height="60.0" width="100.0" x="403.0" y="144.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="CallActivity_7" id="BPMNShape_CallActivity_7">
+                <dc:Bounds height="60.0" width="100.0" x="553.0" y="144.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="CallActivity_9" id="BPMNShape_CallActivity_9">
+                <dc:Bounds height="60.0" width="100.0" x="716.0" y="136.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_6" id="BPMNEdge_SequenceFlow_6" sourceElement="BPMNShape_StartEvent_4" targetElement="BPMNShape_CallActivity_5">
+                <di:waypoint x="299.0" xsi:type="dc:Point" y="172.0"/>
+                <di:waypoint x="453.0" xsi:type="dc:Point" y="172.0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_8" id="BPMNEdge_SequenceFlow_8" sourceElement="BPMNShape_CallActivity_5" targetElement="BPMNShape_CallActivity_7">
+                <di:waypoint x="453.0" xsi:type="dc:Point" y="174.0"/>
+                <di:waypoint x="603.0" xsi:type="dc:Point" y="174.0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_10" id="BPMNEdge_SequenceFlow_10" sourceElement="BPMNShape_CallActivity_7" targetElement="BPMNShape_CallActivity_9">
+                <di:waypoint x="603.0" xsi:type="dc:Point" y="174.0"/>
+                <di:waypoint x="682.0" xsi:type="dc:Point" y="174.0"/>
+                <di:waypoint x="682.0" xsi:type="dc:Point" y="166.0"/>
+                <di:waypoint x="766.0" xsi:type="dc:Point" y="166.0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_11" id="BPMNEdge_SequenceFlow_11" sourceElement="BPMNShape_CallActivity_9" targetElement="BPMNShape_EndEvent_2">
+                <di:waypoint x="766.0" xsi:type="dc:Point" y="166.0"/>
+                <di:waypoint x="905.0" xsi:type="dc:Point" y="166.0"/>
+            </bpmndi:BPMNEdge>
+        </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

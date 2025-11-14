@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.sap.com/eDocument/Italy/DeleteNotification/v1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="NotificationDeleteService" targetNamespace="http://www.sap.com/eDocument/Italy/DeleteNotification/v1.0">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.sap.com/eDocument/Italy/DeleteNotification/v1.0" xmlns:Q1="http://www.fatturapa.gov.it/sdi/ws/trasmissione/v1.0/types">
+            <xsd:import schemaLocation="TrasmissioneTypes_v1.0.xsd" namespace="http://www.fatturapa.gov.it/sdi/ws/trasmissione/v1.0/types"></xsd:import>
+            <xsd:element name="NotificationListDeleteElement"
+            	type="tns:NotificationListDeleteType">
+
+            	<xsd:complexType
+            		name="DeleteNotificationOperationRequest">
+            		<xsd:sequence>
+            			<xsd:element name="IdentificativoSdI"
+            				type="Q1:identificativoSdI_Type" minOccurs="0"
+            				maxOccurs="unbounded">
+            			</xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:complexType
+            	name="NotificationListDeleteType">
+            	<xsd:sequence>
+            		<xsd:element name="FileNameCollection" type="Q1:nomeFile_Type" minOccurs="0" maxOccurs="unbounded">
+            			<xsd:annotation>
+            				<xsd:documentation>The collection of FileNames that need to be deleted from the Data Store</xsd:documentation>
+            			</xsd:annotation></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="RequestNotificationDeleteOperation">
+    <wsdl:part element="tns:NotificationListDeleteElement" name="parameters">
+    	<wsdl:documentation>The list of Identifiers that need to be deleted</wsdl:documentation></wsdl:part>
+  </wsdl:message>
+
+  <wsdl:portType name="NotificationDeleteService">
+    <wsdl:documentation></wsdl:documentation>
+    <wsdl:operation name="NotificationDeleteOperation">
+      <wsdl:documentation>Call the operation with the notification type and the list of Identifiers that need to be deleted.</wsdl:documentation>
+      <wsdl:input message="tns:RequestNotificationDeleteOperation" name="RequestDeleteNotificationOperation"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NotificationDeleteServiceSOAP" type="tns:NotificationDeleteService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="NotificationDeleteOperation">
+      <soap:operation soapAction="http://www.sap.com/eDocument/Italy/DeleteNotification/v1.0/NotificationDeleteOperation"/>
+      <wsdl:input name="RequestDeleteNotificationOperation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NotificationDeleteService">
+    <wsdl:documentation>Service that deletes notifications received by the Sistema di Interscambio (SdI) that have been already processed by the calling application</wsdl:documentation>
+    <wsdl:port binding="tns:NotificationDeleteServiceSOAP" name="NotificationDeleteServiceSOAP">
+      <soap:address location="http://endpointaddress"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

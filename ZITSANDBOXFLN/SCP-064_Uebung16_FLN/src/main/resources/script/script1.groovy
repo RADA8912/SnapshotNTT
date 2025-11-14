@@ -1,0 +1,32 @@
+/*
+ The integration developer needs to create the method processData 
+ This method takes Message object of package com.sap.gateway.ip.core.customdev.util 
+which includes helper methods useful for the content developer:
+The methods available are:
+    public java.lang.Object getBody()
+	public void setBody(java.lang.Object exchangeBody)
+    public java.util.Map<java.lang.String,java.lang.Object> getHeaders()
+    public void setHeaders(java.util.Map<java.lang.String,java.lang.Object> exchangeHeaders)
+    public void setHeader(java.lang.String name, java.lang.Object value)
+    public java.util.Map<java.lang.String,java.lang.Object> getProperties()
+    public void setProperties(java.util.Map<java.lang.String,java.lang.Object> exchangeProperties) 
+    public void setProperty(java.lang.String name, java.lang.Object value)
+    public java.util.List<com.sap.gateway.ip.core.customdev.util.SoapHeader> getSoapHeaders()
+    public void setSoapHeaders(java.util.List<com.sap.gateway.ip.core.customdev.util.SoapHeader> soapHeaders) 
+       public void clearSoapHeaders()
+ */
+import com.sap.gateway.ip.core.customdev.util.Message;
+import java.util.HashMap;
+import groovy.xml.MarkupBuilder
+
+
+def Message processData(Message message) {
+   Reader reader = message.getBody(Reader)
+   def CommissionDetail = new XmlSlurper().parse(reader);
+   
+   def integrationCommissionDetail_id = CommissionDetail.'**'.findAll(integrationCommissionDetail_id)
+   def formatiert_integrationCommissionDetail_id = integrationCommissionDetail_id.toString().replaceAll(/[\[\]']+/, '')
+   
+   message.setProperty("integrationCommissionDetail_id", formatiert_integrationCommissionDetail_id)
+       return message;
+}

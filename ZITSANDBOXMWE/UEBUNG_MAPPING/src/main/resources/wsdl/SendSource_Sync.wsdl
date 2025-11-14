@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SendSource_Sync"
+	xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	<wsdl:documentation />
+	<wsp:UsingPolicy wsdl:required="true" />
+	<wsp:Policy wsu:Id="OP_SendSource_Sync" />
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:element name="Source" type="Source_DT"/>
+			<xsd:complexType name="Source_DT">
+				<xsd:sequence>
+					<xsd:element name="arg1" type="xsd:decimal" />
+					<xsd:element name="arg2" type="xsd:decimal" />
+				</xsd:sequence>
+			</xsd:complexType>				
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="Source">
+		<wsdl:documentation />
+		<wsdl:part name="Source" element="Source" />
+	</wsdl:message>
+	<wsdl:portType name="SendSource_Sync">
+		<wsdl:documentation />
+		<wsdl:operation name="SendSource_Sync">
+			<wsdl:documentation />
+			<wsp:Policy>
+				<wsp:PolicyReference URI="#OP_SendSource_Sync" />
+			</wsp:Policy>
+			<wsdl:input message="Source" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="SendSource_SyncBinding" type="SendSource_Sync">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+		<wsdl:operation name="SendSource_Sync">
+			<soap:operation soapAction="http://sap.com/xi/WebService/soap1.1"
+				xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+			<wsdl:input>
+				<soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" />
+			</wsdl:input>
+		</wsdl:operation>
+	</wsdl:binding>
+</wsdl:definitions>

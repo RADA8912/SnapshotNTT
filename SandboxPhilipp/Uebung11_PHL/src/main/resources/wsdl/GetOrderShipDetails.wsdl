@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="GetOrderShipDetails_Sync" targetNamespace="http://hci.sap.com/demo" xmlns:p1="http://hci.sap.com/demo" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation/>
+  <wsp:UsingPolicy wsdl:required="true"/>
+  <wsp:Policy wsu:Id="OP_GetOrderShipDetails_Sync"/>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://hci.sap.com/demo" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://hci.sap.com/demo">
+      <xsd:element name="OrderNumber_MT" type="OrderNumber_DT"/>
+      <xsd:element name="OrderShippingDetails_MT" type="OrderShippingDetails_DT"/>
+      <xsd:complexType name="OrderNumber_DT">
+        <xsd:sequence>
+          <xsd:element name="orderNumber" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="OrderShippingDetails_DT">
+        <xsd:sequence>
+          <xsd:element name="orderNumber" type="xsd:string"/>
+          <xsd:element name="customerName" type="xsd:string"/>
+          <xsd:element name="shipCity" type="xsd:string"/>
+          <xsd:element name="shipStreet" type="xsd:string"/>
+          <xsd:element name="shipPostalCode" type="xsd:string"/>
+          <xsd:element name="shipCountry" type="xsd:string"/>
+          <xsd:element name="shipDate" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="OrderNumber_MT">
+    <wsdl:documentation/>
+    <wsdl:part name="OrderNumber_MT" element="p1:OrderNumber_MT"/>
+  </wsdl:message>
+  <wsdl:message name="OrderShippingDetails_MT">
+    <wsdl:documentation/>
+    <wsdl:part name="OrderShippingDetails_MT" element="p1:OrderShippingDetails_MT"/>
+  </wsdl:message>
+  <wsdl:portType name="GetOrderShipDetails_Sync">
+    <wsdl:documentation/>
+    <wsdl:operation name="GetOrderShipDetails_Sync">
+      <wsdl:documentation/>
+      <wsp:Policy>
+        <wsp:PolicyReference URI="#OP_GetOrderShipDetails_Sync"/>
+      </wsp:Policy>
+      <wsdl:input message="p1:OrderNumber_MT"/>
+      <wsdl:output message="p1:OrderShippingDetails_MT"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GetOrderShipDetails_SyncBinding" type="p1:GetOrderShipDetails_Sync">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    <wsdl:operation name="GetOrderShipDetails_Sync">
+      <soap:operation soapAction="http://sap.com/xi/WebService/soap1.1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

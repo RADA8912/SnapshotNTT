@@ -1,0 +1,707 @@
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
+    <xs:element name="UpdateMultipleObjectsOperationsSchema" type="UpdateMultipleObjectsOperationsSchema"/>
+    <xs:complexType name="UpdateMultipleObjectsOperationsSchema">
+        <xs:sequence>
+            <xs:element name="OrderItem" type="OrderItemUpdateAggregationSchema"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OrderItemUpdateAggregationSchema">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="sObjects" type="SObjectsOrderItemAggregationSchema"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SObjectsOrderItemAggregationSchema">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="sObject" type="SObjectUpdateOrderItemAggregationSchema"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SObjectUpdateOrderItemAggregationSchema">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="fieldsToNull" type="xs:string"/>
+            <xs:element minOccurs="0" name="Id" type="xs:string"/>
+            <xs:element minOccurs="0" name="Product2Id" type="xs:string"/>
+            <xs:element minOccurs="0" name="IsDeleted" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="OrderId" type="xs:string"/>
+            <xs:element minOccurs="0" name="PricebookEntryId" type="xs:string"/>
+            <xs:element minOccurs="0" name="OriginalOrderItemId" type="xs:string"/>
+            <xs:element minOccurs="0" name="AvailableQuantity" type="xs:double"/>
+            <xs:element minOccurs="0" name="Quantity" type="xs:double"/>
+            <xs:element minOccurs="0" name="UnitPrice" type="xs:string"/>
+            <xs:element minOccurs="0" name="ListPrice" type="xs:string"/>
+            <xs:element minOccurs="0" name="TotalPrice" type="xs:string"/>
+            <xs:element minOccurs="0" name="ServiceDate" type="xs:date"/>
+            <xs:element minOccurs="0" name="EndDate" type="xs:date"/>
+            <xs:element minOccurs="0" name="Description" type="xs:string"/>
+            <xs:element minOccurs="0" name="CreatedDate" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="CreatedById" type="xs:string"/>
+            <xs:element minOccurs="0" name="LastModifiedDate" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="LastModifiedById" type="xs:string"/>
+            <xs:element minOccurs="0" name="SystemModstamp" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="OrderItemNumber" type="xs:string"/>
+            <xs:element minOccurs="0" name="SAP_OrderItem_Ref__c" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="StatusType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="In Approval Process"/>
+            <xs:enumeration value="Activated"/>
+            <xs:enumeration value="Draft"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AllCustomerPortal"/>
+            <xs:enumeration value="ChannelProgramGroup"/>
+            <xs:enumeration value="CollaborationGroup"/>
+            <xs:enumeration value="Manager"/>
+            <xs:enumeration value="ManagerAndSubordinatesInternal"/>
+            <xs:enumeration value="Organization"/>
+            <xs:enumeration value="PRMOrganization"/>
+            <xs:enumeration value="Queue"/>
+            <xs:enumeration value="Regular"/>
+            <xs:enumeration value="Role"/>
+            <xs:enumeration value="RoleAndSubordinates"/>
+            <xs:enumeration value="RoleAndSubordinatesInternal"/>
+            <xs:enumeration value="Territory"/>
+            <xs:enumeration value="TerritoryAndSubordinates"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="BillingGeocodeAccuracyType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Address"/>
+            <xs:enumeration value="NearAddress"/>
+            <xs:enumeration value="Block"/>
+            <xs:enumeration value="Street"/>
+            <xs:enumeration value="ExtendedZip"/>
+            <xs:enumeration value="Zip"/>
+            <xs:enumeration value="Neighborhood"/>
+            <xs:enumeration value="City"/>
+            <xs:enumeration value="County"/>
+            <xs:enumeration value="State"/>
+            <xs:enumeration value="Unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ShippingGeocodeAccuracyType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Address"/>
+            <xs:enumeration value="NearAddress"/>
+            <xs:enumeration value="Block"/>
+            <xs:enumeration value="Street"/>
+            <xs:enumeration value="ExtendedZip"/>
+            <xs:enumeration value="Zip"/>
+            <xs:enumeration value="Neighborhood"/>
+            <xs:enumeration value="City"/>
+            <xs:enumeration value="County"/>
+            <xs:enumeration value="State"/>
+            <xs:enumeration value="Unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="StatusCodeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Draft"/>
+            <xs:enumeration value="InApproval"/>
+            <xs:enumeration value="Activated"/>
+            <xs:enumeration value="Terminated"/>
+            <xs:enumeration value="Expired"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="GeocodeAccuracyType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Address"/>
+            <xs:enumeration value="NearAddress"/>
+            <xs:enumeration value="Block"/>
+            <xs:enumeration value="Street"/>
+            <xs:enumeration value="ExtendedZip"/>
+            <xs:enumeration value="Zip"/>
+            <xs:enumeration value="Neighborhood"/>
+            <xs:enumeration value="City"/>
+            <xs:enumeration value="County"/>
+            <xs:enumeration value="State"/>
+            <xs:enumeration value="Unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TimeZoneSidKeyType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Pacific/Kiritimati"/>
+            <xs:enumeration value="Pacific/Chatham"/>
+            <xs:enumeration value="Pacific/Auckland"/>
+            <xs:enumeration value="Pacific/Enderbury"/>
+            <xs:enumeration value="Pacific/Fiji"/>
+            <xs:enumeration value="Pacific/Tongatapu"/>
+            <xs:enumeration value="Asia/Kamchatka"/>
+            <xs:enumeration value="Australia/Lord_Howe"/>
+            <xs:enumeration value="Australia/Sydney"/>
+            <xs:enumeration value="Pacific/Guadalcanal"/>
+            <xs:enumeration value="Pacific/Norfolk"/>
+            <xs:enumeration value="Australia/Adelaide"/>
+            <xs:enumeration value="Australia/Brisbane"/>
+            <xs:enumeration value="Australia/Darwin"/>
+            <xs:enumeration value="Asia/Seoul"/>
+            <xs:enumeration value="Asia/Tokyo"/>
+            <xs:enumeration value="Asia/Hong_Kong"/>
+            <xs:enumeration value="Asia/Kuala_Lumpur"/>
+            <xs:enumeration value="Asia/Manila"/>
+            <xs:enumeration value="Asia/Shanghai"/>
+            <xs:enumeration value="Asia/Singapore"/>
+            <xs:enumeration value="Asia/Taipei"/>
+            <xs:enumeration value="Australia/Perth"/>
+            <xs:enumeration value="Asia/Bangkok"/>
+            <xs:enumeration value="Asia/Ho_Chi_Minh"/>
+            <xs:enumeration value="Asia/Jakarta"/>
+            <xs:enumeration value="Asia/Rangoon"/>
+            <xs:enumeration value="Asia/Dhaka"/>
+            <xs:enumeration value="Asia/Kathmandu"/>
+            <xs:enumeration value="Asia/Colombo"/>
+            <xs:enumeration value="Asia/Kolkata"/>
+            <xs:enumeration value="Asia/Karachi"/>
+            <xs:enumeration value="Asia/Tashkent"/>
+            <xs:enumeration value="Asia/Yekaterinburg"/>
+            <xs:enumeration value="Asia/Kabul"/>
+            <xs:enumeration value="Asia/Baku"/>
+            <xs:enumeration value="Asia/Dubai"/>
+            <xs:enumeration value="Asia/Tbilisi"/>
+            <xs:enumeration value="Asia/Yerevan"/>
+            <xs:enumeration value="Asia/Tehran"/>
+            <xs:enumeration value="Africa/Nairobi"/>
+            <xs:enumeration value="Asia/Baghdad"/>
+            <xs:enumeration value="Asia/Kuwait"/>
+            <xs:enumeration value="Asia/Riyadh"/>
+            <xs:enumeration value="Europe/Istanbul"/>
+            <xs:enumeration value="Europe/Minsk"/>
+            <xs:enumeration value="Europe/Moscow"/>
+            <xs:enumeration value="Africa/Cairo"/>
+            <xs:enumeration value="Africa/Johannesburg"/>
+            <xs:enumeration value="Asia/Beirut"/>
+            <xs:enumeration value="Asia/Jerusalem"/>
+            <xs:enumeration value="Europe/Athens"/>
+            <xs:enumeration value="Europe/Bucharest"/>
+            <xs:enumeration value="Europe/Helsinki"/>
+            <xs:enumeration value="Africa/Algiers"/>
+            <xs:enumeration value="Africa/Casablanca"/>
+            <xs:enumeration value="Europe/Amsterdam"/>
+            <xs:enumeration value="Europe/Berlin"/>
+            <xs:enumeration value="Europe/Brussels"/>
+            <xs:enumeration value="Europe/Paris"/>
+            <xs:enumeration value="Europe/Prague"/>
+            <xs:enumeration value="Europe/Rome"/>
+            <xs:enumeration value="Europe/Dublin"/>
+            <xs:enumeration value="Europe/Lisbon"/>
+            <xs:enumeration value="Europe/London"/>
+            <xs:enumeration value="GMT"/>
+            <xs:enumeration value="America/Scoresbysund"/>
+            <xs:enumeration value="Atlantic/Azores"/>
+            <xs:enumeration value="Atlantic/Cape_Verde"/>
+            <xs:enumeration value="America/Sao_Paulo"/>
+            <xs:enumeration value="Atlantic/South_Georgia"/>
+            <xs:enumeration value="America/Argentina/Buenos_Aires"/>
+            <xs:enumeration value="America/Santiago"/>
+            <xs:enumeration value="America/St_Johns"/>
+            <xs:enumeration value="America/Caracas"/>
+            <xs:enumeration value="America/Halifax"/>
+            <xs:enumeration value="America/Puerto_Rico"/>
+            <xs:enumeration value="Atlantic/Bermuda"/>
+            <xs:enumeration value="America/Bogota"/>
+            <xs:enumeration value="America/Indiana/Indianapolis"/>
+            <xs:enumeration value="America/Lima"/>
+            <xs:enumeration value="America/New_York"/>
+            <xs:enumeration value="America/Panama"/>
+            <xs:enumeration value="America/Chicago"/>
+            <xs:enumeration value="America/El_Salvador"/>
+            <xs:enumeration value="America/Mexico_City"/>
+            <xs:enumeration value="America/Denver"/>
+            <xs:enumeration value="America/Mazatlan"/>
+            <xs:enumeration value="America/Phoenix"/>
+            <xs:enumeration value="America/Los_Angeles"/>
+            <xs:enumeration value="America/Tijuana"/>
+            <xs:enumeration value="Pacific/Pitcairn"/>
+            <xs:enumeration value="America/Anchorage"/>
+            <xs:enumeration value="Pacific/Gambier"/>
+            <xs:enumeration value="Pacific/Marquesas"/>
+            <xs:enumeration value="America/Adak"/>
+            <xs:enumeration value="Pacific/Honolulu"/>
+            <xs:enumeration value="Pacific/Niue"/>
+            <xs:enumeration value="Pacific/Pago_Pago"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LocaleSidKeyType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="sq_AL"/>
+            <xs:enumeration value="ar_DZ"/>
+            <xs:enumeration value="ar_BH"/>
+            <xs:enumeration value="ar_EG"/>
+            <xs:enumeration value="ar_IQ"/>
+            <xs:enumeration value="ar_JO"/>
+            <xs:enumeration value="ar_KW"/>
+            <xs:enumeration value="ar_LB"/>
+            <xs:enumeration value="ar_LY"/>
+            <xs:enumeration value="ar_MA"/>
+            <xs:enumeration value="ar_OM"/>
+            <xs:enumeration value="ar_QA"/>
+            <xs:enumeration value="ar_SA"/>
+            <xs:enumeration value="ar_SD"/>
+            <xs:enumeration value="ar_SY"/>
+            <xs:enumeration value="ar_TN"/>
+            <xs:enumeration value="ar_AE"/>
+            <xs:enumeration value="ar_YE"/>
+            <xs:enumeration value="hy_AM"/>
+            <xs:enumeration value="az_AZ"/>
+            <xs:enumeration value="bn_BD"/>
+            <xs:enumeration value="eu_ES"/>
+            <xs:enumeration value="be_BY"/>
+            <xs:enumeration value="bs_BA"/>
+            <xs:enumeration value="bg_BG"/>
+            <xs:enumeration value="my_MM"/>
+            <xs:enumeration value="ca_ES"/>
+            <xs:enumeration value="zh_CN_PINYIN"/>
+            <xs:enumeration value="zh_CN_STROKE"/>
+            <xs:enumeration value="zh_CN"/>
+            <xs:enumeration value="zh_HK_STROKE"/>
+            <xs:enumeration value="zh_HK"/>
+            <xs:enumeration value="zh_MO"/>
+            <xs:enumeration value="zh_SG"/>
+            <xs:enumeration value="zh_TW_STROKE"/>
+            <xs:enumeration value="zh_TW"/>
+            <xs:enumeration value="hr_HR"/>
+            <xs:enumeration value="cs_CZ"/>
+            <xs:enumeration value="da_DK"/>
+            <xs:enumeration value="nl_AW"/>
+            <xs:enumeration value="nl_BE"/>
+            <xs:enumeration value="nl_NL"/>
+            <xs:enumeration value="nl_SR"/>
+            <xs:enumeration value="dz_BT"/>
+            <xs:enumeration value="en_AG"/>
+            <xs:enumeration value="en_AU"/>
+            <xs:enumeration value="en_BS"/>
+            <xs:enumeration value="en_BB"/>
+            <xs:enumeration value="en_BZ"/>
+            <xs:enumeration value="en_BM"/>
+            <xs:enumeration value="en_BW"/>
+            <xs:enumeration value="en_CM"/>
+            <xs:enumeration value="en_CA"/>
+            <xs:enumeration value="en_KY"/>
+            <xs:enumeration value="en_ER"/>
+            <xs:enumeration value="en_FK"/>
+            <xs:enumeration value="en_FJ"/>
+            <xs:enumeration value="en_GM"/>
+            <xs:enumeration value="en_GH"/>
+            <xs:enumeration value="en_GI"/>
+            <xs:enumeration value="en_GY"/>
+            <xs:enumeration value="en_HK"/>
+            <xs:enumeration value="en_IN"/>
+            <xs:enumeration value="en_ID"/>
+            <xs:enumeration value="en_IE"/>
+            <xs:enumeration value="en_JM"/>
+            <xs:enumeration value="en_KE"/>
+            <xs:enumeration value="en_LR"/>
+            <xs:enumeration value="en_MG"/>
+            <xs:enumeration value="en_MW"/>
+            <xs:enumeration value="en_MY"/>
+            <xs:enumeration value="en_MU"/>
+            <xs:enumeration value="en_NA"/>
+            <xs:enumeration value="en_NZ"/>
+            <xs:enumeration value="en_NG"/>
+            <xs:enumeration value="en_PK"/>
+            <xs:enumeration value="en_PG"/>
+            <xs:enumeration value="en_PH"/>
+            <xs:enumeration value="en_RW"/>
+            <xs:enumeration value="en_WS"/>
+            <xs:enumeration value="en_SC"/>
+            <xs:enumeration value="en_SL"/>
+            <xs:enumeration value="en_SG"/>
+            <xs:enumeration value="en_SX"/>
+            <xs:enumeration value="en_SB"/>
+            <xs:enumeration value="en_ZA"/>
+            <xs:enumeration value="en_SH"/>
+            <xs:enumeration value="en_SZ"/>
+            <xs:enumeration value="en_TZ"/>
+            <xs:enumeration value="en_TO"/>
+            <xs:enumeration value="en_TT"/>
+            <xs:enumeration value="en_UG"/>
+            <xs:enumeration value="en_GB"/>
+            <xs:enumeration value="en_US"/>
+            <xs:enumeration value="en_VU"/>
+            <xs:enumeration value="et_EE"/>
+            <xs:enumeration value="fi_FI"/>
+            <xs:enumeration value="fr_BE"/>
+            <xs:enumeration value="fr_CA"/>
+            <xs:enumeration value="fr_KM"/>
+            <xs:enumeration value="fr_FR"/>
+            <xs:enumeration value="fr_GN"/>
+            <xs:enumeration value="fr_HT"/>
+            <xs:enumeration value="fr_LU"/>
+            <xs:enumeration value="fr_MR"/>
+            <xs:enumeration value="fr_MC"/>
+            <xs:enumeration value="fr_CH"/>
+            <xs:enumeration value="fr_WF"/>
+            <xs:enumeration value="ka_GE"/>
+            <xs:enumeration value="de_AT"/>
+            <xs:enumeration value="de_BE"/>
+            <xs:enumeration value="de_DE"/>
+            <xs:enumeration value="de_LU"/>
+            <xs:enumeration value="de_CH"/>
+            <xs:enumeration value="el_GR"/>
+            <xs:enumeration value="iw_IL"/>
+            <xs:enumeration value="hi_IN"/>
+            <xs:enumeration value="hu_HU"/>
+            <xs:enumeration value="is_IS"/>
+            <xs:enumeration value="in_ID"/>
+            <xs:enumeration value="ga_IE"/>
+            <xs:enumeration value="it_IT"/>
+            <xs:enumeration value="it_CH"/>
+            <xs:enumeration value="ja_JP"/>
+            <xs:enumeration value="kk_KZ"/>
+            <xs:enumeration value="km_KH"/>
+            <xs:enumeration value="ko_KP"/>
+            <xs:enumeration value="ko_KR"/>
+            <xs:enumeration value="ky_KG"/>
+            <xs:enumeration value="lo_LA"/>
+            <xs:enumeration value="lv_LV"/>
+            <xs:enumeration value="lt_LT"/>
+            <xs:enumeration value="lu_CD"/>
+            <xs:enumeration value="lb_LU"/>
+            <xs:enumeration value="mk_MK"/>
+            <xs:enumeration value="ms_BN"/>
+            <xs:enumeration value="ms_MY"/>
+            <xs:enumeration value="mt_MT"/>
+            <xs:enumeration value="sh_ME"/>
+            <xs:enumeration value="ne_NP"/>
+            <xs:enumeration value="no_NO"/>
+            <xs:enumeration value="ps_AF"/>
+            <xs:enumeration value="fa_IR"/>
+            <xs:enumeration value="pl_PL"/>
+            <xs:enumeration value="pt_AO"/>
+            <xs:enumeration value="pt_BR"/>
+            <xs:enumeration value="pt_CV"/>
+            <xs:enumeration value="pt_MZ"/>
+            <xs:enumeration value="pt_PT"/>
+            <xs:enumeration value="pt_ST"/>
+            <xs:enumeration value="ro_MD"/>
+            <xs:enumeration value="ro_RO"/>
+            <xs:enumeration value="rm_CH"/>
+            <xs:enumeration value="rn_BI"/>
+            <xs:enumeration value="ru_RU"/>
+            <xs:enumeration value="sr_BA"/>
+            <xs:enumeration value="sh_BA"/>
+            <xs:enumeration value="sh_CS"/>
+            <xs:enumeration value="sr_CS"/>
+            <xs:enumeration value="sr_RS"/>
+            <xs:enumeration value="sk_SK"/>
+            <xs:enumeration value="sl_SI"/>
+            <xs:enumeration value="so_DJ"/>
+            <xs:enumeration value="so_SO"/>
+            <xs:enumeration value="es_AR"/>
+            <xs:enumeration value="es_BO"/>
+            <xs:enumeration value="es_CL"/>
+            <xs:enumeration value="es_CO"/>
+            <xs:enumeration value="es_CR"/>
+            <xs:enumeration value="es_CU"/>
+            <xs:enumeration value="es_DO"/>
+            <xs:enumeration value="es_EC"/>
+            <xs:enumeration value="es_SV"/>
+            <xs:enumeration value="es_GT"/>
+            <xs:enumeration value="es_HN"/>
+            <xs:enumeration value="es_MX"/>
+            <xs:enumeration value="es_NI"/>
+            <xs:enumeration value="es_PA"/>
+            <xs:enumeration value="es_PY"/>
+            <xs:enumeration value="es_PE"/>
+            <xs:enumeration value="es_PR"/>
+            <xs:enumeration value="es_ES"/>
+            <xs:enumeration value="es_US"/>
+            <xs:enumeration value="es_UY"/>
+            <xs:enumeration value="es_VE"/>
+            <xs:enumeration value="sv_SE"/>
+            <xs:enumeration value="tl_PH"/>
+            <xs:enumeration value="tg_TJ"/>
+            <xs:enumeration value="ta_IN"/>
+            <xs:enumeration value="ta_LK"/>
+            <xs:enumeration value="th_TH"/>
+            <xs:enumeration value="ti_ET"/>
+            <xs:enumeration value="tr_TR"/>
+            <xs:enumeration value="uk_UA"/>
+            <xs:enumeration value="ur_PK"/>
+            <xs:enumeration value="uz_LATN_UZ"/>
+            <xs:enumeration value="vi_VN"/>
+            <xs:enumeration value="cy_GB"/>
+            <xs:enumeration value="yo_BJ"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="EmailEncodingKeyType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="UTF-8"/>
+            <xs:enumeration value="ISO-8859-1"/>
+            <xs:enumeration value="Shift_JIS"/>
+            <xs:enumeration value="ISO-2022-JP"/>
+            <xs:enumeration value="EUC-JP"/>
+            <xs:enumeration value="ks_c_5601-1987"/>
+            <xs:enumeration value="Big5"/>
+            <xs:enumeration value="GB2312"/>
+            <xs:enumeration value="Big5-HKSCS"/>
+            <xs:enumeration value="x-SJIS_0213"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="UserType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Standard"/>
+            <xs:enumeration value="PowerPartner"/>
+            <xs:enumeration value="PowerCustomerSuccess"/>
+            <xs:enumeration value="CustomerSuccess"/>
+            <xs:enumeration value="Guest"/>
+            <xs:enumeration value="CspLitePortal"/>
+            <xs:enumeration value="CsnOnly"/>
+            <xs:enumeration value="SelfService"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LanguageLocaleKeyType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="en_US"/>
+            <xs:enumeration value="de"/>
+            <xs:enumeration value="es"/>
+            <xs:enumeration value="fr"/>
+            <xs:enumeration value="it"/>
+            <xs:enumeration value="ja"/>
+            <xs:enumeration value="sv"/>
+            <xs:enumeration value="ko"/>
+            <xs:enumeration value="zh_TW"/>
+            <xs:enumeration value="zh_CN"/>
+            <xs:enumeration value="pt_BR"/>
+            <xs:enumeration value="nl_NL"/>
+            <xs:enumeration value="da"/>
+            <xs:enumeration value="th"/>
+            <xs:enumeration value="fi"/>
+            <xs:enumeration value="ru"/>
+            <xs:enumeration value="es_MX"/>
+            <xs:enumeration value="no"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DigestFrequencyType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="W"/>
+            <xs:enumeration value="N"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DefaultGroupNotificationFrequencyType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="P"/>
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="W"/>
+            <xs:enumeration value="N"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="OwnerExpirationNoticeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="15"/>
+            <xs:enumeration value="30"/>
+            <xs:enumeration value="45"/>
+            <xs:enumeration value="60"/>
+            <xs:enumeration value="90"/>
+            <xs:enumeration value="120"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="IndustryType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Agriculture"/>
+            <xs:enumeration value="Apparel"/>
+            <xs:enumeration value="Banking"/>
+            <xs:enumeration value="Biotechnology"/>
+            <xs:enumeration value="Chemicals"/>
+            <xs:enumeration value="Communications"/>
+            <xs:enumeration value="Construction"/>
+            <xs:enumeration value="Consulting"/>
+            <xs:enumeration value="Education"/>
+            <xs:enumeration value="Electronics"/>
+            <xs:enumeration value="Energy"/>
+            <xs:enumeration value="Engineering"/>
+            <xs:enumeration value="Entertainment"/>
+            <xs:enumeration value="Environmental"/>
+            <xs:enumeration value="Finance"/>
+            <xs:enumeration value="Food &amp; Beverage"/>
+            <xs:enumeration value="Government"/>
+            <xs:enumeration value="Healthcare"/>
+            <xs:enumeration value="Hospitality"/>
+            <xs:enumeration value="Insurance"/>
+            <xs:enumeration value="Machinery"/>
+            <xs:enumeration value="Manufacturing"/>
+            <xs:enumeration value="Media"/>
+            <xs:enumeration value="Not For Profit"/>
+            <xs:enumeration value="Recreation"/>
+            <xs:enumeration value="Retail"/>
+            <xs:enumeration value="Shipping"/>
+            <xs:enumeration value="Technology"/>
+            <xs:enumeration value="Telecommunications"/>
+            <xs:enumeration value="Transportation"/>
+            <xs:enumeration value="Utilities"/>
+            <xs:enumeration value="Other"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="OwnershipType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Public"/>
+            <xs:enumeration value="Private"/>
+            <xs:enumeration value="Subsidiary"/>
+            <xs:enumeration value="Other"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="RatingType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Hot"/>
+            <xs:enumeration value="Warm"/>
+            <xs:enumeration value="Cold"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="CleanStatusType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Matched"/>
+            <xs:enumeration value="Different"/>
+            <xs:enumeration value="Acknowledged"/>
+            <xs:enumeration value="NotFound"/>
+            <xs:enumeration value="Inactive"/>
+            <xs:enumeration value="Pending"/>
+            <xs:enumeration value="SelectMatch"/>
+            <xs:enumeration value="Skipped"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="AccountSourceType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Web"/>
+            <xs:enumeration value="Phone Inquiry"/>
+            <xs:enumeration value="Partner Referral"/>
+            <xs:enumeration value="Purchased List"/>
+            <xs:enumeration value="Other"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="CustomerPriority__cType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="High"/>
+            <xs:enumeration value="Low"/>
+            <xs:enumeration value="Medium"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="SLA__cType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Gold"/>
+            <xs:enumeration value="Silver"/>
+            <xs:enumeration value="Platinum"/>
+            <xs:enumeration value="Bronze"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Active__cType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="No"/>
+            <xs:enumeration value="Yes"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="UpsellOpportunity__cType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Maybe"/>
+            <xs:enumeration value="No"/>
+            <xs:enumeration value="Yes"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="StageNameType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Prospecting"/>
+            <xs:enumeration value="Qualification"/>
+            <xs:enumeration value="Needs Analysis"/>
+            <xs:enumeration value="Value Proposition"/>
+            <xs:enumeration value="Id. Decision Makers"/>
+            <xs:enumeration value="Perception Analysis"/>
+            <xs:enumeration value="Proposal/Price Quote"/>
+            <xs:enumeration value="Negotiation/Review"/>
+            <xs:enumeration value="Closed Won"/>
+            <xs:enumeration value="Closed Lost"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LeadSourceType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Web"/>
+            <xs:enumeration value="Phone Inquiry"/>
+            <xs:enumeration value="Partner Referral"/>
+            <xs:enumeration value="Purchased List"/>
+            <xs:enumeration value="Other"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ForecastCategoryType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Omitted"/>
+            <xs:enumeration value="Pipeline"/>
+            <xs:enumeration value="BestCase"/>
+            <xs:enumeration value="Forecast"/>
+            <xs:enumeration value="Closed"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ForecastCategoryNameType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Omitted"/>
+            <xs:enumeration value="Pipeline"/>
+            <xs:enumeration value="Best Case"/>
+            <xs:enumeration value="Commit"/>
+            <xs:enumeration value="Closed"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="DeliveryInstallationStatus__cType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="In progress"/>
+            <xs:enumeration value="Yet to begin"/>
+            <xs:enumeration value="Completed"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="SalutationType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Mr."/>
+            <xs:enumeration value="Ms."/>
+            <xs:enumeration value="Mrs."/>
+            <xs:enumeration value="Dr."/>
+            <xs:enumeration value="Prof."/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="OtherGeocodeAccuracyType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Address"/>
+            <xs:enumeration value="NearAddress"/>
+            <xs:enumeration value="Block"/>
+            <xs:enumeration value="Street"/>
+            <xs:enumeration value="ExtendedZip"/>
+            <xs:enumeration value="Zip"/>
+            <xs:enumeration value="Neighborhood"/>
+            <xs:enumeration value="City"/>
+            <xs:enumeration value="County"/>
+            <xs:enumeration value="State"/>
+            <xs:enumeration value="Unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="MailingGeocodeAccuracyType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Address"/>
+            <xs:enumeration value="NearAddress"/>
+            <xs:enumeration value="Block"/>
+            <xs:enumeration value="Street"/>
+            <xs:enumeration value="ExtendedZip"/>
+            <xs:enumeration value="Zip"/>
+            <xs:enumeration value="Neighborhood"/>
+            <xs:enumeration value="City"/>
+            <xs:enumeration value="County"/>
+            <xs:enumeration value="State"/>
+            <xs:enumeration value="Unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Level__cType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Secondary"/>
+            <xs:enumeration value="Tertiary"/>
+            <xs:enumeration value="Primary"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="FamilyType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="None"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="QuantityUnitOfMeasureType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Each"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

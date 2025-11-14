@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:tns="http://www.miele.com/pdtp/cloudintegration/router"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TriggerProcess" targetNamespace="http://www.miele.com/pdtp/cloudintegration/router">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.miele.com/pdtp/cloudintegration/router">
+      <xsd:element name="TriggerProcessRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="processChainCode" type="xsd:string"/>
+            <xsd:element name="processChainDefinitionCode" type="xsd:string"/>
+            <xsd:element name="processCode" type="xsd:string"/>
+            <xsd:element name="processParameters" maxOccurs="unbounded" minOccurs="0">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="code" type="xsd:string"/>
+                  <xsd:element name="value" type="xsd:string"/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TriggerProcessResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="processChainCode" type="xsd:string"/>
+            <xsd:element name="processChainDefinitionCode" type="xsd:string"/>
+            <xsd:element name="processCode" type="xsd:string"/>
+            <xsd:element name="status" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+
+  <wsdl:message name="ProcessRequest">
+    <wsdl:part element="tns:TriggerProcessRequest" name="request" />
+  </wsdl:message>
+  <wsdl:message name="ProcessResponse">
+    <wsdl:part element="tns:TriggerProcessResponse" name="response" />
+  </wsdl:message>
+  <wsdl:portType name="TriggerProcessPort">
+    <wsdl:operation name="TriggerProcess">
+      <wsdl:input message="tns:ProcessRequest" />
+      <wsdl:output message="tns:ProcessResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TriggerProcessBinding" type="tns:TriggerProcessPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TriggerProcess">
+      <soap:operation soapAction="Post" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TriggerProcessService">
+    <wsdl:port binding="tns:TriggerProcessBinding" name="HTTPS_Port">
+      <soap:address location="https://stg-miele-integration-suite.it-cpi005-rt.cfapps.eu20.hana.ondemand.com/cxf/dev/pdtp/process-router" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

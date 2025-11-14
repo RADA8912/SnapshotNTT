@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1 (UNKNOWN_BRANCH-false; 2015-01-15T16:53:43+0100) JAXWS-RI/2.2.10 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown.--><xs:schema version="1.0" targetNamespace="urn:de.aeb.xnsg.rex.bf" xmlns:tns="urn:de.aeb.xnsg.rex.bf" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="batchMatch" type="tns:batchMatch"/>
+  <xs:element name="batchMatchResponse" type="tns:batchMatchResponse"/>
+  <xs:element name="defineGoodGuy" type="tns:defineGoodGuy"/>
+  <xs:element name="defineGoodGuyResponse" type="tns:defineGoodGuyResponse"/>
+  <xs:element name="defineGoodGuyWithResult" type="tns:defineGoodGuyWithResult"/>
+  <xs:element name="defineGoodGuyWithResultResponse" type="tns:defineGoodGuyWithResultResponse"/>
+  <xs:element name="getAliasAddresses" type="tns:getAliasAddresses"/>
+  <xs:element name="getAliasAddressesResponse" type="tns:getAliasAddressesResponse"/>
+  <xs:element name="getAllProfilesForClient" type="tns:getAllProfilesForClient"/>
+  <xs:element name="getAllProfilesForClientResponse" type="tns:getAllProfilesForClientResponse"/>
+  <xs:element name="getLastTerrorListUpdate" type="tns:getLastTerrorListUpdate"/>
+  <xs:element name="getLastTerrorListUpdateResponse" type="tns:getLastTerrorListUpdateResponse"/>
+  <xs:element name="getMatchingAddresses" type="tns:getMatchingAddresses"/>
+  <xs:element name="getMatchingAddressesResponse" type="tns:getMatchingAddressesResponse"/>
+  <xs:element name="protocolClientSystemEvent" type="tns:protocolClientSystemEvent"/>
+  <xs:element name="protocolClientSystemEventResponse" type="tns:protocolClientSystemEventResponse"/>
+  <xs:complexType name="batchMatch">
+    <xs:sequence>
+      <xs:element name="patterns" type="tns:addressPatternDTO" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="parms" type="tns:matchParametersDTO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="addressPatternDTO">
+    <xs:complexContent>
+      <xs:extension base="tns:addressDTO">
+        <xs:sequence>
+          <xs:element name="referenceComment" type="xs:string" minOccurs="0"/>
+          <xs:element name="referenceId" type="xs:string" minOccurs="0"/>
+          <xs:element name="condition" type="tns:addressCheckConditionDTO" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="addressDTO" abstract="true">
+    <xs:sequence>
+      <xs:element name="addressType" type="xs:string" minOccurs="0"/>
+      <xs:element name="aliasGroupNo" type="xs:string" minOccurs="0"/>
+      <xs:element name="city" type="xs:string" minOccurs="0"/>
+      <xs:element name="cityOfBirth" type="xs:string" minOccurs="0"/>
+      <xs:element name="cityPostbox" type="xs:string" minOccurs="0"/>
+      <xs:element name="countryISO" type="xs:string" minOccurs="0"/>
+      <xs:element name="countryOfBirthISO" type="xs:string" minOccurs="0"/>
+      <xs:element name="dateOfBirth" type="xs:string" minOccurs="0"/>
+      <xs:element name="district" type="xs:string" minOccurs="0"/>
+      <xs:element name="email" type="xs:string" minOccurs="0"/>
+      <xs:element name="fax" type="xs:string" minOccurs="0"/>
+      <xs:element name="free1" type="xs:string" minOccurs="0"/>
+      <xs:element name="free2" type="xs:string" minOccurs="0"/>
+      <xs:element name="free3" type="xs:string" minOccurs="0"/>
+      <xs:element name="free4" type="xs:string" minOccurs="0"/>
+      <xs:element name="free5" type="xs:string" minOccurs="0"/>
+      <xs:element name="free6" type="xs:string" minOccurs="0"/>
+      <xs:element name="free7" type="xs:string" minOccurs="0"/>
+      <xs:element name="info" type="xs:string" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="name1" type="xs:string" minOccurs="0"/>
+      <xs:element name="name2" type="xs:string" minOccurs="0"/>
+      <xs:element name="name3" type="xs:string" minOccurs="0"/>
+      <xs:element name="name4" type="xs:string" minOccurs="0"/>
+      <xs:element name="nationalityISO" type="xs:string" minOccurs="0"/>
+      <xs:element name="niNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="passportData" type="xs:string" minOccurs="0"/>
+      <xs:element name="pc" type="xs:string" minOccurs="0"/>
+      <xs:element name="pcPostbox" type="xs:string" minOccurs="0"/>
+      <xs:element name="position" type="xs:string" minOccurs="0"/>
+      <xs:element name="postbox" type="xs:string" minOccurs="0"/>
+      <xs:element name="prenames" type="xs:string" minOccurs="0"/>
+      <xs:element name="street" type="xs:string" minOccurs="0"/>
+      <xs:element name="surname" type="xs:string" minOccurs="0"/>
+      <xs:element name="telNo" type="xs:string" minOccurs="0"/>
+      <xs:element name="title" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="addressCheckConditionDTO">
+    <xs:sequence>
+      <xs:element name="value" type="xs:string" minOccurs="0"/>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="matchParametersDTO">
+    <xs:sequence>
+      <xs:element name="checkType" type="xs:string" minOccurs="0"/>
+      <xs:element name="clientIdentCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="clientSystemId" type="xs:string" minOccurs="0"/>
+      <xs:element name="considerGoodGuys" type="xs:boolean"/>
+      <xs:element name="profileIdentCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="threshold" type="xs:int" minOccurs="0"/>
+      <xs:element name="suppressLogging" type="xs:boolean"/>
+      <xs:element name="userIdentification" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="batchMatchResponse">
+    <xs:sequence>
+      <xs:element name="result" type="tns:batchMatchResultDTO" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="batchMatchResultDTO">
+    <xs:sequence>
+      <xs:element name="matchFound" type="xs:boolean"/>
+      <xs:element name="referenceComment" type="xs:string" minOccurs="0"/>
+      <xs:element name="referenceId" type="xs:string" minOccurs="0"/>
+      <xs:element name="wasGoodGuy" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="defineGoodGuy">
+    <xs:sequence>
+      <xs:element name="goodGuy" type="tns:goodGuyAddressDTO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="goodGuyAddressDTO">
+    <xs:complexContent>
+      <xs:extension base="tns:addressDTO">
+        <xs:sequence>
+          <xs:element name="clientIdentCode" type="xs:string" minOccurs="0"/>
+          <xs:element name="clientSystemId" type="xs:string" minOccurs="0"/>
+          <xs:element name="isActive" type="xs:boolean" minOccurs="0"/>
+          <xs:element name="profileIdentCode" type="xs:string" minOccurs="0"/>
+          <xs:element name="referenceComment" type="xs:string" minOccurs="0"/>
+          <xs:element name="referenceId" type="xs:string" minOccurs="0"/>
+          <xs:element name="userIdentification" type="xs:string" minOccurs="0"/>
+          <xs:element name="condition" type="tns:goodGuyConditionDTO" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="goodGuyConditionDTO">
+    <xs:sequence>
+      <xs:element name="value" type="xs:string" minOccurs="0"/>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="defineGoodGuyResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="defineGoodGuyWithResult">
+    <xs:sequence>
+      <xs:element name="goodGuy" type="tns:goodGuyAddressDTO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="defineGoodGuyWithResultResponse">
+    <xs:sequence>
+      <xs:element name="result" type="tns:goodGuyDefinitionResultDTO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="goodGuyDefinitionResultDTO">
+    <xs:sequence>
+      <xs:element name="definitionResult" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAliasAddresses">
+    <xs:sequence>
+      <xs:element name="sourceAddress" type="tns:addressMatchDTO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="addressMatchDTO">
+    <xs:complexContent>
+      <xs:extension base="tns:addressDTO">
+        <xs:sequence>
+          <xs:element name="internalAddressId" type="xs:string" minOccurs="0"/>
+          <xs:element name="listGroupName" type="xs:string" minOccurs="0"/>
+          <xs:element name="listAbbreviation" type="xs:string" minOccurs="0"/>
+          <xs:element name="listName" type="xs:string" minOccurs="0"/>
+          <xs:element name="restrictionDate" type="xs:dateTime" minOccurs="0"/>
+          <xs:element name="restrictionSource" type="xs:string" minOccurs="0"/>
+          <xs:element name="restrictionType" type="xs:string" minOccurs="0"/>
+          <xs:element name="similarity" type="xs:int" minOccurs="0"/>
+          <xs:element name="sourceWebLink" type="xs:string" minOccurs="0"/>
+          <xs:element name="hasMoreDetails" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="getAliasAddressesResponse">
+    <xs:sequence>
+      <xs:element name="result" type="tns:addressMatchDTO" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAllProfilesForClient">
+    <xs:sequence>
+      <xs:element name="clientIdentCode" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAllProfilesForClientResponse">
+    <xs:sequence>
+      <xs:element name="result" type="tns:profileDTO" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="profileDTO">
+    <xs:sequence>
+      <xs:element name="identCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getLastTerrorListUpdate">
+    <xs:sequence>
+      <xs:element name="client" type="xs:string" minOccurs="0"/>
+      <xs:element name="profile" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getLastTerrorListUpdateResponse">
+    <xs:sequence>
+      <xs:element name="result" type="xs:dateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getMatchingAddresses">
+    <xs:sequence>
+      <xs:element name="pattern" type="tns:addressPatternDTO" minOccurs="0"/>
+      <xs:element name="parms" type="tns:matchParametersDTO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getMatchingAddressesResponse">
+    <xs:sequence>
+      <xs:element name="result" type="tns:addressMatchDTO" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="protocolClientSystemEvent">
+    <xs:sequence>
+      <xs:element name="event" type="tns:clientSystemComplianceEventDTO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="clientSystemComplianceEventDTO">
+    <xs:sequence>
+      <xs:element name="clientIdentCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="clientSystemId" type="xs:string" minOccurs="0"/>
+      <xs:element name="info" type="xs:string" minOccurs="0"/>
+      <xs:element name="level" type="xs:string" minOccurs="0"/>
+      <xs:element name="module" type="xs:string" minOccurs="0"/>
+      <xs:element name="profileIdentCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="referenceComment" type="xs:string" minOccurs="0"/>
+      <xs:element name="referenceId" type="xs:string" minOccurs="0"/>
+      <xs:element name="userIdentification" type="xs:string" minOccurs="0"/>
+      <xs:element name="happendAtDate" type="tns:dateAndZoneDTO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dateAndZoneDTO">
+    <xs:sequence>
+      <xs:element name="dateInTimezone" type="xs:string" minOccurs="0"/>
+      <xs:element name="timezone" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="protocolClientSystemEventResponse">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>

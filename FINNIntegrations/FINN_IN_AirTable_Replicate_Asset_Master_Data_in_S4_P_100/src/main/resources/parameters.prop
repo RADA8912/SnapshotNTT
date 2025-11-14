@@ -1,0 +1,37 @@
+#Fri Nov 14 06:21:39 UTC 2025
+HTTP_Method=GET
+HTTP_Address=http\://ps4adsonscp\:443/sap/opu/odata/sap/API_INTERNALORDER_SRV/A_InternalOrder
+Address=/IDoc/Send/P100
+HTTP_Authentication_AM=Basic
+iDoc_Authentication=Basic
+RFC_Confirm=0
+HTTP_Query=$filter\=InternalOrder eq '${in.body}'&sap-client\=100
+Sender_Method=GET
+HTTP_Method_AM=GET
+HTTP_Address_AM=http\://ps4adsonscp\:443/sap/opu/odata/sap/ZFI_ASSET_MASTER_GENERAL_SRV/ZC_Asset_Master_GeneralTP
+iDoc_ContentType=application/x-sap.idoc
+Sender_Proxy=default
+HTTP_Authentication=Basic
+HTTP_Exception=true
+iDoc_CompressMessage=
+iDoc_ResponseCode=0
+RFC_Create=1
+HTTP_Credentials=User_PS4CLNT100
+Start_Event=<row><cell>dayValue</cell><cell></cell></row><row><cell>monthValue</cell><cell></cell></row><row><cell>yearValue</cell><cell></cell></row><row><cell>dateType</cell><cell>DAILY</cell></row><row><cell>hourValue</cell><cell>03</cell></row><row><cell>minutesValue</cell><cell>30</cell></row><row><cell>timeType</cell><cell>ON_TIME</cell></row><row><cell>timeZone</cell><cell>( UTC 1\:00 ) Central European Time(Europe/Berlin)</cell></row><row><cell>throwExceptionOnExpiry</cell><cell>true</cell></row><row><cell>triggerType</cell><cell>cron</cell></row><row><cell>noOfSchedules</cell><cell>1</cell></row><row><cell>schedule1</cell><cell>0+30+3+?+*+*+*&amp;trigger.timeZone\=Europe/Berlin</cell></row>
+iDoc_ProxyType=sapcc
+Method_CDS=GET
+RFC_Destination=OnPremPS4Target100
+iDoc_Credentials=User_QS4CLNT110
+HTTP_Query_AM=$filter\=InventoryNumber eq '${property.Z_CAR_ID_DOWN.toUpperCase()}' and CompanyCode eq '${property.Z_COMPANY_CODE}'&sap-client\=100
+iDoc_Address=http\://qs4adsonscp\:443/sap/bc/srt/idoc?sap-client\=110
+iDoc_CleanUp=1
+Address_CDS=http\://qs4adsonscp\:443/sap/opu/odata/SAP/ZFI_ASSET_MASTER_GENERAL_SRV/ZC_Asset_Value_FieldsTP
+iDoc_Timeout=60000
+Proxy_CDS=sapcc
+Sender_Timeout=120000
+Query_CDS=$filter\=Bukrs eq '${property.Z_COMPANY_CODE}' and Anln1 eq '${property.Z_AssetNumber}' and Gjahr eq '${property.Z_BookingYear}'&sap-client\=400
+Sender_Authentication=None
+Sender_Query=offset\=${property.Offset}&from_ts\=${property.from_ts}&to_ts\=${property.to_ts}
+Sender_Failure=true
+Sender_Address=https\://finn-data-products.hasura.app/api/rest/cars_asset_master
+HTTP_Timeout=60000

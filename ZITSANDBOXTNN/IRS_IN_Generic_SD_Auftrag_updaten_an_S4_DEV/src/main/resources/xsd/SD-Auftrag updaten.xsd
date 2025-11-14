@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+	<xs:element name="A_SalesOrder">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="General">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="CreationDate" type="xs:dateTime"/>
+							<xs:element minOccurs="0" name="CreatedByUser" type="xs:string"/>
+							<xs:element minOccurs="0" name="LastChangeDate" type="xs:dateTime"/>
+							<xs:element minOccurs="0" name="DataOrigin" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Header">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="SalesOrder" type="xs:string"/>
+							<xs:element minOccurs="0" name="SalesOrderType" type="xs:string"/>
+							<xs:element minOccurs="0" name="SalesOrganization" type="xs:short"/>
+							<xs:element minOccurs="0" name="DistributionChannel" type="xs:byte"/>
+							<xs:element minOccurs="0" name="OrganizationDivision" type="xs:byte"/>
+							<xs:element minOccurs="0" name="SoldToParty" type="xs:int"/>
+							<xs:element minOccurs="0" name="CustomerPurchaseOrderDate" type="xs:dateTime"/>
+							<xs:element minOccurs="0" name="CustomerPaymentTerms" type="xs:byte"/>
+							<xs:element minOccurs="0" name="PurchaseOrderByCustomer" type="xs:string"/>
+							<xs:element minOccurs="0" name="AdditionalCustomerGroup1" type="xs:string"/>
+							<xs:element minOccurs="0" name="AdditionalCustomerGroup2" type="xs:string"/>
+							<xs:element minOccurs="0" name="AdditionalCustomerGroup3" type="xs:string"/>
+							<xs:element minOccurs="0" name="ClaimNumber" type="xs:string"/>
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="to_Text">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="LongTextID" type="xs:string"/>
+										<xs:element name="LongText" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="to_Partner">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="PartnerFunction" type="xs:string"/>
+										<xs:element name="Customer" type="xs:int"/>
+										<xs:element minOccurs="0" name="Supplier" type="xs:long"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="IRS_ZFields" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element type="xs:string" name="Manufacturer" minOccurs="0"/>
+										<xs:element type="xs:string" name="Model" minOccurs="0"/>
+										<xs:element type="xs:string" name="LicencePlate" minOccurs="0"/>
+										<xs:element type="xs:string" name="VIN" minOccurs="0"/>
+										<xs:element type="xs:string" name="InspectionDate" minOccurs="0"/>
+										<xs:element type="xs:string" name="InspectionTime" minOccurs="0"/>
+										<xs:element type="xs:string" name="StartRepairDate" minOccurs="0"/>
+										<xs:element type="xs:string" name="StartRepairTime" minOccurs="0"/>
+										<xs:element type="xs:string" name="DeliveryDate" minOccurs="0"/>
+										<xs:element type="xs:string" name="DeliveryTime" minOccurs="0"/>
+										<xs:element type="xs:string" name="CompletionDate" minOccurs="0"/>
+										<xs:element type="xs:string" name="CompletionTime" minOccurs="0"/>
+										<xs:element type="xs:string" name="ShipmentDate" minOccurs="0"/>
+										<xs:element type="xs:string" name="ShipmentTime" minOccurs="0"/>
+										<xs:element type="xs:string" name="Towing" minOccurs="0"/>
+										<xs:element type="xs:string" name="Pick-Up" minOccurs="0"/>
+										<xs:element type="xs:string" name="ReplacementCar" minOccurs="0"/>
+										<xs:element type="xs:string" name="Insurance" minOccurs="0"/>
+										<xs:element type="xs:string" name="DamageType" minOccurs="0"/>
+										<xs:element type="xs:string" name="DistrIntermediary1" minOccurs="0"/>
+										<xs:element type="xs:string" name="DistrIntermediary2" minOccurs="0"/>
+										<xs:element type="xs:string" name="ClaimNumber" minOccurs="0"/>
+										<xs:element type="xs:string" name="DunningArea" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="Items">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="Deductible" type="xs:short"/>
+							<xs:element minOccurs="0" name="IsPreTax" type="xs:string"/>
+							<xs:element minOccurs="0" name="PreTax" type="xs:short"/>
+							<xs:element minOccurs="0" name="SpecialPayment" type="xs:short"/>
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="to_Item">
+								<xs:complexType>
+									<xs:choice maxOccurs="unbounded" minOccurs="0">
+										<xs:element name="SalesOrderItem" type="xs:short"/>
+										<xs:element name="Material" type="xs:string"/>
+										<xs:element name="HigherLevelItem" type="xs:byte"/>
+										<xs:element name="RequestedQuantity" type="xs:short"/>
+										<xs:element name="AdditionalMaterialGroup1" type="xs:byte"/>
+										<xs:element name="AdditionalMaterialGroup2" type="xs:byte"/>
+										<xs:element name="ProfitCenter" type="xs:int"/>
+										<xs:element name="RequestedQuantityUnit" type="xs:string"/>
+										<xs:element type="xs:string" name="SalesOrderItemText"/>
+										<xs:element type="xs:string" name="Manufacturer" minOccurs="0"/>
+										<xs:element type="xs:string" name="Model" minOccurs="0"/>
+										<xs:element type="xs:string" name="LicencePlate" minOccurs="0"/>
+										<xs:element type="xs:string" name="VIN" minOccurs="0"/>
+										<xs:element name="to_PricingElement">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="ConditionType" type="xs:string"/>
+													<xs:element name="ConditionRateValue" type="xs:float"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="to_Partner">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="PartnerFunction" type="xs:string"/>
+													<xs:element minOccurs="0" name="Customer" type="xs:long"/>
+													<xs:element minOccurs="0" name="Supplier" type="xs:long"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element minOccurs="0" name="to_Text">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="LongTextID" type="xs:byte"/>
+													<xs:element name="LongText" type="xs:string"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           xmlns:atom="http://www.w3.org/2005/Atom"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+           xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+           targetNamespace="http://www.w3.org/2005/Atom"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+    <!-- Definition of atom:feed element -->
+    <xs:element name="feed">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="title" type="atom:titleType"/>
+                <xs:element name="updated" type="xs:dateTime"/>
+                <xs:element name="author" type="atom:authorType"/>
+                <xs:element name="link" type="atom:linkType"/>
+                <xs:element name="entry" type="atom:entryType" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="base" type="xs:anyURI" use="optional" form="qualified"/>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Definition of title element -->
+    <xs:complexType name="titleType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="type" type="xs:string" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
+    <!-- Definition of author element -->
+    <xs:complexType name="authorType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Definition of link element -->
+    <xs:complexType name="linkType">
+        <xs:attribute name="href" type="xs:string" use="required"/>
+        <xs:attribute name="rel" type="xs:string" use="optional"/>
+        <xs:attribute name="title" type="xs:string" use="optional"/>
+    </xs:complexType>
+
+    <!-- Definition of entry element -->
+    <xs:complexType name="entryType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:anyURI"/>
+            <xs:element name="title" type="atom:titleType"/>
+            <xs:element name="updated" type="xs:dateTime"/>
+            <xs:element name="category" type="atom:categoryType"/>
+            <xs:element name="link" type="atom:linkType"/>
+            <xs:element name="content" type="atom:contentType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Definition of category element -->
+    <xs:complexType name="categoryType">
+        <xs:attribute name="term" type="xs:string" use="required"/>
+        <xs:attribute name="scheme" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <!-- Definition of content element -->
+    <xs:complexType name="contentType">
+        <xs:sequence>
+            <xs:element name="properties" type="m:propertiesType" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"/>
+        </xs:sequence>
+        <xs:attribute name="type" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <!-- Definition of m:properties element -->
+    <xs:complexType name="propertiesType">
+        <xs:sequence>
+            <xs:element name="InspectionLot" type="xs:string"/>
+            <xs:element name="HandlingUnit" type="xs:string"/>
+            <xs:element name="Machine" type="xs:string" minOccurs="0"/>
+            <xs:element name="Material" type="xs:string"/>
+            <xs:element name="Batch" type="xs:string" minOccurs="0"/>
+            <xs:element name="ManufacturingOrder" type="xs:string" minOccurs="0"/>
+            <xs:element name="NetWeightTotal" type="xs:decimal"/>
+            <xs:element name="WeightUnit" type="xs:string"/>
+            <xs:element name="CreatedOn" type="xs:dateTime"/>
+            <xs:element name="CreatedOnTime" type="xs:duration"/>
+            <xs:element name="CreatedOnTimestamp" type="xs:string"/>
+            <xs:element name="CreatedOnYearMonth" type="xs:string"/>
+            <xs:element name="MaterialText" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,140 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZFPL_ORDER_DATA_SRV" xml:lang="de" sap:schema-version="1">
+            <EntityType Name="OrderHeader" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="OrderNo"/>
+                </Key>
+                <Property Name="OrderNo" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="YourOrderNo" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrderDate" Type="Edm.DateTime" Nullable="true" Precision="0" sap:unicode="false" sap:label="Zeitstempel" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrderDateFrom" Type="Edm.DateTime" Nullable="true" Precision="0" sap:unicode="false" sap:label="Datum von" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrderDateTo" Type="Edm.DateTime" Nullable="true" Precision="0" sap:unicode="false" sap:label="Datum bis" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CustomerNo" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CustomerName" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DispatchDate" Type="Edm.DateTime" Nullable="true" Precision="0" sap:unicode="false" sap:label="Zeitstempel" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EstArrivalDate" Type="Edm.DateTime" Nullable="true" Precision="0" sap:unicode="false" sap:label="Zeitstempel" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrderStatus" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrderStatusText" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DespatchMode" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GoodsRecipientName" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CustomerStreet" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CustomerStreetNo" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CustomerCity" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CustomerCounty" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CustomerPostalcode" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DeliveryData" Type="Edm.DateTime" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShipmentType" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShipmentTypeName" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PartialDelivery" Type="Edm.Boolean" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ToItems" Relationship="ZFPL_ORDER_DATA_SRV.OrderToItems" FromRole="FromRole_OrderToItems" ToRole="ToRole_OrderToItems"/>
+                <NavigationProperty Name="ToDocument" Relationship="ZFPL_ORDER_DATA_SRV.OrderToDocument" FromRole="FromRole_OrderToDocument" ToRole="ToRole_OrderToDocument"/>
+            </EntityType>
+            <EntityType Name="OrderItem" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="OrderNo"/>
+                    <PropertyRef Name="OrderItemNo"/>
+                </Key>
+                <Property Name="OrderNo" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrderItemNo" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="YourOrderNo" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="YourOrderItemNo" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Item" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ItemDesignation" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Quantity" Type="Edm.Decimal" Nullable="true" Precision="31" Scale="0" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DeliveryNote" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DispatchDate" Type="Edm.DateTime" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EstArrivalDate" Type="Edm.DateTime" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrderStatus" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrderStatusText" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PartialDelivery" Type="Edm.Boolean" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="OrderDocument" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="OrderNo"/>
+                    <PropertyRef Name="DocumentNo"/>
+                </Key>
+                <Property Name="OrderNo" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DocumentNo" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name" Type="Edm.String" Nullable="true" Precision="0" sap:unicode="false" sap:label="Zeitstempel" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Date" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Type" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Url" Type="Edm.String" Nullable="true" Precision="0" sap:unicode="false" sap:label="Zeitstempel" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="File" Type="Edm.Binary" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="CustomerF4" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CustomerNo"/>
+                </Key>
+                <Property Name="CustomerNo" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CustomerName" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ShipmentTypeF4" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ShipmentType"/>
+                </Key>
+                <Property Name="ShipmentType" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShipmentTypeName" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="OrderStatusF4" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="OrderStatus"/>
+                </Key>
+                <Property Name="OrderStatus" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrderStatusText" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="DespatchModeF4" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DespatchMode"/>
+                </Key>
+                <Property Name="DespatchMode" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DespatchModeName" Type="Edm.String" Nullable="true" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="OrderToDocument" sap:content-version="1">
+                <End Type="ZFPL_ORDER_DATA_SRV.OrderHeader" Multiplicity="1" Role="FromRole_OrderToDocument"/>
+                <End Type="ZFPL_ORDER_DATA_SRV.OrderDocument" Multiplicity="*" Role="ToRole_OrderToDocument"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_OrderToDocument">
+                        <PropertyRef Name="OrderNo"/>
+                    </Principal>
+                    <Dependent Role="ToRole_OrderToDocument">
+                        <PropertyRef Name="OrderNo"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="OrderToItems" sap:content-version="1">
+                <End Type="ZFPL_ORDER_DATA_SRV.OrderHeader" Multiplicity="1" Role="FromRole_OrderToItems"/>
+                <End Type="ZFPL_ORDER_DATA_SRV.OrderItem" Multiplicity="*" Role="ToRole_OrderToItems"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_OrderToItems">
+                        <PropertyRef Name="OrderNo"/>
+                    </Principal>
+                    <Dependent Role="ToRole_OrderToItems">
+                        <PropertyRef Name="OrderNo"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZFPL_ORDER_DATA_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="OrderHeaderSet" EntityType="ZFPL_ORDER_DATA_SRV.OrderHeader" sap:creatable="false" sap:updatable="true" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="OrderItemSet" EntityType="ZFPL_ORDER_DATA_SRV.OrderItem" sap:creatable="true" sap:updatable="true" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="OrderDocumentSet" EntityType="ZFPL_ORDER_DATA_SRV.OrderDocument" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="CustomerF4Set" EntityType="ZFPL_ORDER_DATA_SRV.CustomerF4" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ShipmentTypeF4Set" EntityType="ZFPL_ORDER_DATA_SRV.ShipmentTypeF4" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="OrderStatusF4Collection" EntityType="ZFPL_ORDER_DATA_SRV.OrderStatusF4" sap:content-version="1"/>
+                <EntitySet Name="DespatchModeF4Set" EntityType="ZFPL_ORDER_DATA_SRV.DespatchModeF4" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="OrderToItemsSet" Association="ZFPL_ORDER_DATA_SRV.OrderToItems" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="OrderHeaderSet" Role="FromRole_OrderToItems"/>
+                    <End EntitySet="OrderItemSet" Role="ToRole_OrderToItems"/>
+                </AssociationSet>
+                <AssociationSet Name="OrderToDocumentSet" Association="ZFPL_ORDER_DATA_SRV.OrderToDocument" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="OrderHeaderSet" Role="FromRole_OrderToDocument"/>
+                    <End EntitySet="OrderDocumentSet" Role="ToRole_OrderToDocument"/>
+                </AssociationSet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

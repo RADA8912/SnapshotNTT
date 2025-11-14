@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="GenericData" type="GenericData"/>
+	<xsd:complexType name="GenericData">
+		<xsd:sequence>
+			<xsd:element name="Header" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Header</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ID" type="xsd:string" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>ID</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="Test" type="xsd:string" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Test</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="Prepared" type="xsd:string" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Prepared</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="Sender">
+							<xsd:annotation>
+								<xsd:documentation>Sender</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:simpleContent>
+									<xsd:extension base="xsd:string">
+										<xsd:attribute name="id" type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation>id</xsd:documentation>
+											</xsd:annotation>
+										</xsd:attribute>
+									</xsd:extension>
+								</xsd:simpleContent>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Receiver">
+							<xsd:annotation>
+								<xsd:documentation>Receiver</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:simpleContent>
+									<xsd:extension base="xsd:string">
+										<xsd:attribute name="id" type="xsd:string">
+											<xsd:annotation>
+												<xsd:documentation>id</xsd:documentation>
+											</xsd:annotation>
+										</xsd:attribute>
+									</xsd:extension>
+								</xsd:simpleContent>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Structure">
+							<xsd:annotation>
+								<xsd:documentation>Structure</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="StructureUsage" minOccurs="0" maxOccurs="unbounded">
+										<xsd:annotation>
+											<xsd:documentation>StructureUsage</xsd:documentation>
+										</xsd:annotation>
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:element name="Ref" minOccurs="0">
+													<xsd:annotation>
+														<xsd:documentation>Ref</xsd:documentation>
+													</xsd:annotation>
+													<xsd:complexType>
+														<xsd:simpleContent>
+															<xsd:extension base="xsd:string">
+																<xsd:attribute name="agencyID" type="xsd:string">
+																	<xsd:annotation>
+																		<xsd:documentation>agencyID</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:attribute>
+																<xsd:attribute name="id" type="xsd:string">
+																	<xsd:annotation>
+																		<xsd:documentation>id</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:attribute>
+																<xsd:attribute name="version" type="xsd:string">
+																	<xsd:annotation>
+																		<xsd:documentation>version</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:attribute>
+															</xsd:extension>
+														</xsd:simpleContent>
+													</xsd:complexType>
+												</xsd:element>
+											</xsd:sequence>
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+								<xsd:attribute name="structureID" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>structureID</xsd:documentation>
+									</xsd:annotation>
+								</xsd:attribute>
+								<xsd:attribute name="dimensionAtObservation" type="xsd:string">
+									<xsd:annotation>
+										<xsd:documentation>dimensionAtObservation</xsd:documentation>
+									</xsd:annotation>
+								</xsd:attribute>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="DataSetAction" type="xsd:string" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>DataSetAction</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="Extracted" type="xsd:string" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Extracted</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="ReportingBegin" type="xsd:string" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>ReportingBegin</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="ReportingEnd" type="xsd:string" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>ReportingEnd</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="DataSet" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>DataSet</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Series" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Series</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="SeriesKey" minOccurs="0">
+										<xsd:annotation>
+											<xsd:documentation>SeriesKey</xsd:documentation>
+										</xsd:annotation>
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:element name="Value" minOccurs="0" maxOccurs="unbounded">
+													<xsd:annotation>
+														<xsd:documentation>Value</xsd:documentation>
+													</xsd:annotation>
+													<xsd:complexType>
+														<xsd:simpleContent>
+															<xsd:extension base="xsd:string">
+																<xsd:attribute name="id" type="xsd:string">
+																	<xsd:annotation>
+																		<xsd:documentation>id</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:attribute>
+																<xsd:attribute name="value" type="xsd:string">
+																	<xsd:annotation>
+																		<xsd:documentation>value</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:attribute>
+															</xsd:extension>
+														</xsd:simpleContent>
+													</xsd:complexType>
+												</xsd:element>
+											</xsd:sequence>
+										</xsd:complexType>
+									</xsd:element>
+									<xsd:element name="Attributes" minOccurs="0">
+										<xsd:annotation>
+											<xsd:documentation>Attributes</xsd:documentation>
+										</xsd:annotation>
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:element name="Value" minOccurs="0" maxOccurs="unbounded">
+													<xsd:annotation>
+														<xsd:documentation>Value</xsd:documentation>
+													</xsd:annotation>
+													<xsd:complexType>
+														<xsd:simpleContent>
+															<xsd:extension base="xsd:string">
+																<xsd:attribute name="id" type="xsd:string">
+																	<xsd:annotation>
+																		<xsd:documentation>id</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:attribute>
+																<xsd:attribute name="value" type="xsd:string">
+																	<xsd:annotation>
+																		<xsd:documentation>value</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:attribute>
+															</xsd:extension>
+														</xsd:simpleContent>
+													</xsd:complexType>
+												</xsd:element>
+											</xsd:sequence>
+										</xsd:complexType>
+									</xsd:element>
+									<xsd:element name="Obs" minOccurs="0">
+										<xsd:annotation>
+											<xsd:documentation>Obs</xsd:documentation>
+										</xsd:annotation>
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:element name="ObsDimension" minOccurs="0">
+													<xsd:annotation>
+														<xsd:documentation>ObsDimension</xsd:documentation>
+													</xsd:annotation>
+													<xsd:complexType>
+														<xsd:simpleContent>
+															<xsd:extension base="xsd:string">
+																<xsd:attribute name="value" type="xsd:string">
+																	<xsd:annotation>
+																		<xsd:documentation>value</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:attribute>
+															</xsd:extension>
+														</xsd:simpleContent>
+													</xsd:complexType>
+												</xsd:element>
+												<xsd:element name="ObsValue" minOccurs="0">
+													<xsd:annotation>
+														<xsd:documentation>ObsValue</xsd:documentation>
+													</xsd:annotation>
+													<xsd:complexType>
+														<xsd:simpleContent>
+															<xsd:extension base="xsd:string">
+																<xsd:attribute name="value" type="xsd:string">
+																	<xsd:annotation>
+																		<xsd:documentation>value</xsd:documentation>
+																	</xsd:annotation>
+																</xsd:attribute>
+															</xsd:extension>
+														</xsd:simpleContent>
+													</xsd:complexType>
+												</xsd:element>
+											</xsd:sequence>
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="structureRef" type="xsd:string">
+						<xsd:annotation>
+							<xsd:documentation>structureRef</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

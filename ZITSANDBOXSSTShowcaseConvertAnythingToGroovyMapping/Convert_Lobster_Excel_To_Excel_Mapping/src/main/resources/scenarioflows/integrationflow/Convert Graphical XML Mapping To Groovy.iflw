@@ -1,0 +1,2775 @@
+<?xml version="1.0" encoding="UTF-8"?><bpmn2:definitions xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:ifl="http:///com.sap.ifl.model/Ifl.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1">
+    <bpmn2:collaboration id="Collaboration_1" name="Default Collaboration">
+        <bpmn2:extensionElements>
+            <ifl:property>
+                <key>namespaceMapping</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>httpSessionHandling</key>
+                <value>None</value>
+            </ifl:property>
+            <ifl:property>
+                <key>accessControlMaxAge</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>returnExceptionToSender</key>
+                <value>false</value>
+            </ifl:property>
+            <ifl:property>
+                <key>log</key>
+                <value>All events</value>
+            </ifl:property>
+            <ifl:property>
+                <key>corsEnabled</key>
+                <value>false</value>
+            </ifl:property>
+            <ifl:property>
+                <key>exposedHeaders</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>componentVersion</key>
+                <value>1.2</value>
+            </ifl:property>
+            <ifl:property>
+                <key>allowedHeaderList</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>ServerTrace</key>
+                <value>false</value>
+            </ifl:property>
+            <ifl:property>
+                <key>allowedOrigins</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>accessControlAllowCredentials</key>
+                <value>false</value>
+            </ifl:property>
+            <ifl:property>
+                <key>allowedHeaders</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>allowedMethods</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>cmdVariantUri</key>
+                <value>ctype::IFlowVariant/cname::IFlowConfiguration/version::1.2.4</value>
+            </ifl:property>
+        </bpmn2:extensionElements>
+        <bpmn2:participant id="Participant_Process_1" ifl:type="IntegrationProcess" name="Converter EDI to IDoc" processRef="Process_1">
+            <bpmn2:extensionElements/>
+        </bpmn2:participant>
+        <bpmn2:participant id="Participant_Process_19" ifl:type="IntegrationProcess" name="Converter IDoc to EDI" processRef="Process_19">
+            <bpmn2:extensionElements/>
+        </bpmn2:participant>
+    </bpmn2:collaboration>
+    <bpmn2:process id="Process_1" name="Converter EDI to IDoc">
+        <bpmn2:extensionElements>
+            <ifl:property>
+                <key>transactionTimeout</key>
+                <value>30</value>
+            </ifl:property>
+            <ifl:property>
+                <key>componentVersion</key>
+                <value>1.2</value>
+            </ifl:property>
+            <ifl:property>
+                <key>cmdVariantUri</key>
+                <value>ctype::FlowElementVariant/cname::IntegrationProcess/version::1.2.1</value>
+            </ifl:property>
+            <ifl:property>
+                <key>transactionalHandling</key>
+                <value>Not Required</value>
+            </ifl:property>
+        </bpmn2:extensionElements>
+        <bpmn2:callActivity id="CallActivity_4" name="Convert Lobster Excel To Excel Mapping">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>scriptFunction</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>scriptBundleId</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.1</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>activityType</key>
+                    <value>Script</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::GroovyScript/version::1.1.2</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>subActivityType</key>
+                    <value>GroovyScript</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>script</key>
+                    <value>ConvertLobsterToExcel.groovy</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_8</bpmn2:incoming>
+            <bpmn2:outgoing>SequenceFlow_5</bpmn2:outgoing>
+        </bpmn2:callActivity>
+        <bpmn2:endEvent id="EndEvent_2" name="End">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.1</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::MessageEndEvent/version::1.1.0</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_5</bpmn2:incoming>
+            <bpmn2:messageEventDefinition/>
+        </bpmn2:endEvent>
+        <bpmn2:callActivity id="CallActivity_7" name="Set Excel Content">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>bodyType</key>
+                    <value>constant</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>propertyTable</key>
+                    <value>&lt;row&gt;&lt;cell id='Action'&gt;Create&lt;/cell&gt;&lt;cell id='Type'&gt;constant&lt;/cell&gt;&lt;cell id='Value'&gt;true&lt;/cell&gt;&lt;cell id='Default'&gt;&lt;/cell&gt;&lt;cell id='Name'&gt;ediToIdoc&lt;/cell&gt;&lt;cell id='Datatype'&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell id='Action'&gt;Create&lt;/cell&gt;&lt;cell id='Type'&gt;constant&lt;/cell&gt;&lt;cell id='Value'&gt;ORDERS05&lt;/cell&gt;&lt;cell id='Default'&gt;&lt;/cell&gt;&lt;cell id='Name'&gt;idocType&lt;/cell&gt;&lt;cell id='Datatype'&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell id='Action'&gt;Create&lt;/cell&gt;&lt;cell id='Type'&gt;constant&lt;/cell&gt;&lt;cell id='Value'&gt;M_ORDERS&lt;/cell&gt;&lt;cell id='Default'&gt;&lt;/cell&gt;&lt;cell id='Name'&gt;ediType&lt;/cell&gt;&lt;cell id='Datatype'&gt;&lt;/cell&gt;&lt;/row&gt;</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>headerTable</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>wrapContent</key>
+                    <value>Type	Path	Description	Remark	Iteration/fix value	Mapped to source	Calculation field	Functions
+Field	/init/reset_ST					true	Filter: save variable a(b) type-safe
+							a='var__ST_vorhanden'
+							b='0'
+							Filter: save variable a(b) type-safe
+							a='var__EMPF'
+							b=''
+Field	/init/Anzeige1				/BGM/C106/F1004	true	Filter: set display column(a,b,c)
+							a='F1004'
+							b='1'
+							c=''
+Field	/init/set_RENR				/BGM/C106/F1004	true	Filter: save variable a(b) type-safe
+							a='var__RENR'
+							b='F1004'
+Node	/init/check_ST			NAD		false	Filter: a equals b
+							a='F3035'
+							b='ST'
+Field	/init/check_ST/calc_ST					true	Filter: save variable a(b) type-safe
+							a='var__ST_vorhanden'
+							b='1'
+Node	/init/ceck_Einmalkunde			SG2		false	Filter: a equals b
+							a='F3035'
+							b='WS'
+Field	/init/ceck_Einmalkunde/calc_Einmalkunde				/SG2/NAD/C082/F3039	true	Filter: replace value(a, csv b, column c, default d, [encoding e, key column f, delimiter g])
+							a='F3039'
+							b='./conf/sanitaerheinze/SanitaerHeinze_ILN.csv'
+							c='6'
+							d='F3039'
+							e=''
+							f='2'
+							g=';'
+							Filter: save variable a(b) type-safe
+							a='var__Einmalkunde'
+							b='1'
+Field	/EDI_DC40/EDI_DC40_FIELDS/D-TABNAM			EDI_DC40		false	
+Field	/EDI_DC40/EDI_DC40_FIELDS/D-MANDT					false	Filter: save variable a(b) type-safe
+							a='SYS_MANDT'
+							b=''
+Field	/EDI_DC40/EDI_DC40_FIELDS/D-DOCNUM					false	Filter: save variable a(b) type-safe
+							a='SYS_DOCNUM'
+							b=''
+Field	/EDI_DC40/EDI_DC40_FIELDS/D-DOCREL			731 		false	
+Field	/EDI_DC40/EDI_DC40_FIELDS/D-DIRECT			2		false	
+Field	/EDI_DC40/EDI_DC40_FIELDS/D-IDOCTYP			ORDERS05		false	
+Field	/EDI_DC40/EDI_DC40_FIELDS/D-MESTYP			ORDERS		false	
+Field	/EDI_DC40/EDI_DC40_FIELDS/D-SNDPOR			LOBSTER		false	
+Field	/EDI_DC40/EDI_DC40_FIELDS/D-SNDPRT			KU		false	
+Field	/EDI_DC40/EDI_DC40_FIELDS/D-SNDPFC			AG		false	
+Field	/EDI_DC40/EDI_DC40_FIELDS/D-SNDPRN				/UNB/S002/F0004	false	Filter: replace value(a, csv b, column c, default d, [encoding e, key column f, delimiter g])
+							a='F0004'
+							b='./conf/sanitaerheinze/SanitaerHeinze_ILN.csv'
+							c='1'
+							d='F0004'
+							e=''
+							f='2'
+							g=';'
+Field	/EDI_DC40/EDI_DC40_FIELDS/D-RCVPOR					false	Filter: copy(field/value/variable)
+							a='%SAP_RCVPOR%'
+Field	/EDI_DC40/EDI_DC40_FIELDS/D-RCVPRT			LI		false	
+Field	/EDI_DC40/EDI_DC40_FIELDS/D-RCVPFC			LF		false	
+Field	/EDI_DC40/EDI_DC40_FIELDS/D-RCVPRN			KESSEL		false	
+Field	/EDI_DC40/EDI_DC40_FIELDS/D-CREDAT					false	Filter: now()
+Field	/EDI_DC40/EDI_DC40_FIELDS/D-CRETIM					false	Filter: now()
+Field	/EDI_DC40/EDI_DC40_FIELDS/D-REFINT				/BGM/C106/F1004	false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-Header-E2EDK01005			E2EDK01005		false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-E2EDK01005-MANDT					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-E2EDK01005-DOCNUM					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-E2EDK01005-SEGNUM					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_1'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-E2EDK01005-PSGNUM			0		false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-E2EDK01005-HLEVEL			1		false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-ACTION	Aktionscode, der die gesamte EDI-Nachricht betrifft.				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-KZABS	Kennzeichen für Auftragsbestätigungspflicht				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-CURCY	Währung				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-HWAER	EDI-Hauswährung				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-WKURS	Währungskurs				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-ZTERM	Zahlungsbedingungsschlüssel				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-KUNDEUINR	Umsatzsteuer-Identifikationsnummer				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-EIGENUINR	Umsatzsteuer-Identifikationsnummer				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-BSART	Belegart		DFUE		false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-BELNR	IDOC Belegnummer			/BGM/C106/F1004	false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-NTGEW	Nettogewicht				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-BRGEW	Nettogewicht				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-GEWEI	Gewichtseinheit				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-FKART_RL	Rechnungslistenart				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-ABLAD	Abladestelle				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-BSTZD	Bestell-Nummer-Zusatz des Kunden				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-VSART	Versandbedingung			/SG9/TDT/C220/F8067	false	Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='F8067'
+							b='3,50,51,90'
+							c='01,03,04,05'
+							d='01'
+							e=''
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-VSART_BEZ	Bezeichnung der Versandart				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-RECIPNT_NO	Nummer des Empfängers (für Steuerung über ALE-Modell)				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-KZAZU	Kennzeichen Auftragszusammenführung				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-AUTLF	Vollieferung pro Auftrag vorgeschrieben ?				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-AUGRU	Auftragsgrund (Grund des Vorgangs)				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-AUGRU_BEZ	Bezeichnung				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-ABRVW	Verwendungskennzeichen				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-ABRVW_BEZ	Bezeichnung				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-FKTYP	Fakturatyp				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-LIFSK	Lieferscheinsperre Belegkopf				false	Filter: mark for future value(a)
+							a='LIFSK'
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-LIFSK_BEZ	Bezeichnung				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-EMPST	Empfangsstelle			/BGM/C002/F1001	false	Filter: save variable a(b) type-safe
+							a='var__EMPF'
+							b='F1001'
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-ABTNR	Abteilungsnummer				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-DELCO	vereinbarte Lieferzeit				false	
+Field	/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/D-WKURS_M	Mengennotierter Kurs in einem IDoc-Segment				false	
+Field	/EDI_DC40/E2EDK14#006/E2EDK14_FIELDS#1117/D-Header-E2EDK14#1118			E2EDK14		false	
+Field	/EDI_DC40/E2EDK14#006/E2EDK14_FIELDS#1117/D-E2EDK14-MANDT#1119					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDK14#006/E2EDK14_FIELDS#1117/D-E2EDK14-DOCNUM#1120					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDK14#006/E2EDK14_FIELDS#1117/D-E2EDK14-SEGNUM#1121					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_2'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDK14#006/E2EDK14_FIELDS#1117/D-E2EDK14-PSGNUM#1122			0		false	
+Field	/EDI_DC40/E2EDK14#006/E2EDK14_FIELDS#1117/D-E2EDK14-HLEVEL#1123			2		false	
+Field	/EDI_DC40/E2EDK14#006/E2EDK14_FIELDS#1117/D-QUALF#1124	IDOC Qualifier Organisation		006		false	
+Field	/EDI_DC40/E2EDK14#006/E2EDK14_FIELDS#1117/D-ORGID#1125	IDOC Organisation		01		false	
+Field	/EDI_DC40/E2EDK14#007/E2EDK14_FIELDS#1107/D-Header-E2EDK14#1108			E2EDK14		false	
+Field	/EDI_DC40/E2EDK14#007/E2EDK14_FIELDS#1107/D-E2EDK14-MANDT#1109					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDK14#007/E2EDK14_FIELDS#1107/D-E2EDK14-DOCNUM#1110					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDK14#007/E2EDK14_FIELDS#1107/D-E2EDK14-SEGNUM#1111					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_2'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDK14#007/E2EDK14_FIELDS#1107/D-E2EDK14-PSGNUM#1112			0		false	
+Field	/EDI_DC40/E2EDK14#007/E2EDK14_FIELDS#1107/D-E2EDK14-HLEVEL#1113			2		false	
+Field	/EDI_DC40/E2EDK14#007/E2EDK14_FIELDS#1107/D-QUALF#1114	IDOC Qualifier Organisation		007		false	
+Field	/EDI_DC40/E2EDK14#007/E2EDK14_FIELDS#1107/D-ORGID#1115	IDOC Organisation				false	Filter: a == b ? c : d
+							a='var__Einmalkunde'
+							b='ETAUS'
+							c='04'
+							d='01'
+Field	/EDI_DC40/E2EDK14#008/E2EDK14_FIELDS/D-Header-E2EDK14			E2EDK14		false	
+Field	/EDI_DC40/E2EDK14#008/E2EDK14_FIELDS/D-E2EDK14-MANDT					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDK14#008/E2EDK14_FIELDS/D-E2EDK14-DOCNUM					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDK14#008/E2EDK14_FIELDS/D-E2EDK14-SEGNUM					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_2'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDK14#008/E2EDK14_FIELDS/D-E2EDK14-PSGNUM			0		false	
+Field	/EDI_DC40/E2EDK14#008/E2EDK14_FIELDS/D-E2EDK14-HLEVEL			2		false	
+Field	/EDI_DC40/E2EDK14#008/E2EDK14_FIELDS/D-QUALF	IDOC Qualifier Organisation		008		false	
+Field	/EDI_DC40/E2EDK14#008/E2EDK14_FIELDS/D-ORGID	IDOC Organisation		0001		false	
+Field	/EDI_DC40/E2EDK03#IdocDTM/E2EDK03_FIELDS#1127/D-Header-E2EDK03#1128			E2EDK03		false	
+Field	/EDI_DC40/E2EDK03#IdocDTM/E2EDK03_FIELDS#1127/D-E2EDK03-MANDT#1129					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDK03#IdocDTM/E2EDK03_FIELDS#1127/D-E2EDK03-DOCNUM#1130					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDK03#IdocDTM/E2EDK03_FIELDS#1127/D-E2EDK03-SEGNUM#1131					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_2'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDK03#IdocDTM/E2EDK03_FIELDS#1127/D-E2EDK03-PSGNUM#1132			0		false	
+Field	/EDI_DC40/E2EDK03#IdocDTM/E2EDK03_FIELDS#1127/D-E2EDK03-HLEVEL#1133			2		false	
+Field	/EDI_DC40/E2EDK03#IdocDTM/E2EDK03_FIELDS#1127/D-IDDAT#1134	Qualifier Datumssegment IDOC		011		false	
+Field	/EDI_DC40/E2EDK03#IdocDTM/E2EDK03_FIELDS#1127/D-DATUM#1135	IDOC: Datum				false	Filter: now()
+Field	/EDI_DC40/E2EDK03#IdocDTM/E2EDK03_FIELDS#1127/D-UZEIT#1136	IDOC: Uhrzeit				false	
+Node	/EDI_DC40/E2EDK03#Belegdatum	IDOC: Belegkopf Datumssegment		DTM		false	Filter: a equals b
+							a='F2005'
+							b='4'
+Field	/EDI_DC40/E2EDK03#Belegdatum/E2EDK03_FIELDS#1085/D-Header-E2EDK03#1086			E2EDK03		false	
+Field	/EDI_DC40/E2EDK03#Belegdatum/E2EDK03_FIELDS#1085/D-E2EDK03-MANDT#1087					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDK03#Belegdatum/E2EDK03_FIELDS#1085/D-E2EDK03-DOCNUM#1088					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDK03#Belegdatum/E2EDK03_FIELDS#1085/D-E2EDK03-SEGNUM#1089					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_2'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDK03#Belegdatum/E2EDK03_FIELDS#1085/D-E2EDK03-PSGNUM#1090			0		false	
+Field	/EDI_DC40/E2EDK03#Belegdatum/E2EDK03_FIELDS#1085/D-E2EDK03-HLEVEL#1091			2		false	
+Field	/EDI_DC40/E2EDK03#Belegdatum/E2EDK03_FIELDS#1085/D-IDDAT#1092	Qualifier Datumssegment IDOC		022		false	
+Field	/EDI_DC40/E2EDK03#Belegdatum/E2EDK03_FIELDS#1085/D-DATUM#1093	IDOC: Datum			/DTM/C507/F2380	false	
+Field	/EDI_DC40/E2EDK03#Belegdatum/E2EDK03_FIELDS#1085/D-UZEIT#1094	IDOC: Uhrzeit				false	
+Node	/EDI_DC40/E2EDK03#Wunschliefertermin_Tag	IDOC: Belegkopf Datumssegment		DTM		false	Filter: a equals b
+							a='F2005'
+							b='2'
+							Filter: a equals b
+							a='F2379'
+							b='102'
+							Filter: logical-and(a, b,[c,d,e])
+							a='1'
+							b='2'
+							c=''
+							d=''
+							e=''
+Field	/EDI_DC40/E2EDK03#Wunschliefertermin_Tag/E2EDK03_FIELDS/D-Header-E2EDK03			E2EDK03		false	
+Field	/EDI_DC40/E2EDK03#Wunschliefertermin_Tag/E2EDK03_FIELDS/D-E2EDK03-MANDT					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDK03#Wunschliefertermin_Tag/E2EDK03_FIELDS/D-E2EDK03-DOCNUM					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDK03#Wunschliefertermin_Tag/E2EDK03_FIELDS/D-E2EDK03-SEGNUM					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_2'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDK03#Wunschliefertermin_Tag/E2EDK03_FIELDS/D-E2EDK03-PSGNUM			0		false	
+Field	/EDI_DC40/E2EDK03#Wunschliefertermin_Tag/E2EDK03_FIELDS/D-E2EDK03-HLEVEL			2		false	
+Field	/EDI_DC40/E2EDK03#Wunschliefertermin_Tag/E2EDK03_FIELDS/D-IDDAT	Qualifier Datumssegment IDOC		002		false	
+Field	/EDI_DC40/E2EDK03#Wunschliefertermin_Tag/E2EDK03_FIELDS/D-DATUM	IDOC: Datum			/DTM/C507/F2380	false	
+Field	/EDI_DC40/E2EDK03#Wunschliefertermin_Tag/E2EDK03_FIELDS/D-UZEIT	IDOC: Uhrzeit				false	
+Node	/EDI_DC40/E2EDK03-Wunschliefertermin_Woche	IDOC: Belegkopf Datumssegment		DTM		false	Filter: a equals b
+							a='F2005'
+							b='2'
+							Filter: a equals b
+							a='F2379'
+							b='616'
+							Filter: logical-and(a, b,[c,d,e])
+							a='1'
+							b='2'
+							c=''
+							d=''
+							e=''
+Field	/EDI_DC40/E2EDK03-Wunschliefertermin_Woche/E2EDK03_FIELDS#1096/get_Date				/DTM/C507/F2380	true	Filter: toDate(value a, format b, [locale c])
+							a='F2380'
+							b='F2379'
+							Filter: now()
+							Filter: duration(a - (b, c)
+							a='1'
+							b='2'
+							c='d'
+Node	/EDI_DC40/E2EDK03-Wunschliefertermin_Woche/E2EDK03_FIELDS#1096/duration_neg					false	Filter: contains( a, b )
+							a='get_Date'
+							b='-'
+Field	/EDI_DC40/E2EDK03-Wunschliefertermin_Woche/E2EDK03_FIELDS#1096/duration_neg/set_newDate					true	Filter: date(a) + days(b)
+							a='now'
+							b='1'
+							Filter: next workingday(a, b)
+							a='1'
+							b=''
+							Filter: save variable a(b) type-safe
+							a='var__LieferdatumAusWoche'
+							b='2'
+Node	/EDI_DC40/E2EDK03-Wunschliefertermin_Woche/E2EDK03_FIELDS#1096/duration_pos					false	Filter: contains( a, b )
+							a='get_Date'
+							b='-'
+							Filter: logical-not(a)
+							a='1'
+Field	/EDI_DC40/E2EDK03-Wunschliefertermin_Woche/E2EDK03_FIELDS#1096/duration_pos/set_Date#2					true	Filter: toDate(value a, format b, [locale c])
+							a='F2380'
+							b='F2379'
+							Filter: save variable a(b) type-safe
+							a='var__LieferdatumAusWoche'
+							b='1'
+Field	/EDI_DC40/E2EDK03-Wunschliefertermin_Woche/E2EDK03_FIELDS#1096/D-Header-E2EDK03#1097			E2EDK03		false	
+Field	/EDI_DC40/E2EDK03-Wunschliefertermin_Woche/E2EDK03_FIELDS#1096/D-E2EDK03-MANDT#1098					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDK03-Wunschliefertermin_Woche/E2EDK03_FIELDS#1096/D-E2EDK03-DOCNUM#1099					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDK03-Wunschliefertermin_Woche/E2EDK03_FIELDS#1096/D-E2EDK03-SEGNUM#1100					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_2'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDK03-Wunschliefertermin_Woche/E2EDK03_FIELDS#1096/D-E2EDK03-PSGNUM#1101			0		false	
+Field	/EDI_DC40/E2EDK03-Wunschliefertermin_Woche/E2EDK03_FIELDS#1096/D-E2EDK03-HLEVEL#1102			2		false	
+Field	/EDI_DC40/E2EDK03-Wunschliefertermin_Woche/E2EDK03_FIELDS#1096/D-IDDAT#1103	Qualifier Datumssegment IDOC		002		false	
+Field	/EDI_DC40/E2EDK03-Wunschliefertermin_Woche/E2EDK03_FIELDS#1096/D-DATUM#1104	IDOC: Datum				false	Filter: copy(field/value/variable)
+							a='var__LieferdatumAusWoche'
+Field	/EDI_DC40/E2EDK03-Wunschliefertermin_Woche/E2EDK03_FIELDS#1096/D-UZEIT#1105	IDOC: Uhrzeit				false	
+Node	/EDI_DC40/E2EDK03#Fixtermin	IDOC: Belegkopf Datumssegment		DTM		false	Filter: a equals b
+							a='F2005'
+							b='17'
+Field	/EDI_DC40/E2EDK03#Fixtermin/E2EDK03_FIELDS#1434/D-Header-E2EDK03#1435			E2EDK03		false	
+Field	/EDI_DC40/E2EDK03#Fixtermin/E2EDK03_FIELDS#1434/D-E2EDK03-MANDT#1436					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDK03#Fixtermin/E2EDK03_FIELDS#1434/D-E2EDK03-DOCNUM#1437					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDK03#Fixtermin/E2EDK03_FIELDS#1434/D-E2EDK03-SEGNUM#1438					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_2'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDK03#Fixtermin/E2EDK03_FIELDS#1434/D-E2EDK03-PSGNUM#1439			0		false	
+Field	/EDI_DC40/E2EDK03#Fixtermin/E2EDK03_FIELDS#1434/D-E2EDK03-HLEVEL#1440			2		false	
+Field	/EDI_DC40/E2EDK03#Fixtermin/E2EDK03_FIELDS#1434/D-IDDAT#1441	Qualifier Datumssegment IDOC		002		false	
+Field	/EDI_DC40/E2EDK03#Fixtermin/E2EDK03_FIELDS#1434/D-DATUM#1442	IDOC: Datum			/DTM/C507/F2380	false	
+Field	/EDI_DC40/E2EDK03#Fixtermin/E2EDK03_FIELDS#1434/D-UZEIT#1443	IDOC: Uhrzeit				false	
+Node	/EDI_DC40/E2EDKA1003#AG	IDOC: Belegkopf Partnerinformationen		SG2		false	Filter: a equals b
+							a='F3035'
+							b='WS'
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-Header-E2EDKA1003			E2EDKA1003		false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-E2EDKA1003-MANDT					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-E2EDKA1003-DOCNUM					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-E2EDKA1003-SEGNUM					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_2'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-E2EDKA1003-PSGNUM			0		false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-E2EDKA1003-HLEVEL			2		false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-PARVW	Partnerrolle (z.B. Auftraggeber, Warenempfänger, ...)		AG		false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-PARTN	Partnernummer			/SG2/NAD/C082/F3039	false	Filter: replace value(a, csv b, column c, default d, [encoding e, key column f, delimiter g])
+							a='F3039'
+							b='./conf/sanitaerheinze/SanitaerHeinze_ILN.csv'
+							c='5'
+							d='F3039'
+							e=''
+							f='2'
+							g=';'
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-LIFNR	Lieferantennummer beim Kunden				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-NAME1	Name 1				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-NAME2	Name 2				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-NAME3	Name 3				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-NAME4	Name 4				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-STRAS	Straße und Hausnummer 1				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-STRS2	Straße und Hausnummer 2				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-PFACH	Postfach				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-ORT01	Ort				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-COUNC	County code				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-PSTLZ	Postleitzahl				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-PSTL2	Postleitzahl des Postfachs				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-LAND1	Länderschlüssel				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-ABLAD-2	Abladestelle				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-PERNR	Personalnummer des Ansprechpartners				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-PARNR	Ansprechpartnernummer (nicht Personalnummer)				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-TELF1	Telefonnummer 1 des Ansprechpartners				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-TELF2	Telefonnummer 2 des Ansprechpartners				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-TELBX	Teleboxnummer				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-TELFX	Telefaxnummer				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-TELTX	Teletexnummer				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-TELX1	Telexnummer				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-SPRAS	Sprachenschlüssel				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-ANRED	Anrede				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-ORT02	Ortsteil				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-HAUSN	Hausnummer				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-STOCK	Stockwerk				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-REGIO	Region				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-PARGE	Geschlecht des Partners				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-ISOAL	ISO-Code des Landes				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-ISONU	ISO-Code des Landes				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-FCODE	Firmencode Frankreich				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-IHREZ	Ihr Zeichen (vom Partner)				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-BNAME	IDOC Benutzername			/SG2/SG5/CTA/C056/F3412	false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-PAORG	IDOC Organisationscode				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-ORGTX	IDOC Organisationscode				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-PAGRU	IDOC Gruppencode				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-KNREF	Kundenindividuelle Bez. des Geschäftspartners (Werk, Lager)				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-ILNNR	Characterfeld der Länge 70				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-PFORT	Ort des Postfachs				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-SPRAS_ISO	2-stelliger SAP Language Code				false	
+Field	/EDI_DC40/E2EDKA1003#AG/E2EDKA1003_FIELDS/D-TITLE	Anrede				false	
+Node	/EDI_DC40/E2EDKA1003-WE_ohne_ST	IDOC: Belegkopf Partnerinformationen		SG2		false	Filter: a equals b
+							a='F3035'
+							b='WS'
+							Filter: a equals b
+							a='var__ST_vorhanden'
+							b='0'
+							Filter: logical-and(a, b,[c,d,e])
+							a='1'
+							b='2'
+							c=''
+							d=''
+							e=''
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-Header-E2EDKA1003#1524			E2EDKA1003		false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-E2EDKA1003-MANDT#1525					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-E2EDKA1003-DOCNUM#1526					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-E2EDKA1003-SEGNUM#1527					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_2'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-E2EDKA1003-PSGNUM#1528			0		false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-E2EDKA1003-HLEVEL#1529			2		false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-PARVW#1530	Partnerrolle (z.B. Auftraggeber, Warenempfänger, ...)		WE		false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-PARTN#1531	Partnernummer			/SG2/NAD/C082/F3039	false	Filter: replace value(a, csv b, column c, default d, [encoding e, key column f, delimiter g])
+							a='F3039'
+							b='./conf/sanitaerheinze/SanitaerHeinze_ILN.csv'
+							c='1'
+							d='F3039'
+							e=''
+							f='2'
+							g=';'
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-LIFNR#1532	Lieferantennummer beim Kunden				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-NAME1#1533	Name 1				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-NAME2#1534	Name 2				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-NAME3#1535	Name 3				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-NAME4#1536	Name 4				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-STRAS#1537	Straße und Hausnummer 1				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-STRS2#1538	Straße und Hausnummer 2				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-PFACH#1539	Postfach				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-ORT01#1540	Ort				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-COUNC#1541	County code				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-PSTLZ#1542	Postleitzahl				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-PSTL2#1543	Postleitzahl des Postfachs				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-LAND1#1544	Länderschlüssel				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-ABLAD-2#1545	Abladestelle				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-PERNR#1546	Personalnummer des Ansprechpartners				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-PARNR#1547	Ansprechpartnernummer (nicht Personalnummer)				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-TELF1#1548	Telefonnummer 1 des Ansprechpartners				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-TELF2#1549	Telefonnummer 2 des Ansprechpartners				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-TELBX#1550	Teleboxnummer				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-TELFX#1551	Telefaxnummer				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-TELTX#1552	Teletexnummer				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-TELX1#1553	Telexnummer				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-SPRAS#1554	Sprachenschlüssel				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-ANRED#1555	Anrede				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-ORT02#1556	Ortsteil				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-HAUSN#1557	Hausnummer				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-STOCK#1558	Stockwerk				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-REGIO#1559	Region				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-PARGE#1560	Geschlecht des Partners				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-ISOAL#1561	ISO-Code des Landes				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-ISONU#1562	ISO-Code des Landes				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-FCODE#1563	Firmencode Frankreich				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-IHREZ#1564	Ihr Zeichen (vom Partner)				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-BNAME#1565	IDOC Benutzername			/SG2/SG5/CTA/C056/F3412	false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-PAORG#1566	IDOC Organisationscode				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-ORGTX#1567	IDOC Organisationscode				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-PAGRU#1568	IDOC Gruppencode				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-KNREF#1569	Kundenindividuelle Bez. des Geschäftspartners (Werk, Lager)				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-ILNNR#1570	Characterfeld der Länge 70				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-PFORT#1571	Ort des Postfachs				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-SPRAS_ISO#1572	2-stelliger SAP Language Code				false	
+Field	/EDI_DC40/E2EDKA1003-WE_ohne_ST/E2EDKA1003_FIELDS#1523/D-TITLE#1573	Anrede				false	
+Node	/EDI_DC40/E2EDKA1003#WE	IDOC: Belegkopf Partnerinformationen		SG2		false	Filter: a equals b
+							a='F3035'
+							b='ST'
+							Filter: a equals b
+							a='var__ST_vorhanden'
+							b='1'
+							Filter: logical-and(a, b,[c,d,e])
+							a='1'
+							b='2'
+							c=''
+							d=''
+							e=''
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-Header-E2EDKA1003#1280			E2EDKA1003		false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-E2EDKA1003-MANDT#1281					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-E2EDKA1003-DOCNUM#1282					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-E2EDKA1003-SEGNUM#1283					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_2'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-E2EDKA1003-PSGNUM#1284			0		false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-E2EDKA1003-HLEVEL#1285			2		false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-PARVW#1286	Partnerrolle (z.B. Auftraggeber, Warenempfänger, ...)		WE		false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-PARTN#1287	Partnernummer			/SG2/NAD/C082/F3039	false	Filter: replace value(a, csv b, column c, default d, [encoding e, key column f, delimiter g])
+							a='F3039'
+							b='./conf/sanitaerheinze/SanitaerHeinze_ILN.csv'
+							c='1'
+							d='F3039'
+							e=''
+							f='2'
+							g=';'
+							Filter: a == b ? c : d
+							a='1'
+							b=''
+							c='var__Einmalkunde'
+							d='1'
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-LIFNR#1288	Lieferantennummer beim Kunden				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-NAME1#1289	Name 1			/SG2/NAD/C080/F3036	false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-NAME2#1290	Name 2			/SG2/NAD/C080/F3036-1	false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-NAME3#1291	Name 3			/SG2/NAD/C080/F3036-2	false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-NAME4#1292	Name 4				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-STRAS#1293	Straße und Hausnummer 1			/SG2/NAD/C059/F3042	false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-STRS2#1294	Straße und Hausnummer 2				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-PFACH#1295	Postfach				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-ORT01#1296	Ort			/SG2/NAD/F3164	false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-COUNC#1297	County code				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-PSTLZ#1298	Postleitzahl			/SG2/NAD/F3251	false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-PSTL2#1299	Postleitzahl des Postfachs				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-LAND1#1300	Länderschlüssel			/SG2/NAD/F3207	false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-ABLAD-2#1301	Abladestelle				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-PERNR#1302	Personalnummer des Ansprechpartners				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-PARNR#1303	Ansprechpartnernummer (nicht Personalnummer)				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-TELF1#1304	Telefonnummer 1 des Ansprechpartners				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-TELF2#1305	Telefonnummer 2 des Ansprechpartners				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-TELBX#1306	Teleboxnummer				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-TELFX#1307	Telefaxnummer				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-TELTX#1308	Teletexnummer				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-TELX1#1309	Telexnummer				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-SPRAS#1310	Sprachenschlüssel				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-ANRED#1311	Anrede				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-ORT02#1312	Ortsteil				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-HAUSN#1313	Hausnummer				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-STOCK#1314	Stockwerk				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-REGIO#1315	Region				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-PARGE#1316	Geschlecht des Partners				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-ISOAL#1317	ISO-Code des Landes				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-ISONU#1318	ISO-Code des Landes				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-FCODE#1319	Firmencode Frankreich				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-IHREZ#1320	Ihr Zeichen (vom Partner)				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-BNAME#1321	IDOC Benutzername				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-PAORG#1322	IDOC Organisationscode				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-ORGTX#1323	IDOC Organisationscode				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-PAGRU#1324	IDOC Gruppencode				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-KNREF#1325	Kundenindividuelle Bez. des Geschäftspartners (Werk, Lager)				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-ILNNR#1326	Characterfeld der Länge 70				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-PFORT#1327	Ort des Postfachs				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-SPRAS_ISO#1328	2-stelliger SAP Language Code				false	
+Field	/EDI_DC40/E2EDKA1003#WE/E2EDKA1003_FIELDS#1279/D-TITLE#1329	Anrede				false	
+Field	/EDI_DC40/E2EDK02/E2EDK02_FIELDS/D-Header-E2EDK02			E2EDK02		false	
+Field	/EDI_DC40/E2EDK02/E2EDK02_FIELDS/D-E2EDK02-MANDT					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDK02/E2EDK02_FIELDS/D-E2EDK02-DOCNUM					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDK02/E2EDK02_FIELDS/D-E2EDK02-SEGNUM					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_2'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDK02/E2EDK02_FIELDS/D-E2EDK02-PSGNUM			0		false	
+Field	/EDI_DC40/E2EDK02/E2EDK02_FIELDS/D-E2EDK02-HLEVEL			2		false	
+Field	/EDI_DC40/E2EDK02/E2EDK02_FIELDS/D-QUALF-2	IDOC Qualifier Referenzbeleg		001		false	
+Field	/EDI_DC40/E2EDK02/E2EDK02_FIELDS/D-BELNR-2	IDOC Belegnummer			/BGM/C106/F1004	false	
+Field	/EDI_DC40/E2EDK02/E2EDK02_FIELDS/D-POSNR	Positionsnummer				false	
+Field	/EDI_DC40/E2EDK02/E2EDK02_FIELDS/D-DATUM-2	IDOC: Datum				false	Filter: copy(field/value/variable)
+							a='D-DATUM#1093'
+Field	/EDI_DC40/E2EDK02/E2EDK02_FIELDS/D-UZEIT-2	IDOC: Uhrzeit				false	
+Node	/EDI_DC40/E2EDKT1002#Ansprechpartner	IDOC: Belegkopf Textidentifikation				false	Filter: length(trim(a)) &gt; 0
+							a='D-BNAME'
+Field	/EDI_DC40/E2EDKT1002#Ansprechpartner/E2EDKT1002_FIELDS#1195/D-Header-E2EDKT1002#1196			E2EDKT1002		false	
+Field	/EDI_DC40/E2EDKT1002#Ansprechpartner/E2EDKT1002_FIELDS#1195/D-E2EDKT1002-MANDT#1197					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKT1002#Ansprechpartner/E2EDKT1002_FIELDS#1195/D-E2EDKT1002-DOCNUM#1198					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKT1002#Ansprechpartner/E2EDKT1002_FIELDS#1195/D-E2EDKT1002-SEGNUM#1199					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_2'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKT1002#Ansprechpartner/E2EDKT1002_FIELDS#1195/D-E2EDKT1002-PSGNUM#1200			0		false	
+Field	/EDI_DC40/E2EDKT1002#Ansprechpartner/E2EDKT1002_FIELDS#1195/D-E2EDKT1002-HLEVEL#1201			2		false	
+Field	/EDI_DC40/E2EDKT1002#Ansprechpartner/E2EDKT1002_FIELDS#1195/D-TDID#1202	Text-ID		9070		false	
+Field	/EDI_DC40/E2EDKT1002#Ansprechpartner/E2EDKT1002_FIELDS#1195/D-TSSPRAS#1203	Sprachenschluessel		D		false	
+Field	/EDI_DC40/E2EDKT1002#Ansprechpartner/E2EDKT1002_FIELDS#1195/D-TSSPRAS_ISO#1204	2-stelliger SAP Language Code		DE		false	
+Field	/EDI_DC40/E2EDKT1002#Ansprechpartner/E2EDKT1002_FIELDS#1195/D-TDOBJECT#1205	Texte: Anwendungsobjekt		VBBK		false	
+Field	/EDI_DC40/E2EDKT1002#Ansprechpartner/E2EDKT1002_FIELDS#1195/D-TDOBNAME#1206	Name				false	
+Field	/EDI_DC40/E2EDKT1002#Ansprechpartner/E2EDKT2001#1207/E2EDKT2001_FIELDS#1208/D-Header-E2EDKT2001#1209			E2EDKT2001		false	
+Field	/EDI_DC40/E2EDKT1002#Ansprechpartner/E2EDKT2001#1207/E2EDKT2001_FIELDS#1208/D-E2EDKT2001-MANDT#1210					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKT1002#Ansprechpartner/E2EDKT2001#1207/E2EDKT2001_FIELDS#1208/D-E2EDKT2001-DOCNUM#1211					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKT1002#Ansprechpartner/E2EDKT2001#1207/E2EDKT2001_FIELDS#1208/D-E2EDKT2001-SEGNUM#1212					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_3'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKT1002#Ansprechpartner/E2EDKT2001#1207/E2EDKT2001_FIELDS#1208/D-E2EDKT2001-PSGNUM#1213					false	Filter: copy(field/value/variable)
+							a='SYS_SEGNUM_2'
+Field	/EDI_DC40/E2EDKT1002#Ansprechpartner/E2EDKT2001#1207/E2EDKT2001_FIELDS#1208/D-E2EDKT2001-HLEVEL#1214			3		false	
+Field	/EDI_DC40/E2EDKT1002#Ansprechpartner/E2EDKT2001#1207/E2EDKT2001_FIELDS#1208/D-TDLINE#1215	Textzeile				false	Filter: copy(field/value/variable)
+							a='D-BNAME'
+Field	/EDI_DC40/E2EDKT1002#Ansprechpartner/E2EDKT2001#1207/E2EDKT2001_FIELDS#1208/D-TDFORMAT#1216	Formatspalte		*		false	
+Node	/EDI_DC40/E2EDKT1002#AVIS	IDOC: Belegkopf Textidentifikation		FTX		false	Filter: a equals b
+							a='F4451'
+							b='DIN'
+Field	/EDI_DC40/E2EDKT1002#AVIS/E2EDKT1002_FIELDS#1162/D-Header-E2EDKT1002#1163			E2EDKT1002		false	
+Field	/EDI_DC40/E2EDKT1002#AVIS/E2EDKT1002_FIELDS#1162/D-E2EDKT1002-MANDT#1164					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKT1002#AVIS/E2EDKT1002_FIELDS#1162/D-E2EDKT1002-DOCNUM#1165					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKT1002#AVIS/E2EDKT1002_FIELDS#1162/D-E2EDKT1002-SEGNUM#1166					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_2'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKT1002#AVIS/E2EDKT1002_FIELDS#1162/D-E2EDKT1002-PSGNUM#1167			0		false	
+Field	/EDI_DC40/E2EDKT1002#AVIS/E2EDKT1002_FIELDS#1162/D-E2EDKT1002-HLEVEL#1168			2		false	
+Field	/EDI_DC40/E2EDKT1002#AVIS/E2EDKT1002_FIELDS#1162/D-TDID#1169	Text-ID		Z061		false	
+Field	/EDI_DC40/E2EDKT1002#AVIS/E2EDKT1002_FIELDS#1162/D-TSSPRAS#1170	Sprachenschluessel		D		false	
+Field	/EDI_DC40/E2EDKT1002#AVIS/E2EDKT1002_FIELDS#1162/D-TSSPRAS_ISO#1171	2-stelliger SAP Language Code		DE		false	
+Field	/EDI_DC40/E2EDKT1002#AVIS/E2EDKT1002_FIELDS#1162/D-TDOBJECT#1172	Texte: Anwendungsobjekt		VBBK		false	
+Field	/EDI_DC40/E2EDKT1002#AVIS/E2EDKT1002_FIELDS#1162/D-TDOBNAME#1173	Name				false	
+Field	/EDI_DC40/E2EDKT1002#AVIS/E2EDKT2001#123/E2EDKT2001_FIELDS#1175/D-Header-E2EDKT2001#1176			E2EDKT2001		false	
+Field	/EDI_DC40/E2EDKT1002#AVIS/E2EDKT2001#123/E2EDKT2001_FIELDS#1175/D-E2EDKT2001-MANDT#1177					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKT1002#AVIS/E2EDKT2001#123/E2EDKT2001_FIELDS#1175/D-E2EDKT2001-DOCNUM#1178					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKT1002#AVIS/E2EDKT2001#123/E2EDKT2001_FIELDS#1175/D-E2EDKT2001-SEGNUM#1179					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_3'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKT1002#AVIS/E2EDKT2001#123/E2EDKT2001_FIELDS#1175/D-E2EDKT2001-PSGNUM#1180					false	Filter: copy(field/value/variable)
+							a='SYS_SEGNUM_2'
+Field	/EDI_DC40/E2EDKT1002#AVIS/E2EDKT2001#123/E2EDKT2001_FIELDS#1175/D-E2EDKT2001-HLEVEL#1181			3		false	
+Field	/EDI_DC40/E2EDKT1002#AVIS/E2EDKT2001#123/E2EDKT2001_FIELDS#1175/D-TDLINE#1182	Textzeile				false	Filter: concat(a,b,c,d,e,f,g,h, [CR-support i])
+							a='F4440'
+							b='F4440-1'
+							c='F4440-2'
+							d='F4440-3'
+							e='F4440-4'
+							f=''
+							g=''
+							h=''
+Field	/EDI_DC40/E2EDKT1002#AVIS/E2EDKT2001#123/E2EDKT2001_FIELDS#1175/D-TDFORMAT#1183	Formatspalte		*		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT1002_FIELDS/D-Header-E2EDKT1002			E2EDKT1002		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT1002_FIELDS/D-E2EDKT1002-MANDT					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT1002_FIELDS/D-E2EDKT1002-DOCNUM					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT1002_FIELDS/D-E2EDKT1002-SEGNUM					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_2'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT1002_FIELDS/D-E2EDKT1002-PSGNUM			0		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT1002_FIELDS/D-E2EDKT1002-HLEVEL			2		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT1002_FIELDS/D-TDID	Text-ID		9010		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT1002_FIELDS/D-TSSPRAS	Sprachenschluessel		D		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT1002_FIELDS/D-TSSPRAS_ISO	2-stelliger SAP Language Code		DE		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT1002_FIELDS/D-TDOBJECT	Texte: Anwendungsobjekt		VBBK		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT1002_FIELDS/D-TDOBNAME	Name				false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#BGM/E2EDKT2001_FIELDS#1219/D-Header-E2EDKT2001#1220			E2EDKT2001		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#BGM/E2EDKT2001_FIELDS#1219/D-E2EDKT2001-MANDT#1221					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#BGM/E2EDKT2001_FIELDS#1219/D-E2EDKT2001-DOCNUM#1222					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#BGM/E2EDKT2001_FIELDS#1219/D-E2EDKT2001-SEGNUM#1223					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_3'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#BGM/E2EDKT2001_FIELDS#1219/D-E2EDKT2001-PSGNUM#1224					false	Filter: copy(field/value/variable)
+							a='SYS_SEGNUM_2'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#BGM/E2EDKT2001_FIELDS#1219/D-E2EDKT2001-HLEVEL#1225			3		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#BGM/E2EDKT2001_FIELDS#1219/D-TDLINE#1226	Textzeile				false	Filter: replace value(a, csv b, column c, default d, [encoding e, key column f, delimiter g])
+							a='F1001'
+							b='./conf/Kessel/Sanitaer_Union/Sanitaer_Union_BGM_Kennung.csv'
+							c='2'
+							d=''
+							e=''
+							f=''
+							g=';'
+							Filter: concat(a,b,c,d,e,f,g,h, [CR-support i])
+							a='Belegart: '
+							b='F1001'
+							c=' - '
+							d='1'
+							e=''
+							f=''
+							g=''
+							h=''
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#BGM/E2EDKT2001_FIELDS#1219/D-TDFORMAT#1227	Formatspalte		*		false	
+Node	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#Fixtermin	IDOC: Belegkopf Texte				false	Filter: get empty flag(a)
+							a='D-DATUM#1442'
+							Filter: logical-not(a)
+							a='1'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#Fixtermin/E2EDKT2001_FIELDS/D-Header-E2EDKT2001			E2EDKT2001		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#Fixtermin/E2EDKT2001_FIELDS/D-E2EDKT2001-MANDT					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#Fixtermin/E2EDKT2001_FIELDS/D-E2EDKT2001-DOCNUM					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#Fixtermin/E2EDKT2001_FIELDS/D-E2EDKT2001-SEGNUM					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_3'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#Fixtermin/E2EDKT2001_FIELDS/D-E2EDKT2001-PSGNUM					false	Filter: copy(field/value/variable)
+							a='SYS_SEGNUM_2'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#Fixtermin/E2EDKT2001_FIELDS/D-E2EDKT2001-HLEVEL			3		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#Fixtermin/E2EDKT2001_FIELDS/D-TDLINE	Textzeile				false	Filter: concat(a,b,c,d,e,f,g,h, [CR-support i])
+							a='D-DATUM#1442'
+							b=' ist Fixtermin!'
+							c=''
+							d=''
+							e=''
+							f=''
+							g=''
+							h=''
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#Fixtermin/E2EDKT2001_FIELDS/D-TDFORMAT	Formatspalte		*		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#Fixtermin/set__Lieferscheinsperre#1408					true	Filter: save variable a(b) type-safe
+							a='var__Lieferscheinsperre'
+							b='98'
+Node	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-FTX0	IDOC: Belegkopf Texte				false	Filter: a equals b
+							a='F4451'
+							b='ORI'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-FTX0/E2EDKT2001_FIELDS#1269/D-Header-E2EDKT2001#1270			E2EDKT2001		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-FTX0/E2EDKT2001_FIELDS#1269/D-E2EDKT2001-MANDT#1271					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-FTX0/E2EDKT2001_FIELDS#1269/D-E2EDKT2001-DOCNUM#1272					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-FTX0/E2EDKT2001_FIELDS#1269/D-E2EDKT2001-SEGNUM#1273					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_3'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-FTX0/E2EDKT2001_FIELDS#1269/D-E2EDKT2001-PSGNUM#1274					false	Filter: copy(field/value/variable)
+							a='SYS_SEGNUM_2'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-FTX0/E2EDKT2001_FIELDS#1269/D-E2EDKT2001-HLEVEL#1275			3		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-FTX0/E2EDKT2001_FIELDS#1269/D-TDLINE#1276	Textzeile		Auftragsanweisung		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-FTX0/E2EDKT2001_FIELDS#1269/D-TDFORMAT#1277	Formatspalte		*		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-FTX0/set__Lieferscheinsperre					true	Filter: save variable a(b) type-safe
+							a='var__Lieferscheinsperre'
+							b='98'
+Node	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX1	IDOC: Belegkopf Texte				false	Filter: a equals b
+							a='F4451'
+							b='ORI'
+							Filter: length(trim(a)) &gt; 0
+							a='F4440'
+							Filter: logical-and(a, b,[c,d,e])
+							a='1'
+							b='2'
+							c=''
+							d=''
+							e=''
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX1/E2EDKT2001_FIELDS#1152/D-Header-E2EDKT2001#1153			E2EDKT2001		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX1/E2EDKT2001_FIELDS#1152/D-E2EDKT2001-MANDT#1154					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX1/E2EDKT2001_FIELDS#1152/D-E2EDKT2001-DOCNUM#1155					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX1/E2EDKT2001_FIELDS#1152/D-E2EDKT2001-SEGNUM#1156					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_3'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX1/E2EDKT2001_FIELDS#1152/D-E2EDKT2001-PSGNUM#1157					false	Filter: copy(field/value/variable)
+							a='SYS_SEGNUM_2'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX1/E2EDKT2001_FIELDS#1152/D-E2EDKT2001-HLEVEL#1158			3		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX1/E2EDKT2001_FIELDS#1152/D-TDLINE#1159	Textzeile			/FTX/C108/F4440	false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX1/E2EDKT2001_FIELDS#1152/D-TDFORMAT#1160	Formatspalte		*		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX1/set__Lieferscheinsperre#1403					true	Filter: save variable a(b) type-safe
+							a='var__Lieferscheinsperre'
+							b='98'
+Node	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX2	IDOC: Belegkopf Texte				false	Filter: a equals b
+							a='F4451'
+							b='ORI'
+							Filter: length(trim(a)) &gt; 0
+							a='F4440-1'
+							Filter: logical-and(a, b,[c,d,e])
+							a='1'
+							b='2'
+							c=''
+							d=''
+							e=''
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX2/E2EDKT2001_FIELDS#1229/D-Header-E2EDKT2001#1230			E2EDKT2001		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX2/E2EDKT2001_FIELDS#1229/D-E2EDKT2001-MANDT#1231					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX2/E2EDKT2001_FIELDS#1229/D-E2EDKT2001-DOCNUM#1232					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX2/E2EDKT2001_FIELDS#1229/D-E2EDKT2001-SEGNUM#1233					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_3'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX2/E2EDKT2001_FIELDS#1229/D-E2EDKT2001-PSGNUM#1234					false	Filter: copy(field/value/variable)
+							a='SYS_SEGNUM_2'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX2/E2EDKT2001_FIELDS#1229/D-E2EDKT2001-HLEVEL#1235			3		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX2/E2EDKT2001_FIELDS#1229/D-TDLINE#1236	Textzeile			/FTX/C108/F4440-1	false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX2/E2EDKT2001_FIELDS#1229/D-TDFORMAT#1237	Formatspalte		*		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX2/set__Lieferscheinsperre#1404					true	Filter: save variable a(b) type-safe
+							a='var__Lieferscheinsperre'
+							b='98'
+Node	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX3	IDOC: Belegkopf Texte				false	Filter: a equals b
+							a='F4451'
+							b='ORI'
+							Filter: length(trim(a)) &gt; 0
+							a='F4440-2'
+							Filter: logical-and(a, b,[c,d,e])
+							a='1'
+							b='2'
+							c=''
+							d=''
+							e=''
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX3/E2EDKT2001_FIELDS#1239/D-Header-E2EDKT2001#1240			E2EDKT2001		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX3/E2EDKT2001_FIELDS#1239/D-E2EDKT2001-MANDT#1241					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX3/E2EDKT2001_FIELDS#1239/D-E2EDKT2001-DOCNUM#1242					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX3/E2EDKT2001_FIELDS#1239/D-E2EDKT2001-SEGNUM#1243					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_3'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX3/E2EDKT2001_FIELDS#1239/D-E2EDKT2001-PSGNUM#1244					false	Filter: copy(field/value/variable)
+							a='SYS_SEGNUM_2'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX3/E2EDKT2001_FIELDS#1239/D-E2EDKT2001-HLEVEL#1245			3		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX3/E2EDKT2001_FIELDS#1239/D-TDLINE#1246	Textzeile			/FTX/C108/F4440-2	false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX3/E2EDKT2001_FIELDS#1239/D-TDFORMAT#1247	Formatspalte		*		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX3/set__Lieferscheinsperre#1405					true	Filter: save variable a(b) type-safe
+							a='var__Lieferscheinsperre'
+							b='98'
+Node	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX4	IDOC: Belegkopf Texte				false	Filter: a equals b
+							a='F4451'
+							b='ORI'
+							Filter: length(trim(a)) &gt; 0
+							a='F4440-3'
+							Filter: logical-and(a, b,[c,d,e])
+							a='1'
+							b='2'
+							c=''
+							d=''
+							e=''
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX4/E2EDKT2001_FIELDS#1249/D-Header-E2EDKT2001#1250			E2EDKT2001		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX4/E2EDKT2001_FIELDS#1249/D-E2EDKT2001-MANDT#1251					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX4/E2EDKT2001_FIELDS#1249/D-E2EDKT2001-DOCNUM#1252					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX4/E2EDKT2001_FIELDS#1249/D-E2EDKT2001-SEGNUM#1253					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_3'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX4/E2EDKT2001_FIELDS#1249/D-E2EDKT2001-PSGNUM#1254					false	Filter: copy(field/value/variable)
+							a='SYS_SEGNUM_2'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX4/E2EDKT2001_FIELDS#1249/D-E2EDKT2001-HLEVEL#1255			3		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX4/E2EDKT2001_FIELDS#1249/D-TDLINE#1256	Textzeile			/FTX/C108/F4440-3	false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX4/E2EDKT2001_FIELDS#1249/D-TDFORMAT#1257	Formatspalte		*		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX4/set__Lieferscheinsperre#1406					true	Filter: save variable a(b) type-safe
+							a='var__Lieferscheinsperre'
+							b='98'
+Node	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX5	IDOC: Belegkopf Texte				false	Filter: a equals b
+							a='F4451'
+							b='ORI'
+							Filter: length(trim(a)) &gt; 0
+							a='F4440-4'
+							Filter: logical-and(a, b,[c,d,e])
+							a='1'
+							b='2'
+							c=''
+							d=''
+							e=''
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX5/E2EDKT2001_FIELDS#1259/D-Header-E2EDKT2001#1260			E2EDKT2001		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX5/E2EDKT2001_FIELDS#1259/D-E2EDKT2001-MANDT#1261					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX5/E2EDKT2001_FIELDS#1259/D-E2EDKT2001-DOCNUM#1262					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX5/E2EDKT2001_FIELDS#1259/D-E2EDKT2001-SEGNUM#1263					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_3'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX5/E2EDKT2001_FIELDS#1259/D-E2EDKT2001-PSGNUM#1264					false	Filter: copy(field/value/variable)
+							a='SYS_SEGNUM_2'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX5/E2EDKT2001_FIELDS#1259/D-E2EDKT2001-HLEVEL#1265			3		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX5/E2EDKT2001_FIELDS#1259/D-TDLINE#1266	Textzeile			/FTX/C108/F4440-4	false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX5/E2EDKT2001_FIELDS#1259/D-TDFORMAT#1267	Formatspalte		*		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#FTX5/set__Lieferscheinsperre#1407					true	Filter: save variable a(b) type-safe
+							a='var__Lieferscheinsperre'
+							b='98'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#IMD/E2EDKT2001_FIELDS#1465/D-Header-E2EDKT2001#1466			E2EDKT2001		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#IMD/E2EDKT2001_FIELDS#1465/D-E2EDKT2001-MANDT#1467					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#IMD/E2EDKT2001_FIELDS#1465/D-E2EDKT2001-DOCNUM#1468					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#IMD/E2EDKT2001_FIELDS#1465/D-E2EDKT2001-SEGNUM#1469					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_3'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#IMD/E2EDKT2001_FIELDS#1465/D-E2EDKT2001-PSGNUM#1470					false	Filter: copy(field/value/variable)
+							a='SYS_SEGNUM_2'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#IMD/E2EDKT2001_FIELDS#1465/D-E2EDKT2001-HLEVEL#1471			3		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#IMD/E2EDKT2001_FIELDS#1465/D-TDLINE#1472	Textzeile				false	Filter: concat(a,b,c,d,e,f,g,h, [CR-support i])
+							a='F1082'
+							b=': '
+							c='F7008-2'
+							d='F7008-3'
+							e=''
+							f=''
+							g=''
+							h=''
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#IMD/E2EDKT2001_FIELDS#1465/D-TDFORMAT#1473	Formatspalte		*		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#IMD/set__Lieferscheinsperre#1474					true	Filter: save variable a(b) type-safe
+							a='var__Lieferscheinsperre'
+							b='98'
+Node	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#RFF_ACE	IDOC: Belegkopf Texte		SG1		false	Filter: a equals b
+							a='F1153'
+							b='ACE'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#RFF_ACE/E2EDKT2001_FIELDS#1412/D-Header-E2EDKT2001#1413			E2EDKT2001		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#RFF_ACE/E2EDKT2001_FIELDS#1412/D-E2EDKT2001-MANDT#1414					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#RFF_ACE/E2EDKT2001_FIELDS#1412/D-E2EDKT2001-DOCNUM#1415					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#RFF_ACE/E2EDKT2001_FIELDS#1412/D-E2EDKT2001-SEGNUM#1416					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_3'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#RFF_ACE/E2EDKT2001_FIELDS#1412/D-E2EDKT2001-PSGNUM#1417					false	Filter: copy(field/value/variable)
+							a='SYS_SEGNUM_2'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#RFF_ACE/E2EDKT2001_FIELDS#1412/D-E2EDKT2001-HLEVEL#1418			3		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#RFF_ACE/E2EDKT2001_FIELDS#1412/D-TDLINE#1419	Textzeile			/SG1/RFF/C506/F1154	false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#RFF_ACE/E2EDKT2001_FIELDS#1412/D-TDFORMAT#1420	Formatspalte		*		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001#RFF_ACE/set__Lieferscheinsperre#1421					true	Filter: save variable a(b) type-safe
+							a='var__Lieferscheinsperre'
+							b='98'
+Node	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AEP	IDOC: Belegkopf Texte		SG1		false	Filter: a equals b
+							a='F1153'
+							b='AEP'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AEP/E2EDKT2001_FIELDS#1476/D-Header-E2EDKT2001#1477			E2EDKT2001		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AEP/E2EDKT2001_FIELDS#1476/D-E2EDKT2001-MANDT#1478					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AEP/E2EDKT2001_FIELDS#1476/D-E2EDKT2001-DOCNUM#1479					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AEP/E2EDKT2001_FIELDS#1476/D-E2EDKT2001-SEGNUM#1480					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_3'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AEP/E2EDKT2001_FIELDS#1476/D-E2EDKT2001-PSGNUM#1481					false	Filter: copy(field/value/variable)
+							a='SYS_SEGNUM_2'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AEP/E2EDKT2001_FIELDS#1476/D-E2EDKT2001-HLEVEL#1482			3		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AEP/E2EDKT2001_FIELDS#1476/D-TDLINE#1483	Textzeile			/SG1/RFF/C506/F1154	false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AEP/E2EDKT2001_FIELDS#1476/D-TDFORMAT#1484	Formatspalte		*		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AEP/set__Lieferscheinsperre#1485					true	Filter: save variable a(b) type-safe
+							a='var__Lieferscheinsperre'
+							b='98'
+Node	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFO	IDOC: Belegkopf Texte		SG1		false	Filter: a equals b
+							a='F1153'
+							b='AFO'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFO/E2EDKT2001_FIELDS#1487/D-Header-E2EDKT2001#1488			E2EDKT2001		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFO/E2EDKT2001_FIELDS#1487/D-E2EDKT2001-MANDT#1489					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFO/E2EDKT2001_FIELDS#1487/D-E2EDKT2001-DOCNUM#1490					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFO/E2EDKT2001_FIELDS#1487/D-E2EDKT2001-SEGNUM#1491					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_3'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFO/E2EDKT2001_FIELDS#1487/D-E2EDKT2001-PSGNUM#1492					false	Filter: copy(field/value/variable)
+							a='SYS_SEGNUM_2'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFO/E2EDKT2001_FIELDS#1487/D-E2EDKT2001-HLEVEL#1493			3		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFO/E2EDKT2001_FIELDS#1487/D-TDLINE#1494	Textzeile			/SG1/RFF/C506/F1154	false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFO/E2EDKT2001_FIELDS#1487/D-TDFORMAT#1495	Formatspalte		*		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFO/set__Lieferscheinsperre#1496					true	Filter: save variable a(b) type-safe
+							a='var__Lieferscheinsperre'
+							b='98'
+Node	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFP	IDOC: Belegkopf Texte		SG1		false	Filter: a equals b
+							a='F1153'
+							b='AFP'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFP/E2EDKT2001_FIELDS#1498/D-Header-E2EDKT2001#1499			E2EDKT2001		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFP/E2EDKT2001_FIELDS#1498/D-E2EDKT2001-MANDT#1500					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFP/E2EDKT2001_FIELDS#1498/D-E2EDKT2001-DOCNUM#1501					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFP/E2EDKT2001_FIELDS#1498/D-E2EDKT2001-SEGNUM#1502					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_3'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFP/E2EDKT2001_FIELDS#1498/D-E2EDKT2001-PSGNUM#1503					false	Filter: copy(field/value/variable)
+							a='SYS_SEGNUM_2'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFP/E2EDKT2001_FIELDS#1498/D-E2EDKT2001-HLEVEL#1504			3		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFP/E2EDKT2001_FIELDS#1498/D-TDLINE#1505	Textzeile			/SG1/RFF/C506/F1154	false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFP/E2EDKT2001_FIELDS#1498/D-TDFORMAT#1506	Formatspalte		*		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_AFP/set__Lieferscheinsperre#1507					true	Filter: save variable a(b) type-safe
+							a='var__Lieferscheinsperre'
+							b='98'
+Node	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_CO	IDOC: Belegkopf Texte		SG1		false	Filter: a equals b
+							a='F1153'
+							b='CO'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_CO/E2EDKT2001_FIELDS#1509/D-Header-E2EDKT2001#1510			E2EDKT2001		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_CO/E2EDKT2001_FIELDS#1509/D-E2EDKT2001-MANDT#1511					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_CO/E2EDKT2001_FIELDS#1509/D-E2EDKT2001-DOCNUM#1512					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_CO/E2EDKT2001_FIELDS#1509/D-E2EDKT2001-SEGNUM#1513					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_3'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_CO/E2EDKT2001_FIELDS#1509/D-E2EDKT2001-PSGNUM#1514					false	Filter: copy(field/value/variable)
+							a='SYS_SEGNUM_2'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_CO/E2EDKT2001_FIELDS#1509/D-E2EDKT2001-HLEVEL#1515			3		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_CO/E2EDKT2001_FIELDS#1509/D-TDLINE#1516	Textzeile			/SG1/RFF/C506/F1154	false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_CO/E2EDKT2001_FIELDS#1509/D-TDFORMAT#1517	Formatspalte		*		false	
+Field	/EDI_DC40/E2EDKT1002#Kopftext/E2EDKT2001-RFF_CO/set__Lieferscheinsperre#1518					true	Filter: save variable a(b) type-safe
+							a='var__Lieferscheinsperre'
+							b='98'
+Field	/EDI_DC40/E2EDKT1002#Kopftext/replace_LIFSK					true	Filter: replace marked value(a,b)
+							a='LIFSK'
+							b='var__Lieferscheinsperre'
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-Header-E2EDP01008			E2EDP01008		false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-E2EDP01008-MANDT					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-E2EDP01008-DOCNUM					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-E2EDP01008-SEGNUM					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_2'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-E2EDP01008-PSGNUM			0		false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-E2EDP01008-HLEVEL			2		false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-POSEX	Positionsnummer			/SG25_Positionen/LIN/F1082	false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-ACTION-2	Aktionscode, der die Position betrifft.				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-PSTYP	Positionstyp				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-KZABS-2	Kennzeichen für Auftragsbestätigungspflicht				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-MENGE	Menge			/SG25_Positionen/QTY-2/C186-2/F6060-2	false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-MENEE	Mengeneinheit			/SG25_Positionen/QTY-2/C186-2/F6411-11	false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-BMNG2	Menge in Preismengeneinheit				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-PMENE	Preismengeneinheit				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-ABFTZ	Abstimmfortschrittszahl				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-VPREI	Preis (Netto)				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-PEINH	Preiseinheit				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-NETWR	Wert der Position (Netto)				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-ANETW	Absoluter Nettowert der Position				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-SKFBP	Skontofähiger Betrag				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-NTGEW-2	Nettogewicht				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-GEWEI-2	Gewichtseinheit				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-EINKZ	Kennzeichen: Mehr als eine Einteilung zur Position				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-CURCY-2	Währung				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-PREIS	Bruttopreis				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-MATKL	IDOC Materialklasse				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-UEPOS	Übergeordnete Position bei Stücklistenstrukturen				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-GRKOR	Liefergruppe (Pos. werden zusammen geliefert)				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-EVERS	Versandvorschrift				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-BPUMN	Nenner für die Umrechnung BPRME in BME				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-BPUMZ	Zähler für die Umrechnung BPRME in BME				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-ABGRU	Absagegrund für Angebote und Aufträge				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-ABGRT	Bezeichnung				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-ANTLF	Maximale Anzahl erlaubter Teillieferungen pro Position				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-FIXMG	Liefertermin und Menge ist fixiert				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-KZAZU-2	Kennzeichen Auftragszusammenführung				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-BRGEW-2	Gesamtgewicht				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-PSTYV	Positionstyp Vertriebsbeleg				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-EMPST-2	Empfangsstelle				false	Filter: copy(field/value/variable)
+							a='var__EMPF'
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-ABTNR-2	Abteilungsnummer				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-ABRVW-2	Verwendungskennzeichen				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-WERKS	Werk				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-LPRIO	Lieferpriorität				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-LPRIO_BEZ	Bezeichnung				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-ROUTE	Route				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-ROUTE_BEZ	Bezeichnung				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-LGORT	Lagerort				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-VSTEL	Versandstelle/Warenannahmestelle				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-DELCO-2	vereinbarte Lieferzeit				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-MATNR	IDOC Materialidentifikation				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-VALTG	Zusätzliche Valutatage				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-HIPOS	Übergeordnete Position in einer Positionshierarchie				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-HIEVW	Verwendung der Hierarchieposition				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-POSGUID	ATP: Verschlüsselung von DELNR und DELPS				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-MATNR_EXTERNAL	Materialnummer				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-MATNR_VERSION	Versionsnummer zum Feld MATNR				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-MATNR_GUID	Externe GUID zum Feld MATNR				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP01008_FIELDS/D-IUID_RELEVANT	IUID-relevant				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP19002/E2EDP19002_FIELDS/D-Header-E2EDP19002			E2EDP19002		false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP19002/E2EDP19002_FIELDS/D-E2EDP19002-MANDT					false	Filter: copy(field/value/variable)
+							a='SYS_MANDT'
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP19002/E2EDP19002_FIELDS/D-E2EDP19002-DOCNUM					false	Filter: copy(field/value/variable)
+							a='SYS_DOCNUM'
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP19002/E2EDP19002_FIELDS/D-E2EDP19002-SEGNUM					false	Filter: a + b
+							a='SYS_SEGNUM'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM_3'
+							b='1'
+							Filter: save variable a(b) type-safe
+							a='SYS_SEGNUM'
+							b='1'
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP19002/E2EDP19002_FIELDS/D-E2EDP19002-PSGNUM					false	Filter: copy(field/value/variable)
+							a='SYS_SEGNUM_2'
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP19002/E2EDP19002_FIELDS/D-E2EDP19002-HLEVEL			3		false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP19002/E2EDP19002_FIELDS/D-QUALF-6	IDOC Objektidentifikation (z.B. Materialnummer Kunde,etc.)		002		false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP19002/E2EDP19002_FIELDS/D-IDTNR	IDOC Materialidentifikation			/SG25_Positionen/LIN/C212/F7140	false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP19002/E2EDP19002_FIELDS/D-KTEXT-3	IDOC Kurztext				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP19002/E2EDP19002_FIELDS/D-MFRPN	Herstellerteilenummer				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP19002/E2EDP19002_FIELDS/D-MFRNR	Nummer eines Herstellers				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP19002/E2EDP19002_FIELDS/D-IDTNR_EXTERNAL	Lange Materialnummer (Zukünftige Entwicklung) zum Feld IDTNR				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP19002/E2EDP19002_FIELDS/D-IDTNR_VERSION	Versionsnummer (Zukünftige Entwicklung) zum Feld IDTNR				false	
+Field	/EDI_DC40/E2EDP01008_Positionen/E2EDP19002/E2EDP19002_FIELDS/D-IDTNR_GUID	Externe GUID (Zukünftige Entwicklung) zum Feld IDTNR				false</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.6</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>activityType</key>
+                    <value>Enricher</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::Enricher/version::1.6.1</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_3</bpmn2:incoming>
+            <bpmn2:outgoing>SequenceFlow_8</bpmn2:outgoing>
+        </bpmn2:callActivity>
+        <bpmn2:startEvent id="StartEvent_2" name="Start">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.0</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::MessageStartEvent/version::1.0</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:outgoing>SequenceFlow_3</bpmn2:outgoing>
+            <bpmn2:messageEventDefinition/>
+        </bpmn2:startEvent>
+        <bpmn2:sequenceFlow id="SequenceFlow_5" sourceRef="CallActivity_4" targetRef="EndEvent_2"/>
+        <bpmn2:sequenceFlow id="SequenceFlow_8" sourceRef="CallActivity_7" targetRef="CallActivity_4"/>
+        <bpmn2:sequenceFlow id="SequenceFlow_3" sourceRef="StartEvent_2" targetRef="CallActivity_7"/>
+    </bpmn2:process>
+    <bpmn2:process id="Process_19" name="Converter IDoc to EDI">
+        <bpmn2:extensionElements>
+            <ifl:property>
+                <key>transactionTimeout</key>
+                <value>30</value>
+            </ifl:property>
+            <ifl:property>
+                <key>componentVersion</key>
+                <value>1.2</value>
+            </ifl:property>
+            <ifl:property>
+                <key>cmdVariantUri</key>
+                <value>ctype::FlowElementVariant/cname::IntegrationProcess/version::1.2.1</value>
+            </ifl:property>
+            <ifl:property>
+                <key>transactionalHandling</key>
+                <value>Not Required</value>
+            </ifl:property>
+        </bpmn2:extensionElements>
+        <bpmn2:callActivity id="CallActivity_26" name="Convert Lobster Excel To Excel Mapping">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>scriptFunction</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>scriptBundleId</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.1</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>activityType</key>
+                    <value>Script</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::GroovyScript/version::1.1.2</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>subActivityType</key>
+                    <value>GroovyScript</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>script</key>
+                    <value>ConvertLobsterToExcel.groovy</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_24</bpmn2:incoming>
+            <bpmn2:outgoing>SequenceFlow_27</bpmn2:outgoing>
+        </bpmn2:callActivity>
+        <bpmn2:endEvent id="EndEvent_21" name="End">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.1</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::MessageEndEvent/version::1.1.0</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_27</bpmn2:incoming>
+            <bpmn2:messageEventDefinition/>
+        </bpmn2:endEvent>
+        <bpmn2:callActivity id="CallActivity_23" name="Set Excel Content">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>bodyType</key>
+                    <value>constant</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>propertyTable</key>
+                    <value>&lt;row&gt;&lt;cell id='Action'&gt;Create&lt;/cell&gt;&lt;cell id='Type'&gt;constant&lt;/cell&gt;&lt;cell id='Value'&gt;false&lt;/cell&gt;&lt;cell id='Default'&gt;&lt;/cell&gt;&lt;cell id='Name'&gt;ediToIdoc&lt;/cell&gt;&lt;cell id='Datatype'&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell id='Action'&gt;Create&lt;/cell&gt;&lt;cell id='Type'&gt;constant&lt;/cell&gt;&lt;cell id='Value'&gt;INVOIC02&lt;/cell&gt;&lt;cell id='Default'&gt;&lt;/cell&gt;&lt;cell id='Name'&gt;idocType&lt;/cell&gt;&lt;cell id='Datatype'&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell id='Action'&gt;Create&lt;/cell&gt;&lt;cell id='Type'&gt;constant&lt;/cell&gt;&lt;cell id='Value'&gt;M_INVOIC&lt;/cell&gt;&lt;cell id='Default'&gt;&lt;/cell&gt;&lt;cell id='Name'&gt;ediType&lt;/cell&gt;&lt;cell id='Datatype'&gt;&lt;/cell&gt;&lt;/row&gt;</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>headerTable</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>wrapContent</key>
+                    <value>Type	Path	Description	Remark	Iteration/fix value	Mapped to source	Calculation field	Functions
+Field	/INIT/GET_E2EDK03/CALC_ADD_DATE_2_MAP					true	Filter: add to map(key a, value b, name of map c, [skip empty d])
+							a='IDDAT'
+							b='DATUM-2'
+							c='MAP_E2EDK03'
+							d=''
+Field	/INIT/GET_E2EDK02/CALC_ADD_RFF_2_MAP					true	Filter: concat(a,b,c,d,e,f,g,h, [CR-support i])
+							a='BELNR-2'
+							b='|'
+							c='DATUM'
+							d=''
+							e=''
+							f=''
+							g=''
+							h=''
+							Filter: add to map(key a, value b, name of map c, [skip empty d])
+							a='QUALF'
+							b='1'
+							c='MAP_E2EDK02'
+Field	/INIT/GET_DOCNUM/CALC_DOCNUM					true	Filter: save variable a(b) type-safe
+							a='SYS_DOCNUM'
+							b='DOCNUM'
+Field	/INIT/set_IDOC					true	Filter: save variable a(b) type-safe
+							a='var__IDOC'
+							b='DOCNUM'
+Field	/INIT/get_var__Leistungsdatum/clear_LeistDatum					true	Filter: save variable a(b) type-safe
+							a='var__Leistungsdatum'
+							b='00000000'
+Node	/INIT/get_var__Leistungsdatum/Get_Leistungsdatum			E2EDP01008		false	Filter: a equals b
+							a='var__Leistungsdatum'
+							b='00000000'
+Node	/INIT/get_var__Leistungsdatum/Get_Leistungsdatum/get__LeistDatum			E2EDP03_FIELDS		false	Filter: a equals b
+							a='IDDAT-2'
+							b='027'
+Field	/INIT/get_var__Leistungsdatum/Get_Leistungsdatum/get__LeistDatum/calc__Leistungsdatum				/EDI_DC40/E2EDP01008/E2EDP03/E2EDP03_FIELDS/DATUM-5	true	Filter: save variable a(b) type-safe
+							a='var__Leistungsdatum'
+							b='DATUM-5'
+Node	/INIT/get_Rabatt#2537			E2EDK05001_FIELDS		false	Filter: a equals b
+							a='KSCHL'
+							b='HB00'
+							Filter: a equals b
+							a='KSCHL'
+							b='HA00'
+							Filter: logical-or(a, b,[c,d,e])
+							a='1'
+							b='2'
+							c=''
+							d=''
+							e=''
+Field	/INIT/get_Rabatt#2537/calc__rabatt					true	Filter: calculate and save variable(a,b,c,d,[e])
+							a='var__rabatt'
+							b='-'
+							c='BETRG'
+							d=''
+							e=''
+Node	/INIT/get_ZUSCHL#4779			E2EDK05001		false	Filter: a equals b
+							a='ALCKZ'
+							b='+'
+Field	/INIT/get_ZUSCHL#4779/calc__ZUS#4780					true	Filter: calculate and save variable(a,b,c,d,[e])
+							a='var__zuschl'
+							b='+'
+							c='BETRG'
+							d=''
+							e=''
+Field	/INIT/calc_ges_ZUSCHL					true	Filter: calculate and save variable(a,b,c,d,[e])
+							a='var__zuschl'
+							b='+'
+							c='var__rabatt'
+							d=''
+							e=''
+Node	/UNB	Sender and receiver information				false	Filter: isFirstRecord?
+Field	/UNB/D-Header-UNB	Sender and receiver information				false	
+Field	/UNB/S001/D-0001	Code		UNOC		false	
+Field	/UNB/S001/D-0002	Version		3		false	
+Field	/UNB/S002/D-0004	Sender identification		4026092000007		false	
+Field	/UNB/S002/D-0007	Partner identification code qualifier		14		false	
+Field	/UNB/S002/D-0008	Address for reverse routing				false	
+Node	/UNB/S003/get_ILN			E2EDKA1003		false	Filter: a equals b
+							a='PARVW'
+							b='RG'
+Field	/UNB/S003/get_ILN/set_ILN				/EDI_DC40/E2EDKA1003/E2EDKA1003_FIELDS/ILNNR	true	
+Field	/UNB/S003/D-0010	Recipient identification			/EDI_DC40/EDI_DC40_FIELDS/RCVPRN	false	Filter: copy(field/value/variable)
+							a='set_ILN'
+							Filter: a == b ? c : d
+							a='1'
+							b=''
+							c='RCVPRN'
+							d='1'
+Field	/UNB/S003/D-0007#1	Partner identification code qualifier				false	Filter: a == b ? c : d
+							a='set_ILN'
+							b=''
+							c='91'
+							d='14'
+Field	/UNB/S003/D-0014	Routing address				false	
+Field	/UNB/S004/D-0017	Date, format YYMMDD				false	Filter: create and format date(a, [adj. template b], template c, d [, force-empty e])
+							a=''
+							b=''
+							c='yyMMdd'
+							d='now'
+							e=''
+Field	/UNB/S004/D-0019	Time, format HHMM				false	Filter: create and format date(a, [adj. template b], template c, d [, force-empty e])
+							a=''
+							b=''
+							c='HHmm'
+							d='now'
+							e=''
+Field	/UNB/D-0020#1	Reference id				false	Filter: save variable a(b) type-safe
+							a='var__InterchangeNumber'
+							b='var__IDOC'
+Field	/UNB/S005/D-0022	Recipient reference/password				false	
+Field	/UNB/S005/D-0025	Recipient reference/password qualifier				false	
+Field	/UNB/D-0026	Application reference				false	
+Field	/UNB/D-0029	Processing priority code				false	
+Field	/UNB/D-0031	Acknowledgement request				false	
+Field	/UNB/D-0032	Communication agreement id				false	
+Field	/UNB/D-0035	Text indicator				false	Filter: get system-type()
+							Filter: a == b ? c : d
+							a='1'
+							b='1'
+							c='1'
+							d=''
+Field	/UNH/D-Header-UNH	Message header				false	
+Field	/UNH/D-0062	Message reference number				false	Filter: calculate and save variable(a,b,c,d,[e])
+							a='var__RefNumber'
+							b='+'
+							c='1'
+							d=''
+							e=''
+Field	/UNH/S009/D-0065	Message type indentifier		INVOIC		false	
+Field	/UNH/S009/D-0052	Message type version number		D		false	
+Field	/UNH/S009/D-0054	Message type release number		96A		false	
+Field	/UNH/S009/D-0051	Controlling agency		UN		false	
+Field	/UNH/S009/D-0057	Assigned code		EAN008		false	
+Field	/UNH/D-0068	Common access reference				false	
+Field	/UNH/S010/D-0070	Sequence message transfer number				false	
+Field	/UNH/S010/D-0073	First/last sequence message transfer indication				false	
+Field	/BGM/D-Header-BGM	Beginning of message				false	
+Field	/BGM/C002/D-1001	Document/message name, coded			/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/BSART	false	Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='BSART'
+							b='CRME,INVO'
+							c='381,380'
+							d='380'
+							e=''
+Field	/BGM/C002/D-1131	Code list qualifier				false	
+Field	/BGM/C002/D-3055	Code list responsible agency, coded				false	
+Field	/BGM/C002/D-1000	Document/message name				false	
+Field	/BGM/D-1004	Document/message number			/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/BELNR	false	Filter: cut-until-match(a,b,c)
+							a='BELNR'
+							b='^[1-9].*'
+							c=''
+							Filter: cut-until-match(a,b,c)
+							a='BELNR'
+							b='^[^0].*'
+							c=''
+							Filter: save variable a(b) type-safe
+							a='var__RENR'
+							b='2'
+Field	/BGM/D-1225	Message function, coded		9		false	
+Field	/BGM/D-4343	Response type, coded				false	
+Node	/DTM_137_Belegdatum	Date/time/period		E2EDK03		false	Filter: a equals b
+							a='IDDAT'
+							b='012'
+Field	/DTM_137_Belegdatum/D-Header-DTM	Date/time/period				false	
+Field	/DTM_137_Belegdatum/C507/D-2005	Date/time/period qualifier		137		false	
+Field	/DTM_137_Belegdatum/C507/D-2380	Date/time/period			/EDI_DC40/E2EDK03/E2EDK03_FIELDS/DATUM-2	false	
+Field	/DTM_137_Belegdatum/C507/D-2379	Date/time/period format qualifier		102		false	
+Field	/DTM_35_Lieferdatum/D-Header-DTM#1681	Date/time/period				false	
+Field	/DTM_35_Lieferdatum/C507#1682/D-2005#1683	Date/time/period qualifier		35		false	
+Field	/DTM_35_Lieferdatum/C507#1682/D-2380#1684	Date/time/period				false	Filter: copy(field/value/variable)
+							a='var__Leistungsdatum'
+							Filter: a == b ? c : d
+							a='1'
+							b='00000000'
+							c='D-2380'
+							d='1'
+Field	/DTM_35_Lieferdatum/C507#1682/D-2379#1685	Date/time/period format qualifier		102		false	
+Node	/SG1			E2EDK02		false	Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='QUALF'
+							b='001,002,012'
+							c='true,true,false'
+							d='false'
+							e=''
+Field	/SG1/RFF/D-Header-RFF	Reference				false	
+Field	/SG1/RFF/C506/D-1153	Reference qualifier				false	Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='QUALF'
+							b='001,002,012'
+							c='ON,VN,DQ'
+							d='false'
+							e=''
+Field	/SG1/RFF/C506/D-1154	Reference number			/EDI_DC40/E2EDK02/E2EDK02_FIELDS/BELNR-2	false	
+Field	/SG1/RFF/C506/D-1156	Line number				false	
+Field	/SG1/RFF/C506/D-4000	Reference version number				false	
+Node	/SG2			E2EDKA1003		false	Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='PARVW'
+							b='RS,AG,RE,WE'
+							c='true,true,true,true'
+							d='false'
+							e=''
+Field	/SG2/NAD/D-Header-NAD	Name and address				false	
+Field	/SG2/NAD/D-3035	Party qualifier				false	Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='PARVW'
+							b='RS,AG,RE,WE'
+							c='SU,BY,IV,DP'
+							d='false'
+							e=''
+Field	/SG2/NAD/C082/D-3039	Party id. identification			/EDI_DC40/E2EDKA1003/E2EDKA1003_FIELDS/ILNNR	false	Filter: length(trim(a)) &gt; 0
+							a='ILNNR'
+							Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='PARVW'
+							b='RS'
+							c='4026092000007'
+							d=''
+							e=''
+							Filter: a == true ? b : c
+							a='1'
+							b='ILNNR'
+							c='2'
+Field	/SG2/NAD/C082/D-1131#4	Code list qualifier				false	
+Field	/SG2/NAD/C082/D-3055#4	Code list responsible agency, coded				false	Filter: a == b ? c : d
+							a='D-3039'
+							b=''
+							c=''
+							d='9'
+Field	/SG2/NAD/C058/D-3124	Name and address line				false	
+Field	/SG2/NAD/C058/D-3124#1	Name and address line				false	
+Field	/SG2/NAD/C058/D-3124#2	Name and address line				false	
+Field	/SG2/NAD/C058/D-3124#3	Name and address line				false	
+Field	/SG2/NAD/C058/D-3124#4	Name and address line				false	
+Field	/SG2/NAD/C080/D-3036	Party name			/EDI_DC40/E2EDKA1003/E2EDKA1003_FIELDS/NAME1	false	
+Field	/SG2/NAD/C080/D-3036#1	Party name			/EDI_DC40/E2EDKA1003/E2EDKA1003_FIELDS/NAME2	false	
+Field	/SG2/NAD/C080/D-3036#2	Party name			/EDI_DC40/E2EDKA1003/E2EDKA1003_FIELDS/NAME3	false	
+Field	/SG2/NAD/C080/D-3036#3	Party name			/EDI_DC40/E2EDKA1003/E2EDKA1003_FIELDS/NAME4	false	
+Field	/SG2/NAD/C080/D-3036#4	Party name				false	
+Field	/SG2/NAD/C080/D-3045	Party name format, coded				false	
+Field	/SG2/NAD/C059/D-3042	Street and number/p.o. box			/EDI_DC40/E2EDKA1003/E2EDKA1003_FIELDS/STRAS	false	
+Field	/SG2/NAD/C059/D-3042#1	Street and number/p.o. box				false	
+Field	/SG2/NAD/C059/D-3042#2	Street and number/p.o. box				false	
+Field	/SG2/NAD/C059/D-3042#3	Street and number/p.o. box				false	
+Field	/SG2/NAD/D-3164	City name			/EDI_DC40/E2EDKA1003/E2EDKA1003_FIELDS/ORT01	false	
+Field	/SG2/NAD/D-3229	Country sub-entity identification				false	
+Field	/SG2/NAD/D-3251	Postcode identification			/EDI_DC40/E2EDKA1003/E2EDKA1003_FIELDS/PSTLZ	false	
+Field	/SG2/NAD/D-3207	Country, coded			/EDI_DC40/E2EDKA1003/E2EDKA1003_FIELDS/LAND1	false	
+Node	/SG2/SG3/RFF_VA_IV	Reference				false	Filter: a equals b
+							a='RE'
+							b='PARVW'
+Field	/SG2/SG3/RFF_VA_IV/D-Header-RFF#2	Reference				false	
+Field	/SG2/SG3/RFF_VA_IV/C506#1/CALC_UmsatzsteuerID					true	Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='PARVW'
+							b='RE'
+							c='LAND1'
+							d=''
+							e=''
+							Filter: replace value(a, csv b, column c, default d, [encoding e, key column f, delimiter g])
+							a='1'
+							b='./conf/INVOIC02/BayWa_UmSt.csv'
+							c='2'
+							d=''
+							e=''
+							f='1'
+							g=''
+Field	/SG2/SG3/RFF_VA_IV/C506#1/D-1153#1	Reference qualifier		VA		false	
+Field	/SG2/SG3/RFF_VA_IV/C506#1/D-1154#1	Reference number				false	Filter: copy(field/value/variable)
+							a='CALC_UmsatzsteuerID'
+Field	/SG2/SG3/RFF_VA_IV/C506#1/D-1156#1	Line number				false	
+Field	/SG2/SG3/RFF_VA_IV/C506#1/D-4000#1	Reference version number				false	
+Node	/SG2/SG3/RFF_API_BY	Reference				false	Filter: a equals b
+							a='AG'
+							b='PARVW'
+Field	/SG2/SG3/RFF_API_BY/D-Header-RFF#1709	Reference				false	
+Field	/SG2/SG3/RFF_API_BY/C506#1710/D-1153#1712	Reference qualifier		API		false	
+Field	/SG2/SG3/RFF_API_BY/C506#1710/D-1154#1713	Reference number			/EDI_DC40/E2EDKA1003/E2EDKA1003_FIELDS/PARTN	false	Filter: cut-until-match(a,b,c)
+							a='PARTN'
+							b='^[1-9].*'
+							c=''
+Field	/SG2/SG3/RFF_API_BY/C506#1710/D-1156#1714	Line number				false	
+Field	/SG2/SG3/RFF_API_BY/C506#1710/D-4000#1715	Reference version number				false	
+Node	/SG2/SG3/RFF_VA_SU	Reference				false	Filter: a equals b
+							a='RS'
+							b='PARVW'
+Field	/SG2/SG3/RFF_VA_SU/D-Header-RFF#1717	Reference				false	
+Field	/SG2/SG3/RFF_VA_SU/C506#1718/D-1153#1720	Reference qualifier		VA		false	
+Field	/SG2/SG3/RFF_VA_SU/C506#1718/D-1154#1721	Reference number			/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/EIGENUINR	false	
+Field	/SG2/SG3/RFF_VA_SU/C506#1718/D-1156#1722	Line number				false	
+Field	/SG2/SG3/RFF_VA_SU/C506#1718/D-4000#1723	Reference version number				false	
+Node	/SG2/SG3/RFF_FC_SU	Reference				false	Filter: a equals b
+							a='RS'
+							b='PARVW'
+Field	/SG2/SG3/RFF_FC_SU/D-Header-RFF#1725	Reference				false	
+Field	/SG2/SG3/RFF_FC_SU/C506#1726/D-1153#1728	Reference qualifier		FC		false	
+Field	/SG2/SG3/RFF_FC_SU/C506#1726/D-1154#1729	Reference number				false	Filter: get value from map(key a, name of map b, delimiter c, item d, [default e], [escape string f])
+							a='084'
+							b='MAP_E2EDK02'
+							c='|'
+							d='1'
+Field	/SG2/SG3/RFF_FC_SU/C506#1726/D-1156#1730	Line number				false	
+Field	/SG2/SG3/RFF_FC_SU/C506#1726/D-4000#1731	Reference version number				false	
+Node	/SG2/SG5			E2EDKA1003		false	Filter: a equals b
+							a='ZM'
+							b='PARVW'
+							Filter: a equals b
+							a='D-3035'
+							b='SU'
+							Filter: length(trim(a)) &gt; 0
+							a='D-1153#1728'
+							Filter: logical-and(a, b,[c,d,e])
+							a='1'
+							b='3'
+							c='2'
+							d=''
+							e=''
+Field	/SG2/SG5/CTA/D-Header-CTA	Contact information				false	
+Field	/SG2/SG5/CTA/D-3139	Contact function, coded		DL		false	
+Field	/SG2/SG5/CTA/C056/D-3413	Department or employee identification				false	
+Field	/SG2/SG5/CTA/C056/D-3412	Department or employee			/EDI_DC40/E2EDKA1003/E2EDKA1003_FIELDS/NAME1	false	Filter: concat(a,b,c,d,e,f,g,h, [CR-support i])
+							a='NAME2'
+							b=' '
+							c='NAME1'
+							d=''
+							e=''
+							f=''
+							g=''
+							h=''
+Node	/SG2/SG5/COM_TEL	Communication contact				false	Filter: length(trim(a)) &gt; 0
+							a='TELF1'
+Field	/SG2/SG5/COM_TEL/D-Header-COM	Communication contact				false	
+Field	/SG2/SG5/COM_TEL/C076/D-3148	Communication number			/EDI_DC40/E2EDKA1003/E2EDKA1003_FIELDS/TELF1	false	
+Field	/SG2/SG5/COM_TEL/C076/D-3155	Communication channel qualifier		TE		false	
+Node	/SG2/SG5/COM_FAX	Communication contact				false	Filter: length(trim(a)) &gt; 0
+							a='TELFX'
+Field	/SG2/SG5/COM_FAX/D-Header-COM#1733	Communication contact				false	
+Field	/SG2/SG5/COM_FAX/C076#1734/D-3148#1735	Communication number			/EDI_DC40/E2EDKA1003/E2EDKA1003_FIELDS/TELFX	false	
+Field	/SG2/SG5/COM_FAX/C076#1734/D-3155#1736	Communication channel qualifier		FX		false	
+Node	/SG2/SG5/COM_MAIL	Communication contact				false	Filter: length(trim(a)) &gt; 0
+							a='ILNNR'
+Field	/SG2/SG5/COM_MAIL/D-Header-COM#1738	Communication contact				false	
+Field	/SG2/SG5/COM_MAIL/C076#1739/D-3148#1740	Communication number			/EDI_DC40/E2EDKA1003/E2EDKA1003_FIELDS/ILNNR	false	
+Field	/SG2/SG5/COM_MAIL/C076#1739/D-3155#1741	Communication channel qualifier		EM		false	
+Field	/SG2_PR_Regulierer/NAD#1872/D-Header-NAD#1873	Name and address				false	
+Field	/SG2_PR_Regulierer/NAD#1872/D-3035#1874	Party qualifier		PR		false	
+Field	/SG2_PR_Regulierer/NAD#1872/C082#1875/D-3039#1876	Party id. identification		4317784000000		false	
+Field	/SG2_PR_Regulierer/NAD#1872/C082#1875/D-1131#1877	Code list qualifier				false	
+Field	/SG2_PR_Regulierer/NAD#1872/C082#1875/D-3055#1878	Code list responsible agency, coded		9		false	
+Field	/SG2_PR_Regulierer/NAD#1872/C058#1879/D-3124#1880	Name and address line				false	
+Field	/SG2_PR_Regulierer/NAD#1872/C058#1879/D-3124#1881	Name and address line				false	
+Field	/SG2_PR_Regulierer/NAD#1872/C058#1879/D-3124#1882	Name and address line				false	
+Field	/SG2_PR_Regulierer/NAD#1872/C058#1879/D-3124#1883	Name and address line				false	
+Field	/SG2_PR_Regulierer/NAD#1872/C058#1879/D-3124#1884	Name and address line				false	
+Field	/SG2_PR_Regulierer/NAD#1872/C080#1885/D-3036#1886	Party name				false	
+Field	/SG2_PR_Regulierer/NAD#1872/C080#1885/D-3036#1887	Party name				false	
+Field	/SG2_PR_Regulierer/NAD#1872/C080#1885/D-3036#1888	Party name				false	
+Field	/SG2_PR_Regulierer/NAD#1872/C080#1885/D-3036#1889	Party name				false	
+Field	/SG2_PR_Regulierer/NAD#1872/C080#1885/D-3036#1890	Party name				false	
+Field	/SG2_PR_Regulierer/NAD#1872/C080#1885/D-3045#1891	Party name format, coded				false	
+Field	/SG2_PR_Regulierer/NAD#1872/C059#1892/D-3042#1893	Street and number/p.o. box				false	
+Field	/SG2_PR_Regulierer/NAD#1872/C059#1892/D-3042#1894	Street and number/p.o. box				false	
+Field	/SG2_PR_Regulierer/NAD#1872/C059#1892/D-3042#1895	Street and number/p.o. box				false	
+Field	/SG2_PR_Regulierer/NAD#1872/C059#1892/D-3042#1896	Street and number/p.o. box				false	
+Field	/SG2_PR_Regulierer/NAD#1872/D-3164#1897	City name				false	
+Field	/SG2_PR_Regulierer/NAD#1872/D-3229#1898	Country sub-entity identification				false	
+Field	/SG2_PR_Regulierer/NAD#1872/D-3251#1899	Postcode identification				false	
+Field	/SG2_PR_Regulierer/NAD#1872/D-3207#1900	Country, coded				false	
+Field	/SG7/CUX/D-Header-CUX	Currencies				false	
+Field	/SG7/CUX/C504/D-6347	Currency details qualifier		2		false	
+Field	/SG7/CUX/C504/D-6345#2	Currency, coded			/EDI_DC40/E2EDK01005/E2EDK01005_FIELDS/CURCY	false	
+Field	/SG7/CUX/C504/D-6343#1	Currency qualifier		4		false	
+Field	/SG7/CUX/C504/D-6348	Currency rate base				false	
+Field	/SG7/CUX/C504#1/D-6347#1	Currency details qualifier				false	
+Field	/SG7/CUX/C504#1/D-6345#3	Currency, coded				false	
+Field	/SG7/CUX/C504#1/D-6343#2	Currency qualifier				false	
+Field	/SG7/CUX/C504#1/D-6348#1	Currency rate base				false	
+Field	/SG7/CUX/D-5402	Rate of exchange				false	
+Field	/SG7/CUX/D-6341	Currency market exchange, coded				false	
+Node	/SG15#E2EDK05001			E2EDK05001		false	Filter: logical-not( a equal b )
+							a='BETRG'
+							b='0.00'
+Field	/SG15#E2EDK05001/ALC#4649/D-Header-ALC#4650	Allowance or charge				false	
+Field	/SG15#E2EDK05001/ALC#4649/D-5463#4651	Allowance or charge qualifier				false	Filter: a == b ? c : d
+							a='ALCKZ'
+							b='-'
+							c='A'
+							d='C'
+Field	/SG15#E2EDK05001/ALC#4649/C552#4652/D-1230#4653	Allowance or charge number				false	
+Field	/SG15#E2EDK05001/ALC#4649/C552#4652/D-5189#4654	Charge/allowance description, coded				false	
+Field	/SG15#E2EDK05001/ALC#4649/D-4471#4655	Settlement, coded				false	
+Field	/SG15#E2EDK05001/ALC#4649/D-1227#4656	Calculation sequence indicator, coded		1		false	
+Field	/SG15#E2EDK05001/ALC#4649/C214#4657/D-7161#4658	Special services, coded				false	Filter: starts-with( a, b )
+							a='KSCHL'
+							b='ZF'
+							Filter: a == true ? b : c
+							a='1'
+							b='FC'
+							c='DI'
+							Filter: a == b ? c : d
+							a='ALCKZ'
+							b='-'
+							c='DI'
+							d='2'
+							Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='KSCHL'
+							b='ZMIZ,ZSTZ'
+							c='MAC,SC'
+							d='3'
+							e=''
+							f=''
+Field	/SG15#E2EDK05001/ALC#4649/C214#4657/D-1131#4659	Code list qualifier				false	
+Field	/SG15#E2EDK05001/ALC#4649/C214#4657/D-3055#4660	Code list responsible agency, coded				false	
+Field	/SG15#E2EDK05001/ALC#4649/C214#4657/D-7160#4661	Special service				false	Filter: copy(field/value/variable)
+							a='KOTXT'
+Field	/SG15#E2EDK05001/ALC#4649/C214#4657/D-7160#4662	Special service				false	
+Field	/SG15#E2EDK05001/SG19#4716/MOA#4717/D-Header-MOA#4718	Monetary amount				false	
+Field	/SG15#E2EDK05001/SG19#4716/MOA#4717/C516#4719/D-5025#4720	Monetary amount type qualifier		8		false	
+Field	/SG15#E2EDK05001/SG19#4716/MOA#4717/C516#4719/D-5004#4721	Monetary amount				false	Filter: copy(field/value/variable)
+							a='BETRG'
+							Filter: contains( a, b )
+							a='1'
+							b='-'
+							Filter: cut-from-right(a, b [, c])
+							a='BETRG'
+							b='1'
+							c=''
+							Filter: a == true ? b : c
+							a='2'
+							b='3'
+							c='BETRG'
+Field	/SG15#E2EDK05001/SG19#4716/MOA#4717/C516#4719/D-6345#4722	Currency, coded				false	
+Field	/SG15#E2EDK05001/SG19#4716/MOA#4717/C516#4719/D-6343#4723	Currency qualifier				false	
+Field	/SG15#E2EDK05001/SG19#4716/MOA#4717/C516#4719/D-4405#4724	Status, coded				false	
+Field	/SG15#E2EDK05001/SG19#4716/RNG#4725/D-Header-RNG#4726	Range details				false	
+Field	/SG15#E2EDK05001/SG19#4716/RNG#4725/D-6167#4727	Range type qualifier				false	
+Field	/SG15#E2EDK05001/SG19#4716/RNG#4725/C280#4728/D-6411#4729	Measure unit qualifier				false	
+Field	/SG15#E2EDK05001/SG19#4716/RNG#4725/C280#4728/D-6162#4730	Range minimum				false	
+Field	/SG15#E2EDK05001/SG19#4716/RNG#4725/C280#4728/D-6152#4731	Range maximum				false	
+Field	/SG15#E2EDK05001/SG20#4732/RTE#4733/D-Header-RTE#4734	Rate details				false	
+Field	/SG15#E2EDK05001/SG20#4732/RTE#4733/C128#4735/D-5419#4736	Rate type qualifier				false	
+Field	/SG15#E2EDK05001/SG20#4732/RTE#4733/C128#4735/D-5420#4737	Rate per unit				false	
+Field	/SG15#E2EDK05001/SG20#4732/RTE#4733/C128#4735/D-5284#4738	Unit price basis				false	
+Field	/SG15#E2EDK05001/SG20#4732/RTE#4733/C128#4735/D-6411#4739	Measure unit qualifier				false	
+Field	/SG15#E2EDK05001/SG20#4732/RNG#4740/D-Header-RNG#4741	Range details				false	
+Field	/SG15#E2EDK05001/SG20#4732/RNG#4740/D-6167#4742	Range type qualifier				false	
+Field	/SG15#E2EDK05001/SG20#4732/RNG#4740/C280#4743/D-6411#4744	Measure unit qualifier				false	
+Field	/SG15#E2EDK05001/SG20#4732/RNG#4740/C280#4743/D-6162#4745	Range minimum				false	
+Field	/SG15#E2EDK05001/SG20#4732/RNG#4740/C280#4743/D-6152#4746	Range maximum				false	
+Field	/SG15#E2EDK05001/SG21#4747/TAX#4748/D-Header-TAX#4749	Duty/tax/fee details				false	
+Field	/SG15#E2EDK05001/SG21#4747/TAX#4748/D-5283#4750	Duty/tax/fee function qualifier				false	
+Field	/SG15#E2EDK05001/SG21#4747/TAX#4748/C241#4751/D-5153#4752	Duty/tax/fee type, coded				false	
+Field	/SG15#E2EDK05001/SG21#4747/TAX#4748/C241#4751/D-1131#4753	Code list qualifier				false	
+Field	/SG15#E2EDK05001/SG21#4747/TAX#4748/C241#4751/D-3055#4754	Code list responsible agency, coded				false	
+Field	/SG15#E2EDK05001/SG21#4747/TAX#4748/C241#4751/D-5152#4755	Duty/tax/fee type				false	
+Field	/SG15#E2EDK05001/SG21#4747/TAX#4748/C533#4756/D-5289#4757	Duty/tax/fee account identification				false	
+Field	/SG15#E2EDK05001/SG21#4747/TAX#4748/C533#4756/D-1131#4758	Code list qualifier				false	
+Field	/SG15#E2EDK05001/SG21#4747/TAX#4748/C533#4756/D-3055#4759	Code list responsible agency, coded				false	
+Field	/SG15#E2EDK05001/SG21#4747/TAX#4748/D-5286#4760	Duty/tax/fee assessment basis				false	
+Field	/SG15#E2EDK05001/SG21#4747/TAX#4748/C243#4761/D-5279#4762	Duty/tax/fee rate identification				false	
+Field	/SG15#E2EDK05001/SG21#4747/TAX#4748/C243#4761/D-1131#4763	Code list qualifier				false	
+Field	/SG15#E2EDK05001/SG21#4747/TAX#4748/C243#4761/D-3055#4764	Code list responsible agency, coded				false	
+Field	/SG15#E2EDK05001/SG21#4747/TAX#4748/C243#4761/D-5278#4765	Duty/tax/fee rate				false	
+Field	/SG15#E2EDK05001/SG21#4747/TAX#4748/C243#4761/D-5273#4766	Duty/tax/fee rate basis identification				false	
+Field	/SG15#E2EDK05001/SG21#4747/TAX#4748/C243#4761/D-1131#4767	Code list qualifier				false	
+Field	/SG15#E2EDK05001/SG21#4747/TAX#4748/C243#4761/D-3055#4768	Code list responsible agency, coded				false	
+Field	/SG15#E2EDK05001/SG21#4747/TAX#4748/D-5305#4769	Duty/tax/fee category, coded				false	
+Field	/SG15#E2EDK05001/SG21#4747/TAX#4748/D-3446#4770	Party tax identification number				false	
+Field	/SG15#E2EDK05001/SG21#4747/MOA#4771/D-Header-MOA#4772	Monetary amount				false	
+Field	/SG15#E2EDK05001/SG21#4747/MOA#4771/C516#4773/D-5025#4774	Monetary amount type qualifier				false	
+Field	/SG15#E2EDK05001/SG21#4747/MOA#4771/C516#4773/D-5004#4775	Monetary amount				false	
+Field	/SG15#E2EDK05001/SG21#4747/MOA#4771/C516#4773/D-6345#4776	Currency, coded				false	
+Field	/SG15#E2EDK05001/SG21#4747/MOA#4771/C516#4773/D-6343#4777	Currency qualifier				false	
+Field	/SG15#E2EDK05001/SG21#4747/MOA#4771/C516#4773/D-4405#4778	Status, coded				false	
+Field	/SG25/CLEAR_LIST/CALC_LISTE_LOESCHEN					true	Filter: clear list(name of list a)
+							a='LIST_POS_TEXTE'
+Field	/SG25/CLEAR_LIST/clear_map_e2edp19					true	Filter: clear map(name of map a)
+							a='MAP_E2EDP19'
+Field	/SG25/CLEAR_LIST/clear_var__MOA_203					true	Filter: save variable a(b) type-safe
+							a='var__MOA_203'
+							b='0'
+Field	/SG25/CLEAR_LIST/clear_PRI_AAB					true	Filter: save variable a(b) type-safe
+							a='var__PRI_AAB'
+							b='0'
+Field	/SG25/CLEAR_LIST/clear_PRI_AAA					true	Filter: save variable a(b) type-safe
+							a='var__PRI_AAA'
+							b='0'
+Field	/SG25/CLEAR_LIST/clear_MOA_125					true	Filter: save variable a(b) type-safe
+							a='var__MOA_125'
+							b='0'
+Field	/SG25/CLEAR_LIST/clear_MOA_Z77					true	Filter: save variable a(b) type-safe
+							a='var__MOA_Z77'
+							b='0'
+Field	/SG25/CLEAR_LIST/clear_MOA_Z79					true	Filter: save variable a(b) type-safe
+							a='var__MOA_Z79'
+							b='0'
+Field	/SG25/CLEAR_LIST/clear_MOA_131					true	Filter: save variable a(b) type-safe
+							a='var__MOA_131'
+							b='0'
+Node	/SG25/GET_E2EDPT1			E2EDPT1001		false	Filter: a equals b
+							a='TSSPRAS-2'
+							b='D'
+Field	/SG25/GET_E2EDPT1/CALC_TSPRAS				/EDI_DC40/E2EDP01008/E2EDPT1001/E2EDPT1001_FIELDS/TSSPRAS-2	true	
+Field	/SG25/GET_E2EDPT1/GET_E2EDPT2/CALC_TEXTE				/EDI_DC40/E2EDP01008/E2EDPT1001/E2EDPT2001/E2EDPT2001_FIELDS/TDLINE-2	true	Filter: add to list(value a, name of list b, [skip empty c])
+							a='TDLINE-2'
+							b='LIST_POS_TEXTE'
+Field	/SG25/INIT_VALUE_SPLITTER/CALC_FILL_VALUE_SPLITTER					true	Filter: dump list(list a, delimiter b, [dump to log c, d])
+							a='LIST_POS_TEXTE'
+							b=' '
+							c=''
+							Filter: value-splitter( cmd a, [mode/delim b], [value c] )
+							a='init'
+							b='fix'
+							c='1'
+							Filter: value-splitter( cmd a, [mode/delim b], [value c] )
+							a='wrap'
+							b=''
+							c='70'
+							Filter: a &gt; b
+							a='3'
+							b='5'
+							Filter: a == true ? b : c
+							a='4'
+							b='5'
+							c='3'
+							Filter: save variable a(b) type-safe
+							a='var__Anzahl_Zeilen'
+							b='5'
+Field	/SG25/GET_E2EDP19/CALC_ADD_E2EDP19					true	Filter: concat(a,b,c,d,e,f,g,h, [CR-support i])
+							a='IDTNR'
+							b='|'
+							c='KTEXT-2'
+							d=''
+							e=''
+							f=''
+							g=''
+							h=''
+							Filter: add to map(key a, value b, name of map c, [skip empty d])
+							a='QUALF-7'
+							b='1'
+							c='MAP_E2EDP19'
+							d=''
+Field	/SG25/GET_E2EDP19/calc_ILN#/ckeck_ILN#	Item number				true	Filter: get value from map(key a, name of map b, delimiter c, item d, [default e], [escape string f])
+							a='003'
+							b='MAP_E2EDP19'
+							c='|'
+							d='1'
+							e=''
+							f=''
+							Filter: length(trim(a)) &gt; 0
+							a='1'
+Field	/SG25/get_article_number					true	Filter: get value from map(key a, name of map b, delimiter c, item d, [default e], [escape string f])
+							a='002'
+							b='MAP_E2EDP19'
+							c='|'
+							d='1'
+							e=''
+							f=''
+Field	/SG25/set_list_ignore					true	Filter: split text(text a, regex b, list name c, trim text d)
+							a='%LIST_IGNORE_ARTICLE_INVOIC%'
+							b=','
+							c='LIST_IGNORE'
+							d=''
+Node	/SG25/NO_999_Artikel					false	Filter: string-length( a )
+							a='get_article_number'
+							Filter: a &gt; b
+							a='1'
+							b='2'
+							Filter: is in list(value a, name of list b[, contains c][, position d])
+							a='get_article_number'
+							b='LIST_IGNORE'
+							c=''
+							d=''
+							Filter: logical-not(a)
+							a='3'
+							Filter: logical-and(a, b,[c,d,e])
+							a='2'
+							b='4'
+							c=''
+							d=''
+							e=''
+Node	/SG25/NO_999_Artikel/calc_MOA79			E2EDP05002		false	Filter: a equals b
+							a='KOTXT-2'
+							b='Positionsnetto'
+Field	/SG25/NO_999_Artikel/calc_MOA79/add_MOA79					true	Filter: calculate and save variable(a,b,c,d,[e])
+							a='var__MOA_79'
+							b='+'
+							c='BETRG-3'
+							d=''
+							e=''
+Field	/SG25/NO_999_Artikel/LIN/D-Header-LIN	Line item				false	
+Field	/SG25/NO_999_Artikel/LIN/D-1082#1	Line item number				false	Filter: calculate and save variable(a,b,c,d,[e])
+							a='var__PositionNumber'
+							b='+'
+							c='10'
+							d=''
+							e=''
+							Filter: cut-until-match(a,b,c)
+							a='POSEX'
+							b='^[1-9].*'
+							c=''
+Field	/SG25/NO_999_Artikel/LIN/D-1229#2	Action request/notification, coded				false	
+Field	/SG25/NO_999_Artikel/LIN/C212/D-7140	Item number				false	Filter: get value from map(key a, name of map b, delimiter c, item d, [default e], [escape string f])
+							a='003'
+							b='MAP_E2EDP19'
+							c='|'
+							d='1'
+Field	/SG25/NO_999_Artikel/LIN/C212/D-7143#2	Item number type, coded		EN		false	
+Field	/SG25/NO_999_Artikel/LIN/C212/D-1131#45	Code list qualifier				false	
+Field	/SG25/NO_999_Artikel/LIN/C212/D-3055#45	Code list responsible agency, coded				false	
+Field	/SG25/NO_999_Artikel/LIN/C829/D-5495	Sub-line indicator, coded				false	Filter: length(trim(a)) &gt; 0
+							a='UEPOS'
+							Filter: a == true ? b : c
+							a='1'
+							b='1'
+							c=''
+Field	/SG25/NO_999_Artikel/LIN/C829/D-1082#2	Line item number			/EDI_DC40/E2EDP01008/E2EDP01008_FIELDS/UEPOS	false	Filter: cut-until-match(a,b,c)
+							a='UEPOS'
+							b='^[1-9].*'
+							c=''
+Field	/SG25/NO_999_Artikel/LIN/D-1222	Configuration level				false	
+Field	/SG25/NO_999_Artikel/LIN/D-7083	Configuration, coded				false	
+Field	/SG25/NO_999_Artikel/PIA/D-Header-PIA	Additional product id				false	
+Field	/SG25/NO_999_Artikel/PIA/D-4347	Product id. function qualifier		1		false	
+Field	/SG25/NO_999_Artikel/PIA/C212#1/D-7140#1	Item number				false	Filter: get value from map(key a, name of map b, delimiter c, item d, [default e], [escape string f])
+							a='002'
+							b='MAP_E2EDP19'
+							c='|'
+							d='1'
+Field	/SG25/NO_999_Artikel/PIA/C212#1/D-7143#3	Item number type, coded		SA		false	
+Field	/SG25/NO_999_Artikel/PIA/C212#1/D-1131#46	Code list qualifier				false	
+Field	/SG25/NO_999_Artikel/PIA/C212#1/D-3055#46	Code list responsible agency, coded				false	
+Field	/SG25/NO_999_Artikel/PIA/C212#2/D-7140#2	Item number				false	
+Field	/SG25/NO_999_Artikel/PIA/C212#2/D-7143#4	Item number type, coded				false	
+Field	/SG25/NO_999_Artikel/PIA/C212#2/D-1131#47	Code list qualifier				false	
+Field	/SG25/NO_999_Artikel/PIA/C212#2/D-3055#47	Code list responsible agency, coded				false	
+Field	/SG25/NO_999_Artikel/PIA/C212#3/D-7140#3	Item number				false	
+Field	/SG25/NO_999_Artikel/PIA/C212#3/D-7143#5	Item number type, coded				false	
+Field	/SG25/NO_999_Artikel/PIA/C212#3/D-1131#48	Code list qualifier				false	
+Field	/SG25/NO_999_Artikel/PIA/C212#3/D-3055#48	Code list responsible agency, coded				false	
+Field	/SG25/NO_999_Artikel/PIA/C212#4/D-7140#4	Item number				false	
+Field	/SG25/NO_999_Artikel/PIA/C212#4/D-7143#6	Item number type, coded				false	
+Field	/SG25/NO_999_Artikel/PIA/C212#4/D-1131#49	Code list qualifier				false	
+Field	/SG25/NO_999_Artikel/PIA/C212#4/D-3055#49	Code list responsible agency, coded				false	
+Field	/SG25/NO_999_Artikel/PIA/C212#5/D-7140#5	Item number				false	
+Field	/SG25/NO_999_Artikel/PIA/C212#5/D-7143#7	Item number type, coded				false	
+Field	/SG25/NO_999_Artikel/PIA/C212#5/D-1131#50	Code list qualifier				false	
+Field	/SG25/NO_999_Artikel/PIA/C212#5/D-3055#50	Code list responsible agency, coded				false	
+Field	/SG25/NO_999_Artikel/QTY#1/D-Header-QTY#2	Quantity				false	
+Field	/SG25/NO_999_Artikel/QTY#1/C186#1/D-6063#1	Quantity qualifier		47		false	
+Field	/SG25/NO_999_Artikel/QTY#1/C186#1/D-6060#1	Quantity			/EDI_DC40/E2EDP01008/E2EDP01008_FIELDS/MENGE	false	
+Field	/SG25/NO_999_Artikel/QTY#1/C186#1/D-6411#8	Measure unit qualifier			/EDI_DC40/E2EDP01008/E2EDP01008_FIELDS/MENEE	false	
+Node	/SG25/NO_999_Artikel/FTX#4	Free text		@var__Anzahl_Zeilen@		false	Filter: value-splitter( cmd a, [mode/delim b], [value c] )
+							a='hasNext'
+							b='INIT_VALUE_SPLITTER'
+							c=''
+Field	/SG25/NO_999_Artikel/FTX#4/D-Header-FTX#5	Free text				false	
+Field	/SG25/NO_999_Artikel/FTX#4/D-4451#4	Text subject qualifier		AAA		false	
+Field	/SG25/NO_999_Artikel/FTX#4/D-4453#4	Text function, coded				false	
+Field	/SG25/NO_999_Artikel/FTX#4/C107#4/D-4441#4	Free text, coded				false	
+Field	/SG25/NO_999_Artikel/FTX#4/C107#4/D-1131#56	Code list qualifier				false	
+Field	/SG25/NO_999_Artikel/FTX#4/C107#4/D-3055#56	Code list responsible agency, coded				false	
+Field	/SG25/NO_999_Artikel/FTX#4/C108#4/D-4440#20	Free text				false	Filter: value-splitter( cmd a, [mode/delim b], [value c] )
+							a='next'
+							b='INIT_VALUE_SPLITTER'
+							c=''
+Field	/SG25/NO_999_Artikel/FTX#4/C108#4/D-4440#21	Free text				false	Filter: value-splitter( cmd a, [mode/delim b], [value c] )
+							a='next'
+							b='INIT_VALUE_SPLITTER'
+							c=''
+Field	/SG25/NO_999_Artikel/FTX#4/C108#4/D-4440#22	Free text				false	Filter: value-splitter( cmd a, [mode/delim b], [value c] )
+							a='next'
+							b='INIT_VALUE_SPLITTER'
+							c=''
+Field	/SG25/NO_999_Artikel/FTX#4/C108#4/D-4440#23	Free text				false	Filter: value-splitter( cmd a, [mode/delim b], [value c] )
+							a='next'
+							b='INIT_VALUE_SPLITTER'
+							c=''
+Field	/SG25/NO_999_Artikel/FTX#4/C108#4/D-4440#24	Free text				false	Filter: value-splitter( cmd a, [mode/delim b], [value c] )
+							a='next'
+							b='INIT_VALUE_SPLITTER'
+							c=''
+Field	/SG25/NO_999_Artikel/FTX#4/D-3453#7	Language, coded				false	
+Node	/SG25/NO_999_Artikel/SG26#MOA_203			E2EDP05002		false	Filter: a equals b
+							a='KOTXT-2'
+							b='Positionsnetto'
+Node	/SG25/NO_999_Artikel/SG26#MOA_203/get__MOA_203#4901					false	Filter: a equals b
+							a='KOTXT-2'
+							b='Positionsnetto'
+Field	/SG25/NO_999_Artikel/SG26#MOA_203/get__MOA_203#4901/calc__MOA_203#4902					true	Filter: save variable a(b) type-safe
+							a='var__MOA_203'
+							b='1'
+Field	/SG25/NO_999_Artikel/SG26#MOA_203/MOA#4903/D-Header-MOA#4904	Monetary amount				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203/MOA#4903/C516#4905/D-5025#4906	Monetary amount type qualifier				false	Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='KOTXT-2'
+							b='Positionsnetto'
+							c='203'
+							d=''
+							e=''
+							f=''
+Field	/SG25/NO_999_Artikel/SG26#MOA_203/MOA#4903/C516#4905/D-5004#4907	Monetary amount				false	Filter: copy(field/value/variable)
+							a='BETRG-3'
+Field	/SG25/NO_999_Artikel/SG26#MOA_203/MOA#4903/C516#4905/D-6345#4908	Currency, coded				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203/MOA#4903/C516#4905/D-6343#4909	Currency qualifier				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203/MOA#4903/C516#4905/D-4405#4910	Status, coded				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203/CUX#4911/D-Header-CUX#4912	Currencies				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203/CUX#4911/C504#4913/D-6347#4914	Currency details qualifier				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203/CUX#4911/C504#4913/D-6345#4915	Currency, coded				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203/CUX#4911/C504#4913/D-6343#4916	Currency qualifier				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203/CUX#4911/C504#4913/D-6348#4917	Currency rate base				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203/CUX#4911/C504#4918/D-6347#4919	Currency details qualifier				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203/CUX#4911/C504#4918/D-6345#4920	Currency, coded				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203/CUX#4911/C504#4918/D-6343#4921	Currency qualifier				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203/CUX#4911/C504#4918/D-6348#4922	Currency rate base				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203/CUX#4911/D-5402#4923	Rate of exchange				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203/CUX#4911/D-6341#4924	Currency market exchange, coded				false	
+Node	/SG25/NO_999_Artikel/SG26#MOA_203_100_-Abschlag			E2EDP05002		false	Filter: a equals b
+							a='var__MOA_203'
+							b='0'
+							Filter: a equals b
+							a='KOTXT-2'
+							b='100%-Abschlag'
+							Filter: logical-and(a, b,[c,d,e])
+							a='1'
+							b='2'
+							c=''
+							d=''
+							e=''
+Field	/SG25/NO_999_Artikel/SG26#MOA_203_100_-Abschlag/get__MOA_203#4974/calc__MOA_203#4975					true	Filter: save variable a(b) type-safe
+							a='var__MOA_203'
+							b='1'
+Field	/SG25/NO_999_Artikel/SG26#MOA_203_100_-Abschlag/MOA#4952/D-Header-MOA#4953	Monetary amount				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203_100_-Abschlag/MOA#4952/C516#4954/D-5025#4955	Monetary amount type qualifier		203		false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203_100_-Abschlag/MOA#4952/C516#4954/D-5004#4956	Monetary amount		0		false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203_100_-Abschlag/MOA#4952/C516#4954/D-6345#4957	Currency, coded				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203_100_-Abschlag/MOA#4952/C516#4954/D-6343#4958	Currency qualifier				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203_100_-Abschlag/MOA#4952/C516#4954/D-4405#4959	Status, coded				false	
+Node	/SG25/NO_999_Artikel/SG26#MOA_203_Kostenlos					false	Filter: a equals b
+							a='var__MOA_203'
+							b='0'
+Field	/SG25/NO_999_Artikel/SG26#MOA_203_Kostenlos/MOA#4551/D-Header-MOA#4552	Monetary amount				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203_Kostenlos/MOA#4551/C516#4553/D-5025#4554	Monetary amount type qualifier		203		false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203_Kostenlos/MOA#4551/C516#4553/D-5004#4555	Monetary amount		0		false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203_Kostenlos/MOA#4551/C516#4553/D-6345#4556	Currency, coded				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203_Kostenlos/MOA#4551/C516#4553/D-6343#4557	Currency qualifier				false	
+Field	/SG25/NO_999_Artikel/SG26#MOA_203_Kostenlos/MOA#4551/C516#4553/D-4405#4558	Status, coded				false	
+Node	/SG25/NO_999_Artikel/SG28			E2EDP26		false	Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='QUALF-8'
+							b='AAA,AAB'
+							c='true,true'
+							d='false'
+							e=''
+							f=''
+Field	/SG25/NO_999_Artikel/SG28/PRI/D-Header-PRI	Price details				false	
+Field	/SG25/NO_999_Artikel/SG28/PRI/C509/D-5125	Price qualifier			/EDI_DC40/E2EDP01008/E2EDP26/E2EDP26_FIELDS/QUALF-8	false	
+Field	/SG25/NO_999_Artikel/SG28/PRI/C509/D-5118	Price			/EDI_DC40/E2EDP01008/E2EDP26/E2EDP26_FIELDS/BETRG-2	false	
+Field	/SG25/NO_999_Artikel/SG28/PRI/C509/D-5375	Price type, coded				false	
+Field	/SG25/NO_999_Artikel/SG28/PRI/C509/D-5387	Price type qualifier				false	
+Field	/SG25/NO_999_Artikel/SG28/PRI/C509/D-5284#1	Unit price basis		1		false	
+Field	/SG25/NO_999_Artikel/SG28/PRI/C509/D-6411#9	Measure unit qualifier		PCE		false	
+Field	/SG25/NO_999_Artikel/SG28/PRI/D-5213	Sub-line price change, coded				false	
+Node	/SG25/NO_999_Artikel/SG28/get__PRI_AAB					false	Filter: a equals b
+							a='QUALF-8'
+							b='AAB'
+Field	/SG25/NO_999_Artikel/SG28/get__PRI_AAB/calc__AAB					true	Filter: save variable a(b) type-safe
+							a='var__PRI_AAB'
+							b='1'
+Node	/SG25/NO_999_Artikel/SG28/get__PRI_AAA					false	Filter: a equals b
+							a='QUALF-8'
+							b='AAA'
+Field	/SG25/NO_999_Artikel/SG28/get__PRI_AAA/calc__AAA					true	Filter: save variable a(b) type-safe
+							a='var__PRI_AAA'
+							b='1'
+Node	/SG25/NO_999_Artikel/SG28#NO_AAB			E2EDP26		false	Filter: a equals b
+							a='var__PRI_AAB'
+							b='0'
+							Filter: a equals b
+							a='QUALF-8'
+							b='001'
+							Filter: logical-and(a, b,[c,d,e])
+							a='1'
+							b='2'
+							c=''
+							d=''
+							e=''
+Node	/SG25/NO_999_Artikel/SG28#NO_AAB/PRI#3803	Price details				false	Filter: a equals b
+							a='QUALF-8'
+							b='001'
+Field	/SG25/NO_999_Artikel/SG28#NO_AAB/PRI#3803/D-Header-PRI#3804	Price details				false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAB/PRI#3803/C509#3805/D-5125#3806	Price qualifier		AAB		false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAB/PRI#3803/C509#3805/D-5118#3807	Price				false	Filter: copy(field/value/variable)
+							a='BETRG-2'
+Field	/SG25/NO_999_Artikel/SG28#NO_AAB/PRI#3803/C509#3805/D-5375#3808	Price type, coded				false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAB/PRI#3803/C509#3805/D-5387#3809	Price type qualifier				false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAB/PRI#3803/C509#3805/D-5284#3810	Unit price basis		1		false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAB/PRI#3803/C509#3805/D-6411#3811	Measure unit qualifier		PCE		false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAB/PRI#3803/D-5213#3812	Sub-line price change, coded				false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAB/get__PRI_AAB#3837/calc__AAB#3838					true	Filter: save variable a(b) type-safe
+							a='var__PRI_AAB'
+							b='1'
+Node	/SG25/NO_999_Artikel/SG28#NO_AAB#E2EDP05002			E2EDP05002		false	Filter: a equals b
+							a='var__PRI_AAB'
+							b='0'
+							Filter: a equals b
+							a='KOTXT-2'
+							b='Bruttopreis'
+							Filter: logical-and(a, b,[c,d,e])
+							a='1'
+							b='2'
+							c=''
+							d=''
+							e=''
+Node	/SG25/NO_999_Artikel/SG28#NO_AAB#E2EDP05002/PRI#4203	Price details				false	Filter: a equals b
+							a='KOTXT-2'
+							b='Bruttopreis'
+Field	/SG25/NO_999_Artikel/SG28#NO_AAB#E2EDP05002/PRI#4203/D-Header-PRI#4204	Price details				false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAB#E2EDP05002/PRI#4203/C509#4205/D-5125#4206	Price qualifier		AAB		false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAB#E2EDP05002/PRI#4203/C509#4205/D-5118#4207	Price				false	Filter: copy(field/value/variable)
+							a='KRATE-2'
+Field	/SG25/NO_999_Artikel/SG28#NO_AAB#E2EDP05002/PRI#4203/C509#4205/D-5375#4208	Price type, coded				false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAB#E2EDP05002/PRI#4203/C509#4205/D-5387#4209	Price type qualifier				false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAB#E2EDP05002/PRI#4203/C509#4205/D-5284#4210	Unit price basis		1		false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAB#E2EDP05002/PRI#4203/C509#4205/D-6411#4211	Measure unit qualifier				false	Filter: copy(field/value/variable)
+							a='MEAUN-2'
+Field	/SG25/NO_999_Artikel/SG28#NO_AAB#E2EDP05002/PRI#4203/D-5213#4212	Sub-line price change, coded				false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAB#E2EDP05002/get__PRI_AAB#4274/calc__AAB#4275					true	Filter: save variable a(b) type-safe
+							a='var__PRI_AAB'
+							b='1'
+Node	/SG25/NO_999_Artikel/SG28#NO_AAA#E2EDP05002			E2EDP05002		false	Filter: a equals b
+							a='var__PRI_AAA'
+							b='0'
+							Filter: a equals b
+							a='KOTXT-2'
+							b='Positionsnetto'
+							Filter: logical-and(a, b,[c,d,e])
+							a='1'
+							b='2'
+							c=''
+							d=''
+							e=''
+Node	/SG25/NO_999_Artikel/SG28#NO_AAA#E2EDP05002/PRI#4575	Price details				false	Filter: a equals b
+							a='KOTXT-2'
+							b='Positionsnetto'
+Field	/SG25/NO_999_Artikel/SG28#NO_AAA#E2EDP05002/PRI#4575/D-Header-PRI#4576	Price details				false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAA#E2EDP05002/PRI#4575/C509#4577/D-5125#4578	Price qualifier		AAA		false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAA#E2EDP05002/PRI#4575/C509#4577/D-5118#4579	Price				false	Filter: copy(field/value/variable)
+							a='KRATE-2'
+Field	/SG25/NO_999_Artikel/SG28#NO_AAA#E2EDP05002/PRI#4575/C509#4577/D-5375#4580	Price type, coded				false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAA#E2EDP05002/PRI#4575/C509#4577/D-5387#4581	Price type qualifier				false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAA#E2EDP05002/PRI#4575/C509#4577/D-5284#4582	Unit price basis		1		false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAA#E2EDP05002/PRI#4575/C509#4577/D-6411#4583	Measure unit qualifier				false	Filter: copy(field/value/variable)
+							a='MEAUN-2'
+Field	/SG25/NO_999_Artikel/SG28#NO_AAA#E2EDP05002/PRI#4575/D-5213#4584	Sub-line price change, coded				false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAA#E2EDP05002/get__PRI_AAA#4646/calc__AAA#4647					true	Filter: save variable a(b) type-safe
+							a='var__PRI_AAA'
+							b='1'
+Node	/SG25/NO_999_Artikel/SG28#NO_AAA_Kostenlos					false	Filter: a equals b
+							a='var__PRI_AAA'
+							b='0'
+Field	/SG25/NO_999_Artikel/SG28#NO_AAA_Kostenlos/PRI#4279/D-Header-PRI#4280	Price details				false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAA_Kostenlos/PRI#4279/C509#4281/D-5125#4282	Price qualifier		AAA		false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAA_Kostenlos/PRI#4279/C509#4281/D-5118#4283	Price		0		false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAA_Kostenlos/PRI#4279/C509#4281/D-5375#4284	Price type, coded				false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAA_Kostenlos/PRI#4279/C509#4281/D-5387#4285	Price type qualifier				false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAA_Kostenlos/PRI#4279/C509#4281/D-5284#4286	Unit price basis		1		false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAA_Kostenlos/PRI#4279/C509#4281/D-6411#4287	Measure unit qualifier		PCE		false	
+Field	/SG25/NO_999_Artikel/SG28#NO_AAA_Kostenlos/PRI#4279/D-5213#4288	Sub-line price change, coded				false	
+Node	/SG25/NO_999_Artikel/SG29			E2EDP02001		false	Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='QUALF-6'
+							b='001,016,002'
+							c='true,true,true'
+							d='false'
+							e=''
+							f=''
+Field	/SG25/NO_999_Artikel/SG29/RFF#6/D-Header-RFF#7	Reference				false	
+Field	/SG25/NO_999_Artikel/SG29/RFF#6/C506#6/D-1153#6	Reference qualifier				false	Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='QUALF-6'
+							b='001,016,002'
+							c='ON,DQ,VN'
+							d='false'
+							e=''
+Field	/SG25/NO_999_Artikel/SG29/RFF#6/C506#6/D-1154#6	Reference number			/EDI_DC40/E2EDP01008/E2EDP02001/E2EDP02001_FIELDS/BELNR-3	false	
+Field	/SG25/NO_999_Artikel/SG29/RFF#6/C506#6/D-1156#6	Line number				false	
+Field	/SG25/NO_999_Artikel/SG29/RFF#6/C506#6/D-4000#6	Reference version number				false	
+Field	/SG25/NO_999_Artikel/SG29/DTM#14/D-Header-DTM#15	Date/time/period				false	
+Field	/SG25/NO_999_Artikel/SG29/DTM#14/C507#14/D-2005#14	Date/time/period qualifier		171		false	
+Field	/SG25/NO_999_Artikel/SG29/DTM#14/C507#14/D-2380#14	Date/time/period			/EDI_DC40/E2EDP01008/E2EDP02001/E2EDP02001_FIELDS/DATUM-4	false	
+Field	/SG25/NO_999_Artikel/SG29/DTM#14/C507#14/D-2379#14	Date/time/period format qualifier		102		false	
+Node	/SG25/NO_999_Artikel/SG38			E2EDP05002		false	Filter: a equals b
+							a='ALCKZ-2'
+							b='-'
+Field	/SG25/NO_999_Artikel/SG38/ALC#1/D-Header-ALC#2	Allowance or charge				false	
+Field	/SG25/NO_999_Artikel/SG38/ALC#1/D-5463#1	Allowance or charge qualifier		A		false	
+Field	/SG25/NO_999_Artikel/SG38/ALC#1/C552#1/D-1230#1	Allowance or charge number				false	
+Field	/SG25/NO_999_Artikel/SG38/ALC#1/C552#1/D-5189#1	Charge/allowance description, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/ALC#1/D-4471#1	Settlement, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/ALC#1/D-1227#1	Calculation sequence indicator, coded		1		false	
+Field	/SG25/NO_999_Artikel/SG38/ALC#1/C214#1/D-7161#1	Special services, coded		DI		false	
+Field	/SG25/NO_999_Artikel/SG38/ALC#1/C214#1/D-1131#77	Code list qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/ALC#1/C214#1/D-3055#77	Code list responsible agency, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/ALC#1/C214#1/D-7160#2	Special service			/EDI_DC40/E2EDP01008/E2EDP05002/E2EDP05002_FIELDS/KOTXT-2	false	
+Field	/SG25/NO_999_Artikel/SG38/ALC#1/C214#1/D-7160#3	Special service				false	
+Field	/SG25/NO_999_Artikel/SG38/ALI#3/D-Header-ALI#4	Additional information				false	
+Field	/SG25/NO_999_Artikel/SG38/ALI#3/D-3239#3	Country of origin, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/ALI#3/D-9213#3	Type of duty regime, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/ALI#3/D-4183#15	Special conditions, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/ALI#3/D-4183#16	Special conditions, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/ALI#3/D-4183#17	Special conditions, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/ALI#3/D-4183#18	Special conditions, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/ALI#3/D-4183#19	Special conditions, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/DTM#19/D-Header-DTM#20	Date/time/period				false	
+Field	/SG25/NO_999_Artikel/SG38/DTM#19/C507#19/D-2005#19	Date/time/period qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/DTM#19/C507#19/D-2380#19	Date/time/period				false	
+Field	/SG25/NO_999_Artikel/SG38/DTM#19/C507#19/D-2379#19	Date/time/period format qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG39/QTY#3/D-Header-QTY#4	Quantity				false	
+Field	/SG25/NO_999_Artikel/SG38/SG39/QTY#3/C186#3/D-6063#4	Quantity qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG39/QTY#3/C186#3/D-6060#3	Quantity				false	
+Field	/SG25/NO_999_Artikel/SG38/SG39/QTY#3/C186#3/D-6411#13	Measure unit qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG39/RNG#5/D-Header-RNG#6	Range details				false	
+Field	/SG25/NO_999_Artikel/SG38/SG39/RNG#5/D-6167#5	Range type qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG39/RNG#5/C280#5/D-6411#14	Measure unit qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG39/RNG#5/C280#5/D-6162#8	Range minimum				false	
+Field	/SG25/NO_999_Artikel/SG38/SG39/RNG#5/C280#5/D-6152#8	Range maximum				false	
+Field	/SG25/NO_999_Artikel/SG38/SG40/PCD#4/D-Header-PCD#5	Percentage details				false	
+Field	/SG25/NO_999_Artikel/SG38/SG40/PCD#4/C501#4/D-5245#4	Percentage qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG40/PCD#4/C501#4/D-5482#4	Percentage				false	
+Field	/SG25/NO_999_Artikel/SG38/SG40/PCD#4/C501#4/D-5249#4	Percentage basis, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/SG40/PCD#4/C501#4/D-1131#78	Code list qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG40/PCD#4/C501#4/D-3055#78	Code list responsible agency, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/SG40/RNG#6/D-Header-RNG#7	Range details				false	
+Field	/SG25/NO_999_Artikel/SG38/SG40/RNG#6/D-6167#6	Range type qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG40/RNG#6/C280#6/D-6411#15	Measure unit qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG40/RNG#6/C280#6/D-6162#9	Range minimum				false	
+Field	/SG25/NO_999_Artikel/SG38/SG40/RNG#6/C280#6/D-6152#9	Range maximum				false	
+Field	/SG25/NO_999_Artikel/SG38/SG41/MOA#7/D-Header-MOA#8	Monetary amount				false	
+Field	/SG25/NO_999_Artikel/SG38/SG41/MOA#7/C516#7/D-5025#7	Monetary amount type qualifier		8		false	
+Field	/SG25/NO_999_Artikel/SG38/SG41/MOA#7/C516#7/D-5004#7	Monetary amount			/EDI_DC40/E2EDP01008/E2EDP05002/E2EDP05002_FIELDS/BETRG-3	false	
+Field	/SG25/NO_999_Artikel/SG38/SG41/MOA#7/C516#7/D-6345#13	Currency, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/SG41/MOA#7/C516#7/D-6343#11	Currency qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG41/MOA#7/C516#7/D-4405#13	Status, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/SG41/RNG#7/D-Header-RNG#8	Range details				false	
+Field	/SG25/NO_999_Artikel/SG38/SG41/RNG#7/D-6167#7	Range type qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG41/RNG#7/C280#7/D-6411#16	Measure unit qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG41/RNG#7/C280#7/D-6162#10	Range minimum				false	
+Field	/SG25/NO_999_Artikel/SG38/SG41/RNG#7/C280#7/D-6152#10	Range maximum				false	
+Field	/SG25/NO_999_Artikel/SG38/SG42/RTE#1/D-Header-RTE#2	Rate details				false	
+Field	/SG25/NO_999_Artikel/SG38/SG42/RTE#1/C128#1/D-5419#1	Rate type qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG42/RTE#1/C128#1/D-5420#1	Rate per unit				false	
+Field	/SG25/NO_999_Artikel/SG38/SG42/RTE#1/C128#1/D-5284#2	Unit price basis				false	
+Field	/SG25/NO_999_Artikel/SG38/SG42/RTE#1/C128#1/D-6411#17	Measure unit qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG42/RNG#8/D-Header-RNG#9	Range details				false	
+Field	/SG25/NO_999_Artikel/SG38/SG42/RNG#8/D-6167#8	Range type qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG42/RNG#8/C280#8/D-6411#18	Measure unit qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG42/RNG#8/C280#8/D-6162#11	Range minimum				false	
+Field	/SG25/NO_999_Artikel/SG38/SG42/RNG#8/C280#8/D-6152#11	Range maximum				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/TAX#3/D-Header-TAX#4	Duty/tax/fee details				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/TAX#3/D-5283#3	Duty/tax/fee function qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/TAX#3/C241#3/D-5153#3	Duty/tax/fee type, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/TAX#3/C241#3/D-1131#79	Code list qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/TAX#3/C241#3/D-3055#79	Code list responsible agency, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/TAX#3/C241#3/D-5152#3	Duty/tax/fee type				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/TAX#3/C533#3/D-5289#3	Duty/tax/fee account identification				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/TAX#3/C533#3/D-1131#80	Code list qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/TAX#3/C533#3/D-3055#80	Code list responsible agency, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/TAX#3/D-5286#3	Duty/tax/fee assessment basis				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/TAX#3/C243#3/D-5279#3	Duty/tax/fee rate identification				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/TAX#3/C243#3/D-1131#81	Code list qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/TAX#3/C243#3/D-3055#81	Code list responsible agency, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/TAX#3/C243#3/D-5278#3	Duty/tax/fee rate				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/TAX#3/C243#3/D-5273#3	Duty/tax/fee rate basis identification				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/TAX#3/C243#3/D-1131#82	Code list qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/TAX#3/C243#3/D-3055#82	Code list responsible agency, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/TAX#3/D-5305#3	Duty/tax/fee category, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/TAX#3/D-3446#3	Party tax identification number				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/MOA#8/D-Header-MOA#9	Monetary amount				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/MOA#8/C516#8/D-5025#8	Monetary amount type qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/MOA#8/C516#8/D-5004#8	Monetary amount				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/MOA#8/C516#8/D-6345#14	Currency, coded				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/MOA#8/C516#8/D-6343#12	Currency qualifier				false	
+Field	/SG25/NO_999_Artikel/SG38/SG43/MOA#8/C516#8/D-4405#14	Status, coded				false	
+Field	/UNS/D-Header-UNS	Section control				false	
+Field	/UNS/D-0081	Section identification		S		false	
+Node	/CNT	Control total		E2EDS01		false	Filter: a equals b
+							a='SUMID'
+							b='001'
+Field	/CNT/D-Header-CNT	Control total				false	
+Field	/CNT/C270/D-6069	Control qualifier		2		false	
+Field	/CNT/C270/D-6066	Control value			/EDI_DC40/E2EDS01/E2EDS01_FIELDS/SUMME	false	
+Field	/CNT/C270/D-6411#19	Measure unit qualifier				false	
+Node	/SG48			E2EDS01		false	Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='SUMID'
+							b='Z77,Z79,125,129,131,005,ZFC'
+							c='true,true,true,false,false,false,true'
+							d='false'
+							e=''
+							f=''
+Field	/SG48/MOA#9/D-Header-MOA#10	Monetary amount				false	
+Field	/SG48/MOA#9/C516#9/D-5025#9	Monetary amount type qualifier			/EDI_DC40/E2EDS01/E2EDS01_FIELDS/SUMID	false	Filter: replace chars(a, list b, list c)
+							a='SUMID'
+							b='Z'
+							c=''
+							Filter: a == b ? c : d
+							a='1'
+							b='005'
+							c='124'
+							d='1'
+							Filter: a == b ? c : d
+							a='1'
+							b='FC'
+							c='64'
+							d='2'
+Field	/SG48/MOA#9/C516#9/D-5004#9	Monetary amount			/EDI_DC40/E2EDS01/E2EDS01_FIELDS/SUMME	false	
+Field	/SG48/MOA#9/C516#9/D-6345#15	Currency, coded				false	
+Field	/SG48/MOA#9/C516#9/D-6343#13	Currency qualifier				false	
+Field	/SG48/MOA#9/C516#9/D-4405#15	Status, coded				false	
+Field	/SG48/SG49/RFF#10/D-Header-RFF#11	Reference				false	
+Field	/SG48/SG49/RFF#10/C506#10/D-1153#10	Reference qualifier				false	
+Field	/SG48/SG49/RFF#10/C506#10/D-1154#10	Reference number				false	
+Field	/SG48/SG49/RFF#10/C506#10/D-1156#10	Line number				false	
+Field	/SG48/SG49/RFF#10/C506#10/D-4000#10	Reference version number				false	
+Field	/SG48/SG49/DTM#22/D-Header-DTM#23	Date/time/period				false	
+Field	/SG48/SG49/DTM#22/C507#22/D-2005#22	Date/time/period qualifier				false	
+Field	/SG48/SG49/DTM#22/C507#22/D-2380#22	Date/time/period				false	
+Field	/SG48/SG49/DTM#22/C507#22/D-2379#22	Date/time/period format qualifier				false	
+Node	/SG48/get__MOA_131					false	Filter: a equals b
+							a='SUMID'
+							b='131'
+Field	/SG48/get__MOA_131/calc__MOA_131					true	Filter: save variable a(b) type-safe
+							a='var__MOA_131'
+							b='1'
+Node	/SG48/get__MOA_Z79					false	Filter: a equals b
+							a='SUMID'
+							b='Z79'
+Field	/SG48/get__MOA_Z79/calc__MOA_Z79					true	Filter: save variable a(b) type-safe
+							a='var__MOA_Z79'
+							b='1'
+Node	/SG48/get__MOA_Z77					false	Filter: a equals b
+							a='SUMID'
+							b='Z77'
+Field	/SG48/get__MOA_Z77/calc__MOA_Z77					true	Filter: save variable a(b) type-safe
+							a='var__MOA_Z77'
+							b='1'
+Node	/SG48/get__MOA_125					false	Filter: a equals b
+							a='SUMID'
+							b='125'
+Field	/SG48/get__MOA_125/calc__MOA_125					true	Filter: save variable a(b) type-safe
+							a='var__MOA_125'
+							b='1'
+Node	/SG48_79_SummePos					false	Filter: a &lt;= b
+							a='var__MOA_Z79'
+							b='0'
+Field	/SG48_79_SummePos/MOA#4826/D-Header-MOA#4827	Monetary amount				false	
+Field	/SG48_79_SummePos/MOA#4826/C516#4828/D-5025#4829	Monetary amount type qualifier		79		false	
+Field	/SG48_79_SummePos/MOA#4826/C516#4828/D-5004#4830	Monetary amount				false	Filter: copy(field/value/variable)
+							a='var__MOA_79'
+Field	/SG48_79_SummePos/MOA#4826/C516#4828/D-6345#21	Currency, coded				false	
+Field	/SG48_79_SummePos/MOA#4826/C516#4828/D-6343#19	Currency qualifier				false	
+Field	/SG48_79_SummePos/MOA#4826/C516#4828/D-4405#4833	Status, coded				false	
+Node	/SG48#ohne_131#var__zuschl					false	Filter: a &lt;= b
+							a='var__MOA_131'
+							b='0'
+Field	/SG48#ohne_131#var__zuschl/MOA#Zuschlag131#4790/D-Header-MOA#4791	Monetary amount				false	
+Field	/SG48#ohne_131#var__zuschl/MOA#Zuschlag131#4790/C516-INVOICE_NEU#4798/D-5025#4799	Monetary amount type qualifier		64		false	
+Field	/SG48#ohne_131#var__zuschl/MOA#Zuschlag131#4790/C516-INVOICE_NEU#4798/D-5004#4800	Monetary amount				false	Filter: copy(field/value/variable)
+							a='var__zuschl'
+Field	/SG48#ohne_131#var__zuschl/MOA#Zuschlag131#4790/C516-INVOICE_NEU#4798/D-6345#4801	Currency, coded				false	
+Field	/SG48#ohne_131#var__zuschl/MOA#Zuschlag131#4790/C516-INVOICE_NEU#4798/D-6343#4802	Currency qualifier				false	
+Field	/SG48#ohne_131#var__zuschl/MOA#Zuschlag131#4790/C516-INVOICE_NEU#4798/D-4405#4803	Status, coded				false	
+Node	/SG48#ohne_125			E2EDS01		false	Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='SUMID'
+							b='010'
+							c='true'
+							d='false'
+							e=''
+							f=''
+							Filter: a &lt;= b
+							a='var__MOA_125'
+							b='0'
+							Filter: logical-and(a, b,[c,d,e])
+							a='1'
+							b='2'
+							c=''
+							d=''
+							e=''
+Node	/SG48#ohne_125/MOA#4287	Monetary amount				false	Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='SUMID'
+							b='010'
+							c='true'
+							d='false'
+							e=''
+							f=''
+Field	/SG48#ohne_125/MOA#4287/D-Header-MOA#4288	Monetary amount				false	
+Field	/SG48#ohne_125/MOA#4287/C516#4289/D-5025#4290	Monetary amount type qualifier				false	Filter: copy(field/value/variable)
+							a='SUMID'
+							Filter: replace chars(a, list b, list c)
+							a='1'
+							b='Z'
+							c=''
+							Filter: a == b ? c : d
+							a='2'
+							b='005'
+							c='176'
+							d='2'
+							Filter: a == b ? c : d
+							a='2'
+							b='011'
+							c='86'
+							d='3'
+							Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='SUMID'
+							b='010'
+							c='125'
+							d=''
+							e=''
+							f=''
+Field	/SG48#ohne_125/MOA#4287/C516#4289/D-5004#4291	Monetary amount				false	Filter: copy(field/value/variable)
+							a='SUMME'
+Field	/SG48#ohne_125/MOA#4287/C516#4289/D-6345#4292	Currency, coded				false	
+Field	/SG48#ohne_125/MOA#4287/C516#4289/D-6343#4293	Currency qualifier				false	
+Field	/SG48#ohne_125/MOA#4287/C516#4289/D-4405#4294	Status, coded				false	
+Node	/SG48#ohne_Z77			E2EDS01		false	Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='SUMID'
+							b='011'
+							c='true'
+							d='false'
+							e=''
+							f=''
+							Filter: a &lt;= b
+							a='var__MOA_Z77'
+							b='0'
+							Filter: logical-and(a, b,[c,d,e])
+							a='1'
+							b='2'
+							c=''
+							d=''
+							e=''
+Node	/SG48#ohne_Z77/MOA#4340	Monetary amount				false	Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='SUMID'
+							b='011'
+							c='true'
+							d='false'
+							e=''
+							f=''
+Field	/SG48#ohne_Z77/MOA#4340/D-Header-MOA#4341	Monetary amount				false	
+Field	/SG48#ohne_Z77/MOA#4340/C516#4342/D-5025#4343	Monetary amount type qualifier				false	Filter: replace chars(a, list b, list c)
+							a='SUMID'
+							b='Z'
+							c=''
+							Filter: a == b ? c : d
+							a='1'
+							b='005'
+							c='176'
+							d='1'
+							Filter: a == b ? c : d
+							a='1'
+							b='011'
+							c='86'
+							d='2'
+							Filter: replace value(a, list b, list c, default d, [contains-mode e, delim f])
+							a='SUMID'
+							b='011'
+							c='77'
+							d=''
+							e=''
+							f=''
+Field	/SG48#ohne_Z77/MOA#4340/C516#4342/D-5004#4344	Monetary amount				false	Filter: copy(field/value/variable)
+							a='SUMME'
+Field	/SG48#ohne_Z77/MOA#4340/C516#4342/D-6345#4345	Currency, coded				false	
+Field	/SG48#ohne_Z77/MOA#4340/C516#4342/D-6343#4346	Currency qualifier				false	
+Field	/SG48#ohne_Z77/MOA#4340/C516#4342/D-4405#4347	Status, coded				false	
+Field	/SG50/TAX#4/D-Header-TAX#5	Duty/tax/fee details				false	
+Field	/SG50/TAX#4/D-5283#4	Duty/tax/fee function qualifier		7		false	
+Field	/SG50/TAX#4/C241#4/D-5153#4	Duty/tax/fee type, coded		VAT		false	
+Field	/SG50/TAX#4/C241#4/D-1131#94	Code list qualifier				false	
+Field	/SG50/TAX#4/C241#4/D-3055#94	Code list responsible agency, coded				false	
+Field	/SG50/TAX#4/C241#4/D-5152#4	Duty/tax/fee type				false	
+Field	/SG50/TAX#4/C533#4/D-5289#4	Duty/tax/fee account identification				false	
+Field	/SG50/TAX#4/C533#4/D-1131#95	Code list qualifier				false	
+Field	/SG50/TAX#4/C533#4/D-3055#95	Code list responsible agency, coded				false	
+Field	/SG50/TAX#4/D-5286#4	Duty/tax/fee assessment basis				false	
+Field	/SG50/TAX#4/C243#4/D-5279#4	Duty/tax/fee rate identification				false	
+Field	/SG50/TAX#4/C243#4/D-1131#96	Code list qualifier				false	
+Field	/SG50/TAX#4/C243#4/D-3055#96	Code list responsible agency, coded				false	
+Field	/SG50/TAX#4/C243#4/D-5278#4	Duty/tax/fee rate			/EDI_DC40/E2EDK04001/E2EDK04001_FIELDS/MSATZ-2	false	
+Field	/SG50/TAX#4/C243#4/D-5273#4	Duty/tax/fee rate basis identification				false	
+Field	/SG50/TAX#4/C243#4/D-1131#97	Code list qualifier				false	
+Field	/SG50/TAX#4/C243#4/D-3055#97	Code list responsible agency, coded				false	
+Field	/SG50/TAX#4/D-5305#4	Duty/tax/fee category, coded		S		false	
+Field	/SG50/TAX#4/D-3446#4	Party tax identification number				false	
+Field	/SG50/MOA#10/D-Header-MOA#11	Monetary amount				false	
+Field	/SG50/MOA#10/C516#10/D-5025#10	Monetary amount type qualifier		124		false	
+Field	/SG50/MOA#10/C516#10/D-5004#10	Monetary amount			/EDI_DC40/E2EDK04001/E2EDK04001_FIELDS/MWSBT	false	
+Field	/SG50/MOA#10/C516#10/D-6345#16	Currency, coded				false	
+Field	/SG50/MOA#10/C516#10/D-6343#14	Currency qualifier				false	
+Field	/SG50/MOA#10/C516#10/D-4405#16	Status, coded				false	
+Field	/UNT/D-Header-UNT	Message trailer				false	
+Field	/UNT/D-0074	Number of segments in a message				false	
+Field	/UNT/D-0062#1	Message reference number				false	Filter: copy(field/value/variable)
+							a='var__RefNumber'
+Node	/UNZ	End of message				false	Filter: isLastRecord?
+Field	/UNZ/D-Header-UNZ	End of message				false	
+Field	/UNZ/D-0036	Interchange control count				false	
+Field	/UNZ/D-0020#2	Reference id				false	Filter: copy(field/value/variable)
+							a='var__IDOC'</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.6</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>activityType</key>
+                    <value>Enricher</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::Enricher/version::1.6.1</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_22</bpmn2:incoming>
+            <bpmn2:outgoing>SequenceFlow_24</bpmn2:outgoing>
+        </bpmn2:callActivity>
+        <bpmn2:startEvent id="StartEvent_20" name="Start">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::MessageStartEvent</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:outgoing>SequenceFlow_22</bpmn2:outgoing>
+            <bpmn2:messageEventDefinition/>
+        </bpmn2:startEvent>
+        <bpmn2:sequenceFlow id="SequenceFlow_27" sourceRef="CallActivity_26" targetRef="EndEvent_21"/>
+        <bpmn2:sequenceFlow id="SequenceFlow_24" sourceRef="CallActivity_23" targetRef="CallActivity_26"/>
+        <bpmn2:sequenceFlow id="SequenceFlow_22" sourceRef="StartEvent_20" targetRef="CallActivity_23"/>
+    </bpmn2:process>
+    <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="Default Collaboration Diagram">
+        <bpmndi:BPMNPlane bpmnElement="Collaboration_1" id="BPMNPlane_1">
+            <bpmndi:BPMNShape bpmnElement="EndEvent_2" id="BPMNShape_EndEvent_2">
+                <dc:Bounds height="32.0" width="32.0" x="752.49976" y="75.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="StartEvent_2" id="BPMNShape_StartEvent_2">
+                <dc:Bounds height="32.0" width="32.0" x="279.49973" y="75.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="CallActivity_7" id="BPMNShape_CallActivity_7">
+                <dc:Bounds height="60.0" width="100.0" x="371.49973" y="61.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="CallActivity_4" id="BPMNShape_CallActivity_4">
+                <dc:Bounds height="60.0" width="161.0" x="531.49976" y="61.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="Participant_Process_1" id="BPMNShape_Participant_Process_1">
+                <dc:Bounds height="137.0" width="618.0" x="250.49973" y="11.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="Participant_Process_19" id="BPMNShape_Participant_Process_19">
+                <dc:Bounds height="137.0" width="609.0" x="250.0" y="171.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="StartEvent_20" id="BPMNShape_StartEvent_20">
+                <dc:Bounds height="32.0" width="32.0" x="270.0" y="235.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="EndEvent_21" id="BPMNShape_EndEvent_21">
+                <dc:Bounds height="32.0" width="32.0" x="743.0" y="235.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="CallActivity_23" id="BPMNShape_CallActivity_23">
+                <dc:Bounds height="60.0" width="100.0" x="362.0" y="221.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="CallActivity_26" id="BPMNShape_CallActivity_26">
+                <dc:Bounds height="60.0" width="161.0" x="522.0" y="221.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_5" id="BPMNEdge_SequenceFlow_5" sourceElement="BPMNShape_CallActivity_4" targetElement="BPMNShape_EndEvent_2">
+                <di:waypoint x="692.4997290462428" xsi:type="dc:Point" y="91.0"/>
+                <di:waypoint x="752.4997290462428" xsi:type="dc:Point" y="91.0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_8" id="BPMNEdge_SequenceFlow_8" sourceElement="BPMNShape_CallActivity_7" targetElement="BPMNShape_CallActivity_4">
+                <di:waypoint x="471.4997290462428" xsi:type="dc:Point" y="91.0"/>
+                <di:waypoint x="531.4997290462428" xsi:type="dc:Point" y="91.0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_3" id="BPMNEdge_SequenceFlow_3" sourceElement="BPMNShape_StartEvent_2" targetElement="BPMNShape_CallActivity_7">
+                <di:waypoint x="311.4997290462428" xsi:type="dc:Point" y="91.0"/>
+                <di:waypoint x="371.4997290462428" xsi:type="dc:Point" y="91.0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_22" id="BPMNEdge_SequenceFlow_22" sourceElement="BPMNShape_StartEvent_20" targetElement="BPMNShape_CallActivity_23">
+                <di:waypoint x="302.0" xsi:type="dc:Point" y="251.0"/>
+                <di:waypoint x="362.0" xsi:type="dc:Point" y="251.0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_24" id="BPMNEdge_SequenceFlow_24" sourceElement="BPMNShape_CallActivity_23" targetElement="BPMNShape_CallActivity_26">
+                <di:waypoint x="462.0" xsi:type="dc:Point" y="251.0"/>
+                <di:waypoint x="522.0" xsi:type="dc:Point" y="251.0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_27" id="BPMNEdge_SequenceFlow_27" sourceElement="BPMNShape_CallActivity_26" targetElement="BPMNShape_EndEvent_21">
+                <di:waypoint x="683.0" xsi:type="dc:Point" y="251.0"/>
+                <di:waypoint x="743.0" xsi:type="dc:Point" y="251.0"/>
+            </bpmndi:BPMNEdge>
+        </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

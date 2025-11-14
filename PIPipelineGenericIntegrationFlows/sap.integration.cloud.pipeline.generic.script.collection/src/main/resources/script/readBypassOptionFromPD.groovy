@@ -1,0 +1,52 @@
+import com.sap.gateway.ip.core.customdev.util.Message;
+import java.util.HashMap;
+import com.sap.it.api.pd.PartnerDirectoryService;
+import com.sap.it.api.ITApiFactory;
+import src.main.resources.script.PipelineLogger;
+
+def Message processData(Message message) {
+    
+    def service = ITApiFactory.getApi(PartnerDirectoryService.class, null); 
+    if (service == null){
+        throw new IllegalStateException("Partner Directory Service not found");
+    }
+    
+    // get pid
+    def headers = message.getHeaders();
+    def Pid = headers.get("partnerID");
+    String id;
+    if (Pid == null){
+        throw new IllegalStateException("Partner ID not found in sent message");   
+    }
+
+    // read receiverDetermination string parameter from the Partner Directory if any
+    def receiverName = service.getParameter("receiverDetermination", Pid , String.class);
+
+    // assign the value to the header SAP_Receiver
+    message.setHeader("SAP_Receiver", receiverName ?: null);
+
+    // read interfaceDetermination string parameter from the Partner Directory if any
+    if (receiverName != null) {
+        id = "interfaceDetermination_" + receiverName;
+        def outboundEndpoint = service.getParameter(id, Pid , String.class);
+        
+        // assign the value to the header SAP_OutboundProcessingEndpoint
+        message.setHeader("SAP_OutboundProcessingEndpoint", outboundEndpoint ?: null);
+        
+        // if the value exists, receiver and interface determination should be bypassed otherwise receiver determination only
+        message.setProperty("bypassOption", outboundEndpoint ? 'p2p' : 'skipRcvDet');
+        
+    }
+
+	// adding information to audit log using helper PipelineLogger class
+	PipelineLogger logger = PipelineLogger.newLogger(message)
+	logger.addEntry("readBypassOptionFromPD", "Partner ID to read the bypass option if any: " + Pid?:"n/a")
+	logger.addEntry("readBypassOptionFromPD", "Bypass option: property bypassOption=" + message.properties.bypassOption.toString()?:"n/a")
+	logger.addEntry("readBypassOptionFromPD", "Header SAP_Receiver=" +  message.headers.SAP_Receiver.toString()?:"n/a")
+	logger.addEntry("readBypassOptionFromPD", "Header SAP_OutboundProcessingEndpoint=" +  message.headers.SAP_OutboundProcessingEndpoint.toString()?:"n/a")
+	if (logger.getAuditLog()) {
+		message.setHeader('auditLogHeader', logger.getAuditLog())
+	}
+
+    return message;
+}

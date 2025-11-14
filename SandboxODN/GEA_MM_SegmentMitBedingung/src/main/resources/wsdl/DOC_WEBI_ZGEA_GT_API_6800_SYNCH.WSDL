@@ -1,0 +1,920 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions targetNamespace="urn:sap-com:document:sap:rfc:functions" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsoap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="urn:sap-com:document:sap:rfc:functions" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+ <wsdl:documentation>
+  <sidl:sidl xmlns:sidl="http://www.sap.com/2007/03/sidl"/>
+ </wsdl:documentation>
+ <wsp:UsingPolicy wsdl:required="true"/>
+ <wsp:Policy wsu:Id="IF_IF_ZGEA_GT_API_6800_SYNCH">
+  <sapsession:Session xmlns:sapsession="http://www.sap.com/webas/630/soap/features/session/">
+   <sapsession:enableSession>false</sapsession:enableSession>
+  </sapsession:Session>
+ </wsp:Policy>
+ <wsp:Policy wsu:Id="OP_IF_OP__-SAPSLL_-API_6800_SYNCH">
+  <sapblock:enableBlocking xmlns:sapblock="http://www.sap.com/NW05/soap/features/blocking/">true</sapblock:enableBlocking>
+  <sapcomhnd:enableCommit xmlns:sapcomhnd="http://www.sap.com/NW05/soap/features/commit/">false</sapcomhnd:enableCommit>
+  <saptrhnw05:required xmlns:saptrhnw05="http://www.sap.com/NW05/soap/features/transaction/">no</saptrhnw05:required>
+  <saprmnw05:enableWSRM xmlns:saprmnw05="http://www.sap.com/NW05/soap/features/wsrm/">false</saprmnw05:enableWSRM>
+ </wsp:Policy>
+ <wsdl:types>
+  <xsd:schema attributeFormDefault="qualified" targetNamespace="urn:sap-com:document:sap:rfc:functions">
+   <xsd:simpleType name="char1">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="1"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char10">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="10"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char12">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="12"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char132">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="132"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char15">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="15"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char2">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="2"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char20">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="20"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char220">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="220"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char241">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="241"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char25">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="25"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char250">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="250"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char255">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="255"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char3">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="3"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char30">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="30"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char32">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="32"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char35">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="35"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char4">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="4"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char40">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="40"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char5">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="5"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char50">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="50"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char6">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="6"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char60">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="60"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="char8">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="8"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="clnt3">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="3"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="cuky5">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="5"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="curr20.3">
+    <xsd:restriction base="xsd:decimal">
+     <xsd:totalDigits value="20"/>
+     <xsd:fractionDigits value="3"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="date10">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="10"/>
+     <xsd:pattern value="\d\d\d\d-\d\d-\d\d"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="decimal15.0">
+    <xsd:restriction base="xsd:decimal">
+     <xsd:totalDigits value="15"/>
+     <xsd:fractionDigits value="0"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="decimal5.0">
+    <xsd:restriction base="xsd:decimal">
+     <xsd:totalDigits value="5"/>
+     <xsd:fractionDigits value="0"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="decimal5.2">
+    <xsd:restriction base="xsd:decimal">
+     <xsd:totalDigits value="5"/>
+     <xsd:fractionDigits value="2"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="decimal7.0">
+    <xsd:restriction base="xsd:decimal">
+     <xsd:totalDigits value="7"/>
+     <xsd:fractionDigits value="0"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="decimal9.5">
+    <xsd:restriction base="xsd:decimal">
+     <xsd:totalDigits value="9"/>
+     <xsd:fractionDigits value="5"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="lang">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="1"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="numeric3">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="3"/>
+     <xsd:pattern value="\d*"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="numeric5">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="5"/>
+     <xsd:pattern value="\d*"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="numeric6">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="6"/>
+     <xsd:pattern value="\d*"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="quantum19.3">
+    <xsd:restriction base="xsd:decimal">
+     <xsd:totalDigits value="19"/>
+     <xsd:fractionDigits value="3"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="unit3">
+    <xsd:restriction base="xsd:string">
+     <xsd:maxLength value="3"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:complexType name="_-SAPSLL_-DEBUG_S">
+    <xsd:sequence>
+     <xsd:element name="SYSID" type="tns:char8"/>
+     <xsd:element name="MANDT" type="tns:clnt3"/>
+     <xsd:element name="DB" type="tns:char1"/>
+     <xsd:element name="FUNC" type="tns:char1"/>
+     <xsd:element name="FORM" type="tns:char1"/>
+     <xsd:element name="REMOTE" type="tns:char1"/>
+     <xsd:element name="BREAK" type="tns:char1"/>
+     <xsd:element name="OBJ" type="tns:char1"/>
+     <xsd:element name="GEN" type="tns:char1"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_ITM_DAT_S">
+    <xsd:sequence>
+     <xsd:element name="ITEM_NUMBER" type="tns:char10"/>
+     <xsd:element name="TYPE_OF_DATE" type="tns:char6"/>
+     <xsd:element name="REL_POINT_IN_TIME_TS" type="tns:decimal15.0"/>
+     <xsd:element name="DATE" type="tns:date10"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_ITM_LIC_S">
+    <xsd:sequence>
+     <xsd:element name="ITVSY" type="tns:char10"/>
+     <xsd:element name="LGREG" type="tns:char5"/>
+     <xsd:element name="LICTY" type="tns:char5"/>
+     <xsd:element name="EXLIC" type="tns:char40"/>
+     <xsd:element name="DATAB" type="tns:decimal15.0"/>
+     <xsd:element name="DATBI" type="tns:decimal15.0"/>
+     <xsd:element name="AMNT_FLT" type="xsd:float"/>
+     <xsd:element name="AMCUR" type="tns:cuky5"/>
+     <xsd:element name="VPRZI" type="tns:decimal5.2"/>
+     <xsd:element name="VPRZA" type="tns:decimal5.2"/>
+     <xsd:element name="DIMEN_FLT" type="xsd:float"/>
+     <xsd:element name="DIMUM" type="tns:unit3"/>
+     <xsd:element name="QPRZI" type="tns:decimal5.2"/>
+     <xsd:element name="QPRZA" type="tns:decimal5.2"/>
+     <xsd:element name="LTIND" type="tns:char1"/>
+     <xsd:element name="EXTNO" type="tns:char40"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_HDR_CTR_S">
+    <xsd:sequence>
+     <xsd:element name="SEQUENCE_NUMBER" type="tns:numeric5"/>
+     <xsd:element name="DEPARTURE_COUNTRY" type="tns:char3"/>
+     <xsd:element name="DEPARTURE_COUNTRY_ISO" type="tns:char2"/>
+     <xsd:element name="ARRIVAL_COUNTRY" type="tns:char3"/>
+     <xsd:element name="ARRIVAL_COUNTRY_ISO" type="tns:char2"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_HDR_CVL_S">
+    <xsd:sequence>
+     <xsd:element name="QUAL_VAL" type="tns:char6"/>
+     <xsd:element name="VALUE" type="tns:curr20.3"/>
+     <xsd:element name="VALUE_FLOAT" type="xsd:float"/>
+     <xsd:element name="VAL_CURR" type="tns:cuky5"/>
+     <xsd:element name="VAL_CURR_ISO" type="tns:char3"/>
+     <xsd:element name="CVRTQ" type="tns:decimal9.5"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_HDR_REF_S">
+    <xsd:sequence>
+     <xsd:element name="QUAL_REFNO" type="tns:char6"/>
+     <xsd:element name="REFNO" type="tns:char40"/>
+     <xsd:element name="REFDAT" type="tns:date10"/>
+     <xsd:element name="ORG_LOGSYSTEM" type="tns:char10"/>
+     <xsd:element name="OBJTP" type="tns:char10"/>
+     <xsd:element name="REFAPP" type="tns:char10"/>
+     <xsd:element name="ERNAM" type="tns:char12"/>
+     <xsd:element name="AENAM" type="tns:char12"/>
+     <xsd:element name="BUS_TRANSAC_DOC_TYPE_CODE" type="tns:char5"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_ITM_CVL_S">
+    <xsd:sequence>
+     <xsd:element name="ITEM_NUMBER" type="tns:char10"/>
+     <xsd:element name="QUAL_VAL" type="tns:char6"/>
+     <xsd:element name="VALUE" type="tns:curr20.3"/>
+     <xsd:element name="VALUE_FLOAT" type="xsd:float"/>
+     <xsd:element name="VAL_CURR" type="tns:cuky5"/>
+     <xsd:element name="VAL_CURR_ISO" type="tns:char3"/>
+     <xsd:element name="CVRTQ" type="tns:decimal9.5"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_ITM_REF_S">
+    <xsd:sequence>
+     <xsd:element name="ITEM_NUMBER" type="tns:char10"/>
+     <xsd:element name="QUAL_REFNO" type="tns:char6"/>
+     <xsd:element name="REFNO" type="tns:char40"/>
+     <xsd:element name="REFDAT" type="tns:date10"/>
+     <xsd:element name="ORG_LOGSYSTEM" type="tns:char10"/>
+     <xsd:element name="OBJTP" type="tns:char10"/>
+     <xsd:element name="REFAPP" type="tns:char10"/>
+     <xsd:element name="ERNAM" type="tns:char12"/>
+     <xsd:element name="AENAM" type="tns:char12"/>
+     <xsd:element name="HG_LV_ITEM" type="tns:char10"/>
+     <xsd:element name="BUS_TRANSAC_DOC_TYPE_CODE" type="tns:char5"/>
+     <xsd:element name="BUS_TRANSAC_DOC_ITM_ID" type="tns:char10"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="BAPIEXT">
+    <xsd:sequence>
+     <xsd:element name="PARAM" type="tns:char32"/>
+     <xsd:element name="ROW" type="xsd:int"/>
+     <xsd:element name="FIELD" type="tns:char30"/>
+     <xsd:element name="VALUE" type="tns:char255"/>
+     <xsd:element name="TYPE" type="tns:char4"/>
+     <xsd:element name="LENGTH" type="tns:numeric6"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_ITM_S">
+    <xsd:sequence>
+     <xsd:element name="GUID_ITEM" type="tns:char32"/>
+     <xsd:element name="ITEM_NUMBER" type="tns:char10"/>
+     <xsd:element name="LEGAL_ACTIVE" type="tns:char1"/>
+     <xsd:element name="RECHECK_INDICATOR" type="tns:char1"/>
+     <xsd:element name="DELETION_INDICATOR" type="tns:char1"/>
+     <xsd:element name="ITEM_CATEGORY" type="tns:char5"/>
+     <xsd:element name="INVOICING_COUNTRY" type="tns:char3"/>
+     <xsd:element name="INVOICING_COUNTRY_ISO" type="tns:char2"/>
+     <xsd:element name="DEPARTURE_COUNTRY" type="tns:char3"/>
+     <xsd:element name="DEPARTURE_COUNTRY_ISO" type="tns:char2"/>
+     <xsd:element name="ARRIVAL_COUNTRY" type="tns:char3"/>
+     <xsd:element name="ARRIVAL_COUNTRY_ISO" type="tns:char2"/>
+     <xsd:element name="PRODUCT_ID" type="tns:char40"/>
+     <xsd:element name="DIM_UOM" type="tns:unit3"/>
+     <xsd:element name="DIM_UOM_ISO" type="tns:char3"/>
+     <xsd:element name="NUMERATOR" type="tns:decimal7.0"/>
+     <xsd:element name="DENOMINATOR" type="tns:decimal7.0"/>
+     <xsd:element name="CONVERSION_FACTOR" type="xsd:float"/>
+     <xsd:element name="VAL_CURR" type="tns:cuky5"/>
+     <xsd:element name="VAL_CURR_ISO" type="tns:char3"/>
+     <xsd:element name="COUNTRY_OF_ORIGIN" type="tns:char3"/>
+     <xsd:element name="COUNTRY_OF_ORIGIN_ISO" type="tns:char2"/>
+     <xsd:element name="REGION_OF_ORIGIN" type="tns:char3"/>
+     <xsd:element name="PLANT" type="tns:char4"/>
+     <xsd:element name="STORAGE_LOCATION" type="tns:char4"/>
+     <xsd:element name="PREDECESSOR_QUAL_REFNO" type="tns:char6"/>
+     <xsd:element name="PREDECESSOR_REFNO" type="tns:char40"/>
+     <xsd:element name="PREDECESSOR_ITEM" type="tns:char10"/>
+     <xsd:element name="PREDECESSOR_LOGSYSTEM" type="tns:char10"/>
+     <xsd:element name="PREDECESSOR_OBJTP" type="tns:char10"/>
+     <xsd:element name="CHANGED_BY" type="tns:char12"/>
+     <xsd:element name="PREDECESSOR_REFAPP" type="tns:char10"/>
+     <xsd:element name="TAX_DEPARTURE_COUNTRY" type="tns:char3"/>
+     <xsd:element name="TAX_DEPARTURE_COUNTRY_ISO" type="tns:char2"/>
+     <xsd:element name="TAX_ARRIVAL_COUNTRY" type="tns:char3"/>
+     <xsd:element name="TAX_ARRIVAL_COUNTRY_ISO" type="tns:char2"/>
+     <xsd:element name="PLANT_GUID" type="tns:char32"/>
+     <xsd:element name="SALES_ORGANISATION_GUID" type="tns:char32"/>
+     <xsd:element name="PRODUCT_GUID" type="tns:char32"/>
+     <xsd:element name="CANCELLATION_INDICATOR" type="tns:char1"/>
+     <xsd:element name="CUST_PROCEDURE" type="tns:char8"/>
+     <xsd:element name="ADD_DATA1" type="tns:char10"/>
+     <xsd:element name="ADD_DATA2" type="tns:char15"/>
+     <xsd:element name="ADD_DATA3" type="tns:char30"/>
+     <xsd:element name="INCOT" type="tns:char3"/>
+     <xsd:element name="INCOLO" type="tns:char40"/>
+     <xsd:element name="PAYMENT_TERMS" type="tns:char10"/>
+     <xsd:element name="BASE_UOM" type="tns:unit3"/>
+     <xsd:element name="BASE_UOM_ISO" type="tns:char3"/>
+     <xsd:element name="ECPID" type="tns:char10"/>
+     <xsd:element name="KMAT_INDICATOR" type="tns:char1"/>
+     <xsd:element name="CUS_STAT" type="tns:char1"/>
+     <xsd:element name="PRODUCT_ENDUSE" type="tns:char5"/>
+     <xsd:element name="LOC_GUID" type="tns:char32"/>
+     <xsd:element name="IDENTIFICATION_OF_GOODS" type="tns:char20"/>
+     <xsd:element name="LOCATION_ID" type="tns:char3"/>
+     <xsd:element name="LOCATION_ID_INDICATOR" type="tns:char1"/>
+     <xsd:element name="HG_LV_ITEM" type="tns:char10"/>
+     <xsd:element name="ECPID_OP" type="tns:char10"/>
+     <xsd:element name="IDENTIFICATION_OF_GOODS_OP" type="tns:char20"/>
+     <xsd:element name="MAT_SHORT_TEXT" type="tns:char40"/>
+     <xsd:element name="FREE_OF_CHARGE" type="tns:char1"/>
+     <xsd:element name="PROJECT_ID" type="tns:char20"/>
+     <xsd:element name="BOM_IDENT" type="tns:char32"/>
+     <xsd:element name="LOGISTIC_PROCESS" type="tns:char2"/>
+     <xsd:element name="HAZARDOUS_GOODS_INDICATOR" type="tns:char1"/>
+     <xsd:element name="HAZARDOUS_GOODS_NUMBER" type="tns:char4"/>
+     <xsd:element name="TRANSACTION_TYPE" type="tns:char2"/>
+     <xsd:element name="EXCISE_MOVEMENT_INDICATOR" type="tns:char1"/>
+     <xsd:element name="VEHICLE_IDENTIFICATION" type="tns:char30"/>
+     <xsd:element name="THIRD_PARTY_TRANSACTION" type="tns:char1"/>
+     <xsd:element name="EXCHANGE_RATE" type="tns:decimal9.5"/>
+     <xsd:element name="FIXED_RATE" type="tns:char1"/>
+     <xsd:element name="PLANT_COMPANY_CODE" type="tns:char4"/>
+     <xsd:element name="SCHEDGAGRMT_LGLCTRL_CHK_IND" type="tns:char1"/>
+     <xsd:element name="RECEIVING_PLANT" type="tns:char4"/>
+     <xsd:element name="PLANT_SUPPLIER" type="tns:char10"/>
+     <xsd:element name="IBPP_RELEVANT" type="tns:char1"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_ITM_DIM_S">
+    <xsd:sequence>
+     <xsd:element name="ITEM_NUMBER" type="tns:char10"/>
+     <xsd:element name="QUAL_DIM" type="tns:char6"/>
+     <xsd:element name="DIMEN" type="tns:quantum19.3"/>
+     <xsd:element name="DIMEN_FLT" type="xsd:float"/>
+     <xsd:element name="DIM_UOM" type="tns:unit3"/>
+     <xsd:element name="DIM_UOM_ISO" type="tns:char3"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_HDR_DIM_S">
+    <xsd:sequence>
+     <xsd:element name="QUAL_DIM" type="tns:char6"/>
+     <xsd:element name="DIMEN" type="tns:quantum19.3"/>
+     <xsd:element name="DIMEN_FLT" type="xsd:float"/>
+     <xsd:element name="DIM_UOM" type="tns:unit3"/>
+     <xsd:element name="DIM_UOM_ISO" type="tns:char3"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_ITM_PRE_S">
+    <xsd:sequence>
+     <xsd:element name="ITEM_NUMBER" type="tns:char10"/>
+     <xsd:element name="LGREG" type="tns:char5"/>
+     <xsd:element name="PFONY" type="tns:char1"/>
+     <xsd:element name="LGREG_APPLIED" type="tns:char1"/>
+     <xsd:element name="PREF_INDICATOR" type="tns:char3"/>
+     <xsd:element name="PREF_METHOD" type="tns:char1"/>
+     <xsd:element name="PRICE_DEPENDENT" type="tns:char1"/>
+     <xsd:element name="PRICE_UNIT" type="tns:decimal5.0"/>
+     <xsd:element name="PRICE_UOM" type="tns:unit3"/>
+     <xsd:element name="PRICE_UOM_ISO" type="tns:char3"/>
+     <xsd:element name="VAL_CURR" type="tns:cuky5"/>
+     <xsd:element name="VAL_CURR_ISO" type="tns:char3"/>
+     <xsd:element name="VALCP" type="tns:curr20.3"/>
+     <xsd:element name="VALCP_FLT" type="xsd:float"/>
+     <xsd:element name="VALOR" type="tns:curr20.3"/>
+     <xsd:element name="VALOR_FLT" type="xsd:float"/>
+     <xsd:element name="VALNO" type="tns:curr20.3"/>
+     <xsd:element name="VALNO_FLT" type="xsd:float"/>
+     <xsd:element name="VALRB" type="tns:curr20.3"/>
+     <xsd:element name="VALRB_FLT" type="xsd:float"/>
+     <xsd:element name="PREF_INDICATORS" type="tns:char10"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="BAPIRET2">
+    <xsd:sequence>
+     <xsd:element name="TYPE" type="tns:char1"/>
+     <xsd:element name="ID" type="tns:char20"/>
+     <xsd:element name="NUMBER" type="tns:numeric3"/>
+     <xsd:element name="MESSAGE" type="tns:char220"/>
+     <xsd:element name="LOG_NO" type="tns:char20"/>
+     <xsd:element name="LOG_MSG_NO" type="tns:numeric6"/>
+     <xsd:element name="MESSAGE_V1" type="tns:char50"/>
+     <xsd:element name="MESSAGE_V2" type="tns:char50"/>
+     <xsd:element name="MESSAGE_V3" type="tns:char50"/>
+     <xsd:element name="MESSAGE_V4" type="tns:char50"/>
+     <xsd:element name="PARAMETER" type="tns:char32"/>
+     <xsd:element name="ROW" type="xsd:int"/>
+     <xsd:element name="FIELD" type="tns:char30"/>
+     <xsd:element name="SYSTEM" type="tns:char10"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_HDR_S">
+    <xsd:sequence>
+     <xsd:element name="GUID_HEADER" type="tns:char32"/>
+     <xsd:element name="SIMULATION_MODE" type="tns:char1"/>
+     <xsd:element name="DELETION_INDICATOR" type="tns:char1"/>
+     <xsd:element name="APPLICATION_LEVEL" type="tns:char4"/>
+     <xsd:element name="DOCUMENT_TYPE" type="tns:char5"/>
+     <xsd:element name="COMPANY_CODE" type="tns:char4"/>
+     <xsd:element name="CHANGED_BY" type="tns:char12"/>
+     <xsd:element name="LANGU_ISO" type="tns:char2"/>
+     <xsd:element name="BILLING_UNIT_GUID" type="tns:char32"/>
+     <xsd:element name="CANCELLATION_INDICATOR" type="tns:char1"/>
+     <xsd:element name="COMPANY_CODE_CURCY" type="tns:cuky5"/>
+     <xsd:element name="EXCHANGE_RATE" type="tns:decimal9.5"/>
+     <xsd:element name="FIXED_RATE" type="tns:char1"/>
+     <xsd:element name="MODE_TR_BORDER" type="tns:char2"/>
+     <xsd:element name="MODE_TR_INLAND" type="tns:char2"/>
+     <xsd:element name="CUST_OFFICE_DEPA" type="tns:char10"/>
+     <xsd:element name="CUST_OFFICE_EXIT" type="tns:char10"/>
+     <xsd:element name="CUST_OFFICE_DEST" type="tns:char10"/>
+     <xsd:element name="CUST_OFFICE_PAS1" type="tns:char10"/>
+     <xsd:element name="CUST_OFFICE_PAS2" type="tns:char10"/>
+     <xsd:element name="CUST_OFFICE_PAS3" type="tns:char10"/>
+     <xsd:element name="CUST_OFFICE_PAS4" type="tns:char10"/>
+     <xsd:element name="CUST_OFFICE_PAS5" type="tns:char10"/>
+     <xsd:element name="CUST_OFFICE_PAS6" type="tns:char10"/>
+     <xsd:element name="MNSTR_BORDER" type="tns:char40"/>
+     <xsd:element name="CNTRY_MNSTR_BORDER" type="tns:char3"/>
+     <xsd:element name="CNTRY_MNSTR_BORDER_ISO" type="tns:char2"/>
+     <xsd:element name="MNSTR_DEPART" type="tns:char40"/>
+     <xsd:element name="CNTRY_MNSTR_DEPART" type="tns:char3"/>
+     <xsd:element name="CNTRY_MNSTR_DEPART_ISO" type="tns:char2"/>
+     <xsd:element name="PLACE_LOAD_UNLOAD" type="tns:char35"/>
+     <xsd:element name="TRANSACTION_TYPE" type="tns:char2"/>
+     <xsd:element name="CHANGED_AT" type="tns:decimal15.0"/>
+     <xsd:element name="GEOGR" type="tns:char10"/>
+     <xsd:element name="INCOT" type="tns:char3"/>
+     <xsd:element name="INCOLO" type="tns:char40"/>
+     <xsd:element name="HTSLIC" type="tns:char1"/>
+     <xsd:element name="ADD_DATA1" type="tns:char10"/>
+     <xsd:element name="ADD_DATA2" type="tns:char15"/>
+     <xsd:element name="ADD_DATA3" type="tns:char30"/>
+     <xsd:element name="EXPORT_CODE" type="tns:char2"/>
+     <xsd:element name="PREV_DOC_TYPE" type="tns:char10"/>
+     <xsd:element name="LOCFS" type="tns:char1"/>
+     <xsd:element name="LOCBP" type="tns:char1"/>
+     <xsd:element name="PRINT_PROFILE" type="tns:char10"/>
+     <xsd:element name="SPECIAL_BUSINESS_TRANSACTION" type="tns:char2"/>
+     <xsd:element name="ORGANIZATIONAL_UNIT" type="tns:char4"/>
+     <xsd:element name="CRS_BORDER_JOURNEY_ID" type="tns:char35"/>
+     <xsd:element name="ULTIMATE_CNEE_TYPE_CODE" type="tns:char1"/>
+     <xsd:element name="INCOTERMS_TRANSF_LOC_UNLOCODE" type="tns:char10"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_INCOMP_S">
+    <xsd:sequence>
+     <xsd:element name="DOCUMENT_NUMBER" type="tns:char40"/>
+     <xsd:element name="OBJT" type="tns:char1"/>
+     <xsd:element name="OBJ_NUM" type="tns:char40"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_ITM_HTS_S">
+    <xsd:sequence>
+     <xsd:element name="ITVSY" type="tns:char10"/>
+     <xsd:element name="CCNGN" type="tns:char30"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_ITM_VAL_S">
+    <xsd:sequence>
+     <xsd:element name="ITEM_NUMBER" type="tns:char10"/>
+     <xsd:element name="QUAL_VAL" type="tns:char6"/>
+     <xsd:element name="VALUE" type="tns:curr20.3"/>
+     <xsd:element name="VALUE_FLOAT" type="xsd:float"/>
+     <xsd:element name="VAL_CURR" type="tns:cuky5"/>
+     <xsd:element name="VAL_CURR_ISO" type="tns:char3"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_ADDR_S">
+    <xsd:sequence>
+     <xsd:element name="ADDR_NO" type="tns:char10"/>
+     <xsd:element name="FORMOFADDR" type="tns:char20"/>
+     <xsd:element name="NAME" type="tns:char40"/>
+     <xsd:element name="NAME_2" type="tns:char40"/>
+     <xsd:element name="NAME_3" type="tns:char40"/>
+     <xsd:element name="NAME_4" type="tns:char40"/>
+     <xsd:element name="C_O_NAME" type="tns:char40"/>
+     <xsd:element name="CITY" type="tns:char40"/>
+     <xsd:element name="DISTRICT" type="tns:char40"/>
+     <xsd:element name="CITY_NO" type="tns:char12"/>
+     <xsd:element name="POSTL_COD1" type="tns:char10"/>
+     <xsd:element name="POSTL_COD2" type="tns:char10"/>
+     <xsd:element name="POSTL_COD3" type="tns:char10"/>
+     <xsd:element name="PO_BOX" type="tns:char10"/>
+     <xsd:element name="PO_BOX_CIT" type="tns:char40"/>
+     <xsd:element name="DELIV_DIS" type="tns:char15"/>
+     <xsd:element name="STREET" type="tns:char40"/>
+     <xsd:element name="STREET_NO" type="tns:char12"/>
+     <xsd:element name="STR_ABBR" type="tns:char2"/>
+     <xsd:element name="HOUSE_NO" type="tns:char10"/>
+     <xsd:element name="STR_SUPPL1" type="tns:char40"/>
+     <xsd:element name="STR_SUPPL2" type="tns:char40"/>
+     <xsd:element name="LOCATION" type="tns:char40"/>
+     <xsd:element name="BUILDING" type="tns:char10"/>
+     <xsd:element name="FLOOR" type="tns:char10"/>
+     <xsd:element name="ROOM_NO" type="tns:char10"/>
+     <xsd:element name="COUNTRY" type="tns:char3"/>
+     <xsd:element name="LANGU" type="tns:lang"/>
+     <xsd:element name="REGION" type="tns:char3"/>
+     <xsd:element name="SORT1" type="tns:char20"/>
+     <xsd:element name="SORT2" type="tns:char20"/>
+     <xsd:element name="TIME_ZONE" type="tns:char6"/>
+     <xsd:element name="TAXJURCODE" type="tns:char15"/>
+     <xsd:element name="ADR_NOTES" type="tns:char50"/>
+     <xsd:element name="COMM_TYPE" type="tns:char3"/>
+     <xsd:element name="TEL1_NUMBR" type="tns:char30"/>
+     <xsd:element name="TEL1_EXT" type="tns:char10"/>
+     <xsd:element name="FAX_NUMBER" type="tns:char30"/>
+     <xsd:element name="FAX_EXTENS" type="tns:char10"/>
+     <xsd:element name="STREET_LNG" type="tns:char60"/>
+     <xsd:element name="DISTRCT_NO" type="tns:char8"/>
+     <xsd:element name="CHCKSTATUS" type="tns:char1"/>
+     <xsd:element name="PBOXCIT_NO" type="tns:char12"/>
+     <xsd:element name="TRANSPZONE" type="tns:char10"/>
+     <xsd:element name="HOUSE_NO2" type="tns:char10"/>
+     <xsd:element name="E_MAIL" type="tns:char241"/>
+     <xsd:element name="STR_SUPPL3" type="tns:char40"/>
+     <xsd:element name="TITLE" type="tns:char30"/>
+     <xsd:element name="COUNTRYISO" type="tns:char2"/>
+     <xsd:element name="LANGU_ISO" type="tns:char2"/>
+     <xsd:element name="BUILD_LONG" type="tns:char20"/>
+     <xsd:element name="REGIOGROUP" type="tns:char8"/>
+     <xsd:element name="HOME_CITY" type="tns:char40"/>
+     <xsd:element name="HOMECITYNO" type="tns:char12"/>
+     <xsd:element name="PCODE1_EXT" type="tns:char10"/>
+     <xsd:element name="PCODE2_EXT" type="tns:char10"/>
+     <xsd:element name="PCODE3_EXT" type="tns:char10"/>
+     <xsd:element name="PO_W_O_NO" type="tns:char1"/>
+     <xsd:element name="PO_BOX_REG" type="tns:char3"/>
+     <xsd:element name="POBOX_CTRY" type="tns:char3"/>
+     <xsd:element name="PO_CTRYISO" type="tns:char2"/>
+     <xsd:element name="HOMEPAGE" type="tns:char132"/>
+     <xsd:element name="DONT_USE_S" type="tns:char4"/>
+     <xsd:element name="DONT_USE_P" type="tns:char4"/>
+     <xsd:element name="HOUSE_NO3" type="tns:char10"/>
+     <xsd:element name="LANGU_CR" type="tns:lang"/>
+     <xsd:element name="LANGUCRISO" type="tns:char2"/>
+     <xsd:element name="PO_BOX_LOBBY" type="tns:char40"/>
+     <xsd:element name="DELI_SERV_TYPE" type="tns:char4"/>
+     <xsd:element name="DELI_SERV_NUMBER" type="tns:char10"/>
+     <xsd:element name="URI_TYPE" type="tns:char3"/>
+     <xsd:element name="COUNTY_CODE" type="tns:char8"/>
+     <xsd:element name="COUNTY" type="tns:char40"/>
+     <xsd:element name="TOWNSHIP_CODE" type="tns:char8"/>
+     <xsd:element name="TOWNSHIP" type="tns:char40"/>
+     <xsd:element name="XPCPT" type="tns:char1"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_HDR_PAR_S">
+    <xsd:sequence>
+     <xsd:element name="DELETION_INDICATOR" type="tns:char1"/>
+     <xsd:element name="PARTNER_FUNCTION" type="tns:char8"/>
+     <xsd:element name="PARTNER_TYPE" type="tns:char2"/>
+     <xsd:element name="PARTNER_ID" type="tns:char40"/>
+     <xsd:element name="PARTNER_GUID" type="tns:char32"/>
+     <xsd:element name="COUNTRY" type="tns:char3"/>
+     <xsd:element name="COUNTRY_ISO" type="tns:char2"/>
+     <xsd:element name="ADDR_NO" type="tns:char10"/>
+     <xsd:element name="ADDR_MANIPULATED" type="tns:char1"/>
+     <xsd:element name="VAT_REG_ID" type="tns:char20"/>
+     <xsd:element name="ADDR_GUID" type="tns:char32"/>
+     <xsd:element name="ORG_LOGSYSTEM" type="tns:char10"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="BAPIEXTC">
+    <xsd:sequence>
+     <xsd:element name="FIELD1" type="tns:char250"/>
+     <xsd:element name="FIELD2" type="tns:char250"/>
+     <xsd:element name="FIELD3" type="tns:char250"/>
+     <xsd:element name="FIELD4" type="tns:char250"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_HDR_VAL_S">
+    <xsd:sequence>
+     <xsd:element name="QUAL_VAL" type="tns:char6"/>
+     <xsd:element name="VALUE" type="tns:curr20.3"/>
+     <xsd:element name="VALUE_FLOAT" type="xsd:float"/>
+     <xsd:element name="VAL_CURR" type="tns:cuky5"/>
+     <xsd:element name="VAL_CURR_ISO" type="tns:char3"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_ITM_PAR_S">
+    <xsd:sequence>
+     <xsd:element name="ITEM_NUMBER" type="tns:char10"/>
+     <xsd:element name="DELETION_INDICATOR" type="tns:char1"/>
+     <xsd:element name="PARTNER_FUNCTION" type="tns:char8"/>
+     <xsd:element name="PARTNER_TYPE" type="tns:char2"/>
+     <xsd:element name="PARTNER_ID" type="tns:char40"/>
+     <xsd:element name="PARTNER_GUID" type="tns:char32"/>
+     <xsd:element name="COUNTRY" type="tns:char3"/>
+     <xsd:element name="COUNTRY_ISO" type="tns:char2"/>
+     <xsd:element name="ADDR_NO" type="tns:char10"/>
+     <xsd:element name="ADDR_MANIPULATED" type="tns:char1"/>
+     <xsd:element name="VAT_REG_ID" type="tns:char20"/>
+     <xsd:element name="ADDR_GUID" type="tns:char32"/>
+     <xsd:element name="ORG_LOGSYSTEM" type="tns:char10"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_HDR_DAT_S">
+    <xsd:sequence>
+     <xsd:element name="TYPE_OF_DATE" type="tns:char6"/>
+     <xsd:element name="REL_POINT_IN_TIME_TS" type="tns:decimal15.0"/>
+     <xsd:element name="DATE" type="tns:date10"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_RESULT_S">
+    <xsd:sequence>
+     <xsd:element name="DOCUMENT_NUMBER" type="tns:char40"/>
+     <xsd:element name="GUID_HEADER" type="tns:char32"/>
+     <xsd:element name="SERV_STAH" type="tns:char6"/>
+     <xsd:element name="QUAL_STAH" type="tns:char6"/>
+     <xsd:element name="ITEM_NUMBER" type="tns:char10"/>
+     <xsd:element name="GUID_ITEM" type="tns:char32"/>
+     <xsd:element name="SERV_STAI" type="tns:char6"/>
+     <xsd:element name="QUAL_STAI" type="tns:char6"/>
+     <xsd:element name="SERVIC_TEXT" type="tns:char60"/>
+     <xsd:element name="STATUS_TEXT" type="tns:char25"/>
+     <xsd:element name="CHANGED_AT" type="tns:decimal15.0"/>
+     <xsd:element name="CD_ACCESS" type="tns:char1"/>
+     <xsd:element name="ENQUEUE" type="tns:char1"/>
+     <xsd:element name="ENQUEUE_PRE" type="tns:char1"/>
+     <xsd:element name="ORG_UNIT" type="tns:char1"/>
+     <xsd:element name="DOCUMENT_TYPE" type="tns:char1"/>
+     <xsd:element name="ITEM_CATEGORY" type="tns:char1"/>
+     <xsd:element name="LOG_SYSTEM" type="tns:char1"/>
+     <xsd:element name="PARTNER" type="tns:char1"/>
+     <xsd:element name="PARTNER_FUNCTION" type="tns:char1"/>
+     <xsd:element name="PRODUCT" type="tns:char1"/>
+     <xsd:element name="NUMBER_RANGE" type="tns:char1"/>
+     <xsd:element name="CHECK_IND" type="tns:char1"/>
+     <xsd:element name="BOM_SUBITEM" type="tns:char10"/>
+     <xsd:element name="SUBSEQUENT_FUNCTION" type="tns:char1"/>
+     <xsd:element name="LDT_RELEVANT" type="tns:char1"/>
+     <xsd:element name="LICENSE_CATEGORY" type="tns:char2"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF__-SAPSLL_-API6800_ITM_DAT_S">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_ITM_DAT_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF__-SAPSLL_-API6800_ITM_LIC_S">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_ITM_LIC_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF__-SAPSLL_-API6800_HDR_CTR_S">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_HDR_CTR_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF__-SAPSLL_-API6800_HDR_CVL_S">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_HDR_CVL_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF__-SAPSLL_-API6800_HDR_REF_S">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_HDR_REF_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF__-SAPSLL_-API6800_ITM_CVL_S">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_ITM_CVL_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF__-SAPSLL_-API6800_ITM_REF_S">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_ITM_REF_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF_BAPIEXT">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:BAPIEXT" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF__-SAPSLL_-API6800_ITM_S">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_ITM_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF__-SAPSLL_-API6800_ITM_DIM_S">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_ITM_DIM_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF__-SAPSLL_-API6800_HDR_DIM_S">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_HDR_DIM_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF__-SAPSLL_-API6800_ITM_PRE_S">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_ITM_PRE_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF_BAPIRET2">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:BAPIRET2" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF__-SAPSLL_-API6800_INCOMP_S">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_INCOMP_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF__-SAPSLL_-API6800_ITM_HTS_S">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_ITM_HTS_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF__-SAPSLL_-API6800_ITM_VAL_S">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_ITM_VAL_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF__-SAPSLL_-API6800_ADDR_S">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_ADDR_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF__-SAPSLL_-API6800_HDR_PAR_S">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_HDR_PAR_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF_BAPIEXTC">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:BAPIEXTC" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF__-SAPSLL_-API6800_HDR_VAL_S">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_HDR_VAL_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF__-SAPSLL_-API6800_ITM_PAR_S">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_ITM_PAR_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TABLE_OF__-SAPSLL_-API6800_HDR_DAT_S">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_HDR_DAT_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="_-SAPSLL_-API6800_RESULT_T">
+    <xsd:sequence>
+     <xsd:element name="item" type="tns:_-SAPSLL_-API6800_RESULT_S" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="_-SAPSLL_-API_6800_SYNCH">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="DOC_ADDRESS_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ADDR_S"/>
+      <xsd:element name="HDR_COUNTRY_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_HDR_CTR_S" minOccurs="0"/>
+      <xsd:element name="HDR_DATA" type="tns:_-SAPSLL_-API6800_HDR_S"/>
+      <xsd:element name="HDR_DATE_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_HDR_DAT_S"/>
+      <xsd:element name="HDR_DIMENSION_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_HDR_DIM_S"/>
+      <xsd:element name="HDR_DUC_VALUE_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_HDR_CVL_S" minOccurs="0"/>
+      <xsd:element name="HDR_PARTNER_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_HDR_PAR_S"/>
+      <xsd:element name="HDR_REFERENCE_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_HDR_REF_S"/>
+      <xsd:element name="HDR_VALUE_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_HDR_VAL_S"/>
+      <xsd:element name="IS_DEBUG" type="tns:_-SAPSLL_-DEBUG_S" minOccurs="0"/>
+      <xsd:element name="ITM_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_S"/>
+      <xsd:element name="ITM_DATE_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_DAT_S"/>
+      <xsd:element name="ITM_DIMENSION_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_DIM_S"/>
+      <xsd:element name="ITM_DUC_VALUE_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_CVL_S" minOccurs="0"/>
+      <xsd:element name="ITM_HTS_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_HTS_S" minOccurs="0"/>
+      <xsd:element name="ITM_LIC_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_LIC_S" minOccurs="0"/>
+      <xsd:element name="ITM_PARTNER_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_PAR_S"/>
+      <xsd:element name="ITM_PREFERENCE_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_PRE_S" minOccurs="0"/>
+      <xsd:element name="ITM_REFERENCE_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_REF_S"/>
+      <xsd:element name="ITM_VALUE_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_VAL_S"/>
+      <xsd:element name="IT_EXTENSION1" type="tns:TABLE_OF_BAPIEXTC" minOccurs="0"/>
+      <xsd:element name="IT_EXTENSION2" type="tns:TABLE_OF_BAPIEXT" minOccurs="0"/>
+      <xsd:element name="IV_COMM_STATUS_SYNCH" type="tns:char1" minOccurs="0"/>
+      <xsd:element name="IV_NO_COMMIT" type="tns:char1" minOccurs="0"/>
+      <xsd:element name="IV_SET_ACTIVE" type="tns:char1" minOccurs="0"/>
+      <xsd:element name="IV_SYNCH_ACTIVE" type="tns:char1" minOccurs="0"/>
+      <xsd:element name="IV_UPDATE_TASK" type="tns:char1" minOccurs="0"/>
+      <xsd:element name="MAP_ERR" type="tns:TABLE_OF__-SAPSLL_-API6800_INCOMP_S" minOccurs="0"/>
+      <xsd:element name="RESULT_LEGAL_CONTROL" type="tns:_-SAPSLL_-API6800_RESULT_T"/>
+      <xsd:element name="RETURN" type="tns:TABLE_OF_BAPIRET2"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="_-SAPSLL_-API_6800_SYNCHResponse">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="DOC_ADDRESS_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ADDR_S"/>
+      <xsd:element name="HDR_COUNTRY_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_HDR_CTR_S" minOccurs="0"/>
+      <xsd:element name="HDR_DATE_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_HDR_DAT_S"/>
+      <xsd:element name="HDR_DIMENSION_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_HDR_DIM_S"/>
+      <xsd:element name="HDR_DUC_VALUE_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_HDR_CVL_S" minOccurs="0"/>
+      <xsd:element name="HDR_PARTNER_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_HDR_PAR_S"/>
+      <xsd:element name="HDR_REFERENCE_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_HDR_REF_S"/>
+      <xsd:element name="HDR_VALUE_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_HDR_VAL_S"/>
+      <xsd:element name="ITM_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_S"/>
+      <xsd:element name="ITM_DATE_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_DAT_S"/>
+      <xsd:element name="ITM_DIMENSION_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_DIM_S"/>
+      <xsd:element name="ITM_DUC_VALUE_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_CVL_S" minOccurs="0"/>
+      <xsd:element name="ITM_HTS_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_HTS_S" minOccurs="0"/>
+      <xsd:element name="ITM_LIC_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_LIC_S" minOccurs="0"/>
+      <xsd:element name="ITM_PARTNER_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_PAR_S"/>
+      <xsd:element name="ITM_PREFERENCE_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_PRE_S" minOccurs="0"/>
+      <xsd:element name="ITM_REFERENCE_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_REF_S"/>
+      <xsd:element name="ITM_VALUE_DATA" type="tns:TABLE_OF__-SAPSLL_-API6800_ITM_VAL_S"/>
+      <xsd:element name="IT_EXTENSION1" type="tns:TABLE_OF_BAPIEXTC" minOccurs="0"/>
+      <xsd:element name="IT_EXTENSION2" type="tns:TABLE_OF_BAPIEXT" minOccurs="0"/>
+      <xsd:element name="MAP_ERR" type="tns:TABLE_OF__-SAPSLL_-API6800_INCOMP_S" minOccurs="0"/>
+      <xsd:element name="RESULT_LEGAL_CONTROL" type="tns:_-SAPSLL_-API6800_RESULT_T"/>
+      <xsd:element name="RETURN" type="tns:TABLE_OF_BAPIRET2"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+  </xsd:schema>
+ </wsdl:types>
+ <wsdl:message name="_-SAPSLL_-API_6800_SYNCH">
+  <wsdl:part name="parameters" element="tns:_-SAPSLL_-API_6800_SYNCH"/>
+ </wsdl:message>
+ <wsdl:message name="_-SAPSLL_-API_6800_SYNCHResponse">
+  <wsdl:part name="parameter" element="tns:_-SAPSLL_-API_6800_SYNCHResponse"/>
+ </wsdl:message>
+ <wsdl:portType name="ZGEA_GT_API_6800_SYNCH">
+  <wsp:Policy>
+   <wsp:PolicyReference URI="#IF_IF_ZGEA_GT_API_6800_SYNCH"/>
+  </wsp:Policy>
+  <wsdl:operation name="_-SAPSLL_-API_6800_SYNCH">
+   <wsp:Policy>
+    <wsp:PolicyReference URI="#OP_IF_OP__-SAPSLL_-API_6800_SYNCH"/>
+   </wsp:Policy>
+   <wsdl:input message="tns:_-SAPSLL_-API_6800_SYNCH"/>
+   <wsdl:output message="tns:_-SAPSLL_-API_6800_SYNCHResponse"/>
+  </wsdl:operation>
+ </wsdl:portType>
+</wsdl:definitions>

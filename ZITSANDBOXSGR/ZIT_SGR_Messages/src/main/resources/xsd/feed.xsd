@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           targetNamespace="http://www.w3.org/2005/Atom"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+           xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+           xmlns:atom="http://www.w3.org/2005/Atom">
+	<xs:import namespace="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" schemaLocation="metadata.xsd"/>
+	<xs:import namespace="http://schemas.microsoft.com/ado/2007/08/dataservices" schemaLocation="dataservices.xsd"/>
+	<xs:element name="feed">
+		<xs:complexType mixed="true">
+			<xs:sequence>
+				<xs:element name="id" type="xs:string" minOccurs="0"/>
+				<xs:element name="title" minOccurs="0">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attribute name="type" use="required" type="xs:string"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="updated" type="xs:string" minOccurs="0"/>
+				<xs:element name="author" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="name" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="link">
+					<xs:complexType>
+						<xs:attribute name="href" use="required" type="xs:string"/>
+						<xs:attribute name="rel" use="required" type="xs:string"/>
+						<xs:attribute name="title" use="required" type="xs:string"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="m:count" minOccurs="0"/>
+				<xs:element name="entry" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="id" type="xs:string" minOccurs="0"/>
+							<xs:element name="content" minOccurs="0">
+								<xs:complexType mixed="true">
+									<xs:sequence>
+										<xs:element ref="m:properties" minOccurs="0" maxOccurs="unbounded"/>
+									</xs:sequence>
+									<xs:attribute name="type" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

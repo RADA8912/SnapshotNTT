@@ -1,0 +1,1017 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by Tieves (Itelligence AG) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="Accounting">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="Segment" maxOccurs="unbounded"/>
+					<xs:element ref="AccountingSegment" maxOccurs="unbounded"/>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AccountingSegment">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Name"/>
+				<xs:element ref="Description"/>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Address">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Name"/>
+				<xs:element ref="PostalAddress" minOccurs="0"/>
+				<xs:element ref="Email" minOccurs="0"/>
+				<xs:element ref="Phone" minOccurs="0"/>
+				<xs:element ref="Fax" minOccurs="0"/>
+				<xs:element ref="URL" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="addressID" type="xs:string" use="optional"/>
+			<xs:attribute name="isoCountryCode" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AreaOrCityCode">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="Attachment">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="URL"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BillTo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Address"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BrowserFormPost">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="URL"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BuyerCookie">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:any namespace="http://www.w3.org/namespace/"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Changetime">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="Charge">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Money"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CIFContent">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="City">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="Classification">
+		<xs:complexType mixed="true">
+			<xs:attribute name="domain" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Comments">
+		<xs:complexType mixed="true">
+			<xs:choice>
+				<xs:element ref="Attachment"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Contact">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Name"/>
+				<xs:element ref="PostalAddress" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Email" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Phone" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Fax" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="URL" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="role" type="xs:NMTOKEN" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Contract">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SupplierID" maxOccurs="unbounded"/>
+				<xs:element ref="Comments" minOccurs="0"/>
+				<xs:element ref="ItemSegment" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="expirationDate" type="xs:string" use="required"/>
+			<xs:attribute name="effectiveDate" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ContractItem">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ItemID"/>
+				<xs:element ref="UnitPrice" minOccurs="0"/>
+				<xs:element ref="Extrinsic" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CopyRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="cXML"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Country">
+		<xs:complexType mixed="true">
+			<xs:attribute name="isoCountryCode" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CountryCode">
+		<xs:complexType mixed="true">
+			<xs:attribute name="isoCountryCode" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Credential">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Identity"/>
+				<xs:choice>
+					<xs:element ref="SharedSecret"/>
+					<xs:element ref="DigitalSignature"/>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="type" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="marketplace"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="domain" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cXML">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Header"/>
+				<xs:element ref="Request"/>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:string" use="optional" default="1.1.010"/>
+			<xs:attribute name="timestamp" type="xs:string" use="required"/>
+			<xs:attribute name="payloadID" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DeliverTo">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="Description">
+		<xs:complexType mixed="true">
+			<xs:choice>
+				<xs:element ref="ShortName"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DigitalSignature">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:any namespace="http://www.w3.org/namespace/"/>
+			</xs:sequence>
+			<xs:attribute name="type" type="xs:string" use="optional" default="PK7 self-contained"/>
+			<xs:attribute name="encoding" type="xs:string" use="optional" default="Base64"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Distribution">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Accounting"/>
+				<xs:element ref="Charge"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DocumentReference">
+		<xs:complexType>
+			<xs:attribute name="payloadID" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EffectiveDate">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="Email">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ExpirationDate">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="Extension">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="Extrinsic">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:any namespace="http://www.w3.org/namespace/"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Fax">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="TelephoneNumber"/>
+				<xs:element ref="URL"/>
+				<xs:element ref="Email"/>
+			</xs:choice>
+			<xs:attribute name="name" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Followup">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="URL"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Format">
+		<xs:complexType mixed="true">
+			<xs:attribute name="version" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="From">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Credential" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetPendingRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MessageType" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="lastReceivedTimestamp" type="xs:string" use="optional"/>
+			<xs:attribute name="maxMessages" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetPendingResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="cXML" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Header">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="From"/>
+				<xs:element ref="To"/>
+				<xs:element ref="Sender"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Identity">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:any namespace="http://www.w3.org/namespace/"/>
+			</xs:sequence>
+			<xs:attribute name="lastChangedTimestamp" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Index">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SupplierID" maxOccurs="unbounded"/>
+				<xs:element ref="Comments" minOccurs="0"/>
+				<xs:element ref="SearchGroup" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="IndexItem" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IndexItem">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="IndexItemAdd" maxOccurs="unbounded"/>
+				<xs:element ref="IndexItemDelete" maxOccurs="unbounded"/>
+				<xs:element ref="IndexItemPunchout" maxOccurs="unbounded"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IndexItemAdd">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ItemID"/>
+				<xs:element ref="ItemDetail"/>
+				<xs:element ref="IndexItemDetail"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IndexItemDelete">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ItemID"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IndexItemDetail">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LeadTime"/>
+				<xs:element ref="ExpirationDate" minOccurs="0"/>
+				<xs:element ref="EffectiveDate" minOccurs="0"/>
+				<xs:element ref="SearchGroupData" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="TerritoryAvailable" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IndexItemPunchout">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ItemID"/>
+				<xs:element ref="PunchoutDetail"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="InternalID">
+		<xs:complexType mixed="true">
+			<xs:attribute name="domain" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ItemDetail">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="UnitPrice"/>
+				<xs:element ref="Description" maxOccurs="unbounded"/>
+				<xs:element ref="UnitOfMeasure"/>
+				<xs:element ref="Classification" maxOccurs="unbounded"/>
+				<xs:element ref="ManufacturerPartID" minOccurs="0"/>
+				<xs:element ref="ManufacturerName" minOccurs="0"/>
+				<xs:element ref="URL" minOccurs="0"/>
+				<xs:element ref="Extrinsic" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ItemID">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SupplierPartID"/>
+				<xs:element ref="SupplierPartAuxiliaryID" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ItemIn">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ItemID"/>
+				<xs:element ref="ItemDetail"/>
+				<xs:element ref="SupplierID" minOccurs="0"/>
+				<xs:element ref="ShipTo" minOccurs="0"/>
+				<xs:element ref="Shipping" minOccurs="0"/>
+				<xs:element ref="Tax" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="lineNumber" type="xs:string" use="optional"/>
+			<xs:attribute name="quantity" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ItemOut">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ItemID"/>
+				<xs:element ref="ItemDetail" minOccurs="0"/>
+				<xs:element ref="SupplierID" minOccurs="0"/>
+				<xs:element ref="ShipTo" minOccurs="0"/>
+				<xs:element ref="Shipping" minOccurs="0"/>
+				<xs:element ref="Tax" minOccurs="0"/>
+				<xs:element ref="Distribution" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Contact" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Comments" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="lineNumber" type="xs:string" use="optional"/>
+			<xs:attribute name="requestedDeliveryDate" type="xs:string" use="optional"/>
+			<xs:attribute name="requisitionID" type="xs:string" use="optional"/>
+			<xs:attribute name="quantity" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ItemSegment">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ContractItem" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="segmentKey" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LeadTime">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="ManufacturerName">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="ManufacturerPartID">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="Message">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Status" minOccurs="0"/>
+				<xs:choice>
+					<xs:element ref="PunchOutOrderMessage"/>
+					<xs:element ref="SubscriptionChangeMessage"/>
+					<xs:element ref="SupplierChangeMessage"/>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="deploymentMode" use="optional" default="production">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="production"/>
+						<xs:enumeration value="test"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="inReplyTo" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MessageType">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="Money">
+		<xs:complexType mixed="true">
+			<xs:attribute name="currency" type="xs:string" use="required"/>
+			<xs:attribute name="alternateAmount" type="xs:string" use="optional"/>
+			<xs:attribute name="alternateCurrency" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Name">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="Number">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="Option">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="a-dtype" type="xs:NMTOKENS" use="required" fixed="name string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OrderMethod">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="OrderTarget"/>
+				<xs:element ref="OrderProtocol" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OrderMethods">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="OrderMethod" maxOccurs="unbounded"/>
+				<xs:element ref="Contact" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OrderProtocol">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="OrderRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="OrderRequestHeader"/>
+				<xs:element ref="ItemOut" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OrderRequestHeader">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Total"/>
+				<xs:element ref="ShipTo" minOccurs="0"/>
+				<xs:element ref="BillTo"/>
+				<xs:element ref="Shipping" minOccurs="0"/>
+				<xs:element ref="Tax" minOccurs="0"/>
+				<xs:element ref="Payment" minOccurs="0"/>
+				<xs:element ref="Contact" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Comments" minOccurs="0"/>
+				<xs:element ref="Followup" minOccurs="0"/>
+				<xs:element ref="DocumentReference" minOccurs="0"/>
+				<xs:element ref="Extrinsic" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="orderDate" type="xs:string" use="required"/>
+			<xs:attribute name="type" use="optional" default="new">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="new"/>
+						<xs:enumeration value="update"/>
+						<xs:enumeration value="delete"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="shipComplete" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="yes"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="requisitionID" type="xs:string" use="optional"/>
+			<xs:attribute name="orderID" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OrderTarget">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="Phone"/>
+				<xs:element ref="Email"/>
+				<xs:element ref="Fax"/>
+				<xs:element ref="URL"/>
+				<xs:element ref="OtherOrderTarget"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OtherOrderTarget">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:any namespace="http://www.w3.org/namespace/"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Payment">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PCard"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PCard">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PostalAddress" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="expiration" type="xs:string" use="required"/>
+			<xs:attribute name="name" type="xs:string" use="optional"/>
+			<xs:attribute name="number" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Phone">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TelephoneNumber"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PostalAddress">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DeliverTo" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Street" maxOccurs="unbounded"/>
+				<xs:element ref="City"/>
+				<xs:element ref="State" minOccurs="0"/>
+				<xs:element ref="PostalCode" minOccurs="0"/>
+				<xs:element ref="Country"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PostalCode">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="ProfileRequest" type="xs:string"/>
+	<xs:element name="ProfileResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Option" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Transaction" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="effectiveDate" type="xs:string" use="required"/>
+			<xs:attribute name="a-dtype" type="xs:NMTOKENS" use="required" fixed="effectiveDate dateTime"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PunchoutDetail">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Description" maxOccurs="unbounded"/>
+				<xs:element ref="URL"/>
+				<xs:element ref="Classification" maxOccurs="unbounded"/>
+				<xs:element ref="ManufacturerName" minOccurs="0"/>
+				<xs:element ref="ManufacturerPartID" minOccurs="0"/>
+				<xs:element ref="ExpirationDate" minOccurs="0"/>
+				<xs:element ref="EffectiveDate" minOccurs="0"/>
+				<xs:element ref="SearchGroupData" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="TerritoryAvailable" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PunchOutOrderMessage">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="BuyerCookie"/>
+				<xs:element ref="PunchOutOrderMessageHeader"/>
+				<xs:element ref="ItemIn" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PunchOutOrderMessageHeader">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Total"/>
+				<xs:element ref="ShipTo" minOccurs="0"/>
+				<xs:element ref="Shipping" minOccurs="0"/>
+				<xs:element ref="Tax" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="operationAllowed" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="create"/>
+						<xs:enumeration value="inspect"/>
+						<xs:enumeration value="edit"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PunchOutSetupRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="BuyerCookie"/>
+				<xs:element ref="Extrinsic" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="BrowserFormPost" minOccurs="0"/>
+				<xs:element ref="Contact" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="SupplierSetup" minOccurs="0"/>
+				<xs:element ref="ShipTo" minOccurs="0"/>
+				<xs:element ref="SelectedItem" minOccurs="0"/>
+				<xs:element ref="ItemOut" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="operation" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="create"/>
+						<xs:enumeration value="inspect"/>
+						<xs:enumeration value="edit"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PunchOutSetupResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="StartPage"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Request">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="OrderRequest"/>
+			</xs:sequence>
+			<xs:attribute name="deploymentMode" use="optional" default="production">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="production"/>
+						<xs:enumeration value="test"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Response">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Status"/>
+				<xs:sequence>
+					<xs:choice>
+						<xs:element ref="ProfileResponse"/>
+						<xs:element ref="PunchOutSetupResponse"/>
+						<xs:element ref="GetPendingResponse"/>
+						<xs:element ref="SubscriptionListResponse"/>
+						<xs:element ref="SubscriptionContentResponse"/>
+						<xs:element ref="SupplierListResponse"/>
+						<xs:element ref="SupplierDataResponse"/>
+					</xs:choice>
+				</xs:sequence>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SearchAttribute">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="type" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SearchDataElement">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="value" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SearchGroup">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Name"/>
+				<xs:element ref="SearchAttribute" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SearchGroupData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Name"/>
+				<xs:element ref="SearchDataElement" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Segment">
+		<xs:complexType>
+			<xs:attribute name="type" type="xs:string" use="required"/>
+			<xs:attribute name="description" type="xs:string" use="required"/>
+			<xs:attribute name="id" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SelectedItem">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ItemID"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Sender">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Credential" maxOccurs="unbounded"/>
+				<xs:element ref="UserAgent"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SharedSecret">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:any namespace="http://www.w3.org/namespace/"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Shipping">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Money"/>
+				<xs:element ref="Description"/>
+			</xs:sequence>
+			<xs:attribute name="trackingId" type="xs:string" use="optional"/>
+			<xs:attribute name="trackingDomain" type="xs:string" use="optional"/>
+			<xs:attribute name="tracking" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ShipTo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Address"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ShortName">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="StartPage">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="URL"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="State">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="Status">
+		<xs:complexType mixed="true">
+			<xs:attribute name="code" type="xs:string" use="required"/>
+			<xs:attribute name="text" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="StatusUpdateRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DocumentReference"/>
+				<xs:element ref="Status"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Street">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="Subscription">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="InternalID"/>
+				<xs:element ref="Name"/>
+				<xs:element ref="Changetime"/>
+				<xs:element ref="SupplierID" maxOccurs="unbounded"/>
+				<xs:element ref="Format" minOccurs="0"/>
+				<xs:element ref="Description" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SubscriptionChangeMessage">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Subscription" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="type" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="new"/>
+						<xs:enumeration value="update"/>
+						<xs:enumeration value="delete"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SubscriptionContent">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="CIFContent"/>
+				<xs:element ref="Index"/>
+				<xs:element ref="Contract"/>
+			</xs:choice>
+			<xs:attribute name="filename" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SubscriptionContentRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="InternalID"/>
+				<xs:element ref="SupplierID" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SubscriptionContentResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Subscription"/>
+				<xs:element ref="SubscriptionContent" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SubscriptionListRequest" type="xs:string"/>
+	<xs:element name="SubscriptionListResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Subscription" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Supplier">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Name"/>
+				<xs:element ref="Comments" minOccurs="0"/>
+				<xs:element ref="SupplierID" maxOccurs="unbounded"/>
+				<xs:element ref="SupplierLocation" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="corporateURL" type="xs:string" use="optional"/>
+			<xs:attribute name="storeFrontURL" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SupplierChangeMessage">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Supplier" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="type" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:NMTOKEN">
+						<xs:enumeration value="new"/>
+						<xs:enumeration value="update"/>
+						<xs:enumeration value="delete"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SupplierDataRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SupplierID" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SupplierDataResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Supplier"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SupplierID">
+		<xs:complexType mixed="true">
+			<xs:attribute name="domain" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SupplierListRequest" type="xs:string"/>
+	<xs:element name="SupplierListResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Supplier" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SupplierLocation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Address"/>
+				<xs:element ref="OrderMethods"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SupplierPartAuxiliaryID">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:any namespace="http://www.w3.org/namespace/"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SupplierPartID">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="SupplierSetup">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="URL"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Tax">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Money"/>
+				<xs:element ref="Description"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TelephoneNumber">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CountryCode"/>
+				<xs:element ref="AreaOrCityCode"/>
+				<xs:element ref="Number"/>
+				<xs:element ref="Extension" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TerritoryAvailable">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="To">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Credential" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Total">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Money"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Transaction">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="URL"/>
+				<xs:element ref="Option" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="a-dtype" type="xs:NMTOKENS" use="required" fixed="requestName NMTOKEN"/>
+			<xs:attribute name="requestName" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UnitOfMeasure">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+	<xs:element name="UnitPrice">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Money"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="URL">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UserAgent">
+		<xs:complexType mixed="true"/>
+	</xs:element>
+</xs:schema>

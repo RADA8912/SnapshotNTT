@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?><bpmn2:definitions xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:ifl="http:///com.sap.ifl.model/Ifl.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1">
+    <bpmn2:collaboration id="Collaboration_1" name="Default Collaboration">
+        <bpmn2:extensionElements>
+            <ifl:property>
+                <key>namespaceMapping</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>httpSessionHandling</key>
+                <value>None</value>
+            </ifl:property>
+            <ifl:property>
+                <key>accessControlMaxAge</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>returnExceptionToSender</key>
+                <value>false</value>
+            </ifl:property>
+            <ifl:property>
+                <key>log</key>
+                <value>All events</value>
+            </ifl:property>
+            <ifl:property>
+                <key>corsEnabled</key>
+                <value>false</value>
+            </ifl:property>
+            <ifl:property>
+                <key>exposedHeaders</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>componentVersion</key>
+                <value>1.2</value>
+            </ifl:property>
+            <ifl:property>
+                <key>allowedHeaderList</key>
+                <value>*</value>
+            </ifl:property>
+            <ifl:property>
+                <key>ServerTrace</key>
+                <value>false</value>
+            </ifl:property>
+            <ifl:property>
+                <key>allowedOrigins</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>accessControlAllowCredentials</key>
+                <value>false</value>
+            </ifl:property>
+            <ifl:property>
+                <key>allowedHeaders</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>allowedMethods</key>
+                <value/>
+            </ifl:property>
+            <ifl:property>
+                <key>cmdVariantUri</key>
+                <value>ctype::IFlowVariant/cname::IFlowConfiguration/version::1.2.4</value>
+            </ifl:property>
+        </bpmn2:extensionElements>
+        <bpmn2:participant id="Participant_Process_1" ifl:type="IntegrationProcess" name="Integration Process" processRef="Process_1">
+            <bpmn2:extensionElements/>
+        </bpmn2:participant>
+    </bpmn2:collaboration>
+    <bpmn2:process id="Process_1" name="Integration Process">
+        <bpmn2:extensionElements>
+            <ifl:property>
+                <key>transactionTimeout</key>
+                <value>30</value>
+            </ifl:property>
+            <ifl:property>
+                <key>componentVersion</key>
+                <value>1.2</value>
+            </ifl:property>
+            <ifl:property>
+                <key>cmdVariantUri</key>
+                <value>ctype::FlowElementVariant/cname::IntegrationProcess/version::1.2.1</value>
+            </ifl:property>
+            <ifl:property>
+                <key>transactionalHandling</key>
+                <value>Not Required</value>
+            </ifl:property>
+        </bpmn2:extensionElements>
+        <bpmn2:callActivity id="CallActivity_4" name="XSLT Mapping 1">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>mappingoutputformat</key>
+                    <value>Bytes</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>mappinguri</key>
+                    <value>dir://mapping/xslt/src/main/resources/mapping/Uebung4.xsl</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>mappingname</key>
+                    <value>Uebung4</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>mappingHeaderNameKey</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>mappingpath</key>
+                    <value>src/main/resources/mapping/Uebung4</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>mappingSource</key>
+                    <value>mappingSrcIflow</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.2</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>activityType</key>
+                    <value>Mapping</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::XSLTMapping/version::1.2.0</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>subActivityType</key>
+                    <value>XSLTMapping</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_883</bpmn2:incoming>
+            <bpmn2:outgoing>SequenceFlow_5</bpmn2:outgoing>
+        </bpmn2:callActivity>
+        <bpmn2:endEvent id="EndEvent_2" name="End">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.1</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::MessageEndEvent/version::1.1.0</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_5</bpmn2:incoming>
+            <bpmn2:messageEventDefinition/>
+        </bpmn2:endEvent>
+        <bpmn2:callActivity id="CallActivity_882" name="Content Modifier">
+            <bpmn2:extensionElements>
+                <ifl:property>
+                    <key>bodyType</key>
+                    <value>constant</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>propertyTable</key>
+                    <value/>
+                </ifl:property>
+                <ifl:property>
+                    <key>headerTable</key>
+                    <value>&lt;row&gt;&lt;cell id='Action'&gt;Create&lt;/cell&gt;&lt;cell id='Type'&gt;constant&lt;/cell&gt;&lt;cell id='Value'&gt;SAPCPI&lt;/cell&gt;&lt;cell id='Default'&gt;&lt;/cell&gt;&lt;cell id='Name'&gt;SNDPOR&lt;/cell&gt;&lt;cell id='Datatype'&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell id='Action'&gt;Create&lt;/cell&gt;&lt;cell id='Type'&gt;constant&lt;/cell&gt;&lt;cell id='Value'&gt;ERPSYS&lt;/cell&gt;&lt;cell id='Default'&gt;&lt;/cell&gt;&lt;cell id='Name'&gt;SNDPRN&lt;/cell&gt;&lt;cell id='Datatype'&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell id='Action'&gt;Create&lt;/cell&gt;&lt;cell id='Type'&gt;constant&lt;/cell&gt;&lt;cell id='Value'&gt;DS4CLNT110&lt;/cell&gt;&lt;cell id='Default'&gt;&lt;/cell&gt;&lt;cell id='Name'&gt;RCVPRN&lt;/cell&gt;&lt;cell id='Datatype'&gt;&lt;/cell&gt;&lt;/row&gt;</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>wrapContent</key>
+                    <value>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;ACC_DOCUMENT05&gt;
+	&lt;IDOC BEGIN="1"&gt;
+		&lt;EDI_DC40 SEGMENT="1"&gt;
+			&lt;TABNAM&gt;EDI_DC40&lt;/TABNAM&gt;
+			&lt;DIRECT&gt;2&lt;/DIRECT&gt;
+			&lt;IDOCTYP&gt;ACC_DOCUMENT05&lt;/IDOCTYP&gt;
+			&lt;MESTYP&gt;ACC_DOCUMENT&lt;/MESTYP&gt;
+			&lt;SNDPOR&gt;&lt;/SNDPOR&gt;
+			&lt;SNDPRT&gt;LS&lt;/SNDPRT&gt;
+			&lt;SNDPRN&gt;&lt;/SNDPRN&gt;
+			&lt;RCVPOR/&gt;
+			&lt;RCVPRT&gt;LS&lt;/RCVPRT&gt;
+			&lt;RCVPRN&gt;&lt;/RCVPRN&gt;
+		&lt;/EDI_DC40&gt;
+		&lt;E1BPACHE09 SEGMENT="1"&gt;
+			&lt;USERNAME&gt;ERPSYS&lt;/USERNAME&gt;
+			&lt;HEADER_TXT&gt;Rechung&lt;/HEADER_TXT&gt;
+			&lt;COMP_CODE&gt;3910&lt;/COMP_CODE&gt;
+			&lt;DOC_DATE&gt;20230906&lt;/DOC_DATE&gt;
+			&lt;FISC_YEAR&gt;2023&lt;/FISC_YEAR&gt;
+			&lt;FIS_PERIOD&gt;09&lt;/FIS_PERIOD&gt;
+			&lt;DOC_TYPE&gt;KX&lt;/DOC_TYPE&gt;
+			&lt;REF_DOC_NO&gt;47110815&lt;/REF_DOC_NO&gt;
+		&lt;/E1BPACHE09&gt;
+		&lt;E1BPACGL09 SEGMENT="1"&gt;
+			&lt;ITEMNO_ACC&gt;100000000&lt;/ITEMNO_ACC&gt;
+			&lt;GL_ACCOUNT&gt;0050030000&lt;/GL_ACCOUNT&gt;
+			&lt;ITEM_TEXT&gt;NDBS O. Dickinson&lt;/ITEM_TEXT&gt;
+			&lt;TAX_CODE&gt;V1&lt;/TAX_CODE&gt;
+            &lt;COSTCENTER&gt;0039100000&lt;/COSTCENTER&gt;
+		&lt;/E1BPACGL09&gt;
+		&lt;E1BPACAP09 SEGMENT="1"&gt;
+			&lt;ITEMNO_ACC&gt;200000000&lt;/ITEMNO_ACC&gt;
+			&lt;VENDOR_NO&gt;0001000015&lt;/VENDOR_NO&gt;
+			&lt;REF_KEY_1&gt;4712-0815&lt;/REF_KEY_1&gt;
+			&lt;COMP_CODE&gt;3910&lt;/COMP_CODE&gt;
+			&lt;ITEM_TEXT&gt;NDBS O. Dickinson&lt;/ITEM_TEXT&gt;
+			&lt;TAX_CODE&gt;V1&lt;/TAX_CODE&gt;
+		&lt;/E1BPACAP09&gt;
+		&lt;E1BPACTX09 SEGMENT="1"&gt;
+			&lt;ITEMNO_ACC&gt;300000000&lt;/ITEMNO_ACC&gt;
+			&lt;GL_ACCOUNT&gt;0025100000&lt;/GL_ACCOUNT&gt;
+			&lt;TAX_CODE&gt;V1&lt;/TAX_CODE&gt;
+		&lt;/E1BPACTX09&gt;
+		&lt;E1BPACCR09 SEGMENT="1"&gt;
+			&lt;ITEMNO_ACC&gt;100000000&lt;/ITEMNO_ACC&gt;
+			&lt;CURR_TYPE&gt;00&lt;/CURR_TYPE&gt;
+			&lt;CURRENCY&gt;EUR&lt;/CURRENCY&gt;
+			&lt;CURRENCY_ISO&gt;EUR&lt;/CURRENCY_ISO&gt;
+			&lt;AMT_DOCCUR&gt;100.00&lt;/AMT_DOCCUR&gt;
+		&lt;/E1BPACCR09&gt;
+		&lt;E1BPACCR09 SEGMENT="1"&gt;
+			&lt;ITEMNO_ACC&gt;200000000&lt;/ITEMNO_ACC&gt;
+			&lt;CURR_TYPE&gt;00&lt;/CURR_TYPE&gt;
+			&lt;CURRENCY&gt;EUR&lt;/CURRENCY&gt;
+			&lt;CURRENCY_ISO&gt;EUR&lt;/CURRENCY_ISO&gt;
+			&lt;AMT_DOCCUR&gt;-110.00&lt;/AMT_DOCCUR&gt;
+		&lt;/E1BPACCR09&gt;
+		&lt;E1BPACCR09 SEGMENT="1"&gt;
+			&lt;ITEMNO_ACC&gt;300000000&lt;/ITEMNO_ACC&gt;
+			&lt;CURR_TYPE&gt;00&lt;/CURR_TYPE&gt;
+			&lt;CURRENCY&gt;EUR&lt;/CURRENCY&gt;
+			&lt;CURRENCY_ISO&gt;EUR&lt;/CURRENCY_ISO&gt;
+			&lt;AMT_DOCCUR&gt;10.00&lt;/AMT_DOCCUR&gt;
+			&lt;AMT_BASE&gt;100.00&lt;/AMT_BASE&gt;
+		&lt;/E1BPACCR09&gt;
+	&lt;/IDOC&gt;
+&lt;/ACC_DOCUMENT05&gt;</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>componentVersion</key>
+                    <value>1.6</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>activityType</key>
+                    <value>Enricher</value>
+                </ifl:property>
+                <ifl:property>
+                    <key>cmdVariantUri</key>
+                    <value>ctype::FlowstepVariant/cname::Enricher/version::1.6.0</value>
+                </ifl:property>
+            </bpmn2:extensionElements>
+            <bpmn2:incoming>SequenceFlow_881</bpmn2:incoming>
+            <bpmn2:outgoing>SequenceFlow_883</bpmn2:outgoing>
+        </bpmn2:callActivity>
+        <bpmn2:startEvent id="StartEvent_880" name="Start Timer 1">
+            <bpmn2:outgoing>SequenceFlow_881</bpmn2:outgoing>
+            <bpmn2:timerEventDefinition id="TimerEventDefinition_402902">
+                <bpmn2:extensionElements>
+                    <ifl:property>
+                        <key>scheduleKey</key>
+                        <value>&lt;row&gt;&lt;cell&gt;dateType&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;timeType&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;dayValue&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;monthValue&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;yearValue&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;onWeekly&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;onMonthly&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;OnEveryMinute&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;fromInterval&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;toInterval&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;timeZone&lt;/cell&gt;&lt;cell&gt;( UTC 0:00 ) Greenwich Mean Time(Etc/GMT)&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;secondValue&lt;/cell&gt;&lt;cell&gt;0&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;minutesValue&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;hourValue&lt;/cell&gt;&lt;cell&gt;&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;triggerType&lt;/cell&gt;&lt;cell&gt;simple&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;noOfSchedules&lt;/cell&gt;&lt;cell&gt;1&lt;/cell&gt;&lt;/row&gt;&lt;row&gt;&lt;cell&gt;schedule1&lt;/cell&gt;&lt;cell&gt;fireNow=true&lt;/cell&gt;&lt;/row&gt;</value>
+                    </ifl:property>
+                    <ifl:property>
+                        <key>componentVersion</key>
+                        <value>1.3</value>
+                    </ifl:property>
+                    <ifl:property>
+                        <key>cmdVariantUri</key>
+                        <value>ctype::FlowstepVariant/cname::intermediatetimer/version::1.3.0</value>
+                    </ifl:property>
+                    <ifl:property>
+                        <key>activityType</key>
+                        <value>StartTimerEvent</value>
+                    </ifl:property>
+                </bpmn2:extensionElements>
+            </bpmn2:timerEventDefinition>
+        </bpmn2:startEvent>
+        <bpmn2:sequenceFlow id="SequenceFlow_5" sourceRef="CallActivity_4" targetRef="EndEvent_2"/>
+        <bpmn2:sequenceFlow id="SequenceFlow_883" sourceRef="CallActivity_882" targetRef="CallActivity_4"/>
+        <bpmn2:sequenceFlow id="SequenceFlow_881" sourceRef="StartEvent_880" targetRef="CallActivity_882"/>
+    </bpmn2:process>
+    <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="Default Collaboration Diagram">
+        <bpmndi:BPMNPlane bpmnElement="Collaboration_1" id="BPMNPlane_1">
+            <bpmndi:BPMNShape bpmnElement="EndEvent_2" id="BPMNShape_EndEvent_2">
+                <dc:Bounds height="32.0" width="32.0" x="715.0" y="158.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="Participant_Process_1" id="BPMNShape_Participant_Process_1">
+                <dc:Bounds height="239.0" width="586.0" x="245.0" y="60.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="CallActivity_4" id="BPMNShape_CallActivity_4">
+                <dc:Bounds height="60.0" width="100.0" x="561.0" y="144.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="StartEvent_880" id="BPMNShape_StartEvent_880">
+                <dc:Bounds height="32.0" width="32.0" x="283.0" y="158.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape bpmnElement="CallActivity_882" id="BPMNShape_CallActivity_882">
+                <dc:Bounds height="60.0" width="100.0" x="388.0" y="142.0"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_5" id="BPMNEdge_SequenceFlow_5" sourceElement="BPMNShape_CallActivity_4" targetElement="BPMNShape_EndEvent_2">
+                <di:waypoint x="635.0" xsi:type="dc:Point" y="174.0"/>
+                <di:waypoint x="731.0" xsi:type="dc:Point" y="174.0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_881" id="BPMNEdge_SequenceFlow_881" sourceElement="BPMNShape_StartEvent_880" targetElement="BPMNShape_CallActivity_882">
+                <di:waypoint x="299.0" xsi:type="dc:Point" y="173.0"/>
+                <di:waypoint x="438.0" xsi:type="dc:Point" y="173.0"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge bpmnElement="SequenceFlow_883" id="BPMNEdge_SequenceFlow_883" sourceElement="BPMNShape_CallActivity_882" targetElement="BPMNShape_CallActivity_4">
+                <di:waypoint x="438.0" xsi:type="dc:Point" y="173.0"/>
+                <di:waypoint x="611.0" xsi:type="dc:Point" y="173.0"/>
+            </bpmndi:BPMNEdge>
+        </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

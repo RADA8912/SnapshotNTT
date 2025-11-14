@@ -1,0 +1,1393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions targetNamespace="urn:itelligence.de:pi:it.x-press:ups" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsoap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="urn:itelligence.de:pi:it.x-press:ups" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:n1="http://schemas.xmlsoap.org/soap/envelope/" xmlns:n2="http://www.ups.com/XMLSchema/XOLTWS/Error/v1.1" xmlns:n3="http://www.ups.com/XMLSchema/XOLTWS/Common/v1.0" xmlns:n4="http://www.ups.com/XMLSchema/XOLTWS/Ship/v1.0" xmlns:n5="http://www.ups.com/XMLSchema/XOLTWS/UPSS/v1.0" xmlns:n6="http://www.ups.com/XMLSchema/XOLTWS/IF/v1.0" xmlns:n7="urn:itelligence.de:pi:it.x-press:basis">
+ <wsdl:documentation>
+  <sidl:sidl xmlns:sidl="http://www.sap.com/2007/03/sidl"/>
+ </wsdl:documentation>
+ <wsp:UsingPolicy wsdl:required="true"/>
+ <wsp:Policy wsu:Id="IF_IF_SI_UPS_Shipment_OB">
+  <sapsession:Session xmlns:sapsession="http://www.sap.com/webas/630/soap/features/session/">
+   <sapsession:enableSession>false</sapsession:enableSession>
+  </sapsession:Session>
+ </wsp:Policy>
+ <wsp:Policy wsu:Id="OP_IF_OP_SI_UPS_Shipment_OB">
+  <sapcomhnd:enableCommit xmlns:sapcomhnd="http://www.sap.com/NW05/soap/features/commit/">false</sapcomhnd:enableCommit>
+  <sapblock:enableBlocking xmlns:sapblock="http://www.sap.com/NW05/soap/features/blocking/">true</sapblock:enableBlocking>
+  <saptrhnw05:required xmlns:saptrhnw05="http://www.sap.com/NW05/soap/features/transaction/">no</saptrhnw05:required>
+  <saprmnw05:enableWSRM xmlns:saprmnw05="http://www.sap.com/NW05/soap/features/wsrm/">false</saprmnw05:enableWSRM>
+ </wsp:Policy>
+ <wsdl:types>
+  <xsd:schema targetNamespace="urn:itelligence.de:pi:it.x-press:ups" xmlns="urn:itelligence.de:pi:it.x-press:ups" xmlns:xi0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xi1="http://www.ups.com/XMLSchema/XOLTWS/Error/v1.1" xmlns:xi2="http://www.ups.com/XMLSchema/XOLTWS/Common/v1.0" xmlns:xi3="http://www.ups.com/XMLSchema/XOLTWS/Ship/v1.0" xmlns:xi4="http://www.ups.com/XMLSchema/XOLTWS/UPSS/v1.0" xmlns:xi5="http://www.ups.com/XMLSchema/XOLTWS/IF/v1.0" xmlns:xi6="urn:itelligence.de:pi:it.x-press:basis">
+   <xsd:import namespace="urn:itelligence.de:pi:it.x-press:basis"/>
+   <xsd:element name="connectionParameters" type="DT_UPS_ConnectionParameters"/>
+   <xsd:complexType name="DT_UPS_ConnectionParameters">
+    <xsd:sequence>
+     <xsd:element name="url">
+      <xsd:simpleType>
+       <xsd:restriction base="xsd:string">
+        <xsd:maxLength value="255"/>
+        <xsd:minLength value="3"/>
+       </xsd:restriction>
+      </xsd:simpleType>
+     </xsd:element>
+     <xsd:element name="proxy" minOccurs="0" type="xi6:DT_Server"/>
+    </xsd:sequence>
+   </xsd:complexType>
+  </xsd:schema>
+  <xsd:schema targetNamespace="http://schemas.xmlsoap.org/soap/envelope/" xmlns="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xi0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xi1="http://www.ups.com/XMLSchema/XOLTWS/Error/v1.1" xmlns:xi2="http://www.ups.com/XMLSchema/XOLTWS/Common/v1.0" xmlns:xi3="http://www.ups.com/XMLSchema/XOLTWS/Ship/v1.0" xmlns:xi4="http://www.ups.com/XMLSchema/XOLTWS/UPSS/v1.0" xmlns:xi5="http://www.ups.com/XMLSchema/XOLTWS/IF/v1.0" xmlns:xi6="urn:itelligence.de:pi:it.x-press:basis">
+   <xsd:import namespace="http://www.ups.com/XMLSchema/XOLTWS/Error/v1.1"/>
+   <xsd:import namespace="http://www.ups.com/XMLSchema/XOLTWS/UPSS/v1.0"/>
+   <xsd:import namespace="urn:itelligence.de:pi:it.x-press:ups"/>
+   <xsd:import namespace="http://www.ups.com/XMLSchema/XOLTWS/Ship/v1.0"/>
+   <xsd:element name="Body" type="Body"/>
+   <xsd:element name="Fault" type="Fault"/>
+   <xsd:element name="Header" type="Header"/>
+   <xsd:element name="Envelope" type="Envelope"/>
+   <xsd:complexType name="Body">
+    <xsd:sequence>
+     <xsd:element minOccurs="0" ref="xi3:ShipmentRequest"/>
+     <xsd:element minOccurs="0" ref="xi3:ShipmentResponse"/>
+     <xsd:element minOccurs="0" ref="Fault"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="Envelope">
+    <xsd:sequence>
+     <xsd:element minOccurs="0" ref="tns:connectionParameters"/>
+     <xsd:element minOccurs="0" ref="Header"/>
+     <xsd:element ref="Body"/>
+     <xsd:any minOccurs="0" maxOccurs="unbounded" namespace="##other"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="Fault">
+    <xsd:sequence>
+     <xsd:element name="faultcode" type="xsd:string"/>
+     <xsd:element name="faultstring" type="xsd:string"/>
+     <xsd:element name="faultactor" minOccurs="0" type="xsd:anyURI"/>
+     <xsd:element name="detail" minOccurs="0" type="detail"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="Header">
+    <xsd:sequence>
+     <xsd:element minOccurs="0" ref="xi4:UPSSecurity"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="detail">
+    <xsd:sequence>
+     <xsd:element ref="xi1:Errors"/>
+    </xsd:sequence>
+   </xsd:complexType>
+  </xsd:schema>
+  <xsd:schema targetNamespace="http://www.ups.com/XMLSchema/XOLTWS/Error/v1.1" xmlns="http://www.ups.com/XMLSchema/XOLTWS/Error/v1.1" xmlns:xi0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xi1="http://www.ups.com/XMLSchema/XOLTWS/Error/v1.1" xmlns:xi2="http://www.ups.com/XMLSchema/XOLTWS/Common/v1.0" xmlns:xi3="http://www.ups.com/XMLSchema/XOLTWS/Ship/v1.0" xmlns:xi4="http://www.ups.com/XMLSchema/XOLTWS/UPSS/v1.0" xmlns:xi5="http://www.ups.com/XMLSchema/XOLTWS/IF/v1.0" xmlns:xi6="urn:itelligence.de:pi:it.x-press:basis">
+   <xsd:element name="Errors">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="ErrorDetail" form="qualified" maxOccurs="unbounded" type="ErrorDetailType"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="AdditionalCodeDescType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="AdditionalInfoType">
+    <xsd:sequence>
+     <xsd:element name="Type" form="qualified" type="xsd:string"/>
+     <xsd:element name="Value" form="qualified" maxOccurs="unbounded" type="AdditionalCodeDescType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="CodeType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" form="qualified" type="xsd:string"/>
+     <xsd:element name="Digest" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ErrorDetailType">
+    <xsd:sequence>
+     <xsd:element name="Severity" form="qualified" type="xsd:string"/>
+     <xsd:element name="PrimaryErrorCode" form="qualified" type="CodeType"/>
+     <xsd:element name="MinimumRetrySeconds" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Location" minOccurs="0" form="qualified" type="LocationType"/>
+     <xsd:element name="SubErrorCode" minOccurs="0" form="qualified" maxOccurs="unbounded" type="CodeType"/>
+     <xsd:element name="AdditionalInformation" minOccurs="0" form="qualified" maxOccurs="unbounded" type="AdditionalInfoType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="LocationType">
+    <xsd:sequence>
+     <xsd:element name="LocationElementName" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="XPathOfElement" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="OriginalValue" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+  </xsd:schema>
+  <xsd:schema targetNamespace="http://www.ups.com/XMLSchema/XOLTWS/Common/v1.0" xmlns="http://www.ups.com/XMLSchema/XOLTWS/Common/v1.0" xmlns:xi0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xi1="http://www.ups.com/XMLSchema/XOLTWS/Error/v1.1" xmlns:xi2="http://www.ups.com/XMLSchema/XOLTWS/Common/v1.0" xmlns:xi3="http://www.ups.com/XMLSchema/XOLTWS/Ship/v1.0" xmlns:xi4="http://www.ups.com/XMLSchema/XOLTWS/UPSS/v1.0" xmlns:xi5="http://www.ups.com/XMLSchema/XOLTWS/IF/v1.0" xmlns:xi6="urn:itelligence.de:pi:it.x-press:basis">
+   <xsd:element name="Request" type="RequestType"/>
+   <xsd:element name="Response" type="ResponseType"/>
+   <xsd:complexType name="CodeDescriptionType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="DetailType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" form="qualified" type="xsd:string"/>
+     <xsd:element name="ElementLevelInformation" minOccurs="0" form="qualified" type="ElementLevelInformationType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ElementIdentifierType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Value" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ElementLevelInformationType">
+    <xsd:sequence>
+     <xsd:element name="Level" form="qualified" type="xsd:string"/>
+     <xsd:element name="ElementIdentifier" minOccurs="0" form="qualified" maxOccurs="unbounded" type="ElementIdentifierType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="RequestType">
+    <xsd:sequence>
+     <xsd:element name="RequestOption" minOccurs="0" form="qualified" maxOccurs="unbounded" type="xsd:string"/>
+     <xsd:element name="SubVersion" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="TransactionReference" minOccurs="0" form="qualified" type="TransactionReferenceType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ResponseType">
+    <xsd:sequence>
+     <xsd:element name="ResponseStatus" form="qualified" type="CodeDescriptionType"/>
+     <xsd:element name="Alert" minOccurs="0" form="qualified" maxOccurs="unbounded" type="CodeDescriptionType"/>
+     <xsd:element name="AlertDetail" minOccurs="0" form="qualified" maxOccurs="unbounded" type="DetailType"/>
+     <xsd:element name="TransactionReference" minOccurs="0" form="qualified" type="TransactionReferenceType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TransactionReferenceType">
+    <xsd:sequence>
+     <xsd:element name="CustomerContext" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="TransactionIdentifier" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+  </xsd:schema>
+  <xsd:schema targetNamespace="http://www.ups.com/XMLSchema/XOLTWS/Ship/v1.0" xmlns="http://www.ups.com/XMLSchema/XOLTWS/Ship/v1.0" xmlns:xi0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xi1="http://www.ups.com/XMLSchema/XOLTWS/Error/v1.1" xmlns:xi2="http://www.ups.com/XMLSchema/XOLTWS/Common/v1.0" xmlns:xi3="http://www.ups.com/XMLSchema/XOLTWS/Ship/v1.0" xmlns:xi4="http://www.ups.com/XMLSchema/XOLTWS/UPSS/v1.0" xmlns:xi5="http://www.ups.com/XMLSchema/XOLTWS/IF/v1.0" xmlns:xi6="urn:itelligence.de:pi:it.x-press:basis">
+   <xsd:import namespace="http://www.ups.com/XMLSchema/XOLTWS/IF/v1.0"/>
+   <xsd:import namespace="http://www.ups.com/XMLSchema/XOLTWS/Common/v1.0"/>
+   <xsd:element name="ShipmentRequest">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element ref="xi2:Request"/>
+      <xsd:element name="Shipment" form="qualified" type="ShipmentType"/>
+      <xsd:element name="LabelSpecification" minOccurs="0" form="qualified" type="LabelSpecificationType"/>
+      <xsd:element name="ReceiptSpecification" minOccurs="0" form="qualified" type="ReceiptSpecificationType"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="ShipmentResponse">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element ref="xi2:Response"/>
+      <xsd:element name="ShipmentResults" form="qualified" type="ShipmentResultsType"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="ADLAddressType">
+    <xsd:sequence>
+     <xsd:element name="AddressLine" form="qualified" maxOccurs="3" type="xsd:string"/>
+     <xsd:element name="City" form="qualified" type="xsd:string"/>
+     <xsd:element name="StateProvinceCode" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PostalCode" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="CountryCode" form="qualified" type="xsd:string"/>
+     <xsd:element name="ResidentialAddressIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="POBoxIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="AccessorialType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="AccountAddressType">
+    <xsd:sequence>
+     <xsd:element name="PostalCode" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="CountryCode" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="AdjustedHeightType">
+    <xsd:sequence>
+     <xsd:element name="Value" form="qualified" type="xsd:string"/>
+     <xsd:element name="UnitOfMeasurement" form="qualified" type="ShipUnitOfMeasurementType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="AlternateDeliveryAddressType">
+    <xsd:sequence>
+     <xsd:element name="Name" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="AttentionName" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="UPSAccessPointID" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Address" form="qualified" type="ADLAddressType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="BillReceiverAddressType">
+    <xsd:sequence>
+     <xsd:element name="PostalCode" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="BillReceiverType">
+    <xsd:sequence>
+     <xsd:element name="AccountNumber" form="qualified" type="xsd:string"/>
+     <xsd:element name="Address" minOccurs="0" form="qualified" type="BillReceiverAddressType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="BillShipperType">
+    <xsd:sequence>
+     <xsd:element name="AccountNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="CreditCard" minOccurs="0" form="qualified" type="CreditCardType"/>
+     <xsd:element name="AlternatePaymentMethod" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="BillThirdPartyChargeType">
+    <xsd:sequence>
+     <xsd:element name="AccountNumber" form="qualified" type="xsd:string"/>
+     <xsd:element name="Address" form="qualified" type="AccountAddressType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="BillingUnitOfMeasurementType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="BillingWeightType">
+    <xsd:sequence>
+     <xsd:element name="UnitOfMeasurement" form="qualified" type="BillingUnitOfMeasurementType"/>
+     <xsd:element name="Weight" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="CODType">
+    <xsd:sequence>
+     <xsd:element name="CODFundsCode" form="qualified" type="xsd:string"/>
+     <xsd:element name="CODAmount" form="qualified" type="CurrencyMonetaryType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="CommodityType">
+    <xsd:sequence>
+     <xsd:element name="FreightClass" form="qualified" type="xsd:string"/>
+     <xsd:element name="NMFC" minOccurs="0" form="qualified" type="NMFCType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="CompanyInfoType">
+    <xsd:sequence>
+     <xsd:element name="Name" form="qualified" type="xsd:string"/>
+     <xsd:element name="AttentionName" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="CompanyDisplayableName" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="TaxIdentificationNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="TaxIDType" minOccurs="0" form="qualified" type="TaxIDCodeDescType"/>
+     <xsd:element name="Phone" minOccurs="0" form="qualified" type="ShipPhoneType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ContactInfoType">
+    <xsd:sequence>
+     <xsd:element name="Name" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Phone" minOccurs="0" form="qualified" type="ShipPhoneType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="CreditCardAddressType">
+    <xsd:sequence>
+     <xsd:element name="AddressLine" form="qualified" maxOccurs="3" type="xsd:string"/>
+     <xsd:element name="City" form="qualified" type="xsd:string"/>
+     <xsd:element name="StateProvinceCode" form="qualified" type="xsd:string"/>
+     <xsd:element name="PostalCode" form="qualified" type="xsd:string"/>
+     <xsd:element name="CountryCode" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="CreditCardType">
+    <xsd:sequence>
+     <xsd:element name="Type" form="qualified" type="xsd:string"/>
+     <xsd:element name="Number" form="qualified" type="xsd:string"/>
+     <xsd:element name="ExpirationDate" form="qualified" type="xsd:string"/>
+     <xsd:element name="SecurityCode" form="qualified" type="xsd:string"/>
+     <xsd:element name="Address" minOccurs="0" form="qualified" type="CreditCardAddressType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="CurrencyMonetaryType">
+    <xsd:sequence>
+     <xsd:element name="CurrencyCode" form="qualified" type="xsd:string"/>
+     <xsd:element name="MonetaryValue" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="DeclaredValueType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="DeliveryConfirmationType">
+    <xsd:sequence>
+     <xsd:element name="DCISType" form="qualified" type="xsd:string"/>
+     <xsd:element name="DCISNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="DimensionsType">
+    <xsd:sequence>
+     <xsd:element name="UnitOfMeasurement" form="qualified" type="ShipUnitOfMeasurementType"/>
+     <xsd:element name="Length" form="qualified" type="xsd:string"/>
+     <xsd:element name="Width" form="qualified" type="xsd:string"/>
+     <xsd:element name="Height" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="DisclaimerType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="DryIceType">
+    <xsd:sequence>
+     <xsd:element name="RegulationSet" form="qualified" type="xsd:string"/>
+     <xsd:element name="DryIceWeight" form="qualified" type="DryIceWeightType"/>
+     <xsd:element name="MedicalUseIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="DryIceWeightType">
+    <xsd:sequence>
+     <xsd:element name="UnitOfMeasurement" form="qualified" type="ShipUnitOfMeasurementType"/>
+     <xsd:element name="Weight" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="EmailDetailsType">
+    <xsd:sequence>
+     <xsd:element name="EMailAddress" form="qualified" maxOccurs="unbounded" type="xsd:string"/>
+     <xsd:element name="UndeliverableEMailAddress" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="FromEMailAddress" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="FromName" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Memo" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Subject" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="SubjectCode" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="FRSPaymentInfoType">
+    <xsd:sequence>
+     <xsd:element name="Type" form="qualified" type="PaymentType"/>
+     <xsd:element name="AccountNumber" form="qualified" type="xsd:string"/>
+     <xsd:element name="Address" minOccurs="0" form="qualified" type="AccountAddressType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="FRSShipmentDataType">
+    <xsd:sequence>
+     <xsd:element name="TransportationCharges" form="qualified" type="TransportationChargeType"/>
+     <xsd:element name="FreightDensityRate" minOccurs="0" form="qualified" type="FreightDensityRateType"/>
+     <xsd:element name="HandlingUnits" minOccurs="0" form="qualified" maxOccurs="unbounded" type="HandlingUnitsResponseType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="FormImageType">
+    <xsd:sequence>
+     <xsd:element name="ImageFormat" minOccurs="0" form="qualified" type="ImageFormatType"/>
+     <xsd:element name="GraphicImage" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="FormType">
+    <xsd:sequence>
+     <xsd:element name="Code" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Image" minOccurs="0" form="qualified" type="FormImageType"/>
+     <xsd:element name="FormGroupId" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="FormGroupIdName" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="FreightDensityInfoType">
+    <xsd:sequence>
+     <xsd:element name="AdjustedHeightIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="AdjustedHeight" minOccurs="0" form="qualified" type="AdjustedHeightType"/>
+     <xsd:element name="HandlingUnits" minOccurs="0" form="qualified" maxOccurs="unbounded" type="HandlingUnitsType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="FreightDensityRateType">
+    <xsd:sequence>
+     <xsd:element name="Density" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="TotalCubicFeet" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="FreightShipmentInformationType">
+    <xsd:sequence>
+     <xsd:element name="FreightDensityInfo" minOccurs="0" form="qualified" type="FreightDensityInfoType"/>
+     <xsd:element name="DensityEligibleIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="HandlingUnitsDimensionsType">
+    <xsd:sequence>
+     <xsd:element name="UnitOfMeasurement" form="qualified" type="ShipUnitOfMeasurementType"/>
+     <xsd:element name="Length" form="qualified" type="xsd:string"/>
+     <xsd:element name="Width" form="qualified" type="xsd:string"/>
+     <xsd:element name="Height" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="HandlingUnitsResponseType">
+    <xsd:sequence>
+     <xsd:element name="Quantity" form="qualified" type="xsd:string"/>
+     <xsd:element name="Type" form="qualified" type="ShipUnitOfMeasurementType"/>
+     <xsd:element name="Dimensions" form="qualified" type="HandlingUnitsDimensionsType"/>
+     <xsd:element name="AdjustedHeight" minOccurs="0" form="qualified" type="AdjustedHeightType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="HandlingUnitsType">
+    <xsd:sequence>
+     <xsd:element name="Quantity" form="qualified" type="xsd:string"/>
+     <xsd:element name="Type" form="qualified" type="ShipUnitOfMeasurementType"/>
+     <xsd:element name="Dimensions" form="qualified" type="HandlingUnitsDimensionsType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="HazMatPackageInformationType">
+    <xsd:sequence>
+     <xsd:element name="AllPackedInOneIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="OverPackedIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="QValue" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="HazMatType">
+    <xsd:sequence>
+     <xsd:element name="PackagingTypeQuantity" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="RecordIdentifier1" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="RecordIdentifier2" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="RecordIdentifier3" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="SubRiskClass" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="aDRItemNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="aDRPackingGroupLetter" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="TechnicalName" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="HazardLabelRequired" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ClassDivisionNumber" form="qualified" type="xsd:string"/>
+     <xsd:element name="ReferenceNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Quantity" form="qualified" type="xsd:string"/>
+     <xsd:element name="UOM" form="qualified" type="xsd:string"/>
+     <xsd:element name="PackagingType" form="qualified" type="xsd:string"/>
+     <xsd:element name="IDNumber" form="qualified" type="xsd:string"/>
+     <xsd:element name="ProperShippingName" form="qualified" type="xsd:string"/>
+     <xsd:element name="AdditionalDescription" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PackagingGroupType" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PackagingInstructionCode" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="EmergencyPhone" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="EmergencyContact" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ReportableQuantity" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="RegulationSet" form="qualified" type="xsd:string"/>
+     <xsd:element name="TransportationMode" form="qualified" type="xsd:string"/>
+     <xsd:element name="CommodityRegulatedLevelCode" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="TransportCategory" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="TunnelRestrictionCode" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ChemicalRecordIdentifier" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="HighValueReportType">
+    <xsd:sequence>
+     <xsd:element name="Image" form="qualified" type="ImageType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ImageFormatType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ImageType">
+    <xsd:sequence>
+     <xsd:element name="ImageFormat" form="qualified" type="ImageFormatType"/>
+     <xsd:element name="GraphicImage" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="IndicationType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="InstructionCodeDescriptionType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="LabelDeliveryType">
+    <xsd:sequence>
+     <xsd:element name="EMail" minOccurs="0" form="qualified" type="EmailDetailsType"/>
+     <xsd:element name="LabelLinksIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="LabelImageFormatType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="LabelMethodType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="LabelSpecificationType">
+    <xsd:sequence>
+     <xsd:element name="LabelImageFormat" form="qualified" type="LabelImageFormatType"/>
+     <xsd:element name="HTTPUserAgent" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="LabelStockSize" minOccurs="0" form="qualified" type="LabelStockSizeType"/>
+     <xsd:element name="Instruction" minOccurs="0" form="qualified" maxOccurs="unbounded" type="InstructionCodeDescriptionType"/>
+     <xsd:element name="CharacterSet" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="LabelStockSizeType">
+    <xsd:sequence>
+     <xsd:element name="Height" form="qualified" type="xsd:string"/>
+     <xsd:element name="Width" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="LabelType">
+    <xsd:complexContent>
+     <xsd:extension base="ImageType">
+      <xsd:sequence>
+       <xsd:element name="InternationalSignatureGraphicImage" minOccurs="0" form="qualified" type="xsd:string"/>
+       <xsd:element name="HTMLImage" minOccurs="0" form="qualified" type="xsd:string"/>
+       <xsd:element name="PDF417" minOccurs="0" form="qualified" type="xsd:string"/>
+      </xsd:sequence>
+     </xsd:extension>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="LocaleType">
+    <xsd:sequence>
+     <xsd:element name="Language" form="qualified" type="xsd:string"/>
+     <xsd:element name="Dialect" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="NMFCType">
+    <xsd:sequence>
+     <xsd:element name="PrimeCode" form="qualified" type="xsd:string"/>
+     <xsd:element name="SubCode" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="NegotiatedChargesType">
+    <xsd:sequence>
+     <xsd:element name="ItemizedCharges" minOccurs="0" form="qualified" maxOccurs="unbounded" type="ShipChargeType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="NegotiatedRateChargesType">
+    <xsd:sequence>
+     <xsd:element name="ItemizedCharges" minOccurs="0" form="qualified" maxOccurs="unbounded" type="ShipChargeType"/>
+     <xsd:element name="TaxCharges" minOccurs="0" form="qualified" maxOccurs="unbounded" type="TaxChargeType"/>
+     <xsd:element name="TotalCharge" minOccurs="0" form="qualified" type="ShipChargeType"/>
+     <xsd:element name="TotalChargesWithTaxes" minOccurs="0" form="qualified" type="ShipChargeType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="NotificationType">
+    <xsd:sequence>
+     <xsd:element name="NotificationCode" form="qualified" type="xsd:string"/>
+     <xsd:element name="EMail" form="qualified" type="EmailDetailsType"/>
+     <xsd:element name="VoiceMessage" minOccurs="0" form="qualified" type="ShipmentServiceOptionsNotificationVoiceMessageType"/>
+     <xsd:element name="TextMessage" minOccurs="0" form="qualified" type="ShipmentServiceOptionsNotificationTextMessageType"/>
+     <xsd:element name="Locale" minOccurs="0" form="qualified" type="LocaleType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PSOCODType">
+    <xsd:sequence>
+     <xsd:element name="CODFundsCode" form="qualified" type="xsd:string"/>
+     <xsd:element name="CODAmount" form="qualified" type="CurrencyMonetaryType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PSONotificationType">
+    <xsd:sequence>
+     <xsd:element name="NotificationCode" form="qualified" type="xsd:string"/>
+     <xsd:element name="EMail" form="qualified" type="EmailDetailsType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PackageDeclaredValueType">
+    <xsd:sequence>
+     <xsd:element name="Type" minOccurs="0" form="qualified" type="DeclaredValueType"/>
+     <xsd:element name="CurrencyCode" form="qualified" type="xsd:string"/>
+     <xsd:element name="MonetaryValue" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PackageResultsType">
+    <xsd:sequence>
+     <xsd:element name="TrackingNumber" form="qualified" type="xsd:string"/>
+     <xsd:element name="BaseServiceCharge" minOccurs="0" form="qualified" type="ShipChargeType"/>
+     <xsd:element name="ServiceOptionsCharges" minOccurs="0" form="qualified" type="ShipChargeType"/>
+     <xsd:element name="ShippingLabel" minOccurs="0" form="qualified" type="LabelType"/>
+     <xsd:element name="ShippingReceipt" minOccurs="0" form="qualified" type="ReceiptType"/>
+     <xsd:element name="USPSPICNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="CN22Number" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Accessorial" minOccurs="0" form="qualified" maxOccurs="unbounded" type="AccessorialType"/>
+     <xsd:element name="Form" minOccurs="0" form="qualified" type="FormType"/>
+     <xsd:element name="ItemizedCharges" minOccurs="0" form="qualified" maxOccurs="unbounded" type="ShipChargeType"/>
+     <xsd:element name="NegotiatedCharges" minOccurs="0" form="qualified" type="NegotiatedChargesType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PackageServiceOptionsAccessPointCODType">
+    <xsd:sequence>
+     <xsd:element name="CurrencyCode" form="qualified" type="xsd:string"/>
+     <xsd:element name="MonetaryValue" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PackageServiceOptionsType">
+    <xsd:sequence>
+     <xsd:element name="DeliveryConfirmation" minOccurs="0" form="qualified" type="DeliveryConfirmationType"/>
+     <xsd:element name="DeclaredValue" minOccurs="0" form="qualified" type="PackageDeclaredValueType"/>
+     <xsd:element name="COD" minOccurs="0" form="qualified" type="PSOCODType"/>
+     <xsd:element name="AccessPointCOD" minOccurs="0" form="qualified" type="PackageServiceOptionsAccessPointCODType"/>
+     <xsd:element name="VerbalConfirmation" minOccurs="0" form="qualified" type="VerbalConfirmationType"/>
+     <xsd:element name="ShipperReleaseIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Notification" minOccurs="0" form="qualified" type="PSONotificationType"/>
+     <xsd:element name="HazMat" minOccurs="0" form="qualified" maxOccurs="3" type="HazMatType"/>
+     <xsd:element name="DryIce" minOccurs="0" form="qualified" type="DryIceType"/>
+     <xsd:element name="UPSPremiumCareIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ProactiveIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PackageIdentifier" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ClinicalTrialsID" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PackageType">
+    <xsd:sequence>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Packaging" minOccurs="0" form="qualified" type="PackagingType"/>
+     <xsd:element name="Dimensions" minOccurs="0" form="qualified" type="DimensionsType"/>
+     <xsd:element name="DimWeight" minOccurs="0" form="qualified" type="PackageWeightType"/>
+     <xsd:element name="PackageWeight" minOccurs="0" form="qualified" type="PackageWeightType"/>
+     <xsd:element name="LargePackageIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ReferenceNumber" minOccurs="0" form="qualified" maxOccurs="2" type="ReferenceNumberType"/>
+     <xsd:element name="AdditionalHandlingIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PackageServiceOptions" minOccurs="0" form="qualified" type="PackageServiceOptionsType"/>
+     <xsd:element name="Commodity" minOccurs="0" form="qualified" type="CommodityType"/>
+     <xsd:element name="HazMatPackageInformation" minOccurs="0" form="qualified" type="HazMatPackageInformationType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PackageWeightType">
+    <xsd:sequence>
+     <xsd:element name="UnitOfMeasurement" form="qualified" type="ShipUnitOfMeasurementType"/>
+     <xsd:element name="Weight" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PackagingType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PaymentInfoType">
+    <xsd:sequence>
+     <xsd:element name="ShipmentCharge" form="qualified" maxOccurs="2" type="ShipmentChargeType"/>
+     <xsd:element name="SplitDutyVATIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PaymentType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PreAlertEMailMessageType">
+    <xsd:sequence>
+     <xsd:element name="EMailAddress" form="qualified" type="xsd:string"/>
+     <xsd:element name="UndeliverableEMailAddress" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PreAlertNotificationType">
+    <xsd:sequence>
+     <xsd:element name="EMailMessage" minOccurs="0" form="qualified" type="PreAlertEMailMessageType"/>
+     <xsd:element name="VoiceMessage" minOccurs="0" form="qualified" type="PreAlertVoiceMessageType"/>
+     <xsd:element name="TextMessage" minOccurs="0" form="qualified" type="PreAlertTextMessageType"/>
+     <xsd:element name="Locale" form="qualified" type="LocaleType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PreAlertTextMessageType">
+    <xsd:sequence>
+     <xsd:element name="PhoneNumber" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PreAlertVoiceMessageType">
+    <xsd:sequence>
+     <xsd:element name="PhoneNumber" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PromotionalDiscountInformationType">
+    <xsd:sequence>
+     <xsd:element name="PromoCode" form="qualified" type="xsd:string"/>
+     <xsd:element name="PromoAliasCode" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="RateInfoType">
+    <xsd:sequence>
+     <xsd:element name="NegotiatedRatesIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="FRSShipmentIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="RateChartIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="TPFCNegotiatedRatesIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="UserLevelDiscountIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ReceiptImageFormatType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ReceiptSpecificationType">
+    <xsd:sequence>
+     <xsd:element name="ImageFormat" form="qualified" type="ReceiptImageFormatType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ReceiptType">
+    <xsd:complexContent>
+     <xsd:extension base="ImageType"/>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="ReferenceNumberType">
+    <xsd:sequence>
+     <xsd:element name="BarCodeIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Code" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Value" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="RestrictedArticlesType">
+    <xsd:sequence>
+     <xsd:element name="DiagnosticSpecimensIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ReturnServiceType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="SCReportType">
+    <xsd:sequence>
+     <xsd:element name="Image" form="qualified" type="ImageType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ServiceType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ShipAddressType">
+    <xsd:sequence>
+     <xsd:element name="AddressLine" form="qualified" maxOccurs="3" type="xsd:string"/>
+     <xsd:element name="City" form="qualified" type="xsd:string"/>
+     <xsd:element name="StateProvinceCode" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PostalCode" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="CountryCode" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ShipChargeType">
+    <xsd:sequence>
+     <xsd:element name="Code" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="CurrencyCode" form="qualified" type="xsd:string"/>
+     <xsd:element name="MonetaryValue" form="qualified" type="xsd:string"/>
+     <xsd:element name="SubType" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ShipFromType">
+    <xsd:complexContent>
+     <xsd:extension base="CompanyInfoType">
+      <xsd:sequence>
+       <xsd:element name="FaxNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+       <xsd:element name="Address" form="qualified" type="ShipAddressType"/>
+       <xsd:element name="EMailAddress" minOccurs="0" form="qualified" type="xsd:string"/>
+      </xsd:sequence>
+     </xsd:extension>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="ShipPhoneType">
+    <xsd:sequence>
+     <xsd:element name="Number" form="qualified" type="xsd:string"/>
+     <xsd:element name="Extension" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ShipToAddressType">
+    <xsd:complexContent>
+     <xsd:extension base="ShipAddressType">
+      <xsd:sequence>
+       <xsd:element name="ResidentialAddressIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+      </xsd:sequence>
+     </xsd:extension>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="ShipToType">
+    <xsd:complexContent>
+     <xsd:extension base="CompanyInfoType">
+      <xsd:sequence>
+       <xsd:element name="FaxNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+       <xsd:element name="EMailAddress" minOccurs="0" form="qualified" type="xsd:string"/>
+       <xsd:element name="Address" form="qualified" type="ShipToAddressType"/>
+       <xsd:element name="LocationID" minOccurs="0" form="qualified" type="xsd:string"/>
+      </xsd:sequence>
+     </xsd:extension>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="ShipUnitOfMeasurementType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ShipmentChargeType">
+    <xsd:sequence>
+     <xsd:element name="Type" form="qualified" type="xsd:string"/>
+     <xsd:element name="BillShipper" minOccurs="0" form="qualified" type="BillShipperType"/>
+     <xsd:element name="BillReceiver" minOccurs="0" form="qualified" type="BillReceiverType"/>
+     <xsd:element name="BillThirdParty" minOccurs="0" form="qualified" type="BillThirdPartyChargeType"/>
+     <xsd:element name="ConsigneeBilledIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ShipmentChargesType">
+    <xsd:sequence>
+     <xsd:element name="RateChart" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="BaseServiceCharge" minOccurs="0" form="qualified" type="ShipChargeType"/>
+     <xsd:element name="TransportationCharges" form="qualified" type="ShipChargeType"/>
+     <xsd:element name="ItemizedCharges" minOccurs="0" form="qualified" maxOccurs="unbounded" type="ShipChargeType"/>
+     <xsd:element name="ServiceOptionsCharges" form="qualified" type="ShipChargeType"/>
+     <xsd:element name="TaxCharges" minOccurs="0" form="qualified" maxOccurs="unbounded" type="TaxChargeType"/>
+     <xsd:element name="TotalCharges" form="qualified" type="ShipChargeType"/>
+     <xsd:element name="TotalChargesWithTaxes" minOccurs="0" form="qualified" type="ShipChargeType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ShipmentResultsType">
+    <xsd:sequence>
+     <xsd:element name="Disclaimer" minOccurs="0" form="qualified" maxOccurs="unbounded" type="DisclaimerType"/>
+     <xsd:element name="ShipmentCharges" minOccurs="0" form="qualified" type="ShipmentChargesType"/>
+     <xsd:element name="NegotiatedRateCharges" minOccurs="0" form="qualified" type="NegotiatedRateChargesType"/>
+     <xsd:element name="FRSShipmentData" minOccurs="0" form="qualified" type="FRSShipmentDataType"/>
+     <xsd:element name="RatingMethod" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="BillableWeightCalculationMethod" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="BillingWeight" form="qualified" type="BillingWeightType"/>
+     <xsd:element name="ShipmentIdentificationNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="MIDualReturnShipmentKey" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ShipmentDigest" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PackageResults" minOccurs="0" form="qualified" maxOccurs="unbounded" type="PackageResultsType"/>
+     <xsd:element name="ControlLogReceipt" minOccurs="0" form="qualified" maxOccurs="unbounded" type="ImageType"/>
+     <xsd:element name="Form" minOccurs="0" form="qualified" type="FormType"/>
+     <xsd:element name="CODTurnInPage" minOccurs="0" form="qualified" type="SCReportType"/>
+     <xsd:element name="HighValueReport" minOccurs="0" form="qualified" type="HighValueReportType"/>
+     <xsd:element name="LabelURL" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="LocalLanguageLabelURL" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ReceiptURL" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="LocalLanguageReceiptURL" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ShipmentServiceOptionsAccessPointCODType">
+    <xsd:sequence>
+     <xsd:element name="CurrencyCode" form="qualified" type="xsd:string"/>
+     <xsd:element name="MonetaryValue" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ShipmentServiceOptionsNotificationTextMessageType">
+    <xsd:sequence>
+     <xsd:element name="PhoneNumber" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ShipmentServiceOptionsNotificationVoiceMessageType">
+    <xsd:sequence>
+     <xsd:element name="PhoneNumber" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ShipmentServiceOptionsType">
+    <xsd:sequence>
+     <xsd:element name="SaturdayDeliveryIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="SaturdayPickupIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="COD" minOccurs="0" form="qualified" type="CODType"/>
+     <xsd:element name="AccessPointCOD" minOccurs="0" form="qualified" type="ShipmentServiceOptionsAccessPointCODType"/>
+     <xsd:element name="DeliverToAddresseeOnlyIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="DirectDeliveryOnlyIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Notification" minOccurs="0" form="qualified" maxOccurs="unbounded" type="NotificationType"/>
+     <xsd:element name="LabelDelivery" minOccurs="0" form="qualified" type="LabelDeliveryType"/>
+     <xsd:element name="InternationalForms" minOccurs="0" form="qualified" type="xi5:InternationalFormType"/>
+     <xsd:element name="DeliveryConfirmation" minOccurs="0" form="qualified" type="DeliveryConfirmationType"/>
+     <xsd:element name="ReturnOfDocumentIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ImportControlIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="LabelMethod" minOccurs="0" form="qualified" type="LabelMethodType"/>
+     <xsd:element name="CommercialInvoiceRemovalIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="UPScarbonneutralIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PreAlertNotification" minOccurs="0" form="qualified" maxOccurs="unbounded" type="PreAlertNotificationType"/>
+     <xsd:element name="ExchangeForwardIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="HoldForPickupIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="DropoffAtUPSFacilityIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="LiftGateForPickUpIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="LiftGateForDeliveryIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="SDLShipmentIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="EPRAReleaseCode" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="RestrictedArticles" minOccurs="0" form="qualified" type="RestrictedArticlesType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ShipmentType">
+    <xsd:sequence>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ReturnService" minOccurs="0" form="qualified" type="ReturnServiceType"/>
+     <xsd:element name="DocumentsOnlyIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Shipper" form="qualified" type="ShipperType"/>
+     <xsd:element name="ShipTo" form="qualified" type="ShipToType"/>
+     <xsd:element name="AlternateDeliveryAddress" minOccurs="0" form="qualified" type="AlternateDeliveryAddressType"/>
+     <xsd:element name="ShipFrom" minOccurs="0" form="qualified" type="ShipFromType"/>
+     <xsd:element name="PaymentInformation" minOccurs="0" form="qualified" type="PaymentInfoType"/>
+     <xsd:element name="FRSPaymentInformation" minOccurs="0" form="qualified" type="FRSPaymentInfoType"/>
+     <xsd:element name="FreightShipmentInformation" minOccurs="0" form="qualified" type="FreightShipmentInformationType"/>
+     <xsd:element name="GoodsNotInFreeCirculationIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ShipmentRatingOptions" minOccurs="0" form="qualified" type="RateInfoType"/>
+     <xsd:element name="MovementReferenceNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ReferenceNumber" minOccurs="0" form="qualified" maxOccurs="2" type="ReferenceNumberType"/>
+     <xsd:element name="Service" form="qualified" type="ServiceType"/>
+     <xsd:element name="InvoiceLineTotal" minOccurs="0" form="qualified" type="CurrencyMonetaryType"/>
+     <xsd:element name="NumOfPiecesInShipment" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="USPSEndorsement" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="MILabelCN22Indicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="SubClassification" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="CostCenter" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PackageID" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="IrregularIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ShipmentIndicationType" minOccurs="0" form="qualified" maxOccurs="unbounded" type="IndicationType"/>
+     <xsd:element name="MIDualReturnShipmentKey" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="MIDualReturnShipmentIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="RatingMethodRequestedIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="TaxInformationIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PromotionalDiscountInformation" minOccurs="0" form="qualified" type="PromotionalDiscountInformationType"/>
+     <xsd:element name="ShipmentServiceOptions" minOccurs="0" form="qualified" type="ShipmentServiceOptionsType"/>
+     <xsd:element name="Package" form="qualified" maxOccurs="unbounded" type="PackageType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ShipperType">
+    <xsd:complexContent>
+     <xsd:extension base="CompanyInfoType">
+      <xsd:sequence>
+       <xsd:element name="ShipperNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+       <xsd:element name="FaxNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+       <xsd:element name="EMailAddress" minOccurs="0" form="qualified" type="xsd:string"/>
+       <xsd:element name="Address" form="qualified" type="ShipAddressType"/>
+      </xsd:sequence>
+     </xsd:extension>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="TaxChargeType">
+    <xsd:sequence>
+     <xsd:element name="Type" form="qualified" type="xsd:string"/>
+     <xsd:element name="MonetaryValue" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TaxIDCodeDescType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TransportationChargeType">
+    <xsd:sequence>
+     <xsd:element name="GrossCharge" form="qualified" type="ShipChargeType"/>
+     <xsd:element name="DiscountAmount" form="qualified" type="ShipChargeType"/>
+     <xsd:element name="DiscountPercentage" form="qualified" type="xsd:string"/>
+     <xsd:element name="NetCharge" form="qualified" type="ShipChargeType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="VerbalConfirmationType">
+    <xsd:sequence>
+     <xsd:element name="ContactInfo" minOccurs="0" form="qualified" type="ContactInfoType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+  </xsd:schema>
+  <xsd:schema targetNamespace="http://www.ups.com/XMLSchema/XOLTWS/UPSS/v1.0" xmlns="http://www.ups.com/XMLSchema/XOLTWS/UPSS/v1.0" xmlns:xi0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xi1="http://www.ups.com/XMLSchema/XOLTWS/Error/v1.1" xmlns:xi2="http://www.ups.com/XMLSchema/XOLTWS/Common/v1.0" xmlns:xi3="http://www.ups.com/XMLSchema/XOLTWS/Ship/v1.0" xmlns:xi4="http://www.ups.com/XMLSchema/XOLTWS/UPSS/v1.0" xmlns:xi5="http://www.ups.com/XMLSchema/XOLTWS/IF/v1.0" xmlns:xi6="urn:itelligence.de:pi:it.x-press:basis">
+   <xsd:element name="UPSSecurity">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="UsernameToken" form="qualified">
+       <xsd:complexType>
+        <xsd:sequence>
+         <xsd:element name="Username" form="qualified" type="xsd:string"/>
+         <xsd:element name="Password" form="qualified" type="xsd:string"/>
+        </xsd:sequence>
+       </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ServiceAccessToken" form="qualified">
+       <xsd:complexType>
+        <xsd:sequence>
+         <xsd:element name="AccessLicenseNumber" form="qualified" type="xsd:string"/>
+        </xsd:sequence>
+       </xsd:complexType>
+      </xsd:element>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+  </xsd:schema>
+  <xsd:schema targetNamespace="http://www.ups.com/XMLSchema/XOLTWS/IF/v1.0" xmlns="http://www.ups.com/XMLSchema/XOLTWS/IF/v1.0" xmlns:xi0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xi1="http://www.ups.com/XMLSchema/XOLTWS/Error/v1.1" xmlns:xi2="http://www.ups.com/XMLSchema/XOLTWS/Common/v1.0" xmlns:xi3="http://www.ups.com/XMLSchema/XOLTWS/Ship/v1.0" xmlns:xi4="http://www.ups.com/XMLSchema/XOLTWS/UPSS/v1.0" xmlns:xi5="http://www.ups.com/XMLSchema/XOLTWS/IF/v1.0" xmlns:xi6="urn:itelligence.de:pi:it.x-press:basis">
+   <xsd:complexType name="AddressType">
+    <xsd:sequence>
+     <xsd:element name="AddressLine" form="qualified" maxOccurs="3" type="xsd:string"/>
+     <xsd:element name="City" form="qualified" type="xsd:string"/>
+     <xsd:element name="StateProvinceCode" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Town" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PostalCode" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="CountryCode" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="BlanketPeriodType">
+    <xsd:sequence>
+     <xsd:element name="BeginDate" form="qualified" type="xsd:string"/>
+     <xsd:element name="EndDate" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="CN22ContentType">
+    <xsd:sequence>
+     <xsd:element name="CN22ContentQuantity" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="CN22ContentDescription" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="CN22ContentWeight" minOccurs="0" form="qualified" type="ProductWeightType"/>
+     <xsd:element name="CN22ContentTotalValue" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="CN22ContentCurrencyCode" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="CN22ContentCountryOfOrigin" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="CN22ContentTariffNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="CN22FormType">
+    <xsd:sequence>
+     <xsd:element name="LabelSize" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PrintsPerPage" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="LabelPrintType" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="CN22Type" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="CN22OtherDescription" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="FoldHereText" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="CN22Content" minOccurs="0" form="qualified" maxOccurs="3" type="CN22ContentType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ContactType">
+    <xsd:sequence>
+     <xsd:element name="ForwardAgent" minOccurs="0" form="qualified" type="ForwardAgentType"/>
+     <xsd:element name="UltimateConsignee" minOccurs="0" form="qualified" type="UltimateConsigneeType"/>
+     <xsd:element name="IntermediateConsignee" minOccurs="0" form="qualified" type="IntermediateConsigneeType"/>
+     <xsd:element name="Producer" minOccurs="0" form="qualified" type="ProducerType"/>
+     <xsd:element name="SoldTo" minOccurs="0" form="qualified" type="SoldToType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="DDTCInformationType">
+    <xsd:sequence>
+     <xsd:element name="ITARExemptionNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="USMLCategoryCode" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="EligiblePartyIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="RegistrationNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Quantity" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="UnitOfMeasurement" form="qualified" type="UnitOfMeasurementType"/>
+     <xsd:element name="SignificantMilitaryEquipmentIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ACMNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="EEIFilingOptionType">
+    <xsd:sequence>
+     <xsd:element name="Code" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="EMailAddress" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="UPSFiled" minOccurs="0" form="qualified" type="UPSFiledType"/>
+     <xsd:element name="ShipperFiled" minOccurs="0" form="qualified" type="ShipperFiledType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="EEIInformationType">
+    <xsd:sequence>
+     <xsd:element name="ExportInformation" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="License" minOccurs="0" form="qualified" type="EEILicenseType"/>
+     <xsd:element name="DDTCInformation" minOccurs="0" form="qualified" type="DDTCInformationType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="EEILicenseType">
+    <xsd:sequence>
+     <xsd:element name="Number" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Code" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="LicenseLineValue" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ECCNNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ExcludeFromFormType">
+    <xsd:sequence>
+     <xsd:element name="FormType" form="qualified" maxOccurs="unbounded" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ForwardAgentType">
+    <xsd:sequence>
+     <xsd:element name="CompanyName" form="qualified" type="xsd:string"/>
+     <xsd:element name="TaxIdentificationNumber" form="qualified" type="xsd:string"/>
+     <xsd:element name="Address" form="qualified" type="AddressType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="IFChargesType">
+    <xsd:sequence>
+     <xsd:element name="MonetaryValue" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="IntermediateConsigneeType">
+    <xsd:sequence>
+     <xsd:element name="CompanyName" form="qualified" type="xsd:string"/>
+     <xsd:element name="Address" form="qualified" type="AddressType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="InternationalFormType">
+    <xsd:sequence>
+     <xsd:element name="FormType" form="qualified" maxOccurs="6" type="xsd:string"/>
+     <xsd:element name="UserCreatedForm" minOccurs="0" form="qualified" type="UserCreatedFormType"/>
+     <xsd:element name="CN22Form" minOccurs="0" form="qualified" type="CN22FormType"/>
+     <xsd:element name="UPSPremiumCareForm" minOccurs="0" form="qualified" type="UPSPremiumCareFormType"/>
+     <xsd:element name="AdditionalDocumentIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="FormGroupIdName" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="SEDFilingOption" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="EEIFilingOption" minOccurs="0" form="qualified" type="EEIFilingOptionType"/>
+     <xsd:element name="Contacts" minOccurs="0" form="qualified" type="ContactType"/>
+     <xsd:element name="Product" form="qualified" maxOccurs="50" type="ProductType"/>
+     <xsd:element name="InvoiceNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="InvoiceDate" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PurchaseOrderNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="TermsOfShipment" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ReasonForExport" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Comments" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="DeclarationStatement" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Discount" minOccurs="0" form="qualified" type="IFChargesType"/>
+     <xsd:element name="FreightCharges" minOccurs="0" form="qualified" type="IFChargesType"/>
+     <xsd:element name="InsuranceCharges" minOccurs="0" form="qualified" type="IFChargesType"/>
+     <xsd:element name="OtherCharges" minOccurs="0" form="qualified" type="OtherChargesType"/>
+     <xsd:element name="CurrencyCode" form="qualified" type="xsd:string"/>
+     <xsd:element name="BlanketPeriod" minOccurs="0" form="qualified" type="BlanketPeriodType"/>
+     <xsd:element name="ExportDate" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ExportingCarrier" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="CarrierID" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="InBondCode" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="EntryNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PointOfOrigin" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PointOfOriginType" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ModeOfTransport" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PortOfExport" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PortOfUnloading" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="LoadingPier" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PartiesToTransaction" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="RoutedExportTransactionIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ContainerizedIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="License" minOccurs="0" form="qualified" type="LicenseType"/>
+     <xsd:element name="ECCNNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="OverridePaperlessIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ShipperMemo" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="MultiCurrencyInvoiceLineTotal" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="LanguageForUPSPremiumCareType">
+    <xsd:sequence>
+     <xsd:element name="Language" form="qualified" maxOccurs="2" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="LicenseType">
+    <xsd:sequence>
+     <xsd:element name="Number" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Date" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ExceptionCode" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="NetCostDateType">
+    <xsd:sequence>
+     <xsd:element name="BeginDate" form="qualified" type="xsd:string"/>
+     <xsd:element name="EndDate" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="OtherChargesType">
+    <xsd:sequence>
+     <xsd:element name="MonetaryValue" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="POAType">
+    <xsd:sequence>
+     <xsd:element name="Code" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PackageAssociatedType">
+    <xsd:sequence>
+     <xsd:element name="PackageNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ProductAmount" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PackingListInfoType">
+    <xsd:sequence>
+     <xsd:element name="PackageAssociated" form="qualified" maxOccurs="unbounded" type="PackageAssociatedType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PhoneType">
+    <xsd:sequence>
+     <xsd:element name="Number" form="qualified" type="xsd:string"/>
+     <xsd:element name="Extension" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ProducerType">
+    <xsd:sequence>
+     <xsd:element name="Option" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="CompanyName" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="TaxIdentificationNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Address" minOccurs="0" form="qualified" type="AddressType"/>
+     <xsd:element name="AttentionName" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Phone" minOccurs="0" form="qualified" type="PhoneType"/>
+     <xsd:element name="EMailAddress" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ProductType">
+    <xsd:sequence>
+     <xsd:element name="Description" form="qualified" maxOccurs="3" type="xsd:string"/>
+     <xsd:element name="Unit" minOccurs="0" form="qualified" type="UnitType"/>
+     <xsd:element name="CommodityCode" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PartNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="OriginCountryCode" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="JointProductionIndicator" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="NetCostCode" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="NetCostDateRange" minOccurs="0" form="qualified" type="NetCostDateType"/>
+     <xsd:element name="PreferenceCriteria" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ProducerInfo" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="MarksAndNumbers" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="NumberOfPackagesPerCommodity" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ProductWeight" minOccurs="0" form="qualified" type="ProductWeightType"/>
+     <xsd:element name="VehicleID" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ScheduleB" minOccurs="0" form="qualified" type="ScheduleBType"/>
+     <xsd:element name="ExportType" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="SEDTotalValue" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ExcludeFromForm" minOccurs="0" form="qualified" type="ExcludeFromFormType"/>
+     <xsd:element name="ProductCurrencyCode" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PackingListInfo" minOccurs="0" form="qualified" type="PackingListInfoType"/>
+     <xsd:element name="EEIInformation" minOccurs="0" form="qualified" type="EEIInformationType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ProductWeightType">
+    <xsd:sequence>
+     <xsd:element name="UnitOfMeasurement" form="qualified" type="UnitOfMeasurementType"/>
+     <xsd:element name="Weight" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ScheduleBType">
+    <xsd:sequence>
+     <xsd:element name="Number" form="qualified" type="xsd:string"/>
+     <xsd:element name="Quantity" minOccurs="0" form="qualified" maxOccurs="2" type="xsd:string"/>
+     <xsd:element name="UnitOfMeasurement" form="qualified" maxOccurs="2" type="UnitOfMeasurementType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ShipperFiledType">
+    <xsd:sequence>
+     <xsd:element name="Code" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="PreDepartureITNNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="ExemptionLegend" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="SoldToType">
+    <xsd:sequence>
+     <xsd:element name="Name" form="qualified" type="xsd:string"/>
+     <xsd:element name="AttentionName" form="qualified" type="xsd:string"/>
+     <xsd:element name="TaxIdentificationNumber" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Phone" minOccurs="0" form="qualified" type="PhoneType"/>
+     <xsd:element name="Option" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Address" form="qualified" type="AddressType"/>
+     <xsd:element name="EMailAddress" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="UPSFiledType">
+    <xsd:sequence>
+     <xsd:element name="POA" form="qualified" type="POAType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="UPSPremiumCareFormType">
+    <xsd:sequence>
+     <xsd:element name="ShipmentDate" form="qualified" type="xsd:string"/>
+     <xsd:element name="PageSize" form="qualified" type="xsd:string"/>
+     <xsd:element name="PrintType" form="qualified" type="xsd:string"/>
+     <xsd:element name="NumOfCopies" form="qualified" type="xsd:string"/>
+     <xsd:element name="LanguageForUPSPremiumCare" form="qualified" type="LanguageForUPSPremiumCareType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="UltimateConsigneeType">
+    <xsd:sequence>
+     <xsd:element name="CompanyName" form="qualified" type="xsd:string"/>
+     <xsd:element name="Address" form="qualified" type="AddressType"/>
+     <xsd:element name="UltimateConsigneeType" minOccurs="0" form="qualified" type="UltimateConsigneeTypeType"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="UltimateConsigneeTypeType">
+    <xsd:sequence>
+     <xsd:element name="Code" minOccurs="0" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="UnitOfMeasurementType">
+    <xsd:sequence>
+     <xsd:element name="Code" form="qualified" type="xsd:string"/>
+     <xsd:element name="Description" minOccurs="0" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="UnitType">
+    <xsd:sequence>
+     <xsd:element name="Number" form="qualified" type="xsd:string"/>
+     <xsd:element name="UnitOfMeasurement" form="qualified" type="UnitOfMeasurementType"/>
+     <xsd:element name="Value" form="qualified" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="UserCreatedFormType">
+    <xsd:sequence>
+     <xsd:element name="DocumentID" form="qualified" maxOccurs="unbounded" type="xsd:string"/>
+    </xsd:sequence>
+   </xsd:complexType>
+  </xsd:schema>
+  <xsd:schema targetNamespace="urn:itelligence.de:pi:it.x-press:basis" xmlns="urn:itelligence.de:pi:it.x-press:basis" xmlns:xi0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xi1="http://www.ups.com/XMLSchema/XOLTWS/Error/v1.1" xmlns:xi2="http://www.ups.com/XMLSchema/XOLTWS/Common/v1.0" xmlns:xi3="http://www.ups.com/XMLSchema/XOLTWS/Ship/v1.0" xmlns:xi4="http://www.ups.com/XMLSchema/XOLTWS/UPSS/v1.0" xmlns:xi5="http://www.ups.com/XMLSchema/XOLTWS/IF/v1.0" xmlns:xi6="urn:itelligence.de:pi:it.x-press:basis">
+   <xsd:complexType name="DT_Server">
+    <xsd:sequence>
+     <xsd:element name="address" type="DT_Server_Address"/>
+     <xsd:element name="credentials" minOccurs="0" type="DT_Server_Credentials"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="DT_Server_Address">
+    <xsd:sequence>
+     <xsd:element name="hostname">
+      <xsd:simpleType>
+       <xsd:restriction base="xsd:string">
+        <xsd:maxLength value="255"/>
+       </xsd:restriction>
+      </xsd:simpleType>
+     </xsd:element>
+     <xsd:element name="port">
+      <xsd:simpleType>
+       <xsd:restriction base="xsd:positiveInteger">
+        <xsd:maxInclusive value="65535"/>
+        <xsd:minInclusive value="1"/>
+       </xsd:restriction>
+      </xsd:simpleType>
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="DT_Server_Credentials">
+    <xsd:sequence>
+     <xsd:element name="username">
+      <xsd:simpleType>
+       <xsd:restriction base="xsd:string">
+        <xsd:maxLength value="255"/>
+       </xsd:restriction>
+      </xsd:simpleType>
+     </xsd:element>
+     <xsd:element name="password">
+      <xsd:simpleType>
+       <xsd:restriction base="xsd:string">
+        <xsd:maxLength value="255"/>
+       </xsd:restriction>
+      </xsd:simpleType>
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+  </xsd:schema>
+ </wsdl:types>
+ <wsdl:message name="Envelope">
+  <wsdl:part name="Envelope" element="n1:Envelope"/>
+ </wsdl:message>
+ <wsdl:portType name="SI_UPS_Shipment_OB">
+  <wsdl:documentation>
+   <sapdoc:sapdoc xmlns:sapdoc="urn:sap:esi:documentation">
+    <sapdoc:docitem applicationComponent="CA"/>
+   </sapdoc:sapdoc>
+  </wsdl:documentation>
+  <wsp:Policy>
+   <wsp:PolicyReference URI="#IF_IF_SI_UPS_Shipment_OB"/>
+  </wsp:Policy>
+  <wsdl:operation name="SI_UPS_Shipment_OB">
+   <wsp:Policy>
+    <wsp:PolicyReference URI="#OP_IF_OP_SI_UPS_Shipment_OB"/>
+   </wsp:Policy>
+   <wsdl:input message="tns:Envelope"/>
+   <wsdl:output message="tns:Envelope"/>
+  </wsdl:operation>
+ </wsdl:portType>
+</wsdl:definitions>
