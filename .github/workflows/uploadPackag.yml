@@ -1,0 +1,95 @@
+name: SAP Cloud Integration - Transport
+
+on:
+   workflow_dispatch:
+    inputs:
+      packageID:
+        description: 'Package ID for upload'
+        required: true
+      packagePath:
+        description: 'Package path for upload'
+        required: true
+
+
+
+permissions:
+  contents: write
+
+jobs:
+  call-CPILint:
+    uses: ./.github/workflows/CPILint.yml 
+    with:
+      flow_id: ${{ github.event.inputs.iFlowId }}
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 🔹 Klont dein Repository in den Runner
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN}}
+
+	  - name: Find folder path
+        id: find_path
+        run: |
+          TARGET_FOLDER=$(find . -type d -name '{{github.event.inputs.packagePath}}' | head -n 1)
+          if [ -z "$TARGET_FOLDER" ]; then
+            echo "Folder not found!"
+            exit 1
+          fi
+          echo "Found folder: $TARGET_FOLDER"
+          echo "folder_path=$TARGET_FOLDER" >> $GITHUB_OUTPUT
+
+      # 3. Ordner zippen
+      - name: Zip folder
+        id: zip
+        run: |
+          ZIP_NAME="artifact.zip"
+          cd "${{ steps.find_path.outputs.folder_path }}"
+          zip -r "../$ZIP_NAME" .
+          cd -
+          echo "zip_file=$ZIP_NAME" >> $GITHUB_OUTPUT
+
+      # 🔹 Commit & Push der heruntergeladenen Artefakte zurück ins Repo
+      - name: Commit & Push downloaded files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch --all
+          git add downloaded_artifacts/
+          git commit -m "Downloaded artifact GetGroovyVersion on $(date -u +'%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
+          git push
+	  - name: Extract CPI credentials from JSON secret
+        id: creds
+        run: |
+          echo "$CPI_SECRET" > secret.json
+          HOST=$(jq -r '.host' secret.json)
+          USER=$(jq -r '.username' secret.json)
+          PASS=$(jq -r '.password' secret.json)
+          PACKAGE_ID=$(jq -r '.packageId' secret.json)
+          ARTIFACT_ID=$(jq -r '.artifactId' secret.json)
+
+          echo "host=$HOST" >> $GITHUB_OUTPUT
+          echo "user=$USER" >> $GITHUB_OUTPUT
+          echo "pass=$PASS" >> $GITHUB_OUTPUT
+          echo "package=$PACKAGE_ID" >> $GITHUB_OUTPUT
+          echo "artifact=$ARTIFACT_ID" >> $GITHUB_OUTPUT
+
+        env:
+          CPI_SECRET: ${{ secrets.CPI_TENANT_B_KEY }}
+
+      # 5. Artefakt in CPI anlegen (POST)
+      - name: Create artifact metadata in CPI
+        run: |
+          curl --fail -X POST \
+            "${{ steps.creds.outputs.host }}/api/v1/IntegrationPackages('${{ github.event.inputs.packageID }}')/Artifacts" \
+            -H "Content-Type: application/json" \
+            -u "${{ steps.creds.outputs.user }}:${{ steps.creds.outputs.pass }}" \
+            -d "{
+                  \"Id\": \"${{ steps.creds.outputs.artifact }}\",
+                  \"Name\": \"${{ steps.creds.outputs.artifact }}\",
+                  \"ArtifactType\": \"IntegrationFlow\"
+                }"
+				
+          
